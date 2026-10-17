@@ -233,7 +233,7 @@ body.apx-on > header.top, body.apx-on > main, body.apx-on > footer { display: no
 #appendix { background: #e9e6df; min-height: 100vh; color: #15120e; --ink: #15120e; --ink2: #4d4842; --ink3: #8a837a; --card: #fff; --line: #e6e2da; --grid: #eeebe5; --bg: #f6f5f1; --bg2: #efede7; --sA: #2a78d6; --sF: #eb6834; --sP: #1baf7a; --sL: #a39d93; --pos: #2a78d6; --neg: #e34948; --ok: #12813a; --bad: #c52f2f; --accent: #e8473f; --accent-soft: #fdebe9; --tag-AR: #dde9fb; --tag-EXT: #d7f0f2; --tag-LIT: #f4e2f1; --tag-SV: #e0f3e7; --tag-DV: #eeeae1; --tag-AS: #fdebd6; --tag-PD: #ebe7fb; color-scheme: light; }
 .apx-bar { position: sticky; top: 0; z-index: 5; display: flex; gap: 12px; align-items: center; padding: 10px 20px; background: #f6f5f1; border-bottom: 1px solid #e6e2da; }
 #apx-pages { display: grid; justify-content: center; gap: 22px; padding: 24px 12px 60px; }
-.page { width: 210mm; height: 297mm; background: #fff; padding: 13mm 15mm 12mm; display: flex; flex-direction: column; gap: 4.5mm; overflow: hidden; box-shadow: 0 2px 18px rgba(0,0,0,.12); font-size: 9.6pt; line-height: 1.45; position: relative; }
+.page { width: 210mm; height: 297mm; background: #fff; padding: 12mm 15mm 11mm; display: flex; flex-direction: column; gap: 3.2mm; overflow: hidden; box-shadow: 0 2px 18px rgba(0,0,0,.12); font-size: 9.6pt; line-height: 1.45; position: relative; }
 .apx-h, .apx-f { display: flex; justify-content: space-between; gap: 10px; font-size: 7.5pt; color: #8a837a; letter-spacing: .02em; }
 .apx-h { border-bottom: 1px solid #e6e2da; padding-bottom: 2.5mm; }
 .apx-f { margin-top: auto; border-top: 1px solid #e6e2da; padding-top: 2.5mm; }
@@ -256,12 +256,12 @@ body.apx-on > header.top, body.apx-on > main, body.apx-on > footer { display: no
 .apx-cardt { font-weight: 700; font-size: 10.5pt; margin-top: 1mm; }
 .apx-mc { display: grid; gap: 2mm; }
 .apx-fig svg { max-width: 100%; height: auto; }
-.apx-math { display: grid; gap: 1.2mm; background: #f6f5f1; border-radius: 3mm; padding: 3mm 4mm; font-family: "Times New Roman", Georgia, serif; font-size: 11pt; }
+.apx-math { display: grid; gap: .8mm; background: #f6f5f1; border-radius: 3mm; padding: 2mm 4mm; font-family: "Times New Roman", Georgia, serif; font-size: 11pt; }
 .apx-tbl { width: 100%; border-collapse: collapse; font-size: 8.4pt; }
 .apx-tbl th, .apx-tbl td { text-align: left; padding: 1.4mm 2mm; border-bottom: 1px solid #ece8e1; vertical-align: top; }
 .apx-tbl thead th { font-size: 7.2pt; text-transform: uppercase; letter-spacing: .04em; color: #8a837a; }
 .apx-tbl.small { font-size: 7.8pt; }
-.apx-tbl.tight th, .apx-tbl.tight td { padding: .8mm 2mm; }
+.apx-tbl.tight th, .apx-tbl.tight td { padding: .6mm 2mm; }
 #appendix .legend { font-size: 7.6pt; margin: 0; }
 .apx-tbl .note { font-size: 7.2pt; } .apx-tbl .pill { font-size: 7.2pt; }
 .apx-ex { display: flex; gap: 3mm; align-items: center; border: 1px dashed #d9d4ca; border-radius: 3mm; padding: 2mm 3mm; }
@@ -272,6 +272,7 @@ body.apx-on > header.top, body.apx-on > main, body.apx-on > footer { display: no
 .apx-idx { display: flex; gap: 3mm; align-items: center; border: 1px solid #e6e2da; border-radius: 3mm; padding: 2.5mm; } .apx-idx .n { font-size: 7.4pt; color: #4d4842; }
 .apx-src { font-size: 7.6pt; color: #4d4842; margin: 0; }
 .qr-miss { border: 1px dashed #8a837a; display: grid; place-items: center; font-size: 8pt; color: #8a837a; }
+.page > * { flex-shrink: 0; }
 @page { size: A4; margin: 0; }
 @media print {
   body { background: #fff !important; }
@@ -310,7 +311,7 @@ body.apx-on > header.top, body.apx-on > main, body.apx-on > footer { display: no
         </div>
       </div>
       <div class="hero-card">
-        <div class="k"><span>Licence-adjusted change in customer portfolio equity</span><span class="chip" id="hero-chip"></span></div>
+        <div class="k"><span>Rider ΔCPE, both initiatives</span><span class="chip" id="hero-chip"></span></div>
         <div class="big num" id="hero-big">–</div>
         <div class="s" id="hero-s"></div>
         <div class="spark" id="hero-spark"></div>
@@ -323,7 +324,7 @@ body.apx-on > header.top, body.apx-on > main, body.apx-on > footer { display: no
     <div class="sh"><div><div class="no">01 · THE CITY</div><h2>The customer that decides whether Voi stays</h2><p>Oslo gives three operators a two-year permit, with no extension, on the strength of a written bid. It removed an incumbent in 2022, 2023 and 2024, and Voi lost Bergen in 2026 despite being the incumbent. Rider value only counts while the permit lasts, so every initiative is also judged on the award criteria.</p></div></div>
     <div class="stats" id="city-stats"></div>
     <div style="display:grid;gap:16px">
-      <div class="card"><h3>Value at two levels</h3><p class="sub">Rider value (weighted by renewal) and licence value (a better chance of keeping the permit), present value over 36 months.</p><div class="legend"><span><i class="sw" style="background:var(--sA)"></i>Rider value</span><span><i class="sw" style="background:var(--accent)"></i>Licence value</span></div><div class="chart" id="ch-levels"></div></div>
+      <div class="card"><h3>Value at two levels</h3><p class="sub">Rider value (weighted by renewal) and licence value (a better chance of keeping the permit), present value over 36 months.</p><div class="legend"><span><i class="sw" style="background:var(--sA)"></i>Rider value</span><span><i class="sw" style="background:var(--accent)"></i>Licence value (judgement)</span></div><div class="chart" id="ch-levels"></div></div>
       <div class="card"><h3>How each initiative meets the award criteria</h3><p class="sub">Criteria from Oslo's regulation and earlier rounds (weights 2022; Bergen 2026). The 2025 weights are not published.</p><div class="tw"><table class="t" id="tbl-criteria"></table></div></div>
     </div>
   </section>
@@ -401,10 +402,10 @@ body.apx-on > header.top, body.apx-on > main, body.apx-on > footer { display: no
 
   <section class="block" id="pilots">
     <div class="sh"><div><div class="no">07 · 10,000 PILOTS</div><h2>What the stop rules are worth</h2><p>Every simulated pilot draws each uncertain input from its range and compares two strategies. <b>Launch blind</b> runs both initiatives for 36 months whatever happens. <b>With Gate 1</b> measures behaviour at the gate and continues only an initiative whose remaining value is positive. The gap between them is the value of the option to stop.</p></div>
-      <div class="toolbar"><select id="mc-n" aria-label="Number of pilots"><option value="2000">2,000 pilots</option><option value="10000">10,000 pilots</option></select><button class="btn" id="mc-run" type="button">Run simulation</button><span class="mut" id="mc-progress"></span></div></div>
+      <div class="toolbar"><div class="seg-ctl" id="mc-level" role="group" aria-label="Value level"><button type="button" data-v="rider" aria-pressed="true">Rider level</button><button type="button" data-v="licence" aria-pressed="false">Licence-adjusted</button></div><select id="mc-n" aria-label="Number of pilots"><option value="2000">2,000 pilots</option><option value="10000">10,000 pilots</option></select><button class="btn" id="mc-run" type="button">Run simulation</button><span class="mut" id="mc-progress"></span></div></div>
     <div id="mc-stale" class="note" hidden style="margin-bottom:8px">Inputs changed since this run. Run it again to update.</div>
     <div class="kpis" id="mc-kpis" style="margin-top:0;margin-bottom:14px"></div>
-    <div class="card"><h3>Licence-adjusted ΔCPE across simulated pilots</h3><p class="sub" id="mc-note"></p><div class="legend"><span><i class="sw" style="background:var(--ink3)"></i>Launch blind</span><span><i class="sw" style="background:var(--pos)"></i>With Gate 1</span><span><i class="sw" style="background:var(--neg)"></i>Loss</span><span><svg width="18" height="10"><line x1="1" x2="17" y1="5" y2="5" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 2"/></svg>Mean</span></div><div class="chart" id="ch-mc"></div>
+    <div class="card"><h3>ΔCPE across simulated pilots</h3><p class="sub" id="mc-note"></p><div class="legend"><span><i class="sw" style="background:var(--ink3)"></i>Launch blind</span><span><i class="sw" style="background:var(--pos)"></i>With Gate 1</span><span><i class="sw" style="background:var(--neg)"></i>Loss</span><span><svg width="18" height="10"><line x1="1" x2="17" y1="5" y2="5" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 2"/></svg>Mean</span></div><div class="chart" id="ch-mc"></div>
       <details style="margin-top:10px"><summary style="cursor:pointer;font-weight:650">Uncertain inputs and their ranges</summary><div class="tw" style="margin-top:8px"><table class="t" id="tbl-ranges"></table></div></details></div>
   </section>
 
@@ -800,14 +801,16 @@ body.apx-on > header.top, body.apx-on > main, body.apx-on > footer { display: no
       set(z, k, Math.min(hi <= 1 ? 1 : Infinity, Math.max(Math.min(0, lo), v)));
     }
     const baseY = run(y, { booking: false, group: false }), baseZ = run(z, { booking: false, group: false });
-    const out = { full: 0, gated: 0 };
+    // full/gated: licence-adjusted. fullR/gatedR: rider level, permit assumed (no licence judgement).
+    const out = { full: 0, gated: 0, fullR: 0, gatedR: 0 };
     for (const id of ['booking', 'group']) {
       const c = compare(y, ONS[id], baseY), cz = compare(z, ONS[id], baseZ);
-      const pre = (cc, b) => { let v = -cc.setup; for (let t = 0; t < M.gateMonth; t++) v += survival(y, cc.pRenew, t + 1) * (cc.sc.months[t].total - b.months[t].total) * cc.sc.months[t].df; return v; };
-      const preY = pre(c, baseY), futureZ = cz.riderL - pre(cz, baseZ);
-      const go = futureZ > 0, gated = go ? c.dCPEL : preY + c.licValue;
-      out[id] = { full: c.dCPEL, gated, go };
-      out.full += c.dCPEL; out.gated += gated;
+      const pre = (cc, b, w) => { let v = -cc.setup; for (let t = 0; t < M.gateMonth; t++) v += (w ? survival(y, cc.pRenew, t + 1) : 1) * (cc.sc.months[t].total - b.months[t].total) * cc.sc.months[t].df; return v; };
+      const go = cz.riderL - pre(cz, baseZ, true) > 0, goR = cz.dCPE + cz.setup - (pre(cz, baseZ, false) + cz.setup) > 0;
+      const gated = go ? c.dCPEL : pre(c, baseY, true) + c.licValue;
+      const gatedR = goR ? c.dCPE : pre(c, baseY, false);
+      out[id] = { full: c.dCPEL, gated, go, fullR: c.dCPE, gatedR, goR };
+      out.full += c.dCPEL; out.gated += gated; out.fullR += c.dCPE; out.gatedR += gatedR;
     }
     return out;
   }
@@ -819,7 +822,9 @@ body.apx-on > header.top, body.apx-on > main, body.apx-on > footer { display: no
     const n = draws.length;
     return {
       n, full: stat(draws.map(d => d.full)), gated: stat(draws.map(d => d.gated)),
-      goBooking: draws.filter(d => d.booking.go).length / n, goGroup: draws.filter(d => d.group.go).length / n
+      fullR: stat(draws.map(d => d.fullR)), gatedR: stat(draws.map(d => d.gatedR)),
+      goBooking: draws.filter(d => d.booking.go).length / n, goGroup: draws.filter(d => d.group.go).length / n,
+      goBookingR: draws.filter(d => d.booking.goR).length / n, goGroupR: draws.filter(d => d.group.goR).length / n
     };
   }
 
@@ -960,7 +965,7 @@ body.apx-on > header.top, body.apx-on > main, body.apx-on > footer { display: no
     late: { label: 'Late night', values: { 'group.serviceable': 0.85, 'licence.grEffect': -0.01 },
       note: '<b style="color:var(--ink)">Rejected alternative.</b> Packages run until the 23:00 closure. More occasions qualify (85%), but late group riding is what the closure was introduced to stop, and it costs renewal chance.' }
   };
-  const segState = { scenario: 'both', seg: 'ALL', flowSeg: 'ALL', flowMode: 'scn', flowMonth: 12 };
+  const segState = { scenario: 'both', seg: 'ALL', flowSeg: 'ALL', flowMode: 'scn', flowMonth: 12, mcLevel: 'rider' };
   const view = segState;
 
   // Formatting
@@ -1097,10 +1102,11 @@ body.apx-on > header.top, body.apx-on > main, body.apx-on > footer { display: no
   function hero(list, cmp) {
     const any = cmp.on.booking || cmp.on.group;
     const big = $('#hero-big');
-    big.className = 'big num ' + (cmp.dCPEL < 0 ? 'neg' : 'pos');
-    countTo(big, 'hero', any ? cmp.dCPEL : 0, v => any ? mnok(v) : '–');
+    big.className = 'big num ' + (cmp.dCPE < 0 ? 'neg' : 'pos');
+    countTo(big, 'hero', any ? cmp.dCPE : 0, v => any ? mnok(v) : '–');
+    const thr = cmp.setup / Math.max(1, cmp.licencePerPP);
     $('#hero-chip').textContent = list.find(s => s.id === view.scenario).label;
-    $('#hero-s').innerHTML = any ? `Riders <b style="color:var(--ink)">${mnok(cmp.riderL)}</b> + licence <b style="color:var(--ink)">${mnok(cmp.licValue)}</b> · ${X.horizon} months, present value, after ${nok(cmp.setup)} setup` : 'Choose an initiative to value it against the baseline.';
+    $('#hero-s').innerHTML = any ? `Permit assumed, ${X.horizon} months, present value, after ${nok(cmp.setup)} setup${cmp.payback ? ` · payback month ${cmp.payback}` : ''}.<br><b style="color:var(--ink)">Licence threshold:</b> setup is repaid by <b style="color:var(--ink)">+${nf(thr, 2)} pp</b> renewal chance · modelled licence upside ${mnok(cmp.licValue)} (judgement)` : 'Choose an initiative to value it against the baseline.';
     const host = $('#hero-spark'); host.innerHTML = '';
     if (any) {
       const pts = cumPath(cmp), W = widthOf(host), H = 64;
@@ -1116,12 +1122,12 @@ body.apx-on > header.top, body.apx-on > main, body.apx-on > footer { display: no
     }
     const by = Object.fromEntries(list.map(s => [s.id, s]));
     const b = by.booking, g = by.group, both = by.both;
-    $('#lead').innerHTML = `Voi has two customers in Oslo: the <b>riders</b>, and the <b>city</b> that re-tenders its permit every two years. <b>Hub &amp; Book</b> for Convenience Seekers and a <b>safe evening group package</b> for Social Leisure Seekers are valued at both levels: together <b>${mnok(both.dCPEL)}</b>, of which ${mnok(both.licValue)} comes from a better chance of keeping the permit.`;
+    $('#lead').innerHTML = `Voi has two customers in Oslo: the <b>riders</b>, and the <b>city</b> that re-tenders its permit every two years. <b>Hub &amp; Book</b> for Convenience Seekers and a <b>safe evening group package</b> for Social Leisure Seekers add <b>${mnok(both.dCPE)}</b> at rider level. The licence is the threshold, not the headline: the plan pays for its setup if it raises Voi's chance of keeping Oslo by just <b>${nf(both.setup / Math.max(1, both.licencePerPP), 2)} percentage points</b>.`;
     const tiles = [
-      { k: 'Rider ΔCPE, permit assumed', v: any ? mnok(cmp.dCPE) : '–', s: cmp.payback ? `payback month ${cmp.payback}` : (any ? 'no payback in horizon' : 'no initiative') },
-      { k: 'Chance Oslo renews', v: pct(cmp.pRenew, 1), s: `without initiatives ${pct(cmp.pRenewBase, 0)}` },
-      { k: 'Pass share, month 12', v: pct(cmp.passShare12), s: `baseline ${pct(cmp.passShare12Base)}` },
-      { k: 'Simulated chance of loss', v: MC.summary ? pct(MC.summary.gated.pLoss, 1) : '…', s: MC.summary ? `with Gate 1; blind ${pct(MC.summary.full.pLoss, 1)}` : 'running the simulation' }
+      { k: 'Licence threshold', v: any ? '+' + nf(thr, 2) + ' pp' : '–', s: 'renewal chance that repays the setup' },
+      { k: 'Worst 5% of pilots', v: MC.summary ? mnok(MC.summary.gatedR.p5) : '…', s: MC.summary ? `rider level with Gate 1; blind ${mnok(MC.summary.fullR.p5)}` : 'running the simulation' },
+      { k: 'Licence upside (judgement)', v: any ? mnok(cmp.licValue) : '–', s: `if renewal ${pct(cmp.pRenewBase, 0)} → ${pct(cmp.pRenew, 1)}` },
+      { k: 'Pass share, month 12', v: pct(cmp.passShare12), s: `baseline ${pct(cmp.passShare12Base)}` }
     ];
     $('#kpis').innerHTML = tiles.map(t => `<div class="kpi"><div class="kk">${t.k}</div><div class="kv">${t.v}</div><div class="ks">${t.s}</div></div>`).join('');
   }
@@ -1563,24 +1569,28 @@ body.apx-on > header.top, body.apx-on > main, body.apx-on > footer { display: no
     if (!ok) return;
     const s = E.mcSummary(MC.draws); MC.summary = s;
     const tile = (k, a, b, note) => `<div class="kpi"><div class="kk">${k}</div><div class="kv">${a} <span style="color:var(--ink3);font-weight:500">→</span> ${b}</div><div class="ks">${note}</div></div>`;
+    const R = view.mcLevel === 'rider', f = R ? s.fullR : s.full, g = R ? s.gatedR : s.gated;
+    const perPP = window.__voiLast ? window.__voiLast.list.find(r => r.id === 'both').licencePerPP : 0;
+    document.querySelectorAll('#mc-level button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.v === view.mcLevel)));
     $('#mc-kpis').innerHTML = [
-      tile('Chance of losing money', pct(s.full.pLoss, 1), pct(s.gated.pLoss, 1), 'launch blind → with Gate 1'),
-      tile('Expected ΔCPE', mnok(s.full.mean), mnok(s.gated.mean), 'licence-adjusted, present value'),
-      tile('Worst 5%', mnok(s.full.p5), mnok(s.gated.p5), '5th percentile outcome'),
-      `<div class="kpi"><div class="kk">Value of the gate</div><div class="kv">${mnok(s.gated.mean - s.full.mean)}</div><div class="ks">continue rate: Hub &amp; Book ${pct(s.goBooking, 0)}, group ${pct(s.goGroup, 0)}</div></div>`
+      tile('Worst 5% of pilots', mnok(f.p5), mnok(g.p5), R && perPP ? `launch blind → with Gate 1; covered by ${nf(Math.max(0, -g.p5) / perPP, 1)} pp renewal chance` : 'launch blind → with Gate 1'),
+      tile('Expected ΔCPE', mnok(f.mean), mnok(g.mean), R ? 'rider level, permit assumed' : 'licence-adjusted (judgement)'),
+      tile('Chance of losing money', pct(f.pLoss, 1), pct(g.pLoss, 1), R ? 'stopping early locks in small losses' : 'launch blind → with Gate 1'),
+      `<div class="kpi"><div class="kk">Value of the gate</div><div class="kv">${mnok(g.mean - f.mean)}</div><div class="ks">continue rate: Hub &amp; Book ${pct(R ? s.goBookingR : s.goBooking, 0)}, group ${pct(R ? s.goGroupR : s.goGroup, 0)}</div></div>`
     ].join('');
     chartMC($('#ch-mc'));
     $('#mc-note').textContent = `${nf(s.n)} simulated pilots, seed ${X.mc.seed}. Each draw samples ${Object.keys(X.mc.ranges).length} uncertain inputs from triangular ranges; the gate measures behaviour with ${pct(X.mc.noise, 0)} error.`;
   }
   // Two histograms on one scale: launching blind vs the gated pilot.
-  function chartMC(host, compact) {
+  function chartMC(host, compact, level = view.mcLevel, height) {
+    const kF = level === 'rider' ? 'fullR' : 'full', kG = level === 'rider' ? 'gatedR' : 'gated';
     host.innerHTML = '';
     if (!MC.draws.length) { host.innerHTML = '<p class="empty">Run the simulation to see the distribution.</p>'; return; }
-    const W = widthOf(host), H = compact ? 230 : 300, m = { l: 118, r: 16, t: 10, b: 30 };
-    const vals = MC.draws.flatMap(d => [d.full, d.gated]);
+    const W = widthOf(host), H = height || (compact ? 230 : 300), m = { l: 118, r: 16, t: 10, b: 30 };
+    const vals = MC.draws.flatMap(d => [d[kF], d[kG]]);
     const lo = Math.min(...vals), hi = Math.max(...vals), nb = 44, bw = (hi - lo) / nb || 1;
     const bins = key => { const c = new Array(nb).fill(0); MC.draws.forEach(d => { c[Math.min(nb - 1, Math.floor((d[key] - lo) / bw))]++; }); return c; };
-    const series = [{ key: 'full', label: 'Launch blind', col: 'var(--ink3)', c: bins('full') }, { key: 'gated', label: 'With Gate 1', col: 'var(--pos)', c: bins('gated') }];
+    const series = [{ key: kF, label: 'Launch blind', col: 'var(--ink3)', c: bins(kF) }, { key: kG, label: 'With Gate 1', col: 'var(--pos)', c: bins(kG) }];
     const peak = Math.max(...series.flatMap(s => s.c));
     const laneH = (H - m.t - m.b) / 2 - 8;
     const x = v => m.l + (v - lo) / (hi - lo || 1) * (W - m.l - m.r);
@@ -1630,17 +1640,17 @@ body.apx-on > header.top, body.apx-on > main, body.apx-on > footer { display: no
     for (const k of Object.keys(PRESETS)) { applyPreset(k); alt[k] = Object.fromEntries(E.scenarios(X).map(r => [r.id, r])); }
     applyPreset('central'); view.scenario = 'both';
     const list = E.scenarios(X), by = Object.fromEntries(list.map(s => [s.id, s])), cmp = by.both, cal = cmp.sc.cal, s = MC.summary;
-    const L = X.licence;
+    const L = X.licence, thr = cmp.setup / Math.max(1, cmp.licencePerPP);
     const big = (k, v, note) => `<div class="apx-big"><div class="k">${k}</div><div class="v">${v}</div><div class="n">${note}</div></div>`;
     const p1 = `<section class="page apx-poster"><header class="apx-h"><span>Appendix A · Voi Oslo · printed from the Customer Portfolio Engine</span><span>${esc(CFG.version || '17 Oct 2026')}</span></header>
       <div class="apx-hero"><div><div class="apx-kick">Two customers, one licence</div><h1 class="apx-h1">Riders create the value.<br>The city decides if Voi keeps it.</h1>
       <p class="apx-dek">Oslo re-tenders Voi's permit every two years and has removed an incumbent operator in three rounds running. This engine values two segment initiatives at both levels: the riders' relationship states, and the chance that the city renews the permit.</p></div>
       <div class="apx-mainqr">${qrSvg(linkFor('s=central&v=both'), 116)}<div>Scan to open the live engine<br><b>#s=central</b></div></div></div>
-      <div class="apx-bigs">${big('Licence-adjusted ΔCPE, both initiatives', mnok(cmp.dCPEL), `36 months, present value, after ${nok(cmp.setup)} setup`)}${big('Rider value', mnok(cmp.riderL), 'relationship migration, weighted by renewal')}${big('Licence value', mnok(cmp.licValue), `renewal chance ${pct(L.p0, 0)} → ${pct(cmp.pRenew, 1)}`)}</div>
+      <div class="apx-bigs">${big('Rider ΔCPE, both initiatives', mnok(cmp.dCPE), `permit assumed · 36 months · present value · after ${nok(cmp.setup)} setup`)}${big('Licence threshold', '+' + nf(thr, 2) + ' pp', 'extra renewal chance that repays the whole setup')}${s ? big('Worst 5% of pilots', mnok(s.gatedR.p5), `with Gate 1 (blind ${mnok(s.fullR.p5)}); covered by ${nf(Math.max(0, -s.gatedR.p5) / cmp.licencePerPP, 1)} pp`) : ''}</div>
       <div class="apx-two"><div class="apx-card"><div class="apx-lvl">Level 1 · the city</div><div class="apx-cardt">Permit ends about 31 Mar 2027</div><ul><li>Three permits, two years, no extension</li><li>Award criteria: public space 40%, safety 40%, environment 20% (2022)</li><li>1 pp of renewal chance = ${mnok(cmp.licencePerPP, false)}</li><li>Setup repaid by ${nf(cmp.setup / cmp.licencePerPP, 2)} pp alone</li></ul></div>
       <div class="apx-card"><div class="apx-lvl">Level 2 · the riders</div><div class="apx-cardt">${nf(cal.active)} monthly customers, ${pct(cal.mix.P, 1)} on Voi Pass</div><ul><li>Hub &amp; Book (Convenience Seekers): ${mnok(by.booking.dCPE)} rider ΔCPE</li><li>Group package (Social Leisure Seekers): ${mnok(by.group.dCPE)}</li><li>Hub zones are essential: city-wide loses money</li><li>Payback month ${cmp.payback || '–'} (rider level)</li></ul></div></div>
-      <div class="apx-card apx-mc"><div class="apx-lvl">${s ? nf(s.n) : '–'} simulated pilots · licence-adjusted ΔCPE, NOK</div><div id="apx-ch-mc"></div>
-      <div class="apx-bigs sm">${s ? big('Chance of losing money', `${pct(s.full.pLoss, 1)} → ${pct(s.gated.pLoss, 1)}`, 'launch blind → with Gate 1') + big('Expected ΔCPE', `${mnok(s.gated.mean)}`, `blind ${mnok(s.full.mean)}`) + big('Value of the gate', mnok(s.gated.mean - s.full.mean), 'what the stop rules are worth') : ''}</div></div>
+      <div class="apx-card apx-mc"><div class="apx-lvl">${s ? nf(s.n) : '–'} simulated pilots · rider ΔCPE, NOK, permit assumed</div><div id="apx-ch-mc"></div>
+      <div class="apx-bigs sm">${s ? big('Expected rider ΔCPE', mnok(s.gatedR.mean), `with Gate 1; blind ${mnok(s.fullR.mean)}`) + big('Value of the gate', mnok(s.gatedR.mean - s.fullR.mean), 'and the worst 5% roughly halved') + big('Licence-adjusted, as a judgement', mnok(cmp.dCPEL), `renewal ${pct(L.p0, 0)} → ${pct(cmp.pRenew, 1)}`) : ''}</div></div>
       <footer class="apx-f"><span>Sources in A6. Behavioural effects are assumptions; the pilot replaces them with measurements.</span><span>A1</span></footer></section>`;
     const calibRows = [
       ['Voi Norway net revenue 2025', 'EUR 19.0m', 'Voi Annual Report 2025, Note 2'], ['Oslo share of that revenue', pct(X.osloShare, 0), 'Derived from fleet and trips (60–85%)'],
@@ -1653,7 +1663,7 @@ body.apx-on > header.top, body.apx-on > main, body.apx-on > footer { display: no
       `<p class="apx-p">Customers in each of four survey segments move monthly between four relationship states (Johnson &amp; Selnes, 2004). Value is the discounted margin of all customers over 36 months, minus setup (Berger &amp; Nasr, 1998; Gupta, Lehmann &amp; Stuart, 2004). After the permit ends, each month only counts with the probability that Oslo has renewed it.</p>
       <div class="apx-fig">${STATE_SVG}</div>
       <div class="apx-math"><div>n<sub>s,t+1</sub> = n<sub>s,t</sub> M<sub>s</sub> + a<sub>s</sub> e<sub>A</sub></div><div>C<sub>t</sub> = Σ<sub>s</sub> [(A r<sub>A</sub> + F r<sub>F</sub>)(p − c) + P(f − r<sub>P</sub> c)] + B<sub>t</sub> + G<sub>t</sub></div><div>ΔCPE<sub>L</sub> = Σ<sub>t</sub> S<sub>t</sub>(π) C<sub>t</sub> / (1+i)<sup>t</sup> − setup − baseline, &nbsp; S<sub>t</sub> = π<sup>k(t)</sup></div></div>
-      <table class="apx-tbl"><thead><tr><th>Calibration anchor</th><th>Value</th><th>Basis</th></tr></thead><tbody>${calibRows.map(r => `<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join('')}</tbody></table>
+      <table class="apx-tbl small tight"><thead><tr><th>Calibration anchor</th><th>Value</th><th>Basis</th></tr></thead><tbody>${calibRows.map(r => `<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join('')}</tbody></table>
       ${exhibit('s=central&v=both', 'portfolio', 'Open the live state diagram, month by month')}`);
     const p3 = apxPage(3, 'Initiatives and licence', 'Both initiatives are designed to score with the city',
       `<p class="apx-p">Oslo awards three two-year permits on written bids. Each initiative is therefore judged twice: on what it does for riders, and on what it does for the award criteria. Value by level, central case:</p>
@@ -1669,7 +1679,11 @@ body.apx-on > header.top, body.apx-on > main, body.apx-on > footer { display: no
       </tbody></table>
       <div class="apx-exrow">${exhibit('s=central&v=booking', 'initiatives', `Hub zones: ${mnok(by.booking.dCPE)} rider ΔCPE`)}${exhibit('s=city&v=booking', 'initiatives', 'City-wide booking: the rejected design')}${exhibit('s=late&v=group', 'city', 'Late-night package: the rejected design')}</div>`);
     const p4 = apxPage(4, 'Uncertainty', `${s ? nf(s.n) : '10,000'} pilots: what the gate is worth`,
-      `<p class="apx-p">Each simulated pilot draws every uncertain input from its range. It then compares two strategies. <b>Launch blind</b> runs both initiatives for 36 months whatever happens. <b>With Gate 1</b> measures behaviour after month ${X.mc.gateMonth}, with ${pct(X.mc.noise, 0)} error, and continues an initiative only if its remaining value is positive. The difference is the value of the stop rules: a real option.</p>
+      `<p class="apx-p">Each simulated pilot draws every uncertain input from its range. It then compares two strategies. <b>Launch blind</b> runs both initiatives for 36 months whatever happens. <b>With Gate 1</b> measures behaviour after month ${X.mc.gateMonth}, with ${pct(X.mc.noise, 0)} error, and continues an initiative only if its remaining value is positive. At rider level, about one pilot in four loses money. The gate does not change that share, because stopping early locks in a small loss, but it roughly halves the worst outcomes. That is the job of a real option.</p>
+      ${s ? `<table class="apx-tbl small"><thead><tr><th>Outcome, both initiatives</th><th>Expected</th><th>Chance of loss</th><th>Worst 5%</th><th>Best 5%</th></tr></thead><tbody>
+        <tr><td>Rider level, launch blind</td><td>${mnok(s.fullR.mean)}</td><td>${pct(s.fullR.pLoss, 1)}</td><td>${mnok(s.fullR.p5)}</td><td>${mnok(s.fullR.p95)}</td></tr>
+        <tr><td><b>Rider level, with Gate 1</b></td><td><b>${mnok(s.gatedR.mean)}</b></td><td>${pct(s.gatedR.pLoss, 1)}</td><td><b>${mnok(s.gatedR.p5)}</b></td><td>${mnok(s.gatedR.p95)}</td></tr>
+        <tr><td>Licence-adjusted (judgement), with Gate 1</td><td>${mnok(s.gated.mean)}</td><td>${pct(s.gated.pLoss, 1)}</td><td>${mnok(s.gated.p5)}</td><td>${mnok(s.gated.p95)}</td></tr></tbody></table>` : ''}
       <div class="apx-fig" id="apx-ch-mc2"></div>
       <table class="apx-tbl small tight">${rangesTable()}</table>
       ${exhibit(stateCode(), 'pilots', 'Re-run the simulation with your own ranges')}`);
@@ -1686,9 +1700,9 @@ body.apx-on > header.top, body.apx-on > main, body.apx-on > footer { display: no
       <table class="apx-tbl small"><thead><tr><th>Scenario, both initiatives</th><th>Rider ΔCPE</th><th>Licence-adjusted ΔCPE</th><th>Renewal chance</th><th>Payback</th></tr></thead><tbody>${Object.entries(PRESETS).map(([k, p]) => { const r = alt[k].both; return `<tr><td>${esc(p.label)}</td><td>${mnok(r.dCPE)}</td><td>${mnok(r.dCPEL)}</td><td>${pct(r.pRenew, 1)}</td><td>${r.payback ? 'month ' + r.payback : 'none'}</td></tr>`; }).join('')}</tbody></table>
       <p class="apx-src"><b>Key sources.</b> Voi Technology AB, Annual Report 2025 and press releases (11 Feb, 14 Mar 2025). Ruter, Årsrapport 2025. Oslo kommune, FOR-2024-11-20-2821 and byrådssak 128/24. Bergen kommune (16 Feb 2026). SSB table 11418. TØI reports 1748/2020 and 2127/2025. Kabra, Belavina &amp; Girotra (2020); Shah et al. (2023); Raviv, Tzur &amp; Forma (2013); Cambe et al. (2018); Johnson &amp; Selnes (2004); Gupta, Lehmann &amp; Stuart (2004); Berger &amp; Nasr (1998). Full register in the source file.</p>`);
     $('#apx-pages').innerHTML = p1 + p2 + p3 + p4 + p5 + p6;
-    if (MC.draws.length) { chartMC($('#apx-ch-mc'), true); chartMC($('#apx-ch-mc2'), true); }
+    if (MC.draws.length) { chartMC($('#apx-ch-mc'), true, 'rider'); chartMC($('#apx-ch-mc2'), true, 'rider', 136); }
     chartLevels(list, $('#apx-ch-levels'));
-    chartTornado(cmp.on, $('#apx-ch-tornado'), 9);
+    chartTornado(cmp.on, $('#apx-ch-tornado'), 7);
     const ctl = document.createElement('table'); ctl.className = 'apx-tbl small'; ctl.id = 'apx-ctl';
     $('#apx-control').appendChild(ctl);
     controlTable(cmp.on, ctl);
@@ -1696,7 +1710,15 @@ body.apx-on > header.top, body.apx-on > main, body.apx-on > footer { display: no
   }
   function openAppendix() {
     document.body.classList.add('apx-on'); $('#appendix').hidden = false; window.scrollTo(0, 0);
-    const go = () => { buildAppendix(); document.body.dataset.apxReady = '1'; };
+    const go = () => {
+      buildAppendix(); document.body.dataset.apxReady = '1';
+      // Record any page whose content runs past A4, so a print run can be checked automatically.
+      document.body.dataset.apxOverflow = [...document.querySelectorAll('#apx-pages .page')].map(p => {
+        const f = p.querySelector('.apx-f'), pb = p.getBoundingClientRect().bottom - parseFloat(getComputedStyle(p).paddingBottom);
+        const kids = [...p.children].filter(c => c !== f), lastBottom = Math.max(...kids.map(c => c.getBoundingClientRect().bottom));
+        return Math.round(Math.max(0, lastBottom - (f ? f.getBoundingClientRect().top : pb), (f ? f.getBoundingClientRect().bottom : 0) - pb));
+      }).join(',');
+    };
     const central = E.clone(DEFAULTS), want = Math.max(central.mc.draws, CFG.printDraws || 0, MC.draws.length);
     if (MC.sig !== JSON.stringify(central) || MC.draws.length < want) {
       $('#apx-status').textContent = 'Running the simulation…';
@@ -1797,6 +1819,7 @@ body.apx-on > header.top, body.apx-on > main, body.apx-on > footer { display: no
     $('#apx-print').addEventListener('click', () => window.print());
     $('#apx-close').addEventListener('click', closeAppendix);
     $('#mc-run').addEventListener('click', () => runMC(+$('#mc-n').value));
+    $('#mc-level').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; view.mcLevel = b.dataset.v; renderMC(); });
     window.addEventListener('hashchange', () => { readHash(); syncInputs(); refresh(); });
     navSpy();
     refresh();
