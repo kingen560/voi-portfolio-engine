@@ -1,0 +1,1816 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Voi Customer Portfolio Engine</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2315120e'/%3E%3Ccircle cx='16' cy='16' r='8' fill='none' stroke='%23f6f5f1' stroke-width='4'/%3E%3Cpath d='M16 8a8 8 0 0 1 8 8' fill='none' stroke='%23e8473f' stroke-width='4'/%3E%3C/svg%3E">
+<style>
+:root {
+  color-scheme: light;
+  --bg: #f6f5f1; --bg2: #efede7; --card: #ffffff; --line: #e6e2da; --line2: #d9d4ca; --grid: #eeebe5;
+  --ink: #15120e; --ink2: #4d4842; --ink3: #8a837a;
+  --accent: #e8473f; --accent-ink: #c2302a; --accent-soft: #fdebe9;
+  --sA: #2a78d6; --sF: #eb6834; --sP: #1baf7a; --sL: #a39d93;
+  --pos: #2a78d6; --neg: #e34948; --ok: #12813a; --bad: #c52f2f; --warn: #a96700;
+  --tag-AR: #dde9fb; --tag-EXT: #d7f0f2; --tag-LIT: #f4e2f1; --tag-SV: #e0f3e7; --tag-DV: #eeeae1; --tag-AS: #fdebd6; --tag-PD: #ebe7fb;
+  --shadow: 0 1px 2px rgba(20,16,10,.04), 0 6px 24px rgba(20,16,10,.06);
+  --radius: 16px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #11100e; --bg2: #191815; --card: #1c1b18; --line: #2f2d29; --line2: #3b3934; --grid: #282622;
+    --ink: #f3f1ec; --ink2: #c6c1b8; --ink3: #8f897f;
+    --accent: #f0625a; --accent-ink: #ff8a83; --accent-soft: #3a1d1b;
+    --sA: #3987e5; --sF: #d95926; --sP: #199e70; --sL: #77726a;
+    --pos: #3987e5; --neg: #e66767; --ok: #4cc26e; --bad: #f07b7b; --warn: #e2a63b;
+    --tag-AR: #20324b; --tag-EXT: #1b393d; --tag-LIT: #3b2437; --tag-SV: #1d3829; --tag-DV: #33312a; --tag-AS: #43301c; --tag-PD: #2e294b;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 28px rgba(0,0,0,.35);
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #11100e; --bg2: #191815; --card: #1c1b18; --line: #2f2d29; --line2: #3b3934; --grid: #282622;
+  --ink: #f3f1ec; --ink2: #c6c1b8; --ink3: #8f897f;
+  --accent: #f0625a; --accent-ink: #ff8a83; --accent-soft: #3a1d1b;
+  --sA: #3987e5; --sF: #d95926; --sP: #199e70; --sL: #77726a;
+  --pos: #3987e5; --neg: #e66767; --ok: #4cc26e; --bad: #f07b7b; --warn: #e2a63b;
+  --tag-AR: #20324b; --tag-EXT: #1b393d; --tag-LIT: #3b2437; --tag-SV: #1d3829; --tag-DV: #33312a; --tag-AS: #43301c; --tag-PD: #2e294b;
+  --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 28px rgba(0,0,0,.35);
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.55 -apple-system, BlinkMacSystemFont, "SF Pro Text", Inter, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+.num, .kv, td, .stat b { font-variant-numeric: tabular-nums; }
+a { color: inherit; }
+.wrap { max-width: 1200px; margin: 0 auto; padding-inline: max(20px, env(safe-area-inset-left)); }
+
+/* Top bar */
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: color-mix(in srgb, var(--bg) 82%, transparent); backdrop-filter: saturate(1.4) blur(14px); -webkit-backdrop-filter: saturate(1.4) blur(14px); border-bottom: 1px solid var(--line); }
+.top .wrap { display: flex; align-items: center; gap: 18px; height: 60px; }
+.brand { display: flex; align-items: center; gap: 9px; font-weight: 700; letter-spacing: -.01em; white-space: nowrap; text-decoration: none; }
+.mark { width: 26px; height: 26px; border-radius: 8px; background: var(--ink); position: relative; flex: none; }
+.mark::before { content: ""; position: absolute; inset: 6px; border-radius: 50%; border: 3px solid var(--bg); border-right-color: var(--accent); }
+nav.sec { display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none; }
+nav.sec a { font-size: 13.5px; color: var(--ink2); text-decoration: none; padding: 6px 10px; border-radius: 8px; white-space: nowrap; }
+nav.sec a:hover { background: var(--bg2); color: var(--ink); }
+nav.sec a.on { color: var(--ink); background: var(--bg2); }
+.spacer { flex: 1; }
+.seg-ctl { display: inline-flex; background: var(--bg2); border: 1px solid var(--line); border-radius: 11px; padding: 3px; gap: 2px; }
+.seg-ctl button { font: inherit; font-size: 13px; border: 0; background: transparent; color: var(--ink2); padding: 6px 11px; border-radius: 8px; cursor: pointer; white-space: nowrap; }
+.seg-ctl button[aria-pressed="true"] { background: var(--card); color: var(--ink); box-shadow: 0 1px 2px rgba(0,0,0,.08), 0 0 0 1px var(--line); font-weight: 600; }
+.btn { font: inherit; font-size: 13.5px; border: 1px solid var(--line2); background: var(--card); color: var(--ink); padding: 8px 13px; border-radius: 10px; cursor: pointer; display: inline-flex; align-items: center; gap: 7px; white-space: nowrap; }
+.btn:hover { border-color: var(--ink3); }
+.btn.primary { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.btn.ghost { background: transparent; }
+@media (max-width: 1080px) { nav.sec { display: none; } }
+
+/* Hero */
+.hero { padding: 56px 0 28px; }
+.eyebrow { text-transform: uppercase; letter-spacing: .09em; font-size: 11.5px; color: var(--ink3); font-weight: 650; }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 40px; align-items: end; }
+h1 { font-size: clamp(34px, 5vw, 56px); line-height: 1.03; letter-spacing: -.035em; margin: 12px 0 16px; font-weight: 750; }
+h1 em { font-style: normal; color: var(--accent); }
+.lead { font-size: 18px; color: var(--ink2); max-width: 620px; margin: 0; }
+.lead b { color: var(--ink); }
+.hero-card { background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 22px 22px 18px; box-shadow: var(--shadow); }
+.hero-card .k { font-size: 13px; color: var(--ink2); display: flex; justify-content: space-between; gap: 8px; }
+.hero-card .big { font-size: clamp(40px, 6vw, 60px); font-weight: 760; letter-spacing: -.04em; line-height: 1.05; margin: 6px 0 2px; }
+.hero-card .big.pos { color: var(--ink); } .hero-card .big.neg { color: var(--neg); }
+.hero-card .s { font-size: 13px; color: var(--ink3); }
+.hero-card .spark { margin-top: 12px; }
+.chip { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; padding: 3px 9px; border-radius: 999px; background: var(--bg2); color: var(--ink2); border: 1px solid var(--line); white-space: nowrap; }
+.chip.acc { background: var(--accent-soft); color: var(--accent-ink); border-color: transparent; }
+.chip .dot { width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+.kpis { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-top: 26px; }
+.kpi { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; }
+.kk { font-size: 12.5px; color: var(--ink2); }
+.kv { font-size: 24px; font-weight: 700; letter-spacing: -.02em; margin: 2px 0; }
+.ks { font-size: 12px; color: var(--ink3); }
+@media (max-width: 860px) { .hero-grid { grid-template-columns: 1fr; gap: 24px; } .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); } .hero { padding-top: 32px; } }
+
+/* Sections */
+section.block { padding: 52px 0 8px; }
+.sh { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 18px; }
+.sh .no { font-size: 12.5px; font-weight: 700; color: var(--accent); letter-spacing: .04em; }
+h2 { font-size: clamp(24px, 3vw, 32px); letter-spacing: -.025em; margin: 4px 0 6px; line-height: 1.15; }
+.sh p { margin: 0; color: var(--ink2); max-width: 680px; }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; box-shadow: var(--shadow); }
+.card h3 { margin: 0 0 4px; font-size: 16px; letter-spacing: -.01em; }
+.card .sub { color: var(--ink2); font-size: 13.5px; margin: 0 0 12px; }
+.grid2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.grid4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+@media (max-width: 980px) { .grid2 { grid-template-columns: 1fr; } .grid4 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 520px) { .grid4 { grid-template-columns: 1fr; } }
+.toolbar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 10px; }
+select, .search { font: inherit; font-size: 13.5px; padding: 7px 10px; border: 1px solid var(--line2); border-radius: 10px; background: var(--card); color: var(--ink); }
+.mut { color: var(--ink3); font-size: 12.5px; }
+
+/* Calibration stats */
+.stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; margin-bottom: 16px; }
+@media (max-width: 760px) { .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.stat { background: var(--card); padding: 14px 16px; display: flex; flex-direction: column; gap: 2px; }
+.stat .l { font-size: 12.5px; color: var(--ink2); }
+.stat b { font-size: 19px; letter-spacing: -.015em; }
+.stat .c { font-size: 11.5px; color: var(--ink3); }
+
+/* Flow diagram */
+.flowwrap { display: grid; grid-template-columns: minmax(0, 1fr) 260px; gap: 20px; align-items: start; }
+@media (max-width: 980px) { .flowwrap { grid-template-columns: minmax(0, 1fr); } }
+.flowwrap > div, .card, .grid2 > *, .grid4 > * { min-width: 0; }
+.flow-side h4 { margin: 4px 0 6px; font-size: 13px; color: var(--ink2); font-weight: 600; }
+.flow-side .row { display: flex; justify-content: space-between; gap: 10px; padding: 7px 0; border-bottom: 1px solid var(--line); font-size: 13.5px; }
+.flow-side .row:last-child { border-bottom: 0; }
+.range { width: 100%; accent-color: var(--accent); }
+svg text { font-family: inherit; }
+svg .ax { font-size: 11px; fill: var(--ink3); }
+svg .lab { font-size: 12.5px; fill: var(--ink2); } svg .lab.b { font-weight: 700; fill: var(--ink); }
+svg .val { font-size: 11.5px; fill: var(--ink); font-variant-numeric: tabular-nums; } svg .val.inv { fill: #fff; }
+svg .grid { stroke: var(--grid); stroke-width: 1; } svg .zero { stroke: var(--ink3); stroke-width: 1; }
+svg .cross { stroke: var(--ink3); stroke-width: 1; stroke-dasharray: 3 3; }
+.node-t { font-size: 12px; fill: var(--ink2); font-weight: 600; letter-spacing: .02em; }
+.node-v { font-size: 20px; fill: var(--ink); font-weight: 750; letter-spacing: -.02em; }
+.node-d { font-size: 11.5px; font-weight: 650; }
+.flow-l { font-size: 11px; fill: var(--ink2); font-variant-numeric: tabular-nums; paint-order: stroke; stroke: var(--card); stroke-width: 4px; stroke-linejoin: round; }
+
+/* Segment cards */
+.segc { position: relative; overflow: hidden; }
+.segc .top-row { display: flex; justify-content: space-between; gap: 8px; align-items: flex-start; }
+.segc h3 { font-size: 15.5px; }
+.segc .n { font-size: 12px; color: var(--ink3); }
+.meter { margin: 9px 0; }
+.meter .ml { display: flex; justify-content: space-between; font-size: 12.5px; color: var(--ink2); }
+.meter .bar { height: 6px; background: var(--bg2); border-radius: 99px; overflow: hidden; margin-top: 4px; }
+.meter .bar i { display: block; height: 100%; border-radius: 99px; background: var(--ink); }
+.segc .facts { font-size: 12.5px; color: var(--ink2); margin-top: 10px; border-top: 1px solid var(--line); padding-top: 10px; display: grid; gap: 4px; }
+.segc .facts b { color: var(--ink); font-weight: 600; }
+.segc.target { border-color: color-mix(in srgb, var(--accent) 45%, var(--line)); }
+
+/* Initiative cards */
+.ini { display: flex; flex-direction: column; gap: 14px; }
+.ini .head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+.ini h3 { font-size: 21px; letter-spacing: -.02em; }
+.ini .promise { color: var(--ink2); margin: 2px 0 0; }
+.steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; counter-reset: st; }
+.steps div { background: var(--bg2); border-radius: 12px; padding: 10px 11px; font-size: 12.5px; color: var(--ink2); counter-increment: st; }
+.steps div::before { content: counter(st); display: inline-grid; place-items: center; width: 19px; height: 19px; border-radius: 50%; background: var(--ink); color: var(--bg); font-size: 11px; font-weight: 700; margin-right: 6px; }
+@media (max-width: 560px) { .steps { grid-template-columns: 1fr; } }
+.design { background: var(--bg2); border-radius: 12px; padding: 10px 12px; font-size: 12.5px; color: var(--ink2); }
+.design .seg-ctl { background: var(--card); margin-bottom: 6px; display: flex; flex-wrap: wrap; max-width: 100%; }
+.design .seg-ctl button { white-space: normal; text-align: left; }
+.res { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; border-top: 1px solid var(--line); padding-top: 12px; }
+.res div { display: flex; flex-direction: column; } .res b { font-size: 18px; letter-spacing: -.015em; } .res span { font-size: 12px; color: var(--ink3); }
+.levers { display: grid; gap: 2px; }
+
+/* Inputs */
+.inp { padding: 8px 0; }
+.inp .lab { display: flex; justify-content: space-between; gap: 8px; align-items: baseline; font-size: 13.5px; }
+.inp .ctl { display: flex; align-items: center; gap: 10px; margin-top: 4px; }
+.inp input[type=range] { flex: 1; min-width: 0; accent-color: var(--ink); height: 22px; }
+.inp input[type=number] { width: 88px; font: inherit; font-size: 13.5px; padding: 4px 8px; border: 1px solid var(--line2); border-radius: 8px; background: var(--card); color: var(--ink); text-align: right; font-variant-numeric: tabular-nums; }
+.inp input[type=number]:focus, select:focus, .search:focus { outline: 2px solid color-mix(in srgb, var(--accent) 55%, transparent); outline-offset: 1px; }
+.inp .unit { width: 36px; font-size: 12px; color: var(--ink3); }
+.inp .note { font-size: 12px; color: var(--ink3); margin-top: 3px; }
+.inp.chg .lab label::after { content: " •"; color: var(--accent); }
+.chk { font-size: 13.5px; display: flex; gap: 8px; align-items: center; }
+.tag { font-size: 10.5px; padding: 1px 7px; border-radius: 999px; white-space: nowrap; color: var(--ink); font-weight: 600; letter-spacing: .02em; }
+.t-AR { background: var(--tag-AR); } .t-EXT { background: var(--tag-EXT); } .t-LIT { background: var(--tag-LIT); } .t-SV { background: var(--tag-SV); } .t-DV { background: var(--tag-DV); } .t-AS { background: var(--tag-AS); } .t-PD { background: var(--tag-PD); }
+
+/* Drawer */
+.scrim { position: fixed; inset: 0; background: rgba(10,8,6,.35); z-index: 40; opacity: 0; pointer-events: none; transition: opacity .2s; }
+.scrim.on { opacity: 1; pointer-events: auto; }
+aside.drawer { position: fixed; top: 0; right: 0; bottom: 0; width: min(500px, 100vw); background: var(--card); z-index: 41; border-left: 1px solid var(--line); transform: translateX(102%); transition: transform .25s cubic-bezier(.2,.8,.2,1); display: flex; flex-direction: column; box-shadow: -20px 0 50px rgba(0,0,0,.12); }
+aside.drawer.on { transform: none; }
+.dh { padding: calc(14px + env(safe-area-inset-top, 0px)) 18px 12px; border-bottom: 1px solid var(--line); display: grid; gap: 10px; }
+.dh .r { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+.dh h3 { margin: 0; font-size: 17px; }
+.db { overflow: auto; padding: 4px 18px calc(24px + env(safe-area-inset-bottom, 0px)); flex: 1; }
+details.grp { border-bottom: 1px solid var(--line); padding: 4px 0; }
+details.grp summary { cursor: pointer; padding: 10px 0; list-style: none; display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+details.grp summary::-webkit-details-marker { display: none; }
+details.grp summary .gt { font-weight: 650; }
+details.grp summary .gt::before { content: "+ "; color: var(--ink3); font-weight: 400; }
+details.grp[open] summary .gt::before { content: "− "; }
+details.grp summary .gs { font-size: 12px; color: var(--ink3); }
+.legend-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+
+/* Charts and tables */
+.chart { width: 100%; overflow-x: auto; }
+.legend { display: flex; flex-wrap: wrap; gap: 14px; font-size: 12.5px; color: var(--ink2); margin: 2px 0 8px; align-items: center; }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.sw { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 6px; vertical-align: -1px; }
+.tw { overflow-x: auto; }
+table.t { border-collapse: collapse; width: 100%; font-size: 13.5px; }
+table.t th, table.t td { text-align: left; padding: 10px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+table.t thead th { font-size: 12px; color: var(--ink3); font-weight: 600; text-transform: uppercase; letter-spacing: .04em; }
+table.t tbody th { font-weight: 600; }
+table.t tbody tr:last-child th, table.t tbody tr:last-child td { border-bottom: 0; }
+#tbl-scen tr[data-sc] { cursor: pointer; } #tbl-scen tr[data-sc]:hover { background: var(--bg2); }
+#tbl-scen tr.sel { background: var(--accent-soft); }
+.ok { color: var(--ok); } .bad { color: var(--bad); } .warn { color: var(--warn); }
+.pill { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 600; padding: 2px 8px; border-radius: 999px; white-space: nowrap; }
+.pill.ok { background: color-mix(in srgb, var(--ok) 13%, transparent); } .pill.bad { background: color-mix(in srgb, var(--bad) 13%, transparent); } .pill.warn { background: color-mix(in srgb, var(--warn) 15%, transparent); }
+.empty { color: var(--ink3); padding: 20px 0; }
+.note { font-size: 12px; color: var(--ink3); }
+#errors { position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(18px + env(safe-area-inset-bottom, 0px)); z-index: 50; background: var(--card); border: 1px solid var(--neg); border-radius: 12px; padding: 12px 16px; box-shadow: var(--shadow); max-width: min(560px, calc(100vw - 32px)); font-size: 13.5px; }
+#errors ul { margin: 6px 0 0; padding-left: 18px; }
+body.invalid main { opacity: .35; pointer-events: none; filter: grayscale(.4); }
+#tip { position: fixed; z-index: 60; pointer-events: none; background: var(--card); color: var(--ink); border: 1px solid var(--line); border-radius: 10px; padding: 9px 11px; font-size: 12.5px; box-shadow: 0 10px 30px rgba(0,0,0,.16); max-width: 320px; }
+#tip table { border-collapse: collapse; margin-top: 4px; } #tip td { padding: 2px 10px 2px 0; font-variant-numeric: tabular-nums; } #tip tr.tot td { border-top: 1px solid var(--line); font-weight: 650; }
+.method { columns: 2 320px; column-gap: 32px; color: var(--ink2); font-size: 14px; }
+.method p { margin: 0 0 12px; break-inside: avoid; }
+.method b { color: var(--ink); }
+footer { border-top: 1px solid var(--line); margin-top: 56px; padding: 26px 0 calc(40px + env(safe-area-inset-bottom, 0px)); color: var(--ink3); font-size: 12.5px; }
+footer .wrap { display: grid; gap: 8px; }
+.fade { animation: fade .35s ease both; }
+@keyframes fade { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .fade { animation: none; } aside.drawer, .scrim { transition: none; } }
+#toast { position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(22px + env(safe-area-inset-bottom, 0px)); z-index: 70; background: var(--ink); color: var(--bg); padding: 9px 14px; border-radius: 10px; font-size: 13.5px; }
+/* A4 appendix: always printed in the light palette */
+body.apx-on > header.top, body.apx-on > main, body.apx-on > footer { display: none; }
+#appendix { background: #e9e6df; min-height: 100vh; color: #15120e; --ink: #15120e; --ink2: #4d4842; --ink3: #8a837a; --card: #fff; --line: #e6e2da; --grid: #eeebe5; --bg: #f6f5f1; --bg2: #efede7; --sA: #2a78d6; --sF: #eb6834; --sP: #1baf7a; --sL: #a39d93; --pos: #2a78d6; --neg: #e34948; --ok: #12813a; --bad: #c52f2f; --accent: #e8473f; --accent-soft: #fdebe9; --tag-AR: #dde9fb; --tag-EXT: #d7f0f2; --tag-LIT: #f4e2f1; --tag-SV: #e0f3e7; --tag-DV: #eeeae1; --tag-AS: #fdebd6; --tag-PD: #ebe7fb; color-scheme: light; }
+.apx-bar { position: sticky; top: 0; z-index: 5; display: flex; gap: 12px; align-items: center; padding: 10px 20px; background: #f6f5f1; border-bottom: 1px solid #e6e2da; }
+#apx-pages { display: grid; justify-content: center; gap: 22px; padding: 24px 12px 60px; }
+.page { width: 210mm; height: 297mm; background: #fff; padding: 13mm 15mm 12mm; display: flex; flex-direction: column; gap: 4.5mm; overflow: hidden; box-shadow: 0 2px 18px rgba(0,0,0,.12); font-size: 9.6pt; line-height: 1.45; position: relative; }
+.apx-h, .apx-f { display: flex; justify-content: space-between; gap: 10px; font-size: 7.5pt; color: #8a837a; letter-spacing: .02em; }
+.apx-h { border-bottom: 1px solid #e6e2da; padding-bottom: 2.5mm; }
+.apx-f { margin-top: auto; border-top: 1px solid #e6e2da; padding-top: 2.5mm; }
+.apx-t { font-size: 17pt; letter-spacing: -.02em; line-height: 1.15; margin: 1mm 0 0; }
+.apx-p { margin: 0; color: #2b2724; }
+.apx-s { font-size: 11pt; margin: 2mm 0 0; }
+.apx-hero { display: grid; grid-template-columns: 1fr auto; gap: 8mm; align-items: start; margin-top: 2mm; }
+.apx-kick { color: #e8473f; font-weight: 700; font-size: 9pt; letter-spacing: .06em; text-transform: uppercase; }
+.apx-h1 { font-size: 24pt; line-height: 1.06; letter-spacing: -.035em; margin: 2mm 0 3mm; }
+.apx-dek { margin: 0; color: #4d4842; font-size: 10.2pt; }
+.apx-mainqr { text-align: center; font-size: 7.5pt; color: #4d4842; display: grid; gap: 2mm; justify-items: center; }
+.apx-bigs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 3mm; }
+.apx-big { background: #f6f5f1; border-radius: 3mm; padding: 3mm 3.5mm; }
+.apx-big .k { font-size: 7.6pt; color: #4d4842; } .apx-big .v { font-size: 17pt; font-weight: 750; letter-spacing: -.03em; font-variant-numeric: tabular-nums; } .apx-big .n { font-size: 7.4pt; color: #8a837a; }
+.apx-bigs.sm .v { font-size: 13pt; }
+.apx-two { display: grid; grid-template-columns: 1fr 1fr; gap: 3mm; }
+.apx-card { border: 1px solid #e6e2da; border-radius: 3mm; padding: 3mm 3.5mm; }
+.apx-card ul { margin: 1.5mm 0 0; padding-left: 4mm; } .apx-card li { margin: .6mm 0; }
+.apx-lvl { font-size: 7.6pt; text-transform: uppercase; letter-spacing: .06em; color: #8a837a; font-weight: 700; }
+.apx-cardt { font-weight: 700; font-size: 10.5pt; margin-top: 1mm; }
+.apx-mc { display: grid; gap: 2mm; }
+.apx-fig svg { max-width: 100%; height: auto; }
+.apx-math { display: grid; gap: 1.2mm; background: #f6f5f1; border-radius: 3mm; padding: 3mm 4mm; font-family: "Times New Roman", Georgia, serif; font-size: 11pt; }
+.apx-tbl { width: 100%; border-collapse: collapse; font-size: 8.4pt; }
+.apx-tbl th, .apx-tbl td { text-align: left; padding: 1.4mm 2mm; border-bottom: 1px solid #ece8e1; vertical-align: top; }
+.apx-tbl thead th { font-size: 7.2pt; text-transform: uppercase; letter-spacing: .04em; color: #8a837a; }
+.apx-tbl.small { font-size: 7.8pt; }
+.apx-tbl.tight th, .apx-tbl.tight td { padding: .8mm 2mm; }
+#appendix .legend { font-size: 7.6pt; margin: 0; }
+.apx-tbl .note { font-size: 7.2pt; } .apx-tbl .pill { font-size: 7.2pt; }
+.apx-ex { display: flex; gap: 3mm; align-items: center; border: 1px dashed #d9d4ca; border-radius: 3mm; padding: 2mm 3mm; }
+.apx-qr svg { display: block; }
+.apx-cap { font-weight: 650; font-size: 8.4pt; } .apx-code { font-family: ui-monospace, Menlo, monospace; font-size: 7.4pt; color: #8a837a; }
+.apx-exrow { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 3mm; }
+.apx-idxs { display: grid; grid-template-columns: 1fr 1fr; gap: 3mm; }
+.apx-idx { display: flex; gap: 3mm; align-items: center; border: 1px solid #e6e2da; border-radius: 3mm; padding: 2.5mm; } .apx-idx .n { font-size: 7.4pt; color: #4d4842; }
+.apx-src { font-size: 7.6pt; color: #4d4842; margin: 0; }
+.qr-miss { border: 1px dashed #8a837a; display: grid; place-items: center; font-size: 8pt; color: #8a837a; }
+@page { size: A4; margin: 0; }
+@media print {
+  body { background: #fff !important; }
+  body > header.top, body > main, body > footer, .drawer, .scrim, #toast, #tip, .apx-bar { display: none !important; }
+  #appendix { display: block !important; background: #fff; }
+  #apx-pages { display: block; padding: 0; }
+  .page { box-shadow: none; break-after: page; margin: 0; }
+  .page:last-child { break-after: auto; }
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#overview"><span class="mark" aria-hidden="true"></span>Portfolio Engine</a>
+    <nav class="sec" aria-label="Sections">
+      <a href="#city">City</a><a href="#portfolio">Portfolio</a><a href="#segments">Segments</a><a href="#initiatives">Initiatives</a><a href="#value">Value</a><a href="#pilots">10,000 pilots</a><a href="#risk">Risk</a><a href="#control">Control</a><a href="#method">Method</a>
+    </nav>
+    <span class="spacer"></span>
+    <button class="btn ghost" id="share" type="button" title="Copy a link that reopens this exact scenario">Share scenario</button>
+    <button class="btn primary" id="open-apx" type="button">A4 appendix</button>
+    <button class="btn" id="open-drawer" type="button" aria-controls="drawer" aria-expanded="false"><svg width="15" height="15" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h7M12 4h2M2 12h2M7 12h7M9 2v4M4 10v4" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg>Assumptions<span class="chip" id="chg-count" hidden></span></button>
+  </div>
+</header>
+
+<main>
+<div class="wrap">
+  <section class="hero" id="overview">
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow">Customer centricity term paper · Voi Technology · Oslo</div>
+        <h1>Two customers,<br><em>one licence.</em></h1>
+        <p class="lead" id="lead"></p>
+        <div class="toolbar" style="margin-top:20px">
+          <div class="seg-ctl" id="scen-btns" role="group" aria-label="Scenario"></div>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="k"><span>Licence-adjusted change in customer portfolio equity</span><span class="chip" id="hero-chip"></span></div>
+        <div class="big num" id="hero-big">–</div>
+        <div class="s" id="hero-s"></div>
+        <div class="spark" id="hero-spark"></div>
+      </div>
+    </div>
+    <div class="kpis" id="kpis"></div>
+  </section>
+
+  <section class="block" id="city">
+    <div class="sh"><div><div class="no">01 · THE CITY</div><h2>The customer that decides whether Voi stays</h2><p>Oslo gives three operators a two-year permit, with no extension, on the strength of a written bid. It removed an incumbent in 2022, 2023 and 2024, and Voi lost Bergen in 2026 despite being the incumbent. Rider value only counts while the permit lasts, so every initiative is also judged on the award criteria.</p></div></div>
+    <div class="stats" id="city-stats"></div>
+    <div style="display:grid;gap:16px">
+      <div class="card"><h3>Value at two levels</h3><p class="sub">Rider value (weighted by renewal) and licence value (a better chance of keeping the permit), present value over 36 months.</p><div class="legend"><span><i class="sw" style="background:var(--sA)"></i>Rider value</span><span><i class="sw" style="background:var(--accent)"></i>Licence value</span></div><div class="chart" id="ch-levels"></div></div>
+      <div class="card"><h3>How each initiative meets the award criteria</h3><p class="sub">Criteria from Oslo's regulation and earlier rounds (weights 2022; Bergen 2026). The 2025 weights are not published.</p><div class="tw"><table class="t" id="tbl-criteria"></table></div></div>
+    </div>
+  </section>
+
+  <section class="block" id="portfolio">
+    <div class="sh"><div><div class="no">02 · PORTFOLIO</div><h2>The Oslo portfolio we are changing</h2><p>The baseline is calibrated to Voi's 2025 revenue, Ruter's trip count and our survey's usage mix. Each month customers move between Johnson &amp; Selnes relationship states. The arrows show how many.</p></div></div>
+    <div class="stats" id="calib"></div>
+    <div class="card">
+      <div class="flowwrap">
+        <div>
+          <div class="toolbar">
+            <select id="flow-seg" aria-label="Segment"></select>
+            <div class="seg-ctl" id="flow-mode" role="group" aria-label="Flow view"><button type="button" data-v="scn" aria-pressed="true">Scenario</button><button type="button" data-v="base" aria-pressed="false">Baseline</button></div>
+            <span class="spacer"></span>
+            <label class="mut" for="flow-month">Month <b id="flow-m">12</b></label>
+            <input class="range" style="width:160px" type="range" id="flow-month" min="1" max="36" value="12" aria-label="Month">
+          </div>
+          <div class="chart" id="ch-flow"></div>
+        </div>
+        <div class="flow-side" id="flow-side"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="segments">
+    <div class="sh"><div><div class="no">03 · SEGMENTS</div><h2>Four segments, two targets</h2><p>From our survey dataset (four-cluster solution, n=72). The engagement multiplier <i>k</i> scales each segment's upward moves so that its Friend+Partner share matches its share of weekly users, shrunk 50% toward the pooled share.</p></div></div>
+    <div class="grid4" id="seg-cards"></div>
+  </section>
+
+  <section class="block" id="initiatives">
+    <div class="sh"><div><div class="no">04 · INITIATIVES</div><h2>What we propose</h2><p>The key levers sit here. Every other assumption, with its source, is in the <a href="#" data-open-drawer>assumptions panel</a>.</p></div></div>
+    <div class="grid2">
+      <div class="card ini" id="ini-booking">
+        <div class="head"><div><span class="chip acc"><span class="dot"></span>Convenience Seekers</span><h3 style="margin-top:10px">Hub &amp; Book</h3><p class="promise">Reserve tonight in a hub zone at a Ruter station or campus; a charged scooter is waiting at 07:45. The bookings become the overnight fleet plan and evidence for the city.</p></div></div>
+        <div class="steps"><div>Customer books in the app by 22:00, for one hub zone and time</div><div>Ops hold a nearby scooter or place one during the 23–05 closure</div><div>Included in Voi Pass, paid for PAYG; credited if it fails</div></div>
+        <div class="design">
+          <div class="seg-ctl" id="design-ctl" role="group" aria-label="Booking design"><button type="button" data-d="hub">Hub zones · recommended</button><button type="button" data-d="city">City-wide · rejected</button></div>
+          <div id="design-note"></div>
+        </div>
+        <div class="levers" id="lev-booking"></div>
+        <div class="res" id="res-booking"></div>
+      </div>
+      <div class="card ini" id="ini-group">
+        <div class="head"><div><span class="chip acc"><span class="dot"></span>Social Leisure Seekers</span><h3 style="margin-top:10px">Group package</h3><p class="promise">One price for 2–5 scooters on a shared evening out, with an optional venue partner. Built on Voi's existing Group Rides.</p></div></div>
+        <div class="steps"><div>Host buys a package for the group before 23:00</div><div>Guests ride on the host's account; new guests are invited to register</div><div>Discount only on the package; partner venue co-promotes</div></div>
+        <div class="design">
+          <div class="seg-ctl" id="gdesign-ctl" role="group" aria-label="Group package design"><button type="button" data-d="safe">Safe evening · recommended</button><button type="button" data-d="late">Late night · rejected</button></div>
+          <div id="gdesign-note"></div>
+          <div style="margin-top:6px"><b style="color:var(--ink)">Why this segment:</b> riding with friends 6.10 vs 3.83 overall; their top pass benefit is discounted evening and weekend trips; their fallback is taxi.</div>
+        </div>
+        <div class="levers" id="lev-group"></div>
+        <div class="res" id="res-group"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="value">
+    <div class="sh"><div><div class="no">05 · VALUE</div><h2>Where the value comes from</h2><p>Present value of each component versus the baseline, in the order it builds up. Value comes from customers moving to and staying in better relationship states, not from ride volume alone.</p></div></div>
+    <div class="grid2">
+      <div class="card"><h3>ΔCPE bridge</h3><p class="sub">Present value over the horizon, after setup.</p><div class="chart" id="ch-bridge"></div></div>
+      <div class="card"><h3>Customer migration</h3><p class="sub" id="mig-sub">Change in active customers per state versus the baseline.</p>
+        <div class="toolbar"><select id="seg-sel" aria-label="Segment filter"></select></div>
+        <div class="legend"><span><i class="sw" style="background:var(--sA)"></i>Acquaintance</span><span><i class="sw" style="background:var(--sF)"></i>Friend</span><span><i class="sw" style="background:var(--sP)"></i>Partner (Pass)</span><span><svg width="22" height="10"><line x1="1" x2="21" y1="5" y2="5" stroke="currentColor" stroke-width="2" stroke-dasharray="5 4"/></svg>Active total</span></div>
+        <div class="chart" id="ch-portfolio"></div></div>
+    </div>
+  </section>
+
+  <section class="block" id="scenarios">
+    <div class="sh"><div><div class="no">06 · SCENARIOS</div><h2>Payback and portfolio of bets</h2><p>Each line is cumulative discounted ΔCPE after the month-0 setup; it crosses zero at payback. ΔCPE / setup is the return on the marketing investment (Rust, Lemon &amp; Zeithaml 2004).</p></div></div>
+    <div class="grid2">
+      <div class="card"><h3>Payback path</h3><div class="legend" id="lg-payback"></div><div class="chart" id="ch-payback"></div></div>
+      <div class="card"><h3>Scenario comparison</h3><p class="sub">Click a row to make it the active scenario.</p><div class="tw"><table class="t" id="tbl-scen"></table></div></div>
+    </div>
+  </section>
+
+  <section class="block" id="pilots">
+    <div class="sh"><div><div class="no">07 · 10,000 PILOTS</div><h2>What the stop rules are worth</h2><p>Every simulated pilot draws each uncertain input from its range and compares two strategies. <b>Launch blind</b> runs both initiatives for 36 months whatever happens. <b>With Gate 1</b> measures behaviour at the gate and continues only an initiative whose remaining value is positive. The gap between them is the value of the option to stop.</p></div>
+      <div class="toolbar"><select id="mc-n" aria-label="Number of pilots"><option value="2000">2,000 pilots</option><option value="10000">10,000 pilots</option></select><button class="btn" id="mc-run" type="button">Run simulation</button><span class="mut" id="mc-progress"></span></div></div>
+    <div id="mc-stale" class="note" hidden style="margin-bottom:8px">Inputs changed since this run. Run it again to update.</div>
+    <div class="kpis" id="mc-kpis" style="margin-top:0;margin-bottom:14px"></div>
+    <div class="card"><h3>Licence-adjusted ΔCPE across simulated pilots</h3><p class="sub" id="mc-note"></p><div class="legend"><span><i class="sw" style="background:var(--ink3)"></i>Launch blind</span><span><i class="sw" style="background:var(--pos)"></i>With Gate 1</span><span><i class="sw" style="background:var(--neg)"></i>Loss</span><span><svg width="18" height="10"><line x1="1" x2="17" y1="5" y2="5" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 2"/></svg>Mean</span></div><div class="chart" id="ch-mc"></div>
+      <details style="margin-top:10px"><summary style="cursor:pointer;font-weight:650">Uncertain inputs and their ranges</summary><div class="tw" style="margin-top:8px"><table class="t" id="tbl-ranges"></table></div></details></div>
+  </section>
+
+  <section class="block" id="risk">
+    <div class="sh"><div><div class="no">08 · RISK</div><h2>What the answer depends on</h2><p>ΔCPE of the active scenario when each input moves ±50%, one at a time and clamped to its valid range. Longest bars first: these are the numbers the pilot must measure.</p></div></div>
+    <div class="card"><div class="legend"><span><i class="sw" style="background:var(--sA)"></i>Input −50%</span><span><i class="sw" style="background:var(--sF)"></i>Input +50%</span><span><svg width="12" height="12"><line x1="6" x2="6" y1="0" y2="12" stroke="currentColor" stroke-width="2"/></svg>Current estimate</span></div><div class="chart" id="ch-tornado"></div></div>
+  </section>
+
+  <section class="block" id="control">
+    <div class="sh"><div><div class="no">09 · CONTROL</div><h2>Pilot stop rules</h2><p>For each uncertain assumption, the value at which the initiative's own ΔCPE reaches zero, and the pilot measurement that replaces the assumption. These are the go/stop thresholds for the pilot owner.</p></div></div>
+    <div class="card"><div class="tw"><table class="t" id="tbl-control"></table></div></div>
+  </section>
+
+  <section class="block" id="method">
+    <div class="sh"><div><div class="no">10 · METHOD</div><h2>How the engine works</h2></div><div class="toolbar"><button class="btn" id="exp-json" type="button">Export inputs (JSON)</button><button class="btn" id="exp-csv" type="button">Export monthly results (CSV)</button><button class="btn ghost" id="reset" type="button">Reset to defaults</button></div></div>
+    <div class="card method">
+      <p><b>States.</b> Each segment's customers are Acquaintances (A, occasional PAYG), Friends (F, weekly PAYG), Partners (P, Voi Pass) or Lapsed (L). They move between states with monthly probabilities (Johnson &amp; Selnes 2004; Dwyer, Schurr &amp; Oh 1987). Lapsed customers can be won back or leave for good.</p>
+      <p><b>Baseline.</b> The starting portfolio is the steady state of the baseline transitions with constant acquisition, so "no initiative" stays flat. The acquisition needed just to stand still is reported (Reinartz, Thomas &amp; Kumar 2005).</p>
+      <p><b>Calibration.</b> Oslo revenue is Voi Norway revenue (EUR 19.0m) × Oslo share (derived 60–85%). Voi's Oslo trips are Ruter's 20.4m trips × Voi's trip share (36.6% in 2024). Their ratio is revenue per ride. The pass fee is the list price net of 12% VAT, and PAYG revenue absorbs the rest. The implied monthly-pass revenue share (~30%) is a check against Voi's 38.8% (incl. day passes) and Lime's 28%.</p>
+      <p><b>Segments.</b> Segment engagement is calibrated to the share of weekly-or-more riders in each cluster, shrunk toward the pooled share because clusters hold 13–22 users. Rides per state come from Q1 band midpoints.</p>
+      <p><b>Value.</b> CPE is the discounted monthly contribution of all customers over the horizon, minus setup (Berger &amp; Nasr 1998; Gupta, Lehmann &amp; Stuart 2004). Initiatives are judged by ΔCPE versus the baseline.</p>
+      <p><b>Licence.</b> Oslo's permit lasts two years with no extension. After it ends, each month's contribution counts only with the probability that the city renews it. That gives a rider part and a licence part of ΔCPE. Renewal chances are judgements; Oslo publishes criteria, not scores.</p>
+      <p><b>10,000 pilots.</b> A Monte Carlo draws the uncertain inputs from triangular ranges. At the gate the pilot measures behaviour with error and continues an initiative only if its remaining value is positive, so sunk setup is ignored. The value of the gate is the gain in expected ΔCPE over launching blind.</p>
+      <p><b>Hub &amp; Book.</b> A placement costs field labour (SSB wages incl. employer costs) × minutes (OR literature), plus vehicle cost. Only bookings that cannot be served by holding a nearby scooter need one. That is why hub zones matter. Booking included in Pass gives Friends a reason to become Partners. Better placement also helps non-bookers (Kabra et al. 2020).</p>
+      <p><b>Group package.</b> Only incremental occasions earn margin and create guest accounts. The discount on occasions that would have happened anyway is charged as cannibalisation.</p>
+      <p><b>Limits.</b> The survey (n=72, convenience sample, mostly students) supports needs and relative usage, not effect sizes. No public e-scooter retention data exists; transitions are calibrated to the survey mix and to bike-share attrition. The JavaScript engine is checked against an independent Python implementation.</p>
+    </div>
+    <div class="card" style="margin-top:16px">
+      <details><summary style="cursor:pointer;font-weight:650">Input register: every input, its value and its basis</summary><div class="tw" style="margin-top:10px"><table class="t" id="tbl-src"></table></div></details>
+    </div>
+  </section>
+</div>
+</main>
+
+<footer><div class="wrap">
+  <div><b style="color:var(--ink2)">Key sources.</b> Voi Annual Report 2025 (Note 2) and Q1 2025 report; Voi press releases 11 Feb and 14 Mar 2025; Ruter Årsrapport 2025; Oslo kommune; SSB table 11418; ECB EXR 2025; TØI rapport 1748/2020 and 2127/2025; Lime (Neutron Holdings) 424B4 2026; Cambe et al. 2018; Kabra, Belavina &amp; Girotra 2020; Shah et al. 2023; Raviv, Tzur &amp; Forma 2013; Liu &amp; Ouyang 2024; Osorio, Lei &amp; Ouyang 2021; our survey dataset (n=72).</div>
+  <div>Student analysis for a Customer Centricity course. Not affiliated with or endorsed by Voi Technology. Model v3 · 17 October 2026.</div>
+</div></footer>
+
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" aria-label="Assumptions" aria-hidden="true">
+  <div class="dh">
+    <div class="r"><h3>Assumptions</h3><button class="btn ghost" id="close-drawer" type="button" aria-label="Close">Close ✕</button></div>
+    <input class="search" id="inp-search" type="search" placeholder="Filter inputs…" aria-label="Filter inputs">
+    <div class="legend-tags"><span class="tag t-AR">Voi reports</span><span class="tag t-EXT">External data</span><span class="tag t-LIT">Literature</span><span class="tag t-SV">Survey</span><span class="tag t-DV">Derived</span><span class="tag t-AS">Assumption</span><span class="tag t-PD">Pilot design</span></div>
+  </div>
+  <div class="db" id="inputs"></div>
+</aside>
+<div id="errors" role="alert" hidden></div>
+<div id="tip" hidden></div>
+<div id="toast" hidden></div>
+<div id="appendix" hidden>
+  <div class="apx-bar"><b>Appendix A · A4 preview</b><span class="mut" id="apx-status"></span><span class="spacer"></span><span class="mut">Print, then choose Save as PDF</span><button class="btn primary" id="apx-print" type="button">Print or save as PDF</button><button class="btn" id="apx-close" type="button">Back to the engine</button></div>
+  <div id="apx-pages"></div>
+</div>
+<script>window.VOI_DEFAULTS = {"horizon": 36, "discountAnnual": 0.1, "norwayRevenueEURm": 19.0, "nokPerEur": 11.7173, "osloShare": 0.75, "ruterTripsM": 20.4, "voiTripShare": 0.355, "costPerRide": 7.67, "passPrice": 399, "vatTransport": 0.12, "hourly": 545.05, "fieldHourly": 400, "segShares": {"CS": 0.3056, "SLS": 0.2917, "CR": 0.2083, "TC": 0.1944}, "rides": {"A": 1.3, "F": 12, "P": 15}, "trans": {"AF": 0.05, "AP": 0.01, "AL": 0.1, "FA": 0.12, "FP": 0.02, "FL": 0.05, "PA": 0.02, "PF": 0.07, "PL": 0.035, "LA": 0.04, "LX": 0.05}, "surveyMix": true, "engagement": {"CS": 0.5455, "SLS": 0.25, "CR": 0.0, "TC": 0.3077}, "engagementPooled": 0.3088, "shrink": 0.5, "useQ24": false, "q24": {"CS": 5.0, "SLS": 4.29, "CR": 2.6, "TC": 4.14, "mean": 4.12}, "booking": {"adoptF": 0.1, "adoptP": 0.2, "perAdopter": 8, "fee": 25, "fulfil": 0.95, "noShow": 0.12, "compensation": 20, "moveShare": 0.25, "minutesPerMove": 8, "transportPerMove": 20, "incShare": 0.25, "upgradeUplift": 0.04, "lapseRed": 0.03, "spillover": 0.01, "setupHours": 600, "setupOther": 50000, "fixedHours": 40}, "group": {"hostRate": 0.03, "serviceable": 0.7, "vehicles": 3, "discount": 0.15, "partner": 10, "support": 3, "incShare": 0.4, "guestsNew": 0.35, "register": 0.25, "lapseRed": 0.04, "setupHours": 400, "setupOther": 30000, "fixedHours": 20}, "budget": 750000, "licence": {"renewMonth": 6, "period": 24, "p0": 0.8, "bkEffect": 0.02, "grEffect": 0.005}, "mc": {"seed": 2026, "draws": 2000, "noise": 0.15, "gateMonth": 6, "ranges": {"osloShare": [0.6, 0.75, 0.85], "voiTripShare": [0.333, 0.355, 0.366], "fieldHourly": [340, 400, 520], "booking.moveShare": [0.15, 0.25, 0.4], "booking.minutesPerMove": [4, 8, 15], "booking.noShow": [0.05, 0.12, 0.25], "booking.adoptF": [0.05, 0.1, 0.2], "booking.adoptP": [0.1, 0.2, 0.35], "booking.incShare": [0.1, 0.25, 0.4], "booking.upgradeUplift": [0, 0.04, 0.08], "booking.lapseRed": [0, 0.03, 0.06], "booking.spillover": [0, 0.01, 0.02], "group.hostRate": [0.01, 0.03, 0.05], "group.incShare": [0.15, 0.4, 0.6], "group.register": [0.1, 0.25, 0.4], "group.lapseRed": [0, 0.04, 0.08], "licence.p0": [0.6, 0.8, 0.9], "licence.bkEffect": [0, 0.02, 0.04], "licence.grEffect": [-0.01, 0.005, 0.01]}}}; window.VOI_CONFIG = {"publicUrl": "https://kingen560.github.io/voi-portfolio-engine/", "printDraws": 10000, "version": "17 Oct 2026"};</script>
+<script>var qrcode=function(){function i(t,r){function a(t,r){g=function(t){for(var r=new Array(t),e=0;e<t;e+=1){r[e]=new Array(t);for(var n=0;n<t;n+=1)r[e][n]=null}return r}(l=4*u+17),e(0,0),e(l-7,0),e(0,l-7),i(),o(),v(t,r),7<=u&&h(t),null==n&&(n=w(u,f,c)),d(n,r)}var u=t,f=y[r],g=null,l=0,n=null,c=[],s={},e=function(t,r){for(var e=-1;e<=7;e+=1)if(!(t+e<=-1||l<=t+e))for(var n=-1;n<=7;n+=1)r+n<=-1||l<=r+n||(g[t+e][r+n]=0<=e&&e<=6&&(0==n||6==n)||0<=n&&n<=6&&(0==e||6==e)||2<=e&&e<=4&&2<=n&&n<=4)},o=function(){for(var t=8;t<l-8;t+=1)null==g[t][6]&&(g[t][6]=t%2==0);for(var r=8;r<l-8;r+=1)null==g[6][r]&&(g[6][r]=r%2==0)},i=function(){for(var t=B.getPatternPosition(u),r=0;r<t.length;r+=1)for(var e=0;e<t.length;e+=1){var n=t[r],o=t[e];if(null==g[n][o])for(var i=-2;i<=2;i+=1)for(var a=-2;a<=2;a+=1)g[n+i][o+a]=-2==i||2==i||-2==a||2==a||0==i&&0==a}},h=function(t){for(var r=B.getBCHTypeNumber(u),e=0;e<18;e+=1){var n=!t&&1==(r>>e&1);g[Math.floor(e/3)][e%3+l-8-3]=n}for(e=0;e<18;e+=1){n=!t&&1==(r>>e&1);g[e%3+l-8-3][Math.floor(e/3)]=n}},v=function(t,r){for(var e=f<<3|r,n=B.getBCHTypeInfo(e),o=0;o<15;o+=1){var i=!t&&1==(n>>o&1);o<6?g[o][8]=i:o<8?g[o+1][8]=i:g[l-15+o][8]=i}for(o=0;o<15;o+=1){i=!t&&1==(n>>o&1);o<8?g[8][l-o-1]=i:o<9?g[8][15-o-1+1]=i:g[8][15-o-1]=i}g[l-8][8]=!t},d=function(t,r){for(var e=-1,n=l-1,o=7,i=0,a=B.getMaskFunction(r),u=l-1;0<u;u-=2)for(6==u&&(u-=1);;){for(var f=0;f<2;f+=1)if(null==g[n][u-f]){var c=!1;i<t.length&&(c=1==(t[i]>>>o&1)),a(n,u-f)&&(c=!c),g[n][u-f]=c,-1==(o-=1)&&(i+=1,o=7)}if((n+=e)<0||l<=n){n-=e,e=-e;break}}},w=function(t,r,e){for(var n=b.getRSBlocks(t,r),o=M(),i=0;i<e.length;i+=1){var a=e[i];o.put(a.getMode(),4),o.put(a.getLength(),B.getLengthInBits(a.getMode(),t)),a.write(o)}var u=0;for(i=0;i<n.length;i+=1)u+=n[i].dataCount;if(o.getLengthInBits()>8*u)throw"code length overflow. ("+o.getLengthInBits()+">"+8*u+")";for(o.getLengthInBits()+4<=8*u&&o.put(0,4);o.getLengthInBits()%8!=0;)o.putBit(!1);for(;!(o.getLengthInBits()>=8*u||(o.put(236,8),o.getLengthInBits()>=8*u));)o.put(17,8);return function(t,r){for(var e=0,n=0,o=0,i=new Array(r.length),a=new Array(r.length),u=0;u<r.length;u+=1){var f=r[u].dataCount,c=r[u].totalCount-f;n=Math.max(n,f),o=Math.max(o,c),i[u]=new Array(f);for(var g=0;g<i[u].length;g+=1)i[u][g]=255&t.getBuffer()[g+e];e+=f;var l=B.getErrorCorrectPolynomial(c),h=C(i[u],l.getLength()-1).mod(l);a[u]=new Array(l.getLength()-1);for(g=0;g<a[u].length;g+=1){var s=g+h.getLength()-a[u].length;a[u][g]=0<=s?h.getAt(s):0}}var v=0;for(g=0;g<r.length;g+=1)v+=r[g].totalCount;var d=new Array(v),w=0;for(g=0;g<n;g+=1)for(u=0;u<r.length;u+=1)g<i[u].length&&(d[w]=i[u][g],w+=1);for(g=0;g<o;g+=1)for(u=0;u<r.length;u+=1)g<a[u].length&&(d[w]=a[u][g],w+=1);return d}(o,n)};s.addData=function(t,r){var e=null;switch(r=r||"Byte"){case"Numeric":e=x(t);break;case"Alphanumeric":e=m(t);break;case"Byte":e=L(t);break;case"Kanji":e=D(t);break;default:throw"mode:"+r}c.push(e),n=null},s.isDark=function(t,r){if(t<0||l<=t||r<0||l<=r)throw t+","+r;return g[t][r]},s.getModuleCount=function(){return l},s.make=function(){if(u<1){for(var t=1;t<40;t++){for(var r=b.getRSBlocks(t,f),e=M(),n=0;n<c.length;n++){var o=c[n];e.put(o.getMode(),4),e.put(o.getLength(),B.getLengthInBits(o.getMode(),t)),o.write(e)}var i=0;for(n=0;n<r.length;n++)i+=r[n].dataCount;if(e.getLengthInBits()<=8*i)break}u=t}a(!1,function(){for(var t=0,r=0,e=0;e<8;e+=1){a(!0,e);var n=B.getLostPoint(s);(0==e||n<t)&&(t=n,r=e)}return r}())},s.createTableTag=function(t,r){t=t||2;var e="";e+='<table style="',e+=" border-width: 0px; border-style: none;",e+=" border-collapse: collapse;",e+=" padding: 0px; margin: "+(r=void 0===r?4*t:r)+"px;",e+='">',e+="<tbody>";for(var n=0;n<s.getModuleCount();n+=1){e+="<tr>";for(var o=0;o<s.getModuleCount();o+=1)e+='<td style="',e+=" border-width: 0px; border-style: none;",e+=" border-collapse: collapse;",e+=" padding: 0px; margin: 0px;",e+=" width: "+t+"px;",e+=" height: "+t+"px;",e+=" background-color: ",e+=s.isDark(n,o)?"#000000":"#ffffff",e+=";",e+='"/>';e+="</tr>"}return e+="</tbody>",e+="</table>"},s.createSvgTag=function(t,r,e,n){var o={};"object"==typeof t&&(t=(o=t).cellSize,r=o.margin,e=o.alt,n=o.title),t=t||2,r=void 0===r?4*t:r,(e="string"==typeof e?{text:e}:e||{}).text=e.text||null,e.id=e.text?e.id||"qrcode-description":null,(n="string"==typeof n?{text:n}:n||{}).text=n.text||null,n.id=n.text?n.id||"qrcode-title":null;var i,a,u,f,c=s.getModuleCount()*t+2*r,g="";for(f="l"+t+",0 0,"+t+" -"+t+",0 0,-"+t+"z ",g+='<svg version="1.1" xmlns="http://www.w3.org/2000/svg"',g+=o.scalable?"":' width="'+c+'px" height="'+c+'px"',g+=' viewBox="0 0 '+c+" "+c+'" ',g+=' preserveAspectRatio="xMinYMin meet"',g+=n.text||e.text?' role="img" aria-labelledby="'+p([n.id,e.id].join(" ").trim())+'"':"",g+=">",g+=n.text?'<title id="'+p(n.id)+'">'+p(n.text)+"</title>":"",g+=e.text?'<description id="'+p(e.id)+'">'+p(e.text)+"</description>":"",g+='<rect width="100%" height="100%" fill="white" cx="0" cy="0"/>',g+='<path d="',a=0;a<s.getModuleCount();a+=1)for(u=a*t+r,i=0;i<s.getModuleCount();i+=1)s.isDark(a,i)&&(g+="M"+(i*t+r)+","+u+f);return g+='" stroke="transparent" fill="black"/>',g+="</svg>"},s.createDataURL=function(o,t){o=o||2,t=void 0===t?4*o:t;var r=s.getModuleCount()*o+2*t,i=t,a=r-t;return I(r,r,function(t,r){if(i<=t&&t<a&&i<=r&&r<a){var e=Math.floor((t-i)/o),n=Math.floor((r-i)/o);return s.isDark(n,e)?0:1}return 1})},s.createImgTag=function(t,r,e){t=t||2,r=void 0===r?4*t:r;var n=s.getModuleCount()*t+2*r,o="";return o+="<img",o+=' src="',o+=s.createDataURL(t,r),o+='"',o+=' width="',o+=n,o+='"',o+=' height="',o+=n,o+='"',e&&(o+=' alt="',o+=p(e),o+='"'),o+="/>"};var p=function(t){for(var r="",e=0;e<t.length;e+=1){var n=t.charAt(e);switch(n){case"<":r+="&lt;";break;case">":r+="&gt;";break;case"&":r+="&amp;";break;case'"':r+="&quot;";break;default:r+=n}}return r};return s.createASCII=function(t,r){if((t=t||1)<2)return function(t){t=void 0===t?2:t;var r,e,n,o,i,a=1*s.getModuleCount()+2*t,u=t,f=a-t,c={"██":"█","█ ":"▀"," █":"▄","  ":" "},g={"██":"▀","█ ":"▀"," █":" ","  ":" "},l="";for(r=0;r<a;r+=2){for(n=Math.floor((r-u)/1),o=Math.floor((r+1-u)/1),e=0;e<a;e+=1)i="█",u<=e&&e<f&&u<=r&&r<f&&s.isDark(n,Math.floor((e-u)/1))&&(i=" "),u<=e&&e<f&&u<=r+1&&r+1<f&&s.isDark(o,Math.floor((e-u)/1))?i+=" ":i+="█",l+=t<1&&f<=r+1?g[i]:c[i];l+="\n"}return a%2&&0<t?l.substring(0,l.length-a-1)+Array(1+a).join("▀"):l.substring(0,l.length-1)}(r);t-=1,r=void 0===r?2*t:r;var e,n,o,i,a=s.getModuleCount()*t+2*r,u=r,f=a-r,c=Array(t+1).join("██"),g=Array(t+1).join("  "),l="",h="";for(e=0;e<a;e+=1){for(o=Math.floor((e-u)/t),h="",n=0;n<a;n+=1)i=1,u<=n&&n<f&&u<=e&&e<f&&s.isDark(o,Math.floor((n-u)/t))&&(i=0),h+=i?c:g;for(o=0;o<t;o+=1)l+=h+"\n"}return l.substring(0,l.length-1)},s.renderTo2dContext=function(t,r){r=r||2;for(var e=s.getModuleCount(),n=0;n<e;n++)for(var o=0;o<e;o++)t.fillStyle=s.isDark(n,o)?"black":"white",t.fillRect(n*r,o*r,r,r)},s}i.stringToBytes=(i.stringToBytesFuncs={default:function(t){for(var r=[],e=0;e<t.length;e+=1){var n=t.charCodeAt(e);r.push(255&n)}return r}}).default,i.createStringToBytes=function(u,f){var i=function(){function t(){var t=r.read();if(-1==t)throw"eof";return t}for(var r=S(u),e=0,n={};;){var o=r.read();if(-1==o)break;var i=t(),a=t()<<8|t();n[String.fromCharCode(o<<8|i)]=a,e+=1}if(e!=f)throw e+" != "+f;return n}(),a="?".charCodeAt(0);return function(t){for(var r=[],e=0;e<t.length;e+=1){var n=t.charCodeAt(e);if(n<128)r.push(n);else{var o=i[t.charAt(e)];"number"==typeof o?(255&o)==o?r.push(o):(r.push(o>>>8),r.push(255&o)):r.push(a)}}return r}};var r,t,a=1,u=2,o=4,f=8,y={L:1,M:0,Q:3,H:2},e=0,n=1,c=2,g=3,l=4,h=5,s=6,v=7,B=(r=[[],[6,18],[6,22],[6,26],[6,30],[6,34],[6,22,38],[6,24,42],[6,26,46],[6,28,50],[6,30,54],[6,32,58],[6,34,62],[6,26,46,66],[6,26,48,70],[6,26,50,74],[6,30,54,78],[6,30,56,82],[6,30,58,86],[6,34,62,90],[6,28,50,72,94],[6,26,50,74,98],[6,30,54,78,102],[6,28,54,80,106],[6,32,58,84,110],[6,30,58,86,114],[6,34,62,90,118],[6,26,50,74,98,122],[6,30,54,78,102,126],[6,26,52,78,104,130],[6,30,56,82,108,134],[6,34,60,86,112,138],[6,30,58,86,114,142],[6,34,62,90,118,146],[6,30,54,78,102,126,150],[6,24,50,76,102,128,154],[6,28,54,80,106,132,158],[6,32,58,84,110,136,162],[6,26,54,82,110,138,166],[6,30,58,86,114,142,170]],(t={}).getBCHTypeInfo=function(t){for(var r=t<<10;0<=d(r)-d(1335);)r^=1335<<d(r)-d(1335);return 21522^(t<<10|r)},t.getBCHTypeNumber=function(t){for(var r=t<<12;0<=d(r)-d(7973);)r^=7973<<d(r)-d(7973);return t<<12|r},t.getPatternPosition=function(t){return r[t-1]},t.getMaskFunction=function(t){switch(t){case e:return function(t,r){return(t+r)%2==0};case n:return function(t,r){return t%2==0};case c:return function(t,r){return r%3==0};case g:return function(t,r){return(t+r)%3==0};case l:return function(t,r){return(Math.floor(t/2)+Math.floor(r/3))%2==0};case h:return function(t,r){return t*r%2+t*r%3==0};case s:return function(t,r){return(t*r%2+t*r%3)%2==0};case v:return function(t,r){return(t*r%3+(t+r)%2)%2==0};default:throw"bad maskPattern:"+t}},t.getErrorCorrectPolynomial=function(t){for(var r=C([1],0),e=0;e<t;e+=1)r=r.multiply(C([1,w.gexp(e)],0));return r},t.getLengthInBits=function(t,r){if(1<=r&&r<10)switch(t){case a:return 10;case u:return 9;case o:case f:return 8;default:throw"mode:"+t}else if(r<27)switch(t){case a:return 12;case u:return 11;case o:return 16;case f:return 10;default:throw"mode:"+t}else{if(!(r<41))throw"type:"+r;switch(t){case a:return 14;case u:return 13;case o:return 16;case f:return 12;default:throw"mode:"+t}}},t.getLostPoint=function(t){for(var r=t.getModuleCount(),e=0,n=0;n<r;n+=1)for(var o=0;o<r;o+=1){for(var i=0,a=t.isDark(n,o),u=-1;u<=1;u+=1)if(!(n+u<0||r<=n+u))for(var f=-1;f<=1;f+=1)o+f<0||r<=o+f||0==u&&0==f||a==t.isDark(n+u,o+f)&&(i+=1);5<i&&(e+=3+i-5)}for(n=0;n<r-1;n+=1)for(o=0;o<r-1;o+=1){var c=0;t.isDark(n,o)&&(c+=1),t.isDark(n+1,o)&&(c+=1),t.isDark(n,o+1)&&(c+=1),t.isDark(n+1,o+1)&&(c+=1),0!=c&&4!=c||(e+=3)}for(n=0;n<r;n+=1)for(o=0;o<r-6;o+=1)t.isDark(n,o)&&!t.isDark(n,o+1)&&t.isDark(n,o+2)&&t.isDark(n,o+3)&&t.isDark(n,o+4)&&!t.isDark(n,o+5)&&t.isDark(n,o+6)&&(e+=40);for(o=0;o<r;o+=1)for(n=0;n<r-6;n+=1)t.isDark(n,o)&&!t.isDark(n+1,o)&&t.isDark(n+2,o)&&t.isDark(n+3,o)&&t.isDark(n+4,o)&&!t.isDark(n+5,o)&&t.isDark(n+6,o)&&(e+=40);var g=0;for(o=0;o<r;o+=1)for(n=0;n<r;n+=1)t.isDark(n,o)&&(g+=1);return e+=Math.abs(100*g/r/r-50)/5*10},t);function d(t){for(var r=0;0!=t;)r+=1,t>>>=1;return r}var w=function(){for(var r=new Array(256),e=new Array(256),t=0;t<8;t+=1)r[t]=1<<t;for(t=8;t<256;t+=1)r[t]=r[t-4]^r[t-5]^r[t-6]^r[t-8];for(t=0;t<255;t+=1)e[r[t]]=t;var n={glog:function(t){if(t<1)throw"glog("+t+")";return e[t]},gexp:function(t){for(;t<0;)t+=255;for(;256<=t;)t-=255;return r[t]}};return n}();function C(n,o){if(void 0===n.length)throw n.length+"/"+o;var r=function(){for(var t=0;t<n.length&&0==n[t];)t+=1;for(var r=new Array(n.length-t+o),e=0;e<n.length-t;e+=1)r[e]=n[e+t];return r}(),i={getAt:function(t){return r[t]},getLength:function(){return r.length},multiply:function(t){for(var r=new Array(i.getLength()+t.getLength()-1),e=0;e<i.getLength();e+=1)for(var n=0;n<t.getLength();n+=1)r[e+n]^=w.gexp(w.glog(i.getAt(e))+w.glog(t.getAt(n)));return C(r,0)},mod:function(t){if(i.getLength()-t.getLength()<0)return i;for(var r=w.glog(i.getAt(0))-w.glog(t.getAt(0)),e=new Array(i.getLength()),n=0;n<i.getLength();n+=1)e[n]=i.getAt(n);for(n=0;n<t.getLength();n+=1)e[n]^=w.gexp(w.glog(t.getAt(n))+r);return C(e,0).mod(t)}};return i}function p(){var e=[],o={writeByte:function(t){e.push(255&t)},writeShort:function(t){o.writeByte(t),o.writeByte(t>>>8)},writeBytes:function(t,r,e){r=r||0,e=e||t.length;for(var n=0;n<e;n+=1)o.writeByte(t[n+r])},writeString:function(t){for(var r=0;r<t.length;r+=1)o.writeByte(t.charCodeAt(r))},toByteArray:function(){return e},toString:function(){var t="";t+="[";for(var r=0;r<e.length;r+=1)0<r&&(t+=","),t+=e[r];return t+="]"}};return o}var k,A,b=(k=[[1,26,19],[1,26,16],[1,26,13],[1,26,9],[1,44,34],[1,44,28],[1,44,22],[1,44,16],[1,70,55],[1,70,44],[2,35,17],[2,35,13],[1,100,80],[2,50,32],[2,50,24],[4,25,9],[1,134,108],[2,67,43],[2,33,15,2,34,16],[2,33,11,2,34,12],[2,86,68],[4,43,27],[4,43,19],[4,43,15],[2,98,78],[4,49,31],[2,32,14,4,33,15],[4,39,13,1,40,14],[2,121,97],[2,60,38,2,61,39],[4,40,18,2,41,19],[4,40,14,2,41,15],[2,146,116],[3,58,36,2,59,37],[4,36,16,4,37,17],[4,36,12,4,37,13],[2,86,68,2,87,69],[4,69,43,1,70,44],[6,43,19,2,44,20],[6,43,15,2,44,16],[4,101,81],[1,80,50,4,81,51],[4,50,22,4,51,23],[3,36,12,8,37,13],[2,116,92,2,117,93],[6,58,36,2,59,37],[4,46,20,6,47,21],[7,42,14,4,43,15],[4,133,107],[8,59,37,1,60,38],[8,44,20,4,45,21],[12,33,11,4,34,12],[3,145,115,1,146,116],[4,64,40,5,65,41],[11,36,16,5,37,17],[11,36,12,5,37,13],[5,109,87,1,110,88],[5,65,41,5,66,42],[5,54,24,7,55,25],[11,36,12,7,37,13],[5,122,98,1,123,99],[7,73,45,3,74,46],[15,43,19,2,44,20],[3,45,15,13,46,16],[1,135,107,5,136,108],[10,74,46,1,75,47],[1,50,22,15,51,23],[2,42,14,17,43,15],[5,150,120,1,151,121],[9,69,43,4,70,44],[17,50,22,1,51,23],[2,42,14,19,43,15],[3,141,113,4,142,114],[3,70,44,11,71,45],[17,47,21,4,48,22],[9,39,13,16,40,14],[3,135,107,5,136,108],[3,67,41,13,68,42],[15,54,24,5,55,25],[15,43,15,10,44,16],[4,144,116,4,145,117],[17,68,42],[17,50,22,6,51,23],[19,46,16,6,47,17],[2,139,111,7,140,112],[17,74,46],[7,54,24,16,55,25],[34,37,13],[4,151,121,5,152,122],[4,75,47,14,76,48],[11,54,24,14,55,25],[16,45,15,14,46,16],[6,147,117,4,148,118],[6,73,45,14,74,46],[11,54,24,16,55,25],[30,46,16,2,47,17],[8,132,106,4,133,107],[8,75,47,13,76,48],[7,54,24,22,55,25],[22,45,15,13,46,16],[10,142,114,2,143,115],[19,74,46,4,75,47],[28,50,22,6,51,23],[33,46,16,4,47,17],[8,152,122,4,153,123],[22,73,45,3,74,46],[8,53,23,26,54,24],[12,45,15,28,46,16],[3,147,117,10,148,118],[3,73,45,23,74,46],[4,54,24,31,55,25],[11,45,15,31,46,16],[7,146,116,7,147,117],[21,73,45,7,74,46],[1,53,23,37,54,24],[19,45,15,26,46,16],[5,145,115,10,146,116],[19,75,47,10,76,48],[15,54,24,25,55,25],[23,45,15,25,46,16],[13,145,115,3,146,116],[2,74,46,29,75,47],[42,54,24,1,55,25],[23,45,15,28,46,16],[17,145,115],[10,74,46,23,75,47],[10,54,24,35,55,25],[19,45,15,35,46,16],[17,145,115,1,146,116],[14,74,46,21,75,47],[29,54,24,19,55,25],[11,45,15,46,46,16],[13,145,115,6,146,116],[14,74,46,23,75,47],[44,54,24,7,55,25],[59,46,16,1,47,17],[12,151,121,7,152,122],[12,75,47,26,76,48],[39,54,24,14,55,25],[22,45,15,41,46,16],[6,151,121,14,152,122],[6,75,47,34,76,48],[46,54,24,10,55,25],[2,45,15,64,46,16],[17,152,122,4,153,123],[29,74,46,14,75,47],[49,54,24,10,55,25],[24,45,15,46,46,16],[4,152,122,18,153,123],[13,74,46,32,75,47],[48,54,24,14,55,25],[42,45,15,32,46,16],[20,147,117,4,148,118],[40,75,47,7,76,48],[43,54,24,22,55,25],[10,45,15,67,46,16],[19,148,118,6,149,119],[18,75,47,31,76,48],[34,54,24,34,55,25],[20,45,15,61,46,16]],(A={}).getRSBlocks=function(t,r){var e=function(t,r){switch(r){case y.L:return k[4*(t-1)+0];case y.M:return k[4*(t-1)+1];case y.Q:return k[4*(t-1)+2];case y.H:return k[4*(t-1)+3];default:return}}(t,r);if(void 0===e)throw"bad rs block @ typeNumber:"+t+"/errorCorrectionLevel:"+r;for(var n,o,i=e.length/3,a=[],u=0;u<i;u+=1)for(var f=e[3*u+0],c=e[3*u+1],g=e[3*u+2],l=0;l<f;l+=1)a.push((n=g,o=void 0,(o={}).totalCount=c,o.dataCount=n,o));return a},A),M=function(){var e=[],n=0,o={getBuffer:function(){return e},getAt:function(t){var r=Math.floor(t/8);return 1==(e[r]>>>7-t%8&1)},put:function(t,r){for(var e=0;e<r;e+=1)o.putBit(1==(t>>>r-e-1&1))},getLengthInBits:function(){return n},putBit:function(t){var r=Math.floor(n/8);e.length<=r&&e.push(0),t&&(e[r]|=128>>>n%8),n+=1}};return o},x=function(t){var r=a,n=t,e={getMode:function(){return r},getLength:function(t){return n.length},write:function(t){for(var r=n,e=0;e+2<r.length;)t.put(o(r.substring(e,e+3)),10),e+=3;e<r.length&&(r.length-e==1?t.put(o(r.substring(e,e+1)),4):r.length-e==2&&t.put(o(r.substring(e,e+2)),7))}},o=function(t){for(var r=0,e=0;e<t.length;e+=1)r=10*r+i(t.charAt(e));return r},i=function(t){if("0"<=t&&t<="9")return t.charCodeAt(0)-"0".charCodeAt(0);throw"illegal char :"+t};return e},m=function(t){var r=u,n=t,e={getMode:function(){return r},getLength:function(t){return n.length},write:function(t){for(var r=n,e=0;e+1<r.length;)t.put(45*o(r.charAt(e))+o(r.charAt(e+1)),11),e+=2;e<r.length&&t.put(o(r.charAt(e)),6)}},o=function(t){if("0"<=t&&t<="9")return t.charCodeAt(0)-"0".charCodeAt(0);if("A"<=t&&t<="Z")return t.charCodeAt(0)-"A".charCodeAt(0)+10;switch(t){case" ":return 36;case"$":return 37;case"%":return 38;case"*":return 39;case"+":return 40;case"-":return 41;case".":return 42;case"/":return 43;case":":return 44;default:throw"illegal char :"+t}};return e},L=function(t){var r=o,e=i.stringToBytes(t),n={getMode:function(){return r},getLength:function(t){return e.length},write:function(t){for(var r=0;r<e.length;r+=1)t.put(e[r],8)}};return n},D=function(t){var r=f,e=i.stringToBytesFuncs.SJIS;if(!e)throw"sjis not supported.";!function(){var t=e("友");if(2!=t.length||38726!=(t[0]<<8|t[1]))throw"sjis not supported."}();var o=e(t),n={getMode:function(){return r},getLength:function(t){return~~(o.length/2)},write:function(t){for(var r=o,e=0;e+1<r.length;){var n=(255&r[e])<<8|255&r[e+1];if(33088<=n&&n<=40956)n-=33088;else{if(!(57408<=n&&n<=60351))throw"illegal char at "+(e+1)+"/"+n;n-=49472}n=192*(n>>>8&255)+(255&n),t.put(n,13),e+=2}if(e<r.length)throw"illegal char at "+(e+1)}};return n},S=function(t){var e=t,n=0,o=0,i=0,r={read:function(){for(;i<8;){if(n>=e.length){if(0==i)return-1;throw"unexpected end of file./"+i}var t=e.charAt(n);if(n+=1,"="==t)return i=0,-1;t.match(/^\s$/)||(o=o<<6|a(t.charCodeAt(0)),i+=6)}var r=o>>>i-8&255;return i-=8,r}},a=function(t){if(65<=t&&t<=90)return t-65;if(97<=t&&t<=122)return t-97+26;if(48<=t&&t<=57)return t-48+52;if(43==t)return 62;if(47==t)return 63;throw"c:"+t};return r},I=function(t,r,e){for(var n=function(t,r){var n=t,o=r,l=new Array(t*r),e={setPixel:function(t,r,e){l[r*n+t]=e},write:function(t){t.writeString("GIF87a"),t.writeShort(n),t.writeShort(o),t.writeByte(128),t.writeByte(0),t.writeByte(0),t.writeByte(0),t.writeByte(0),t.writeByte(0),t.writeByte(255),t.writeByte(255),t.writeByte(255),t.writeString(","),t.writeShort(0),t.writeShort(0),t.writeShort(n),t.writeShort(o),t.writeByte(0);var r=i(2);t.writeByte(2);for(var e=0;255<r.length-e;)t.writeByte(255),t.writeBytes(r,e,255),e+=255;t.writeByte(r.length-e),t.writeBytes(r,e,r.length-e),t.writeByte(0),t.writeString(";")}},i=function(t){for(var r=1<<t,e=1+(1<<t),n=t+1,o=h(),i=0;i<r;i+=1)o.add(String.fromCharCode(i));o.add(String.fromCharCode(r)),o.add(String.fromCharCode(e));var a=p(),u=function(t){var e=t,n=0,o=0,r={write:function(t,r){if(t>>>r!=0)throw"length over";for(;8<=n+r;)e.writeByte(255&(t<<n|o)),r-=8-n,t>>>=8-n,n=o=0;o|=t<<n,n+=r},flush:function(){0<n&&e.writeByte(o)}};return r}(a);u.write(r,n);var f=0,c=String.fromCharCode(l[f]);for(f+=1;f<l.length;){var g=String.fromCharCode(l[f]);f+=1,o.contains(c+g)?c+=g:(u.write(o.indexOf(c),n),o.size()<4095&&(o.size()==1<<n&&(n+=1),o.add(c+g)),c=g)}return u.write(o.indexOf(c),n),u.write(e,n),u.flush(),a.toByteArray()},h=function(){var r={},e=0,n={add:function(t){if(n.contains(t))throw"dup key:"+t;r[t]=e,e+=1},size:function(){return e},indexOf:function(t){return r[t]},contains:function(t){return void 0!==r[t]}};return n};return e}(t,r),o=0;o<r;o+=1)for(var i=0;i<t;i+=1)n.setPixel(i,o,e(i,o));var a=p();n.write(a);for(var u=function(){function e(t){a+=String.fromCharCode(r(63&t))}var n=0,o=0,i=0,a="",t={},r=function(t){if(t<0);else{if(t<26)return 65+t;if(t<52)return t-26+97;if(t<62)return t-52+48;if(62==t)return 43;if(63==t)return 47}throw"n:"+t};return t.writeByte=function(t){for(n=n<<8|255&t,o+=8,i+=1;6<=o;)e(n>>>o-6),o-=6},t.flush=function(){if(0<o&&(e(n<<6-o),o=n=0),i%3!=0)for(var t=3-i%3,r=0;r<t;r+=1)a+="="},t.toString=function(){return a},t}(),f=a.toByteArray(),c=0;c<f.length;c+=1)u.writeByte(f[c]);return u.flush(),"data:image/gif;base64,"+u};return i}();qrcode.stringToBytesFuncs["UTF-8"]=function(t){return function(t){for(var r=[],e=0;e<t.length;e++){var n=t.charCodeAt(e);n<128?r.push(n):n<2048?r.push(192|n>>6,128|63&n):n<55296||57344<=n?r.push(224|n>>12,128|n>>6&63,128|63&n):(e++,n=65536+((1023&n)<<10|1023&t.charCodeAt(e)),r.push(240|n>>18,128|n>>12&63,128|n>>6&63,128|63&n))}return r}(t)},function(t){"function"==typeof define&&define.amd?define([],t):"object"==typeof exports&&(module.exports=t())}(function(){return qrcode});</script>
+<script>// Voi Customer Portfolio Engine: calculation core. No DOM access; see ui.js.
+(function (root) {
+  'use strict';
+  const SEGS = ['CS', 'SLS', 'CR', 'TC'];
+  const STATES = ['A', 'F', 'P', 'L'];
+  const clone = x => JSON.parse(JSON.stringify(x));
+  const get = (o, path) => path.split('.').reduce((a, k) => a[k], o);
+  const set = (o, path, v) => { const k = path.split('.'); const last = k.pop(); k.reduce((a, q) => a[q], o)[last] = v; };
+
+  // Solve v·M = b for a 4-state row vector v (Gaussian elimination on the transpose).
+  function solveRow(M, b) {
+    const a = STATES.map((_, i) => STATES.map((_, j) => M[j][i]).concat([b[i]]));
+    for (let c = 0; c < 4; c++) {
+      let piv = c;
+      for (let r = c + 1; r < 4; r++) if (Math.abs(a[r][c]) > Math.abs(a[piv][c])) piv = r;
+      [a[c], a[piv]] = [a[piv], a[c]];
+      for (let r = 0; r < 4; r++) if (r !== c) {
+        const f = a[r][c] / a[c][c];
+        for (let k = c; k < 5; k++) a[r][k] -= f * a[c][k];
+      }
+    }
+    return a.map((row, i) => row[4] / row[i]);
+  }
+
+  // Baseline steady state per segment: stocks that one new customer per month sustains.
+  // The starting portfolio is this steady state, so "no initiative" stays flat.
+  function steady(x, seg, k = 1) {
+    const M = matrix(x, seg, { lapseA: 0, lapseF: 0, lapseP: 0, upgradeF: 0 }, k);
+    const IminusM = STATES.map(r => STATES.map(c => (r === c ? 1 : 0) - M[r][c]));
+    const v = solveRow(IminusM, [1, 0, 0, 0]);
+    const active = v[0] + v[1] + v[2];
+    return { A: v[0] / active, F: v[1] / active, P: v[2] / active, L: v[3] / active, inflowPerActive: 1 / active };
+  }
+
+  // Calibrate PAYG revenue per ride and pass fee so that, at the steady-state mix,
+  // blended revenue per ride and pass revenue share match the 2025 annual report.
+  // Size the Oslo portfolio from Norwegian revenue and the assumed Oslo share.
+  // Segment engagement: scale the upward moves (A→F, A→P, F→P) by k so that the segment's
+  // steady-state F+P share equals its survey share of weekly-or-more users, shrunk toward
+  // the pooled share because each cluster has only 13–22 users.
+  function engagementTarget(x, s) {
+    return x.shrink * x.engagementPooled + (1 - x.shrink) * x.engagement[s];
+  }
+  function kMax(x) {
+    const t = x.trans, lim = [];
+    if (t.AF + t.AP > 0) lim.push((1 - t.AL) / (t.AF + t.AP));
+    if (t.FP > 0) lim.push((1 - t.FA - t.FL) / t.FP);
+    return lim.length ? Math.min(...lim) : 1;
+  }
+  function solveK(x, s) {
+    if (!x.surveyMix) return { k: 1, reached: true };
+    const target = engagementTarget(x, s), share = k => { const v = steady(x, s, k); return v.F + v.P; };
+    let lo = 1e-6, hi = kMax(x) * 0.999;
+    if (share(lo) >= target) return { k: lo, reached: Math.abs(share(lo) - target) < 1e-6 };
+    if (share(hi) <= target) return { k: hi, reached: false };
+    for (let i = 0; i < 80; i++) { const mid = (lo + hi) / 2; if (share(mid) < target) lo = mid; else hi = mid; }
+    return { k: (lo + hi) / 2, reached: true };
+  }
+
+  function calibrate(x) {
+    const mix = { A: 0, F: 0, P: 0 }, seg = {}, k = {}, reached = {};
+    for (const s of SEGS) {
+      const sk = solveK(x, s); k[s] = sk.k; reached[s] = sk.reached;
+      seg[s] = steady(x, s, k[s]);
+      for (const k of ['A', 'F', 'P']) mix[k] += x.segShares[s] * seg[s][k];
+    }
+    // Oslo revenue (Voi Norway revenue × Oslo share) over Voi's Oslo trips (Ruter total × Voi trip share).
+    const osloRevenue = x.norwayRevenueEURm * 1e6 * x.nokPerEur * x.osloShare;
+    const voiTrips = x.ruterTripsM * 1e6 * x.voiTripShare;
+    const revPerRide = voiTrips > 0 ? osloRevenue / voiTrips : 0;
+    const paygRides = mix.A * x.rides.A + mix.F * x.rides.F;
+    const ridesPerActive = paygRides + mix.P * x.rides.P;
+    const revenue = revPerRide * ridesPerActive;
+    const active = ridesPerActive > 0 ? voiTrips / 12 / ridesPerActive : 0;
+    // Pass fee is the observed list price net of VAT; PAYG revenue per ride absorbs the rest,
+    // including day passes and discounts, so blended revenue per ride matches Oslo.
+    const fee = x.passPrice / (1 + x.vatTransport);
+    const payg = paygRides > 0 ? (revenue - mix.P * fee) / paygRides : 0;
+    return {
+      osloRevenue, voiTrips, revPerRide, payg, fee,
+      passRevenueShare: revenue > 0 ? mix.P * fee / revenue : 0,
+      mix, seg, k, reached, ridesPerActive, revenuePerActive: revenue, active,
+      acquisition: SEGS.reduce((a, s) => a + active * x.segShares[s] * seg[s].inflowPerActive, 0)
+    };
+  }
+
+  function validate(x) {
+    const e = [];
+    const ck = (v, a, b, n) => { if (!Number.isFinite(v) || v < a || v > b) e.push(`${n}: expected ${a}–${b}`); };
+    ck(x.horizon, 1, 120, 'Horizon (months)');
+    if (!Number.isInteger(x.horizon)) e.push('Horizon must be a whole number of months');
+    ck(x.discountAnnual, 0, 1, 'Annual discount rate');
+    ck(x.norwayRevenueEURm, 0, 1e4, 'Norway revenue'); ck(x.nokPerEur, 0, 100, 'NOK per EUR');
+    ck(x.osloShare, 0, 1, 'Oslo share of Norway revenue');
+    ck(x.ruterTripsM, 0.01, 1000, 'Oslo e-scooter trips'); ck(x.voiTripShare, 0.01, 1, 'Voi trip share in Oslo');
+    ck(x.fieldHourly, 0, 10000, 'Field labour cost per hour');
+    ck(x.costPerRide, 0, 500, 'Cost per ride');
+    ck(x.passPrice, 0, 5000, 'Voi Pass price'); ck(x.vatTransport, 0, 0.5, 'VAT on passenger transport'); ck(x.hourly, 0, 10000, 'Hourly cost');
+    ck(x.budget, 0, 1e9, 'Setup budget');
+    for (const s of SEGS) ck(x.segShares[s], 0, 1, 'Segment share ' + s);
+    const shareSum = SEGS.reduce((a, s) => a + x.segShares[s], 0);
+    if (Math.abs(shareSum - 1) > 0.005) e.push(`Segment shares must sum to 100% (now ${(shareSum * 100).toFixed(1)}%)`);
+    for (const k of ['A', 'F', 'P']) ck(x.rides[k], 0, 200, 'Rides per month ' + k);
+    for (const k in x.trans) ck(x.trans[k], 0, 1, 'Transition ' + k);
+    const t = x.trans;
+    if (t.AF + t.AP + t.AL > 1) e.push('Transitions out of A exceed 100%');
+    if (t.FA + t.FP + t.FL > 1) e.push('Transitions out of F exceed 100%');
+    if (t.PA + t.PF + t.PL > 1) e.push('Transitions out of P exceed 100%');
+    if (t.LA + t.LX > 1) e.push('Transitions out of L exceed 100%');
+    ck(x.shrink, 0, 1, 'Shrinkage toward pooled engagement'); ck(x.engagementPooled, 0, 1, 'Pooled engagement');
+    for (const s of SEGS) ck(x.engagement[s], 0, 1, 'Engagement ' + s);
+    if (x.useQ24 && x.surveyMix) e.push('Use either survey engagement or Q24 scaling, not both: they adjust the same upgrade moves');
+    if (Number.isFinite(x.passPrice) && e.length === 0) {
+      const cal = calibrate(x);
+      if (cal.payg < 0) e.push('Pass price is too high for the calibrated revenue: pay-as-you-go revenue per ride would be negative');
+    }
+    if (t.LX <= 0) e.push('Permanent exit from L must be above 0 for a steady-state baseline');
+    if (t.AF + t.AP <= 0 && t.AL <= 0) e.push('State A needs at least one outgoing transition');
+    const b = x.booking, g = x.group;
+    for (const k of ['adoptF', 'adoptP', 'fulfil', 'noShow', 'moveShare', 'incShare', 'upgradeUplift', 'lapseRed', 'spillover']) ck(b[k], 0, 1, 'Booking ' + k);
+    for (const k of ['perAdopter', 'fee', 'compensation', 'minutesPerMove', 'transportPerMove', 'setupHours', 'setupOther', 'fixedHours']) ck(b[k], 0, 1e7, 'Booking ' + k);
+    for (const k of ['hostRate', 'serviceable', 'discount', 'incShare', 'guestsNew', 'register', 'lapseRed']) ck(g[k], 0, 1, 'Group ' + k);
+    ck(g.vehicles, 2, 5, 'Vehicles per group');
+    const L = x.licence;
+    ck(L.p0, 0, 1, 'Renewal probability'); ck(L.bkEffect, -0.5, 0.5, 'Licence effect, Hub & Book'); ck(L.grEffect, -0.5, 0.5, 'Licence effect, group package');
+    ck(L.renewMonth, 0, 120, 'Months until the permit ends'); ck(L.period, 1, 120, 'Permit period (months)');
+    for (const k of ['partner', 'support', 'setupHours', 'setupOther', 'fixedHours']) ck(g[k], 0, 1e7, 'Group ' + k);
+    return e;
+  }
+
+  // Row-stochastic matrix for one segment in one month, given levers.
+  function matrix(x, seg, lev, k = 1) {
+    const t = x.trans;
+    let AF = t.AF * k, AP = t.AP * k, FP = t.FP * k;
+    if (x.useQ24) { const q = x.q24[seg] / x.q24.mean; AP *= q; FP *= q; }
+    const M = {
+      A: { A: 0, F: AF, P: AP, L: t.AL },
+      F: { A: t.FA, F: 0, P: FP, L: t.FL },
+      P: { A: t.PA, F: t.PF, P: 0, L: t.PL },
+      L: { A: t.LA, F: 0, P: 0, L: 0 }
+    };
+    // Lapse reductions move probability mass to staying; uplift moves it from staying to P.
+    const cut = (from, amt) => { M[from].L = Math.max(0, M[from].L - amt); };
+    cut('A', lev.lapseA); cut('F', lev.lapseF); cut('P', lev.lapseP);
+    M.F.P += lev.upgradeF;
+    for (const r of STATES) {
+      const out = STATES.reduce((a, c) => a + (c === r ? 0 : M[r][c]), 0);
+      if (out > 1) { // uplift cannot exceed the available staying mass
+        M[r].P -= Math.min(M[r].P, out - 1);
+      }
+      M[r][r] = 1 - STATES.reduce((a, c) => a + (c === r ? 0 : M[r][c]), 0);
+    }
+    M.L.L -= t.LX; // lapsed customers who leave the portfolio for good
+    return M;
+  }
+
+  const ZERO = () => ({ base: 0, bkFees: 0, bkRides: 0, bkComp: 0, bkMoves: 0, bkFixed: 0, grMargin: 0, grCannibal: 0, grPartner: 0, grFixed: 0 });
+
+  function run(x, on) {
+    const cal = calibrate(x);
+    const p = cal.payg, fee = cal.fee, c = x.costPerRide;
+    const r = Math.pow(1 + x.discountAnnual, 1 / 12) - 1;
+    const b = x.booking, g = x.group;
+    // One placement per booking that cannot be served by holding a scooter already nearby.
+    const moveCost = b.minutesPerMove / 60 * x.fieldHourly + b.transportPerMove;
+    let n = {};
+    const inflow = {};
+    for (const s of SEGS) {
+      const act = cal.active * x.segShares[s], st = cal.seg[s];
+      n[s] = { A: act * st.A, F: act * st.F, P: act * st.P, L: act * st.L };
+      inflow[s] = act * st.inflowPerActive;
+    }
+    const months = [];
+    for (let m = 1; m <= x.horizon; m++) {
+      const flows = ZERO(), next = {};
+      const stats = { bookings: 0, completed: 0, packages: 0, newGuests: 0, flow: {} };
+      for (const s of SEGS) {
+        const S = n[s];
+        const lev = { lapseA: 0, lapseF: 0, lapseP: 0, upgradeF: 0 };
+        flows.base += S.A * x.rides.A * (p - c) + S.F * x.rides.F * (p - c) + S.P * (fee - x.rides.P * c);
+        let guests = 0;
+        if (on.booking && s === 'CS') {
+          const bF = b.adoptF * S.F, bP = b.adoptP * S.P;
+          const paygB = bF * b.perAdopter, passB = bP * b.perAdopter, all = paygB + passB;
+          const done = b.fulfil * (1 - b.noShow) * b.incShare;
+          flows.bkFees += paygB * b.fulfil * b.fee;
+          flows.bkRides += paygB * done * (p - c) - passB * done * c;
+          flows.bkComp -= all * (1 - b.fulfil) * b.compensation;
+          flows.bkMoves -= all * b.moveShare * moveCost;
+          flows.bkFixed -= b.fixedHours * x.hourly;
+          stats.bookings += all; stats.completed += all * b.fulfil * (1 - b.noShow);
+          lev.upgradeF += b.upgradeUplift * b.adoptF;
+          lev.lapseF += b.lapseRed * b.adoptF;
+          lev.lapseP += b.lapseRed * b.adoptP;
+        }
+        if (on.booking && (s === 'CS' || s === 'TC')) lev.lapseA += b.spillover;
+        if (on.group && s === 'SLS') {
+          const pk = g.hostRate * (S.A + S.F + S.P) * g.serviceable, v = g.vehicles;
+          flows.grMargin += pk * g.incShare * v * (p * (1 - g.discount) - c);
+          flows.grCannibal -= pk * (1 - g.incShare) * v * p * g.discount;
+          flows.grPartner -= pk * (g.partner + g.support);
+          flows.grFixed -= g.fixedHours * x.hourly;
+          guests = pk * g.incShare * (v - 1) * g.guestsNew * g.register;
+          stats.packages += pk; stats.newGuests += guests;
+          const h = g.lapseRed * g.hostRate * g.serviceable;
+          lev.lapseA += h; lev.lapseF += h; lev.lapseP += h;
+        }
+        const M = matrix(x, s, lev, cal.k[s]);
+        const nx = { A: 0, F: 0, P: 0, L: 0 }, fl = stats.flow[s] = {};
+        for (const from of STATES) for (const to of STATES) {
+          nx[to] += S[from] * M[from][to];
+          if (from !== to) fl[from + to] = S[from] * M[from][to];
+        }
+        fl.inA = inflow[s] + guests; fl.Lout = S.L * x.trans.LX;
+        nx.A += inflow[s] + guests;
+        next[s] = nx;
+      }
+      const total = Object.values(flows).reduce((a, v) => a + v, 0);
+      n = next;
+      months.push({ m, df: Math.pow(1 + r, -m), flows, total, stats, states: n }); // n is rebuilt each month, never mutated
+    }
+    const setup = (on.booking ? b.setupHours * x.hourly + b.setupOther : 0) + (on.group ? g.setupHours * x.hourly + g.setupOther : 0);
+    const cpe = months.reduce((a, o) => a + o.total * o.df, 0) - setup;
+    return { cal, months, setup, cpe, moveCost };
+  }
+
+  const agg = (st, k) => SEGS.reduce((a, s) => a + st[s][k], 0);
+  function passShareAt(res, m) {
+    const st = res.months[Math.min(m, res.months.length) - 1].states;
+    const act = agg(st, 'A') + agg(st, 'F') + agg(st, 'P');
+    return act > 0 ? agg(st, 'P') / act : 0;
+  }
+
+  function compare(x, on, base) {
+    base = base || run(x, { booking: false, group: false });
+    const sc = run(x, on);
+    const d = ZERO();
+    sc.months.forEach((o, i) => { for (const k in d) d[k] += (o.flows[k] - base.months[i].flows[k]) * o.df; });
+    const dCPE = sc.cpe - base.cpe;
+    // Discounted payback: first month in which cumulative ΔCPE (after setup) turns non-negative.
+    let cum = -sc.setup, payback = null;
+    if (on.booking || on.group) for (let i = 0; i < sc.months.length && payback === null; i++) {
+      cum += (sc.months[i].total - base.months[i].total) * sc.months[i].df;
+      if (cum >= 0) payback = i + 1;
+    }
+    const last = sc.months[sc.months.length - 1].states, lastB = base.months[base.months.length - 1].states;
+    const active = st => agg(st, 'A') + agg(st, 'F') + agg(st, 'P');
+    // Licence layer: after the permit ends, contribution only counts if Oslo renews it.
+    // ΔCPE_L = Σ S_s(Δc) df + Σ (S_s − S_b) c_base df − setup  (rider part + licence part).
+    const p0 = x.licence.p0, ps = licenceP(x, on);
+    let riderL = -sc.setup, licValue = 0, perPP = 0;
+    sc.months.forEach((o, i) => {
+      const b = base.months[i].total, Ss = survival(x, ps, o.m), Sb = survival(x, p0, o.m);
+      riderL += Ss * (o.total - b) * o.df;
+      licValue += (Ss - Sb) * b * o.df;
+      perPP += (survival(x, Math.min(1, p0 + 0.01), o.m) - Sb) * b * o.df;
+    });
+    return {
+      on, base, sc, dCPE, setup: sc.setup, decomposition: d,
+      pRenew: ps, pRenewBase: p0, riderL, licValue, dCPEL: riderL + licValue, licencePerPP: perPP,
+      roi: sc.setup > 0 ? dCPE / sc.setup : null,
+      payback, withinBudget: sc.setup <= x.budget,
+      passShare12: passShareAt(sc, 12), passShare12Base: passShareAt(base, 12),
+      activeEnd: active(last), activeEndBase: active(lastB)
+    };
+  }
+
+  // Probability that Oslo renews the permit, and the share of month m's contribution that survives.
+  function licenceP(x, on) {
+    const L = x.licence;
+    return Math.min(1, Math.max(0, L.p0 + (on.booking ? L.bkEffect : 0) + (on.group ? L.grEffect : 0)));
+  }
+  function survival(x, p, m) {
+    const L = x.licence;
+    return m <= L.renewMonth ? 1 : Math.pow(p, Math.floor((m - L.renewMonth - 1) / L.period) + 1);
+  }
+
+  const SCENARIOS = [
+    { id: 'none', label: 'No initiative', on: { booking: false, group: false } },
+    { id: 'booking', label: 'Hub & Book (CS)', on: { booking: true, group: false } },
+    { id: 'group', label: 'Group package (SLS)', on: { booking: false, group: true } },
+    { id: 'both', label: 'Both initiatives', on: { booking: true, group: true } }
+  ];
+  function scenarios(x) {
+    const base = run(x, { booking: false, group: false });
+    return SCENARIOS.map(s => Object.assign({ id: s.id, label: s.label }, compare(x, s.on, base)));
+  }
+
+  // One-at-a-time sensitivity: each listed input at ±spread, clamped to its range.
+  function tornado(x, on, meta, spread) {
+    const base = run(x, { booking: false, group: false });
+    const mid = compare(x, on, base).dCPE;
+    return meta.filter(q => q.tornado && (q.group === 'global' || on[q.group])).map(q => {
+      const v0 = get(x, q.key);
+      const at = v => { const y = clone(x); set(y, q.key, Math.min(q.max, Math.max(q.min, v))); return compare(y, on).dCPE; };
+      const lo = at(v0 * (1 - spread)), hi = at(v0 * (1 + spread));
+      return { key: q.key, label: q.label, v0, lo, hi, mid, range: Math.abs(hi - lo) };
+    }).sort((a, b) => b.range - a.range);
+  }
+
+  // Value of one input at which the initiative's ΔCPE crosses zero (bisection).
+  function breakEven(x, on, key, lo, hi) {
+    const f = v => { const y = clone(x); set(y, key, v); return compare(y, on).dCPE; };
+    let flo = f(lo), fhi = f(hi);
+    if (flo === 0) return { value: lo, status: 'root' };
+    if (Math.sign(flo) === Math.sign(fhi)) return { value: null, status: flo > 0 ? 'positive' : 'negative' };
+    for (let i = 0; i < 60; i++) {
+      const mid = (lo + hi) / 2, fm = f(mid);
+      if (Math.sign(fm) === Math.sign(flo)) { lo = mid; flo = fm; } else { hi = mid; fhi = fm; }
+    }
+    return { value: (lo + hi) / 2, status: 'root' };
+  }
+
+  // Monte Carlo of the gated pilot. Each draw samples the uncertain inputs (triangular low/mode/high),
+  // then compares launching blind with the Gate rule: at the gate month the pilot measures the
+  // behavioural inputs with noise and continues an initiative only if its remaining value is positive.
+  function rng32(seed) {
+    let a = seed >>> 0;
+    return () => { a = (a + 0x6D2B79F5) >>> 0; let t = a; t = Math.imul(t ^ (t >>> 15), t | 1); t ^= t + Math.imul(t ^ (t >>> 7), t | 61); return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+  }
+  const tri = (u, lo, mode, hi) => {
+    if (hi <= lo) return mode;
+    const f = (mode - lo) / (hi - lo);
+    return u < f ? lo + Math.sqrt(u * (hi - lo) * (mode - lo)) : hi - Math.sqrt((1 - u) * (hi - lo) * (hi - mode));
+  };
+  const normal = r => { const u = Math.max(1e-12, r()), v = r(); return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v); };
+  const ONS = { booking: { booking: true, group: false }, group: { booking: false, group: true } };
+  function mcDraw(x, i) {
+    const M = x.mc, r = rng32((M.seed * 7919 + i * 2654435761) >>> 0);
+    const y = clone(x);
+    for (const k of Object.keys(M.ranges)) { const [lo, mode, hi] = M.ranges[k]; set(y, k, tri(r(), lo, mode, hi)); }
+    // The pilot observes booking and group behaviour with relative error; city-level inputs Voi knows.
+    const z = clone(y);
+    for (const k of Object.keys(M.ranges)) if (/^(booking|group)\./.test(k)) {
+      const v = get(y, k) * (1 + M.noise * normal(r)), [lo, , hi] = M.ranges[k];
+      set(z, k, Math.min(hi <= 1 ? 1 : Infinity, Math.max(Math.min(0, lo), v)));
+    }
+    const baseY = run(y, { booking: false, group: false }), baseZ = run(z, { booking: false, group: false });
+    const out = { full: 0, gated: 0 };
+    for (const id of ['booking', 'group']) {
+      const c = compare(y, ONS[id], baseY), cz = compare(z, ONS[id], baseZ);
+      const pre = (cc, b) => { let v = -cc.setup; for (let t = 0; t < M.gateMonth; t++) v += survival(y, cc.pRenew, t + 1) * (cc.sc.months[t].total - b.months[t].total) * cc.sc.months[t].df; return v; };
+      const preY = pre(c, baseY), futureZ = cz.riderL - pre(cz, baseZ);
+      const go = futureZ > 0, gated = go ? c.dCPEL : preY + c.licValue;
+      out[id] = { full: c.dCPEL, gated, go };
+      out.full += c.dCPEL; out.gated += gated;
+    }
+    return out;
+  }
+  function mcSummary(draws) {
+    const stat = vals => {
+      const s = vals.slice().sort((a, b) => a - b), n = s.length, q = p => s.at(Math.min(n - 1, Math.max(0, Math.round(p * (n - 1)))));
+      return { mean: s.reduce((a, v) => a + v, 0) / n, pLoss: s.filter(v => v < 0).length / n, p5: q(0.05), p50: q(0.5), p95: q(0.95), min: s.at(0), max: s.at(-1) };
+    };
+    const n = draws.length;
+    return {
+      n, full: stat(draws.map(d => d.full)), gated: stat(draws.map(d => d.gated)),
+      goBooking: draws.filter(d => d.booking.go).length / n, goGroup: draws.filter(d => d.group.go).length / n
+    };
+  }
+
+  root.VoiEngine = { SEGS, STATES, SCENARIOS, clone, get, set, steady, engagementTarget, calibrate, validate, matrix, run, compare, scenarios, tornado, breakEven, passShareAt, licenceP, survival, mcDraw, mcSummary };
+})(typeof window !== 'undefined' ? window : globalThis);
+</script>
+<script>// Voi Customer Portfolio Engine: interface. Depends on VoiEngine and VOI_DEFAULTS.
+(function () {
+  'use strict';
+  const E = window.VoiEngine;
+  const DEFAULTS = window.VOI_DEFAULTS;
+  let X = E.clone(DEFAULTS);
+
+  // Source tags: Voi reports, external data, literature, survey, derived, assumption, pilot design.
+  const SRC = {
+    AR: 'Voi reports', EXT: 'External data', LIT: 'Literature', SV: 'Our survey (n=72)', DV: 'Derived', AS: 'Assumption', PD: 'Pilot design'
+  };
+  const META = [
+    // Global and calibration
+    { key: 'horizon', label: 'Horizon', group: 'global', min: 6, max: 60, step: 1, fmt: 'int', unit: 'months', src: 'PD', note: 'Finite horizon, no terminal value: conservative.' },
+    { key: 'discountAnnual', label: 'Discount rate (annual)', group: 'global', min: 0, max: 0.3, step: 0.005, fmt: 'pct', src: 'AS', note: 'Cost-of-capital proxy for a growth-stage operator.', tornado: true },
+    { key: 'norwayRevenueEURm', label: 'Voi Norway net revenue 2025', group: 'global', min: 0, max: 100, step: 0.1, fmt: 'num', unit: 'EUR m', src: 'AR', note: 'Annual Report 2025, Note 2 (19.0; 13.2 in 2024).' },
+    { key: 'nokPerEur', label: 'NOK per EUR (2025 avg.)', group: 'global', min: 5, max: 20, step: 0.0001, fmt: 'num', src: 'EXT', note: 'ECB EXR annual average 2025.' },
+    { key: 'osloShare', label: 'Oslo share of Voi Norway revenue', group: 'global', min: 0.4, max: 1, step: 0.01, fmt: 'pct', src: 'DV', note: 'Range 60–85%. Voi fleet in Oslo 5,334 of 16,000 (from Apr 2025) vs. Trondheim ~1,067 and smaller cities; usage-weighted.', metric: 'Voi internal: Oslo revenue / Norway revenue', tornado: true },
+    { key: 'ruterTripsM', label: 'Oslo rental e-scooter trips 2025', group: 'global', min: 1, max: 60, step: 0.1, fmt: 'num', unit: 'm', src: 'EXT', note: 'Ruter Årsrapport 2025: 20.4m (11.2m in 2024), all operators.' },
+    { key: 'voiTripShare', label: 'Voi share of Oslo trips', group: 'global', min: 0.1, max: 0.7, step: 0.005, fmt: 'pct', src: 'DV', note: 'Voi 4.1m of 11.2m trips in 2024 = 36.6%; one-third fleet share from 2025.', tornado: true },
+    { key: 'costPerRide', label: 'Vehicle operating cost per ride', group: 'global', min: 1, max: 30, step: 0.01, fmt: 'nok', src: 'AR', note: '(Revenue − vehicle profit) / rides 2025. Q1-25 LTM €0.74/ride. Average, not marginal.', tornado: true },
+    { key: 'passPrice', label: 'Voi Pass monthly price (incl. VAT)', group: 'global', min: 99, max: 999, step: 1, fmt: 'nok', src: 'EXT', note: 'Oslo list price 399 kr / 300 min (Tek.no, Jul 2024). Verify current price in app.', metric: 'Current Voi Pass price list', tornado: true },
+    { key: 'vatTransport', label: 'VAT on passenger transport', group: 'global', min: 0, max: 0.25, step: 0.01, fmt: 'pct', src: 'EXT', note: 'Norwegian reduced rate 12%; revenue in the annual report is net of VAT.' },
+    { key: 'hourly', label: 'Office labour cost per hour', group: 'global', min: 100, max: 2000, step: 1, fmt: 'nok', src: 'DV', note: 'Voi personnel cost per average employee / ~1,650 h. Used for setup and coordination.', tornado: true },
+    { key: 'fieldHourly', label: 'Field operations cost per hour', group: 'global', min: 200, max: 1000, step: 5, fmt: 'nok', src: 'EXT', note: 'SSB table 11418 (2025): warehouse/freight/van drivers 262–309 kr/h × ~1.29 employer costs, plus night supplement.', tornado: true },
+    { key: 'budget', label: 'Setup budget', group: 'global', min: 0, max: 5e6, step: 10000, fmt: 'nok0', src: 'PD', note: 'Management sponsor allocation for both pilots.' },
+    // Segments
+    { key: 'segShares.CS', label: 'Convenience Seekers share', group: 'segments', min: 0, max: 1, step: 0.0001, fmt: 'pct', src: 'SV', note: '22 of 72 (QCL_4 = 3). Sample share, not market share.' },
+    { key: 'segShares.SLS', label: 'Social Leisure Seekers share', group: 'segments', min: 0, max: 1, step: 0.0001, fmt: 'pct', src: 'SV', note: '21 of 72 (QCL_4 = 1).' },
+    { key: 'segShares.CR', label: 'Cautious Riders share', group: 'segments', min: 0, max: 1, step: 0.0001, fmt: 'pct', src: 'SV', note: '15 of 72 (QCL_4 = 2).' },
+    { key: 'segShares.TC', label: 'Transport Connectors share', group: 'segments', min: 0, max: 1, step: 0.0001, fmt: 'pct', src: 'SV', note: '14 of 72 (QCL_4 = 4).' },
+    { key: 'surveyMix', label: 'Calibrate segment engagement to survey usage', group: 'segments', type: 'bool', src: 'SV', note: 'Scales upward moves per segment so its steady F+P share matches the share of users riding weekly or more (shrunk toward pooled).' },
+    { key: 'engagement.CS', label: 'CS: users riding weekly or more', group: 'segments', min: 0, max: 1, step: 0.0001, fmt: 'pct', src: 'SV', note: '12 of 22 (Q1); 4 of the 6 current subscribers (Q23).' },
+    { key: 'engagement.SLS', label: 'SLS: users riding weekly or more', group: 'segments', min: 0, max: 1, step: 0.0001, fmt: 'pct', src: 'SV', note: '5 of 20 users.' },
+    { key: 'engagement.CR', label: 'CR: users riding weekly or more', group: 'segments', min: 0, max: 1, step: 0.0001, fmt: 'pct', src: 'SV', note: '0 of 13 users.' },
+    { key: 'engagement.TC', label: 'TC: users riding weekly or more', group: 'segments', min: 0, max: 1, step: 0.0001, fmt: 'pct', src: 'SV', note: '4 of 13 users.' },
+    { key: 'engagementPooled', label: 'All users riding weekly or more', group: 'segments', min: 0, max: 1, step: 0.0001, fmt: 'pct', src: 'SV', note: '21 of 68. TØI 2019 Oslo: 42% (Nov) to 70% (summer) weekly; Voi 2025: "half weekly".' },
+    { key: 'shrink', label: 'Shrinkage toward pooled share', group: 'segments', min: 0, max: 1, step: 0.05, fmt: 'pct', src: 'AS', note: 'Clusters have 13–22 users; 50% guards against over-reading small cells.' },
+    { key: 'useQ24', label: 'Alternative: scale upgrades by Q24 subscription interest', group: 'segments', type: 'bool', src: 'SV', note: 'Q24 means CS 5.00, SLS 4.29, CR 2.60, TC 4.14. Stated interest, not purchase probability. Off by default.' },
+    // Portfolio dynamics
+    { key: 'rides.A', label: 'Rides/month: Acquaintance (A)', group: 'dynamics', min: 0, max: 10, step: 0.1, fmt: 'num', src: 'SV', note: 'Survey: users below weekly, Q1 band midpoints = 1.3.', metric: 'Rides per active customer by state' },
+    { key: 'rides.F', label: 'Rides/month: Friend (F)', group: 'dynamics', min: 0, max: 40, step: 0.5, fmt: 'num', src: 'SV', note: 'Weekly+ non-subscribers = 12.1. Lime 2025: bundle riders ~6× PAYG trips.' },
+    { key: 'rides.P', label: 'Rides/month: Partner (P, Voi Pass)', group: 'dynamics', min: 0, max: 60, step: 0.5, fmt: 'num', src: 'SV', note: 'Current subscribers = 15.2 (n=6).' },
+    { key: 'trans.AF', label: 'A → F', group: 'dynamics', min: 0, max: 0.5, step: 0.005, fmt: 'pct', src: 'AS', note: 'With the other transitions, set so steady-state mix matches the survey (69/22/9 A/F/P) and Lime: >15% of routine riders started casual.' },
+    { key: 'trans.AP', label: 'A → P', group: 'dynamics', min: 0, max: 0.5, step: 0.005, fmt: 'pct', src: 'AS' },
+    { key: 'trans.AL', label: 'A → Lapsed', group: 'dynamics', min: 0, max: 0.6, step: 0.005, fmt: 'pct', src: 'LIT', note: 'Portfolio lapse ≈ 8.3%/month ≈ 65%/year; Lyon bike-share: ~60% of users leave within a year (Cambe et al. 2018).', tornado: true },
+    { key: 'trans.FA', label: 'F → A', group: 'dynamics', min: 0, max: 0.5, step: 0.005, fmt: 'pct', src: 'AS', note: 'Seasonal downshift: Oslo weekly use falls from 70% to 42% in autumn (TØI 1748/2020).' },
+    { key: 'trans.FP', label: 'F → P', group: 'dynamics', min: 0, max: 0.5, step: 0.005, fmt: 'pct', src: 'AS' },
+    { key: 'trans.FL', label: 'F → Lapsed', group: 'dynamics', min: 0, max: 0.5, step: 0.005, fmt: 'pct', src: 'AS' },
+    { key: 'trans.PA', label: 'P → A', group: 'dynamics', min: 0, max: 0.5, step: 0.005, fmt: 'pct', src: 'AS' },
+    { key: 'trans.PF', label: 'P → F', group: 'dynamics', min: 0, max: 0.5, step: 0.005, fmt: 'pct', src: 'AS' },
+    { key: 'trans.PL', label: 'P → Lapsed', group: 'dynamics', min: 0, max: 0.5, step: 0.005, fmt: 'pct', src: 'SV', note: '5 of 11 respondents who ever had a pass no longer have one (Q23).', tornado: true },
+    { key: 'trans.LA', label: 'Lapsed → A (win-back)', group: 'dynamics', min: 0, max: 0.5, step: 0.005, fmt: 'pct', src: 'AS' },
+    { key: 'trans.LX', label: 'Lapsed → gone for good', group: 'dynamics', min: 0.005, max: 0.5, step: 0.005, fmt: 'pct', src: 'AS' },
+    // Initiative 1
+    { key: 'booking.adoptF', label: 'Share of CS Friends who book', group: 'booking', min: 0, max: 1, step: 0.01, fmt: 'pct', src: 'SV', note: '8 of 22 CS ride mainly to work/study (Q21), but no CS ranked reservations the top pass benefit (Q25).', metric: 'Monthly booking customers / active CS F', tornado: true },
+    { key: 'booking.adoptP', label: 'Share of CS Pass holders who book', group: 'booking', min: 0, max: 1, step: 0.01, fmt: 'pct', src: 'AS', metric: 'Monthly booking customers / active CS P', tornado: true },
+    { key: 'booking.perAdopter', label: 'Bookings per booking customer / month', group: 'booking', min: 0, max: 40, step: 1, fmt: 'num', src: 'AS', note: '8 ≈ two commute days per week.', tornado: true },
+    { key: 'booking.fee', label: 'Booking fee (pay-as-you-go)', group: 'booking', min: 0, max: 60, step: 1, fmt: 'nok', src: 'PD', note: 'Included in Voi Pass. Benchmarks: Voi free-unlock add-on 29 kr/month; Dott and Lime 10–15 min reservations free.', metric: 'Price test: conversion at 15/25/35 NOK', tornado: true, be: [0, 80] },
+    { key: 'booking.fulfil', label: 'Fulfilment rate', group: 'booking', min: 0.5, max: 1, step: 0.005, fmt: 'pct', src: 'PD', note: 'Scooter present and charged at booked time.', metric: 'Fulfilled / booked (target ≥ 95%)', tornado: true },
+    { key: 'booking.noShow', label: 'No-show rate', group: 'booking', min: 0, max: 0.6, step: 0.01, fmt: 'pct', src: 'LIT', note: 'Comparables: pre-booked paratransit 10%; car rental 10–30%. Free bookings sit higher.', metric: 'Unused fulfilled bookings / fulfilled' },
+    { key: 'booking.compensation', label: 'Compensation per failed booking', group: 'booking', min: 0, max: 100, step: 1, fmt: 'nok', src: 'PD', note: 'Ride credit, so the promise is credible (Mittal & Kamakura 2001).' },
+    { key: 'booking.moveShare', label: 'Bookings needing an overnight placement', group: 'booking', min: 0, max: 1, step: 0.01, fmt: 'pct', src: 'AS', note: 'The rest are served by holding a scooter already within ~150 m. TØI: 34% of Oslo users find a scooter within 1 minute.', metric: 'Placements / bookings, by zone', tornado: true, be: [0, 1] },
+    { key: 'booking.minutesPerMove', label: 'Minutes per placement', group: 'booking', min: 0, max: 30, step: 0.5, fmt: 'num', src: 'LIT', note: 'Range 4–15. ~1 min handling (Raviv et al. 2013) plus a 1–3 km detour at ~20 km/h (Liu & Ouyang 2024) within an existing night route.', tornado: true },
+    { key: 'booking.transportPerMove', label: 'Vehicle cost per placement', group: 'booking', min: 0, max: 100, step: 0.5, fmt: 'nok', src: 'LIT', note: 'Van cost per km (Liu & Ouyang 2024) × detour. Cross-check: Bird paid $4–5 per scooter-night for charging (Osorio et al. 2021).' },
+    { key: 'booking.incShare', label: 'Booked rides that are incremental', group: 'booking', min: 0, max: 1, step: 0.01, fmt: 'pct', src: 'LIT', note: 'Paris: +10% availability gives +12.2% rides (Kabra et al. 2020); Nashville fleet elasticity 0.64 (Shah et al. 2023). CS fallback is public transport (12 of 22, Q22).', metric: 'Holdout: rides of bookers vs matched non-bookers', tornado: true, be: [0, 1] },
+    { key: 'booking.upgradeUplift', label: 'Extra F → P per booking customer', group: 'booking', min: 0, max: 0.3, step: 0.005, fmt: 'pct', src: 'AS', note: 'Booking included in Pass is the upgrade reason.', metric: 'Pass conversion: bookers vs control', tornado: true, be: [0, 0.3] },
+    { key: 'booking.lapseRed', label: 'Lapse reduction per booking customer', group: 'booking', min: 0, max: 0.05, step: 0.001, fmt: 'pct', src: 'AS', metric: 'Monthly lapse: bookers vs control', tornado: true, be: [0, 0.05] },
+    { key: 'booking.spillover', label: 'Spillover lapse reduction, CS & TC (A)', group: 'booking', min: 0, max: 0.05, step: 0.001, fmt: 'pct', src: 'LIT', note: 'About 3/4 of the Paris availability effect comes from fewer abandoned searches (Kabra et al. 2020). TC rate availability 5.71.', metric: 'Failed searches (app open, no scooter ≤150 m) in pilot zones', tornado: true, be: [0, 0.05] },
+    { key: 'booking.setupHours', label: 'Setup hours (product, ops, analytics)', group: 'booking', min: 0, max: 5000, step: 10, fmt: 'num', src: 'AS' },
+    { key: 'booking.setupOther', label: 'Other setup cost', group: 'booking', min: 0, max: 1e6, step: 1000, fmt: 'nok0', src: 'AS' },
+    { key: 'booking.fixedHours', label: 'Running coordination hours / month', group: 'booking', min: 0, max: 500, step: 1, fmt: 'num', src: 'AS', tornado: true },
+    // Initiative 2
+    { key: 'group.hostRate', label: 'Share of active SLS hosting / month', group: 'group', min: 0, max: 0.3, step: 0.005, fmt: 'pct', src: 'AS', metric: 'Packages / active SLS customers', tornado: true },
+    { key: 'group.serviceable', label: 'Occasions before 23:00 closure', group: 'group', min: 0, max: 1, step: 0.01, fmt: 'pct', src: 'AS', note: 'Q15 "late evening" (6.71) had no time stated; Oslo closes rentals 23–05.', metric: 'Interview: usual start time of group trips' },
+    { key: 'group.vehicles', label: 'Vehicles per group', group: 'group', min: 2, max: 5, step: 1, fmt: 'int', src: 'PD', note: 'Group Rides supports up to five vehicles (Voi user agreement).' },
+    { key: 'group.discount', label: 'Package discount vs pay-as-you-go', group: 'group', min: 0, max: 0.6, step: 0.01, fmt: 'pct', src: 'SV', note: 'SLS top pass benefit: discounted evening/weekend trips (7 of 21, Q25). SLS fallback is taxi (7 of 21, Q22).', metric: 'Price test on package', tornado: true, be: [0, 0.6] },
+    { key: 'group.partner', label: 'Partner cost per package', group: 'group', min: 0, max: 100, step: 1, fmt: 'nok', src: 'AS' },
+    { key: 'group.support', label: 'Support cost per package', group: 'group', min: 0, max: 50, step: 1, fmt: 'nok', src: 'AS' },
+    { key: 'group.incShare', label: 'Package occasions that are incremental', group: 'group', min: 0, max: 1, step: 0.01, fmt: 'pct', src: 'AS', metric: 'Holdout: group trips with vs without offer', tornado: true, be: [0, 1] },
+    { key: 'group.guestsNew', label: 'Guests new to Voi', group: 'group', min: 0, max: 1, step: 0.01, fmt: 'pct', src: 'AS', metric: 'Guest phone/email not matched to account' },
+    { key: 'group.register', label: 'New guests who register', group: 'group', min: 0, max: 1, step: 0.01, fmt: 'pct', src: 'AS', metric: 'Guest-to-account conversion within 30 days', tornado: true, be: [0, 1] },
+    { key: 'group.lapseRed', label: 'Lapse reduction per hosting customer', group: 'group', min: 0, max: 0.1, step: 0.001, fmt: 'pct', src: 'AS', metric: 'Host lapse vs non-host SLS', tornado: true },
+    { key: 'group.setupHours', label: 'Setup hours', group: 'group', min: 0, max: 5000, step: 10, fmt: 'num', src: 'AS' },
+    { key: 'group.setupOther', label: 'Other setup cost', group: 'group', min: 0, max: 1e6, step: 1000, fmt: 'nok0', src: 'AS' },
+    { key: 'group.fixedHours', label: 'Running coordination hours / month', group: 'group', min: 0, max: 500, step: 1, fmt: 'num', src: 'AS', tornado: true },
+    // Licence layer and simulation
+    { key: 'licence.renewMonth', label: 'Months until the Oslo permit ends', group: 'risk', min: 0, max: 24, step: 1, fmt: 'int', unit: 'months', src: 'DV', note: 'Permits last two years with no extension (FOR-2024-11-20-2821 §3); the current one began 1 Apr 2025. Month 0 = Oct 2026.' },
+    { key: 'licence.period', label: 'Length of each new permit', group: 'risk', min: 6, max: 60, step: 1, fmt: 'int', unit: 'months', src: 'EXT', note: 'Two years under the current regulation (§3).' },
+    { key: 'licence.p0', label: 'Chance Oslo renews Voi without the initiatives', group: 'risk', min: 0.3, max: 1, step: 0.01, fmt: 'pct', src: 'AS', note: 'Oslo removed incumbents in 2022 (nine), 2023 (Tier, Bolt) and 2024 (Lime). Voi lost Bergen in 2026 despite being the incumbent.', metric: 'Tender outcome' },
+    { key: 'licence.bkEffect', label: 'Renewal uplift from Hub & Book', group: 'risk', min: -0.1, max: 0.1, step: 0.0025, fmt: 'pct', src: 'AS', note: 'Targets the award criteria: accessible public space (parking in hubs), safety, links to Ruter and data sharing.' },
+    { key: 'licence.grEffect', label: 'Renewal effect of the group package', group: 'risk', min: -0.1, max: 0.1, step: 0.0025, fmt: 'pct', src: 'AS', note: 'Group riding late in the evening conflicts with the safety goal behind the 23–05 closure; the safe design ends at 22:00.' },
+    { key: 'mc.noise', label: 'Pilot measurement error (relative)', group: 'risk', min: 0, max: 0.5, step: 0.01, fmt: 'pct', src: 'AS', note: 'How precisely six months of pilot data measure each behavioural input.' },
+    { key: 'mc.gateMonth', label: 'Gate month', group: 'risk', min: 1, max: 24, step: 1, fmt: 'int', unit: 'months', src: 'PD', note: 'When the pilot owner decides to continue or stop each initiative.' }
+  ];
+  const GROUPS = [
+    { id: 'booking', title: 'Initiative 1: Hub & Book', sub: 'Convenience Seekers' },
+    { id: 'group', title: 'Initiative 2: Group package', sub: 'Social Leisure Seekers' },
+    { id: 'dynamics', title: 'Portfolio dynamics', sub: 'Johnson & Selnes states, monthly' },
+    { id: 'segments', title: 'Segments', sub: 'Four-cluster survey solution' },
+    { id: 'global', title: 'Economics & calibration', sub: 'Annual report anchors' },
+    { id: 'risk', title: 'Licence and uncertainty', sub: 'Oslo permit, pilot simulation' }
+  ];
+  // Survey evidence by segment, from VOI_Dataset_Original.sav (QCL_4 four-cluster solution).
+  const SEG_EV = {
+    CS: { n: 22, users: 22, weekly: 12, sub: 4, prev: 2, commute: 8, q24: 5.00, q25: 'Included riding minutes (7)', q22: 'Public transport (12)' },
+    SLS: { n: 21, users: 20, weekly: 5, sub: 2, prev: 0, commute: 0, q24: 4.29, q25: 'Discounted evening/weekend trips (7)', q22: 'Taxi or ride-hailing (7)' },
+    CR: { n: 15, users: 13, weekly: 0, sub: 0, prev: 2, commute: 2, q24: 2.60, q25: 'None (5)', q22: 'Walk (6)' },
+    TC: { n: 14, users: 13, weekly: 4, sub: 0, prev: 1, commute: 5, q24: 4.14, q25: 'Free unlocks (6)', q22: 'Walk (6)' }
+  };
+  const SEG_NAMES = { CS: 'Convenience Seekers', SLS: 'Social Leisure Seekers', CR: 'Cautious Riders', TC: 'Transport Connectors' };
+  const STATE_NAMES = { A: 'Acquaintance', F: 'Friend', P: 'Partner', L: 'Lapsed' };
+  const COMP = [
+    ['base', 'Portfolio migration'], ['bkFees', 'Booking fees'], ['bkRides', 'Incremental booked rides'],
+    ['bkComp', 'Failed-booking credits'], ['bkMoves', 'Overnight placements'], ['bkFixed', 'Booking coordination'],
+    ['grMargin', 'Incremental group rides'], ['grCannibal', 'Discount on non-incremental rides'],
+    ['grPartner', 'Partner & support'], ['grFixed', 'Group coordination']
+  ];
+  const LEVERS = {
+    booking: ['booking.adoptF', 'booking.fee', 'booking.moveShare', 'booking.incShare', 'booking.upgradeUplift'],
+    group: ['group.hostRate', 'group.discount', 'group.incShare', 'group.register', 'group.lapseRed']
+  };
+  const DESIGNS = {
+    hub: { label: 'Hub zones', values: { 'booking.moveShare': 0.25, 'booking.fee': 25 },
+      note: '<b style="color:var(--ink)">Recommended.</b> Bookable only in dense hub zones (stations, campuses, business districts), where three in four bookings can be served by holding a scooter that is already nearby. Fee 25 kr for PAYG.' },
+    city: { label: 'City-wide', values: { 'booking.moveShare': 0.5, 'booking.fee': 15 },
+      note: '<b style="color:var(--ink)">Rejected alternative.</b> Bookable anywhere in Oslo for 15 kr. Half of all bookings then need a dedicated overnight placement at about 73 kr each (8 min × 400 kr/h + 20 kr vehicle). That cost exceeds the fee and the upgrade value.' }
+  };
+  const GDESIGNS = {
+    safe: { label: 'Safe evening', values: { 'group.serviceable': 0.7, 'licence.grEffect': 0.005 },
+      note: '<b style="color:var(--ink)">Recommended.</b> Packages end at 22:00 and include an in-app safety check. Fewer occasions qualify (70%), but the city sees the package as an organised, safer alternative to taxis.' },
+    late: { label: 'Late night', values: { 'group.serviceable': 0.85, 'licence.grEffect': -0.01 },
+      note: '<b style="color:var(--ink)">Rejected alternative.</b> Packages run until the 23:00 closure. More occasions qualify (85%), but late group riding is what the closure was introduced to stop, and it costs renewal chance.' }
+  };
+  const segState = { scenario: 'both', seg: 'ALL', flowSeg: 'ALL', flowMode: 'scn', flowMonth: 12 };
+  const view = segState;
+
+  // Formatting
+  const nf = (v, d = 0) => (Number.isFinite(v) ? v.toLocaleString('en-GB', { minimumFractionDigits: d, maximumFractionDigits: d }) : '–');
+  const nok = v => (v < 0 ? '−' : '') + nf(Math.abs(v)) + ' kr';
+  const mnok = (v, sign = true) => (v < 0 ? '−' : sign && v > 0 ? '+' : '') + nf(Math.abs(v) / 1e6, Math.abs(v) >= 1e7 ? 1 : 2) + ' MNOK';
+  const pct = (v, d = 1) => nf(v * 100, d) + '%';
+  const sgn = v => (v >= 0 ? '+' : '−') + nf(Math.abs(v));
+  const fmtVal = (q, v) => q.fmt === 'pct' ? pct(v, v < 0.1 ? 1 : 0) : q.fmt === 'nok' ? nf(v, v < 100 && v % 1 ? 2 : 0) + ' kr' : q.fmt === 'nok0' ? nok(v) : q.fmt === 'int' ? nf(v) : nf(v, v % 1 ? 2 : 0);
+  const kfmt = v => Math.abs(v) >= 1e6 ? nf(v / 1e6, Math.abs(v) >= 1e7 ? 0 : 1) + 'M' : Math.abs(v) >= 1e3 ? nf(v / 1e3, Math.abs(v) >= 1e4 ? 0 : 1) + 'k' : nf(v);
+  const $ = s => document.querySelector(s);
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const metaOf = key => META.find(m => m.key === key);
+
+  // Inputs: every control carries data-key, so inline levers and the drawer stay in sync.
+  const scaleOf = q => q.fmt === 'pct' ? 100 : 1;
+  const unitOf = q => q.fmt === 'pct' ? '%' : q.fmt === 'nok' || q.fmt === 'nok0' ? 'kr' : (q.unit || '');
+  const round = (v, step) => { const d = Math.max(0, Math.ceil(-Math.log10(step)) + 1); return Number(v.toFixed(d)); };
+  function inputRow(q, compact) {
+    const row = document.createElement('div');
+    row.className = 'inp'; row.dataset.key = q.key; row.dataset.search = (q.label + ' ' + (q.note || '') + ' ' + SRC[q.src]).toLowerCase();
+    const id = (compact ? 'lv_' : 'in_') + q.key.replace(/\./g, '_');
+    const tag = `<span class="tag t-${q.src}" title="${esc(SRC[q.src])}">${esc(SRC[q.src])}</span>`;
+    if (q.type === 'bool') {
+      row.innerHTML = `<label class="chk"><input type="checkbox" id="${id}" data-role="bool"> ${esc(q.label)}</label><div style="margin-top:4px">${tag}</div>${q.note ? `<div class="note">${esc(q.note)}</div>` : ''}`;
+      return row;
+    }
+    const sc = scaleOf(q), step = q.step * sc;
+    row.innerHTML = `<div class="lab"><label for="${id}">${esc(q.label)}</label>${tag}</div>
+      <div class="ctl"><input type="range" min="${q.min * sc}" max="${q.max * sc}" step="${step}" data-role="range" aria-label="${esc(q.label)}">
+      <input type="number" id="${id}" min="${q.min * sc}" max="${q.max * sc}" step="${step}" data-role="num"><span class="unit">${esc(unitOf(q))}</span></div>
+      ${q.note && !compact ? `<div class="note">${esc(q.note)}</div>` : ''}${q.metric && compact ? `<div class="note">Pilot measures: ${esc(q.metric)}</div>` : ''}`;
+    return row;
+  }
+  function buildInputs() {
+    const host = $('#inputs'); host.innerHTML = '';
+    for (const G of GROUPS) {
+      const det = document.createElement('details'); det.className = 'grp'; det.open = G.id === 'booking' || G.id === 'group';
+      det.innerHTML = `<summary><span class="gt">${esc(G.title)}</span><span class="gs">${esc(G.sub)}</span></summary>`;
+      META.filter(m => m.group === G.id).forEach(q => det.appendChild(inputRow(q, false)));
+      host.appendChild(det);
+    }
+    for (const g of ['booking', 'group']) {
+      const lv = $('#lev-' + g); lv.innerHTML = '';
+      LEVERS[g].forEach(k => lv.appendChild(inputRow(metaOf(k), true)));
+    }
+    document.addEventListener('input', onInput);
+    document.addEventListener('change', e => { if (e.target.dataset.role === 'bool') onInput(e); });
+    $('#inp-search').addEventListener('input', e => {
+      const q = e.target.value.trim().toLowerCase();
+      document.querySelectorAll('#inputs .inp').forEach(r => { r.hidden = q && !r.dataset.search.includes(q); });
+      document.querySelectorAll('#inputs details.grp').forEach(d => { if (q) d.open = true; d.hidden = q && !d.querySelector('.inp:not([hidden])'); });
+    });
+    syncInputs();
+  }
+  function syncInputs(except) {
+    document.querySelectorAll('.inp[data-key]').forEach(row => {
+      const q = metaOf(row.dataset.key), v = E.get(X, q.key);
+      row.classList.toggle('chg', JSON.stringify(v) !== JSON.stringify(E.get(DEFAULTS, q.key)));
+      if (q.type === 'bool') { const c = row.querySelector('input'); if (c !== except) c.checked = !!v; return; }
+      const sc = scaleOf(q);
+      const num = row.querySelector('[data-role="num"]'), rng = row.querySelector('[data-role="range"]');
+      if (num !== except && Number.isFinite(v)) num.value = round(v * sc, q.step * sc);
+      if (rng !== except && Number.isFinite(v)) rng.value = v * sc;
+    });
+    const n = META.filter(q => JSON.stringify(E.get(X, q.key)) !== JSON.stringify(E.get(DEFAULTS, q.key))).length;
+    $('#chg-count').hidden = !n; $('#chg-count').textContent = n + ' changed';
+  }
+  function onInput(ev) {
+    const t = ev.target, row = t.closest && t.closest('.inp[data-key]');
+    if (!row) return;
+    const q = metaOf(row.dataset.key);
+    if (q.type === 'bool') E.set(X, q.key, t.checked);
+    else { const v = parseFloat(t.value); E.set(X, q.key, Number.isFinite(v) ? v / scaleOf(q) : NaN); }
+    syncInputs(t);
+    schedule();
+  }
+  let timer = null;
+  const schedule = () => { clearTimeout(timer); timer = setTimeout(refresh, 50); };
+
+  // Drawer
+  function drawer(open) {
+    $('#drawer').classList.toggle('on', open); $('#scrim').classList.toggle('on', open);
+    $('#drawer').setAttribute('aria-hidden', String(!open)); $('#open-drawer').setAttribute('aria-expanded', String(open));
+    if (open) setTimeout(() => $('#inp-search').focus(), 200);
+  }
+
+  // Tooltip
+  const tip = () => $('#tip');
+  function showTip(evt, html) {
+    const t = tip(); t.innerHTML = html; t.hidden = false;
+    const pad = 14, w = t.offsetWidth, h = t.offsetHeight;
+    let x = evt.clientX + pad, y = evt.clientY + pad;
+    if (x + w > window.innerWidth - 8) x = evt.clientX - w - pad;
+    if (y + h > window.innerHeight - 8) y = evt.clientY - h - pad;
+    t.style.left = Math.max(8, x) + 'px'; t.style.top = Math.max(8, y) + 'px';
+  }
+  const hideTip = () => { tip().hidden = true; };
+
+  // SVG helpers
+  const NS = 'http://www.w3.org/2000/svg';
+  const sv = (tag, a = {}) => { const e = document.createElementNS(NS, tag); for (const k in a) e.setAttribute(k, a[k]); return e; };
+  const txt = (a, s) => { const t = sv('text', a); t.textContent = s; return t; };
+  function niceTicks(lo, hi, n = 5) {
+    if (hi === lo) hi = lo + 1;
+    const span = hi - lo, step0 = span / n, mag = Math.pow(10, Math.floor(Math.log10(step0)));
+    const step = [1, 2, 2.5, 5, 10].map(f => f * mag).find(s => span / s <= n) || 10 * mag;
+    const t = []; for (let v = Math.ceil(lo / step) * step; v <= hi + 1e-9; v += step) t.push(Math.abs(v) < 1e-9 ? 0 : v);
+    return t;
+  }
+  const widthOf = host => Math.max(280, host.clientWidth || 640);
+
+  // Count-up for headline numbers
+  const shown = {};
+  function countTo(el, id, target, fmt) {
+    const from = shown[id] ?? target, t0 = performance.now(), dur = 450;
+    shown[id] = target;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || from === target) { el.textContent = fmt(target); return; }
+    const step = now => { const k = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - k, 3); el.textContent = fmt(from + (target - from) * e); if (k < 1) requestAnimationFrame(step); };
+    requestAnimationFrame(step);
+  }
+
+  // Aggregation helpers
+  const segsOf = sel => sel === 'ALL' ? E.SEGS : [sel];
+  const stateSum = (st, segs, k) => segs.reduce((a, s) => a + st[s][k], 0);
+  const flowSum = (fl, segs, k) => segs.reduce((a, s) => a + (fl[s] ? fl[s][k] || 0 : 0), 0);
+  function cumPath(s) {
+    let cum = -s.setup; const pts = [{ m: 0, v: cum }];
+    s.sc.months.forEach((o, j) => { cum += (o.total - s.base.months[j].total) * o.df; pts.push({ m: j + 1, v: cum }); });
+    return pts;
+  }
+
+  // Hero, KPIs
+  function hero(list, cmp) {
+    const any = cmp.on.booking || cmp.on.group;
+    const big = $('#hero-big');
+    big.className = 'big num ' + (cmp.dCPEL < 0 ? 'neg' : 'pos');
+    countTo(big, 'hero', any ? cmp.dCPEL : 0, v => any ? mnok(v) : '–');
+    $('#hero-chip').textContent = list.find(s => s.id === view.scenario).label;
+    $('#hero-s').innerHTML = any ? `Riders <b style="color:var(--ink)">${mnok(cmp.riderL)}</b> + licence <b style="color:var(--ink)">${mnok(cmp.licValue)}</b> · ${X.horizon} months, present value, after ${nok(cmp.setup)} setup` : 'Choose an initiative to value it against the baseline.';
+    const host = $('#hero-spark'); host.innerHTML = '';
+    if (any) {
+      const pts = cumPath(cmp), W = widthOf(host), H = 64;
+      const lo = Math.min(0, ...pts.map(p => p.v)), hi = Math.max(0, ...pts.map(p => p.v));
+      const x = m => 2 + m / X.horizon * (W - 4), y = v => H - 4 - (v - lo) / (hi - lo || 1) * (H - 8);
+      const svg = sv('svg', { viewBox: `0 0 ${W} ${H}`, width: W, height: H, role: 'img', 'aria-label': 'Cumulative ΔCPE path' });
+      svg.appendChild(sv('line', { x1: 0, x2: W, y1: y(0), y2: y(0), class: 'zero', 'stroke-dasharray': '2 3' }));
+      const d = pts.map((p, i) => `${i ? 'L' : 'M'}${x(p.m)},${y(p.v)}`).join('');
+      svg.appendChild(sv('path', { d: d + `L${x(X.horizon)},${y(0)}L${x(0)},${y(0)}Z`, fill: cmp.dCPE >= 0 ? 'var(--pos)' : 'var(--neg)', 'fill-opacity': 0.08 }));
+      svg.appendChild(sv('path', { d, fill: 'none', stroke: cmp.dCPE >= 0 ? 'var(--pos)' : 'var(--neg)', 'stroke-width': 2 }));
+      if (cmp.payback) svg.appendChild(sv('circle', { cx: x(cmp.payback), cy: y(0), r: 4, fill: 'var(--card)', stroke: 'var(--ink)', 'stroke-width': 2 }));
+      host.appendChild(svg);
+    }
+    const by = Object.fromEntries(list.map(s => [s.id, s]));
+    const b = by.booking, g = by.group, both = by.both;
+    $('#lead').innerHTML = `Voi has two customers in Oslo: the <b>riders</b>, and the <b>city</b> that re-tenders its permit every two years. <b>Hub &amp; Book</b> for Convenience Seekers and a <b>safe evening group package</b> for Social Leisure Seekers are valued at both levels: together <b>${mnok(both.dCPEL)}</b>, of which ${mnok(both.licValue)} comes from a better chance of keeping the permit.`;
+    const tiles = [
+      { k: 'Rider ΔCPE, permit assumed', v: any ? mnok(cmp.dCPE) : '–', s: cmp.payback ? `payback month ${cmp.payback}` : (any ? 'no payback in horizon' : 'no initiative') },
+      { k: 'Chance Oslo renews', v: pct(cmp.pRenew, 1), s: `without initiatives ${pct(cmp.pRenewBase, 0)}` },
+      { k: 'Pass share, month 12', v: pct(cmp.passShare12), s: `baseline ${pct(cmp.passShare12Base)}` },
+      { k: 'Simulated chance of loss', v: MC.summary ? pct(MC.summary.gated.pLoss, 1) : '…', s: MC.summary ? `with Gate 1; blind ${pct(MC.summary.full.pLoss, 1)}` : 'running the simulation' }
+    ];
+    $('#kpis').innerHTML = tiles.map(t => `<div class="kpi"><div class="kk">${t.k}</div><div class="kv">${t.v}</div><div class="ks">${t.s}</div></div>`).join('');
+  }
+
+  function calibStats(cal) {
+    const items = [
+      ['Oslo net revenue', nf(cal.osloRevenue / 1e6, 0) + ' MNOK', 'Voi Norway × Oslo share'],
+      ['Voi Oslo trips / year', nf(cal.voiTrips / 1e6, 2) + 'm', 'Ruter 20.4m × Voi share'],
+      ['Net revenue per ride', nf(cal.revPerRide, 2) + ' kr', 'group average 18.03 kr'],
+      ['Monthly active customers', nf(cal.active), 'Voi 2024: 717k unique users/yr'],
+      ['Pass fee · PAYG per ride', nf(cal.fee) + ' · ' + nf(cal.payg, 1) + ' kr', 'net of 12% VAT'],
+      ['Implied pass revenue share', pct(cal.passRevenueShare), 'Voi 38.8% incl. day passes · Lime 28%'],
+      ['Steady-state mix A · F · P', `${pct(cal.mix.A, 0)} · ${pct(cal.mix.F, 0)} · ${pct(cal.mix.P, 0)}`, 'survey users 69 · 22 · 9'],
+      ['New customers to stand still', nf(cal.acquisition) + ' / mo', 'acquisition vs retention']
+    ];
+    $('#calib').innerHTML = items.map(([l, v, c]) => `<div class="stat"><span class="l">${l}</span><b>${v}</b><span class="c">${c}</span></div>`).join('');
+  }
+
+  // Flow diagram: monthly movements between relationship states.
+  const NODES = { A: [130, 205], F: [365, 78], P: [600, 205], L: [365, 335] };
+  const NW = 150, NH = 74;
+  const EDGES = [
+    ['A', 'F', 'up'], ['F', 'A', 'down'], ['F', 'P', 'up'], ['P', 'F', 'down'], ['A', 'P', 'up'], ['P', 'A', 'down'],
+    ['A', 'L', 'lapse'], ['F', 'L', 'lapse'], ['P', 'L', 'lapse'], ['L', 'A', 'win']
+  ];
+  const edgeColor = (to, kind) => kind === 'lapse' ? 'var(--sL)' : kind === 'down' ? 'var(--ink3)' : `var(--s${to})`;
+  function rectExit(c, d) {
+    const tx = Math.abs(d[0]) > 1e-9 ? (NW / 2 + 6) / Math.abs(d[0]) : Infinity, ty = Math.abs(d[1]) > 1e-9 ? (NH / 2 + 6) / Math.abs(d[1]) : Infinity;
+    const t = Math.min(tx, ty); return [c[0] + d[0] * t, c[1] + d[1] * t];
+  }
+  function chartFlow(cmp, host = $('#ch-flow'), side = $('#flow-side'), opt = view) {
+    host.innerHTML = '';
+    const segs = segsOf(opt.flowSeg), m = Math.min(opt.flowMonth, X.horizon);
+    const res = opt.flowMode === 'base' ? cmp.base : cmp.sc;
+    const fl = res.months[m - 1].stats.flow, flB = cmp.base.months[m - 1].stats.flow;
+    const st = m === 1 ? cmp.base.months[0].states : res.months[m - 2].states;
+    const stB = m === 1 ? cmp.base.months[0].states : cmp.base.months[m - 2].states;
+    const W = 730, H = 410;
+    const svg = sv('svg', { viewBox: `0 0 ${W} ${H}`, width: '100%', role: 'img', 'aria-label': `Monthly customer flows between relationship states, month ${m}` });
+    svg.style.maxWidth = W + 'px'; svg.style.height = 'auto'; svg.style.minWidth = '600px';
+    const defs = sv('defs');
+    const colors = { A: 'var(--sA)', F: 'var(--sF)', P: 'var(--sP)', L: 'var(--sL)', D: 'var(--ink3)' };
+    for (const k in colors) {
+      const mk = sv('marker', { id: 'ah' + k, viewBox: '0 0 10 10', refX: 7, refY: 5, markerWidth: 9, markerHeight: 9, markerUnits: 'userSpaceOnUse', orient: 'auto-start-reverse' });
+      mk.appendChild(sv('path', { d: 'M0,0 L10,5 L0,10 z', fill: colors[k] })); defs.appendChild(mk);
+    }
+    svg.appendChild(defs);
+    const vals = EDGES.map(([a, b]) => flowSum(fl, segs, a + b));
+    const inflow = flowSum(fl, segs, 'inA'), out = flowSum(fl, segs, 'Lout');
+    const maxF = Math.max(1, ...vals, inflow, out);
+    const wOf = v => 1.5 + 15 * Math.sqrt(v / maxF);
+    const edgeLayer = sv('g'), labelLayer = sv('g');
+    EDGES.forEach(([a, b, kind], i) => {
+      const v = vals[i], vB = flowSum(flB, segs, a + b);
+      const ca = NODES[a], cb = NODES[b], dx = cb[0] - ca[0], dy = cb[1] - ca[1], len = Math.hypot(dx, dy), d = [dx / len, dy / len], nrm = [-d[1], d[0]];
+      const bend = (a === 'A' && b === 'P') || (a === 'P' && b === 'A') ? 26 : 34;
+      const p0 = rectExit(ca, d).map((q, j) => q + nrm[j] * 9), p1 = rectExit(cb, [-d[0], -d[1]]).map((q, j) => q + nrm[j] * 9);
+      const c = [(p0[0] + p1[0]) / 2 + nrm[0] * bend, (p0[1] + p1[1]) / 2 + nrm[1] * bend];
+      const col = edgeColor(b, kind), mkId = kind === 'lapse' ? 'L' : kind === 'down' ? 'D' : b;
+      const path = sv('path', { d: `M${p0[0]},${p0[1]} Q${c[0]},${c[1]} ${p1[0]},${p1[1]}`, fill: 'none', stroke: col, 'stroke-width': wOf(v), 'stroke-opacity': kind === 'up' || kind === 'win' ? 0.8 : 0.5, 'stroke-linecap': 'round', 'marker-end': `url(#ah${mkId})` });
+      const hit = sv('path', { d: path.getAttribute('d'), fill: 'none', stroke: 'transparent', 'stroke-width': Math.max(16, wOf(v) + 10), style: 'cursor:default' });
+      hit.addEventListener('mousemove', ev => showTip(ev, `<b>${STATE_NAMES[a]} → ${STATE_NAMES[b]}</b><table><tr><td>Month ${m}</td><td>${nf(v)}</td></tr>${opt.flowMode === 'scn' ? `<tr><td>Baseline</td><td>${nf(vB)}</td></tr><tr class="tot"><td>Change</td><td>${sgn(v - vB)}</td></tr>` : ''}</table>`));
+      hit.addEventListener('mouseleave', hideTip);
+      edgeLayer.appendChild(path); edgeLayer.appendChild(hit);
+      const mid = [0.25 * p0[0] + 0.5 * c[0] + 0.25 * p1[0], 0.25 * p0[1] + 0.5 * c[1] + 0.25 * p1[1]];
+      const delta = opt.flowMode === 'scn' && Math.abs(v - vB) >= 0.5 ? ` (${v - vB >= 0 ? '+' : '−'}${kfmt(Math.abs(v - vB))})` : '';
+      labelLayer.appendChild(txt({ x: mid[0] + nrm[0] * 12, y: mid[1] + nrm[1] * 12 + 4, class: 'flow-l', 'text-anchor': 'middle' }, kfmt(v) + delta));
+    });
+    // Acquisition in, permanent exit out
+    const inPath = sv('path', { d: `M8,${NODES.A[1]} L${NODES.A[0] - NW / 2 - 8},${NODES.A[1]}`, stroke: 'var(--sA)', 'stroke-width': wOf(inflow), 'stroke-opacity': 0.8, 'marker-end': 'url(#ahA)', fill: 'none' });
+    edgeLayer.appendChild(inPath);
+    labelLayer.appendChild(txt({ x: 12, y: NODES.A[1] - 16, class: 'flow-l' }, 'new ' + kfmt(inflow)));
+    const ox = NODES.L[0] + NW / 2 + 6;
+    edgeLayer.appendChild(sv('path', { d: `M${ox},${NODES.L[1]} L${ox + 120},${NODES.L[1]}`, stroke: 'var(--sL)', 'stroke-width': wOf(out), 'stroke-opacity': 0.5, 'marker-end': 'url(#ahL)', fill: 'none' }));
+    labelLayer.appendChild(txt({ x: ox + 128, y: NODES.L[1] + 4, class: 'flow-l' }, 'gone ' + kfmt(out)));
+    svg.appendChild(edgeLayer);
+    for (const k of ['A', 'F', 'P', 'L']) {
+      const [cx, cy] = NODES[k], v = stateSum(st, segs, k), vB = stateSum(stB, segs, k);
+      const g = sv('g');
+      g.appendChild(sv('rect', { x: cx - NW / 2, y: cy - NH / 2, width: NW, height: NH, rx: 14, fill: 'var(--card)', stroke: `var(--s${k})`, 'stroke-width': 2 }));
+      g.appendChild(txt({ x: cx, y: cy - 14, class: 'node-t', 'text-anchor': 'middle' }, STATE_NAMES[k].toUpperCase() + (k === 'P' ? ' · PASS' : '')));
+      g.appendChild(txt({ x: cx, y: cy + 10, class: 'node-v', 'text-anchor': 'middle' }, nf(v)));
+      if (opt.flowMode === 'scn') g.appendChild(txt({ x: cx, y: cy + 27, class: 'node-d', 'text-anchor': 'middle', fill: 'var(--ink3)' }, Math.abs(v - vB) >= 0.5 ? `${sgn(v - vB)} vs baseline` : 'as baseline'));
+      svg.appendChild(g);
+    }
+    svg.appendChild(labelLayer);
+    host.appendChild(svg);
+    // Side summary
+    const sum = (F, keys) => keys.reduce((a, k) => a + flowSum(F, segs, k), 0);
+    const rows = [
+      ['Upgrades', ['AF', 'AP', 'FP']], ['Downgrades', ['FA', 'PA', 'PF']], ['Lapses', ['AL', 'FL', 'PL']], ['Win-backs', ['LA']], ['New customers', ['inA']]
+    ].map(([l, ks]) => { const v = sum(fl, ks), b = sum(flB, ks); return `<div class="row"><span>${l}</span><span><b>${nf(v)}</b>${opt.flowMode === 'scn' ? ` <span class="mut">${sgn(v - b)}</span>` : ''}</span></div>`; }).join('');
+    const act = ['A', 'F', 'P'].reduce((a, k) => a + stateSum(st, segs, k), 0);
+    side.innerHTML = `<h4>Month ${m}${opt.flowSeg === 'ALL' ? '' : ' · ' + SEG_NAMES[opt.flowSeg]}</h4>${rows}
+      <div class="row"><span>Active customers</span><span><b>${nf(act)}</b></span></div>
+      <p class="note" style="margin-top:10px">Arrow width ∝ √customers moving. Labels show movers this month${opt.flowMode === 'scn' ? ' and the change versus baseline' : ''}. Upward moves are coloured by destination, downgrades grey, lapses light grey.</p>`;
+  }
+
+  // Segment cards
+  function segCards(cal) {
+    $('#seg-cards').innerHTML = E.SEGS.map(s => {
+      const v = SEG_EV[s], st = cal.seg[s], target = s === 'CS' ? 'Initiative 1' : s === 'SLS' ? 'Initiative 2' : null;
+      const meter = (l, a, b, txtv) => `<div class="meter"><div class="ml"><span>${l}</span><b>${txtv}</b></div><div class="bar"><i style="width:${Math.max(2, a / b * 100)}%;background:${target ? 'var(--accent)' : 'var(--ink2)'}"></i></div></div>`;
+      return `<div class="card segc ${target ? 'target' : ''}"><div class="top-row"><div><h3>${SEG_NAMES[s]}</h3><span class="n">n = ${v.n} · ${pct(X.segShares[s], 0)} of sample</span></div>${target ? `<span class="chip acc">${target}</span>` : ''}</div>
+        ${meter('Ride weekly or more', v.weekly, v.users, `${v.weekly}/${v.users}`)}
+        ${meter('Main purpose work/study', v.commute, v.n, `${v.commute}/${v.n}`)}
+        ${meter('Subscription interest (Q24)', v.q24 - 1, 6, nf(v.q24, 2) + ' / 7')}
+        <div class="facts"><div>Pass now · before: <b>${v.sub} · ${v.prev}</b></div><div>Top pass benefit: <b>${esc(v.q25)}</b></div><div>Without Voi: <b>${esc(v.q22)}</b></div><div>Model F+P share: <b>${pct(st.F + st.P, 0)}</b> <span class="mut">k = ${nf(cal.k[s], 2)}</span></div></div></div>`;
+    }).join('');
+  }
+
+  // Initiative results and design toggle
+  function initiativeResults(list) {
+    const by = Object.fromEntries(list.map(s => [s.id, s]));
+    for (const id of ['booking', 'group']) {
+      const s = by[id];
+      $('#res-' + id).innerHTML = `<div><b class="${s.dCPE < 0 ? 'bad' : ''}">${mnok(s.dCPE)}</b><span>ΔCPE, ${X.horizon} months</span></div><div><b>${s.payback ? 'Month ' + s.payback : '–'}</b><span>payback</span></div><div><b>${nok(s.setup)}</b><span>setup</span></div>`;
+    }
+    const cur = Object.keys(DESIGNS).find(k => Object.entries(DESIGNS[k].values).every(([key, v]) => Math.abs(E.get(X, key) - v) < 1e-9));
+    document.querySelectorAll('#design-ctl button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.d === cur)));
+    $('#design-note').innerHTML = cur ? DESIGNS[cur].note : '<b style="color:var(--ink)">Custom design.</b> Placement share and fee differ from both presets.';
+    const gcur = Object.keys(GDESIGNS).find(k => Object.entries(GDESIGNS[k].values).every(([key, v]) => Math.abs(E.get(X, key) - v) < 1e-9));
+    document.querySelectorAll('#gdesign-ctl button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.d === gcur)));
+    $('#gdesign-note').innerHTML = gcur ? GDESIGNS[gcur].note : '<b style="color:var(--ink)">Custom design.</b> Serviceable share and licence effect differ from both presets.';
+  }
+
+  // Customer migration (change vs baseline per state)
+  function chartPortfolio(cmp) {
+    const host = $('#ch-portfolio'); host.innerHTML = '';
+    const segs = segsOf(view.seg);
+    const sc = cmp.sc.months.map(o => ({ A: stateSum(o.states, segs, 'A'), F: stateSum(o.states, segs, 'F'), P: stateSum(o.states, segs, 'P') }));
+    const bl = cmp.base.months.map(o => ({ A: stateSum(o.states, segs, 'A'), F: stateSum(o.states, segs, 'F'), P: stateSum(o.states, segs, 'P') }));
+    const W = widthOf(host), H = 280, m = { l: 52, r: 14, t: 12, b: 28 };
+    const ser = [['P', 'var(--sP)', 'Partner (Pass)', ''], ['F', 'var(--sF)', 'Friend', ''], ['A', 'var(--sA)', 'Acquaintance', ''], ['T', 'var(--ink)', 'Active total', '5 4']]
+      .map(([k, col, l, dash]) => ({ k, col, l, dash, v: sc.map((d, i) => k === 'T' ? (d.A + d.F + d.P) - (bl[i].A + bl[i].F + bl[i].P) : d[k] - bl[i][k]) }));
+    const all = ser.flatMap(s => s.v), lo = Math.min(0, ...all), hi = Math.max(0, ...all) || 1;
+    const x = i => m.l + i / Math.max(1, sc.length - 1) * (W - m.l - m.r);
+    const y = v => H - m.b - (v - lo) / (hi - lo || 1) * (H - m.t - m.b);
+    const svg = sv('svg', { viewBox: `0 0 ${W} ${H}`, width: W, height: H, role: 'img', 'aria-label': 'Change in active customers by state versus baseline' });
+    for (const t of niceTicks(lo, hi)) {
+      svg.appendChild(sv('line', { x1: m.l, x2: W - m.r, y1: y(t), y2: y(t), class: t === 0 ? 'zero' : 'grid' }));
+      svg.appendChild(txt({ x: m.l - 6, y: y(t) + 4, class: 'ax', 'text-anchor': 'end' }, (t > 0 ? '+' : '') + kfmt(t)));
+    }
+    for (let i = 0; i < sc.length; i += sc.length > 24 ? 6 : 3) svg.appendChild(txt({ x: x(i), y: H - 8, class: 'ax', 'text-anchor': 'middle' }, 'M' + (i + 1)));
+    if (!(cmp.on.booking || cmp.on.group)) { host.innerHTML = '<p class="empty">Choose an initiative to see migration.</p>'; return; }
+    for (const s of ser) svg.appendChild(sv('path', { d: s.v.map((v, i) => `${i ? 'L' : 'M'}${x(i)},${y(v)}`).join(''), fill: 'none', stroke: s.col, 'stroke-width': 2, 'stroke-dasharray': s.dash, 'stroke-linejoin': 'round' }));
+    const cross = sv('line', { y1: m.t, y2: H - m.b, class: 'cross', visibility: 'hidden' }); svg.appendChild(cross);
+    const dots = ser.map(s => { const c = sv('circle', { r: 4, fill: s.col, stroke: 'var(--card)', 'stroke-width': 2, visibility: 'hidden' }); svg.appendChild(c); return c; });
+    const hit = sv('rect', { x: m.l, y: m.t, width: W - m.l - m.r, height: H - m.t - m.b, fill: 'transparent' });
+    hit.addEventListener('mousemove', ev => {
+      const r = svg.getBoundingClientRect(), px = (ev.clientX - r.left) * W / r.width;
+      const i = Math.min(sc.length - 1, Math.max(0, Math.round((px - m.l) / (W - m.l - m.r) * (sc.length - 1))));
+      cross.setAttribute('x1', x(i)); cross.setAttribute('x2', x(i)); cross.setAttribute('visibility', 'visible');
+      ser.forEach((s, j) => { dots[j].setAttribute('cx', x(i)); dots[j].setAttribute('cy', y(s.v[i])); dots[j].setAttribute('visibility', 'visible'); });
+      const d = sc[i], tot = d.A + d.F + d.P;
+      showTip(ev, `<b>Month ${i + 1}</b> · change vs baseline<table>${ser.map(s => `<tr${s.k === 'T' ? ' class="tot"' : ''}><td><i class="sw" style="background:${s.col}"></i>${s.l}</td><td>${sgn(s.v[i])}</td></tr>`).join('')}</table><div class="mut">Pass share ${pct(d.P / tot)} (baseline ${pct(bl[i].P / (bl[i].A + bl[i].F + bl[i].P))})</div>`);
+    });
+    hit.addEventListener('mouseleave', () => { cross.setAttribute('visibility', 'hidden'); dots.forEach(c => c.setAttribute('visibility', 'hidden')); hideTip(); });
+    svg.appendChild(hit);
+    host.appendChild(svg);
+  }
+
+  // ΔCPE bridge: a horizontal waterfall from 0 to the total.
+  function chartBridge(cmp, host = $('#ch-bridge')) {
+    host.innerHTML = '';
+    if (!(cmp.on.booking || cmp.on.group)) { host.innerHTML = '<p class="empty">Choose an initiative to see the bridge.</p>'; return; }
+    const rows = COMP.map(([k, l]) => ({ k, l, v: cmp.decomposition[k] })).filter(r => Math.abs(r.v) > 0.5);
+    rows.push({ k: 'setup', l: 'Setup (month 0)', v: -cmp.setup });
+    let cum = 0; rows.forEach(r => { r.a = cum; cum += r.v; r.b = cum; });
+    const all = rows.concat([{ k: 'total', l: 'ΔCPE', a: 0, b: cmp.dCPE, v: cmp.dCPE, total: true }]);
+    const W = widthOf(host), narrow = W < 520, rowH = narrow ? 44 : 32, top = narrow ? 16 : 0;
+    const m = { l: narrow ? 8 : Math.min(W * 0.42, 16 + 6.8 * Math.max(...all.map(r => r.l.length))), r: 58, t: 4, b: 26 };
+    const H = m.t + m.b + rowH * all.length;
+    const ext = all.flatMap(r => [r.a, r.b]), lo = Math.min(0, ...ext), hi = Math.max(0, ...ext);
+    const x = v => m.l + (v - lo) / (hi - lo || 1) * (W - m.l - m.r);
+    const svg = sv('svg', { viewBox: `0 0 ${W} ${H}`, width: W, height: H, role: 'img', 'aria-label': 'Waterfall of change in customer portfolio equity' });
+    for (const t of niceTicks(lo, hi, 4)) {
+      svg.appendChild(sv('line', { x1: x(t), x2: x(t), y1: m.t, y2: H - m.b, class: t === 0 ? 'zero' : 'grid' }));
+      svg.appendChild(txt({ x: x(t), y: H - 8, class: 'ax', 'text-anchor': 'middle' }, kfmt(t)));
+    }
+    all.forEach((r, i) => {
+      const yy = m.t + i * rowH + 6 + top, h = rowH - 12 - top;
+      svg.appendChild(txt(narrow ? { x: m.l, y: yy - 4, class: r.total ? 'lab b' : 'lab' } : { x: m.l - 10, y: yy + h / 2 + 4, class: r.total ? 'lab b' : 'lab', 'text-anchor': 'end' }, r.l));
+      const x0 = Math.min(x(r.a), x(r.b)), w = Math.max(2, Math.abs(x(r.b) - x(r.a)));
+      svg.appendChild(sv('rect', { x: x0, y: yy, width: w, height: h, rx: 4, fill: r.total ? (r.v >= 0 ? 'var(--ink)' : 'var(--neg)') : r.v >= 0 ? 'var(--pos)' : 'var(--neg)', 'fill-opacity': r.total ? 1 : 0.9 }));
+      if (i < all.length - 1 && !r.total) svg.appendChild(sv('line', { x1: x(r.b), x2: x(r.b), y1: yy + h, y2: yy + rowH, stroke: 'var(--ink3)', 'stroke-dasharray': '2 2' }));
+      const right = Math.max(x(r.a), x(r.b)) + 6;
+      const vt = txt({ x: right, y: yy + h / 2 + 4, class: 'val' }, (r.v > 0 && !r.total ? '+' : '') + kfmt(r.v));
+      if (right + 44 > W) { vt.setAttribute('x', Math.min(x(r.a), x(r.b)) - 6); vt.setAttribute('text-anchor', 'end'); }
+      svg.appendChild(vt);
+      const hit = sv('rect', { x: 0, y: yy - 6 - top, width: W, height: rowH, fill: 'transparent' });
+      hit.addEventListener('mousemove', ev => showTip(ev, `<b>${esc(r.l)}</b><div>${nok(r.v)} present value</div>${r.total ? '' : `<div class="mut">Running total ${mnok(r.b)}</div>`}`));
+      hit.addEventListener('mouseleave', hideTip);
+      svg.appendChild(hit);
+    });
+    host.appendChild(svg);
+  }
+
+  function chartPayback(list, host = $('#ch-payback'), legend = $('#lg-payback')) {
+    host.innerHTML = '';
+    const W = widthOf(host), H = 260, m = { l: 56, r: 14, t: 12, b: 28 };
+    const series = list.filter(s => s.id !== 'none').map((s, i) => ({ id: s.id, label: s.label, pts: cumPath(s), col: ['var(--sA)', 'var(--sF)', 'var(--ink)'][i], dash: ['', '6 4', ''][i], w: s.id === 'both' ? 2.5 : 2 }));
+    const vals = series.flatMap(s => s.pts.map(p => p.v));
+    const lo = Math.min(0, ...vals), hi = Math.max(0, ...vals), n = X.horizon;
+    const x = i => m.l + i / n * (W - m.l - m.r), y = v => H - m.b - (v - lo) / (hi - lo || 1) * (H - m.t - m.b);
+    const svg = sv('svg', { viewBox: `0 0 ${W} ${H}`, width: W, height: H, role: 'img', 'aria-label': 'Cumulative discounted change in portfolio equity after setup' });
+    for (const t of niceTicks(lo, hi)) {
+      svg.appendChild(sv('line', { x1: m.l, x2: W - m.r, y1: y(t), y2: y(t), class: t === 0 ? 'zero' : 'grid' }));
+      svg.appendChild(txt({ x: m.l - 6, y: y(t) + 4, class: 'ax', 'text-anchor': 'end' }, kfmt(t)));
+    }
+    for (let i = 0; i <= n; i += n > 24 ? 6 : 3) svg.appendChild(txt({ x: x(i), y: H - 8, class: 'ax', 'text-anchor': 'middle' }, 'M' + i));
+    for (const s of series) {
+      svg.appendChild(sv('path', { d: s.pts.map((p, i) => `${i ? 'L' : 'M'}${x(p.m)},${y(p.v)}`).join(''), fill: 'none', stroke: s.col, 'stroke-width': s.w, 'stroke-dasharray': s.dash, 'stroke-linejoin': 'round' }));
+      const last = s.pts[s.pts.length - 1];
+      svg.appendChild(sv('circle', { cx: x(last.m), cy: y(last.v), r: 4, fill: s.col, stroke: 'var(--card)', 'stroke-width': 2 }));
+    }
+    const cross = sv('line', { y1: m.t, y2: H - m.b, class: 'cross', visibility: 'hidden' }); svg.appendChild(cross);
+    const hit = sv('rect', { x: m.l, y: m.t, width: W - m.l - m.r, height: H - m.t - m.b, fill: 'transparent' });
+    hit.addEventListener('mousemove', ev => {
+      const r = svg.getBoundingClientRect(), px = (ev.clientX - r.left) * W / r.width;
+      const i = Math.min(n, Math.max(0, Math.round((px - m.l) / (W - m.l - m.r) * n)));
+      cross.setAttribute('x1', x(i)); cross.setAttribute('x2', x(i)); cross.setAttribute('visibility', 'visible');
+      showTip(ev, `<b>Month ${i}</b><table>${series.map(s => `<tr><td><i class="sw" style="background:${s.col}"></i>${esc(s.label)}</td><td>${mnok(s.pts[i].v)}</td></tr>`).join('')}</table>`);
+    });
+    hit.addEventListener('mouseleave', () => { cross.setAttribute('visibility', 'hidden'); hideTip(); });
+    svg.appendChild(hit);
+    host.appendChild(svg);
+    legend.innerHTML = series.map(s => `<span><svg width="22" height="10"><line x1="1" x2="21" y1="5" y2="5" stroke="${s.col}" stroke-width="2.5" stroke-dasharray="${s.dash}"/></svg>${esc(s.label)}</span>`).join('');
+  }
+
+  function chartTornado(on, host = $('#ch-tornado'), n = 12) {
+    host.innerHTML = '';
+    if (!(on.booking || on.group)) { host.innerHTML = '<p class="empty">Choose an initiative to see sensitivity.</p>'; return; }
+    const rows = E.tornado(X, on, META, 0.5).slice(0, n);
+    const W = widthOf(host), narrow = W < 560, rowH = narrow ? 40 : 28, top = narrow ? 15 : 0;
+    const m = { l: narrow ? 22 : Math.min(W * 0.4, 16 + 6.8 * Math.max(0, ...rows.map(r => r.label.length))), r: narrow ? 14 : 40, t: 4, b: 26 };
+    const H = m.t + m.b + rowH * rows.length;
+    const mid = rows.length ? rows[0].mid : 0;
+    const lo = Math.min(mid, 0, ...rows.map(r => Math.min(r.lo, r.hi))), hi = Math.max(mid, 0, ...rows.map(r => Math.max(r.lo, r.hi)));
+    const x = v => m.l + (v - lo) / (hi - lo || 1) * (W - m.l - m.r);
+    const svg = sv('svg', { viewBox: `0 0 ${W} ${H}`, width: W, height: H, role: 'img', 'aria-label': 'Sensitivity of change in portfolio equity to each input' });
+    for (const t of niceTicks(lo, hi, 5)) {
+      svg.appendChild(sv('line', { x1: x(t), x2: x(t), y1: m.t, y2: H - m.b, class: t === 0 ? 'zero' : 'grid' }));
+      svg.appendChild(txt({ x: x(t), y: H - 8, class: 'ax', 'text-anchor': 'middle' }, kfmt(t)));
+    }
+    rows.forEach((r, i) => {
+      const yy = m.t + i * rowH + 5 + top, h = rowH - 10 - top;
+      svg.appendChild(txt(narrow ? { x: m.l, y: yy - 4, class: 'lab' } : { x: m.l - 10, y: yy + h / 2 + 4, class: 'lab', 'text-anchor': 'end' }, r.label));
+      for (const [v, col] of [[r.lo, 'var(--sA)'], [r.hi, 'var(--sF)']]) {
+        const x0 = Math.min(x(mid), x(v)), w = Math.max(1, Math.abs(x(v) - x(mid)));
+        svg.appendChild(sv('rect', { x: x0, y: yy, width: w, height: h, rx: 3, fill: col }));
+      }
+      const hit = sv('rect', { x: 0, y: yy - 5 - top, width: W, height: rowH, fill: 'transparent' });
+      hit.addEventListener('mousemove', ev => showTip(ev, `<b>${esc(r.label)}</b><table><tr><td><i class="sw" style="background:var(--sA)"></i>−50%</td><td>${mnok(r.lo)}</td></tr><tr><td><i class="sw" style="background:var(--sF)"></i>+50%</td><td>${mnok(r.hi)}</td></tr><tr class="tot"><td>Current</td><td>${mnok(r.mid)}</td></tr></table>`));
+      hit.addEventListener('mouseleave', hideTip);
+      svg.appendChild(hit);
+    });
+    svg.appendChild(sv('line', { x1: x(mid), x2: x(mid), y1: m.t, y2: H - m.b, stroke: 'var(--ink)', 'stroke-width': 2 }));
+    host.appendChild(svg);
+  }
+
+  // Tables
+  function scenarioTable(list) {
+    const rows = list.map(s => `<tr class="${s.id === view.scenario ? 'sel' : ''}" data-sc="${s.id}">
+      <th scope="row">${esc(s.label)}</th><td><b class="${s.dCPE < 0 ? 'bad' : ''}">${s.id === 'none' ? '–' : mnok(s.dCPE)}</b></td><td>${s.id === 'none' ? '–' : nok(s.setup)}</td>
+      <td>${s.roi === null ? '–' : nf(s.roi, 1) + '×'}</td><td>${s.payback === null ? (s.id === 'none' ? '–' : '<span class="bad">none</span>') : 'M' + s.payback}</td>
+      <td>${pct(s.passShare12)}</td><td>${s.id === 'none' ? '–' : (s.withinBudget ? '<span class="pill ok">✓ within</span>' : '<span class="pill bad">✕ over</span>')}</td></tr>`).join('');
+    $('#tbl-scen').innerHTML = `<thead><tr><th>Scenario</th><th>ΔCPE</th><th>Setup</th><th>Return</th><th>Payback</th><th>Pass M12</th><th>Budget</th></tr></thead><tbody>${rows}</tbody>`;
+    $('#tbl-scen').querySelectorAll('tr[data-sc]').forEach(tr => tr.addEventListener('click', () => { view.scenario = tr.dataset.sc; refresh(); }));
+  }
+
+  function controlTable(on, host = $('#tbl-control')) {
+    const items = META.filter(q => q.be && on[q.group]);
+    if (!items.length) { host.innerHTML = '<tbody><tr><td class="empty">Choose an initiative to see pilot stop thresholds.</td></tr></tbody>'; return; }
+    const solo = { booking: { booking: true, group: false }, group: { booking: false, group: true } };
+    const rows = items.map(q => {
+      const be = E.breakEven(X, solo[q.group], q.key, q.be[0], q.be[1]);
+      const cur = E.get(X, q.key);
+      let thr, status;
+      if (be.status === 'root') {
+        const lo = E.clone(X); E.set(lo, q.key, q.be[0]);
+        const dir = E.compare(lo, solo[q.group]).dCPE < 0 ? 'below' : 'above';
+        const margin = dir === 'below' ? cur - be.value : be.value - cur;
+        thr = `<b>${fmtVal(q, be.value)}</b>`;
+        status = margin >= 0 ? `<span class="pill ok">Stop if ${dir} ${fmtVal(q, be.value)}</span>` : `<span class="pill bad">Unprofitable at plan</span>`;
+      } else {
+        thr = be.status === 'positive' ? 'never (positive across range)' : 'never (negative across range)';
+        status = be.status === 'positive' ? '<span class="pill ok">Robust</span>' : '<span class="pill bad">Cannot break even</span>';
+      }
+      return `<tr><th scope="row">${esc(q.label)}<div class="note">${q.group === 'booking' ? 'Hub & Book' : 'Group package'}</div></th><td>${fmtVal(q, cur)}</td><td>${thr}</td><td>${status}</td><td class="note">${esc(q.metric || '–')}</td></tr>`;
+    }).join('');
+    host.innerHTML = `<thead><tr><th>Assumption</th><th>Plan</th><th>Break-even</th><th>Rule</th><th>Pilot measurement</th></tr></thead><tbody>${rows}</tbody>`;
+  }
+
+  function sourcesTable() {
+    $('#tbl-src').innerHTML = `<thead><tr><th>Input</th><th>Value</th><th>Basis</th><th>Note</th></tr></thead><tbody>` + META.map(q => {
+      const v = E.get(X, q.key);
+      return `<tr><th scope="row">${esc(q.label)}</th><td>${q.type === 'bool' ? (v ? 'on' : 'off') : fmtVal(q, v)}</td><td><span class="tag t-${q.src}">${SRC[q.src]}</span></td><td class="note">${esc(q.note || '')}</td></tr>`;
+    }).join('') + '</tbody>';
+  }
+
+  // ---------- Scenario codes: every exhibit can be reopened in its exact state ----------
+  const CFG = window.VOI_CONFIG || {};
+  const EFFECT_KEYS = ['booking.incShare', 'booking.upgradeUplift', 'booking.lapseRed', 'booking.spillover', 'booking.adoptF', 'booking.adoptP',
+    'group.incShare', 'group.register', 'group.lapseRed', 'group.hostRate', 'group.guestsNew'];
+  const scaled = f => Object.fromEntries(EFFECT_KEYS.map(k => { const q = metaOf(k); return [k, Math.min(q.max, Math.max(q.min, E.get(DEFAULTS, k) * f))]; }));
+  const PRESETS = {
+    central: { label: 'Central case', note: 'Default inputs: hub zones, safe evening package', values: () => ({}) },
+    city: { label: 'City-wide booking', note: 'Rejected design: bookable anywhere, 15 kr', values: () => ({ 'booking.moveShare': 0.5, 'booking.fee': 15 }) },
+    late: { label: 'Late-night package', note: 'Rejected design: groups ride until 23:00', values: () => ({ 'group.serviceable': 0.85, 'licence.grEffect': -0.01 }) },
+    pess: { label: 'Pessimistic', note: 'Effects ×0.5, placements 35%, Oslo share 60%', values: () => Object.assign(scaled(0.5), { 'booking.moveShare': 0.35, osloShare: 0.6 }) },
+    opt: { label: 'Optimistic', note: 'Effects ×1.5, placements 20%, Oslo share 85%', values: () => Object.assign(scaled(1.5), { 'booking.moveShare': 0.2, osloShare: 0.85 }) }
+  };
+  const flatKeys = () => META.filter(q => q.type !== 'bool').map(q => q.key).concat(['useQ24', 'surveyMix']);
+  function applyPreset(name) {
+    X = E.clone(DEFAULTS);
+    for (const [k, v] of Object.entries(PRESETS[name].values())) E.set(X, k, v);
+  }
+  function stateCode() {
+    const d = {};
+    for (const k of flatKeys()) { const v = E.get(X, k), v0 = E.get(DEFAULTS, k); if (JSON.stringify(v) !== JSON.stringify(v0)) d[k] = v; }
+    const preset = Object.keys(PRESETS).find(n => { const pv = PRESETS[n].values(); return Object.keys(d).length === Object.keys(pv).length && Object.entries(pv).every(([k, v]) => Math.abs((d[k] ?? NaN) - v) < 1e-9); });
+    if (preset) return `s=${preset}&v=${view.scenario}`;
+    const b64 = btoa(unescape(encodeURIComponent(JSON.stringify(d)))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+    return `x=${b64}&v=${view.scenario}`;
+  }
+  function readHash() {
+    const h = new URLSearchParams(location.hash.slice(1));
+    if (h.get('s') && PRESETS[h.get('s')]) applyPreset(h.get('s'));
+    else if (h.get('x')) {
+      try {
+        const d = JSON.parse(decodeURIComponent(escape(atob(h.get('x').replace(/-/g, '+').replace(/_/g, '/')))));
+        X = E.clone(DEFAULTS);
+        for (const [k, v] of Object.entries(d)) if (flatKeys().includes(k)) E.set(X, k, v);
+      } catch (e) { /* an unreadable code falls back to defaults */ }
+    }
+    if (['none', 'booking', 'group', 'both'].includes(h.get('v'))) view.scenario = h.get('v');
+    return h.get('go');
+  }
+  const publicBase = () => (CFG.publicUrl && !/YOUR-USERNAME/.test(CFG.publicUrl) ? CFG.publicUrl : location.href.split('#')[0].split('?')[0]);
+  const linkFor = (code, go) => `${publicBase()}#${code}${go ? '&go=' + go : ''}`;
+  function qrSvg(url, size) {
+    if (typeof window.qrcode !== 'function') return `<div class="qr-miss" style="width:${size}px;height:${size}px">QR</div>`;
+    const q = window.qrcode(0, 'M'); q.addData(url); q.make();
+    return q.createSvgTag({ cellSize: 2, margin: 0, scalable: true }).replace('<svg ', `<svg width="${size}" height="${size}" role="img" aria-label="QR code" `);
+  }
+  function toast(msg) {
+    const t = $('#toast'); t.textContent = msg; t.hidden = false; clearTimeout(toast.t); toast.t = setTimeout(() => { t.hidden = true; }, 2200);
+  }
+  function shareScenario() {
+    const url = linkFor(stateCode());
+    history.replaceState(null, '', '#' + stateCode());
+    const done = () => toast('Scenario link copied');
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(url).then(done, () => window.prompt('Copy this link', url));
+    else window.prompt('Copy this link', url);
+  }
+
+  // ---------- Level 1: the city ----------
+  const CRITERIA = [
+    ['Accessible public space: parking, fast clearing', '40% · 40%', 'Bookings end in designated hub zones; scooters are placed there overnight', 'One pick-up and drop-off point per group', 'Share of trips ending in hubs'],
+    ['Safe public space: lawful, safe riding', '40% · 30%', 'A checked, charged scooter is waiting; no searching while riding', 'Risk at night. Safe design ends 22:00 with an in-app safety check', 'Incidents per 100,000 trips, by hour'],
+    ['Climate and environment', '20% · 30%', 'Placements add van kilometres; they ride in existing night routes', 'Shared trips replace taxis (the SLS fallback, 7 of 21)', 'Van km per trip; replaced modes'],
+    ['Links to public transport (may be weighted)', '–', 'Hubs at Ruter stations; CS fall back to public transport (12 of 22)', '–', 'Trips starting or ending at stations'],
+    ['Data to the city and Ruter (§11 requirement)', 'required', 'Bookings are a next-morning demand forecast per hub', 'Package demand by area and hour', 'Shared data feed']
+  ];
+  function citySection(list, cmp) {
+    const by = Object.fromEntries(list.map(s => [s.id, s]));
+    const L = X.licence, both = by.both;
+    const be = both.setup / Math.max(1, both.licencePerPP) / 100;
+    const items = [
+      ['Current permit ends', 'Month ' + L.renewMonth, 'about 31 Mar 2027 (inferred)'],
+      ['New permits in 36 months', String(Math.max(0, Math.ceil((X.horizon - L.renewMonth) / L.period))), `${L.period}-month periods, re-tendered`],
+      ['Renewal chance, no initiative', pct(L.p0, 0), 'assumption; incumbents lost in 2022–24'],
+      ['Renewal chance, both initiatives', pct(both.pRenew, 1), `${sgn((both.pRenew - L.p0) * 100)} pp`],
+      ['Value of 1 pp renewal chance', mnok(both.licencePerPP, false), 'present value of the base portfolio at risk'],
+      ['Setup is repaid by', nf(be * 100, 2) + ' pp', 'of extra renewal chance alone']
+    ];
+    $('#city-stats').innerHTML = items.map(([l, v, c]) => `<div class="stat"><span class="l">${l}</span><b>${v}</b><span class="c">${c}</span></div>`).join('');
+    $('#tbl-criteria').innerHTML = `<thead><tr><th>Award criterion</th><th>Weight · Oslo 2022 · Bergen 2026</th><th>Hub &amp; Book</th><th>Group package</th><th>Evidence Voi can report</th></tr></thead><tbody>` +
+      CRITERIA.map(r => `<tr><th scope="row">${esc(r[0])}</th><td>${esc(r[1])}</td><td>${esc(r[2])}</td><td>${esc(r[3])}</td><td class="note">${esc(r[4])}</td></tr>`).join('') + '</tbody>';
+    chartLevels(list, $('#ch-levels'));
+  }
+  // Rider value vs licence value per initiative (stacked, signed).
+  function chartLevels(list, host) {
+    host.innerHTML = '';
+    const rows = list.filter(s => s.id !== 'none').map(s => ({ id: s.id, label: s.label, rider: s.riderL, lic: s.licValue, total: s.dCPEL }));
+    const W = widthOf(host), narrow = W < 520, rowH = narrow ? 52 : 40, top = narrow ? 16 : 0;
+    const m = { l: narrow ? 8 : 170, r: 96, t: 8, b: 28 };
+    const H = m.t + m.b + rows.length * rowH;
+    const ext = rows.flatMap(r => [Math.min(0, r.rider) + Math.min(0, r.lic), Math.max(0, r.rider) + Math.max(0, r.lic)]);
+    const lo = Math.min(0, ...ext), hi = Math.max(0, ...ext);
+    const x = v => m.l + (v - lo) / (hi - lo || 1) * (W - m.l - m.r);
+    const svg = sv('svg', { viewBox: `0 0 ${W} ${H}`, width: W, height: H, role: 'img', 'aria-label': 'Rider value and licence value by initiative' });
+    for (const t of niceTicks(lo, hi, 4)) {
+      svg.appendChild(sv('line', { x1: x(t), x2: x(t), y1: m.t, y2: H - m.b, class: t === 0 ? 'zero' : 'grid' }));
+      svg.appendChild(txt({ x: x(t), y: H - 8, class: 'ax', 'text-anchor': 'middle' }, kfmt(t)));
+    }
+    rows.forEach((r, i) => {
+      const y = m.t + i * rowH + 8 + top, h = rowH - 16 - top;
+      svg.appendChild(txt(narrow ? { x: m.l, y: y - 4, class: 'lab' } : { x: m.l - 10, y: y + h / 2 + 4, class: r.id === 'both' ? 'lab b' : 'lab', 'text-anchor': 'end' }, r.label));
+      let pos = 0, neg = 0;
+      for (const [v, col, name] of [[r.rider, 'var(--sA)', 'Rider value'], [r.lic, 'var(--accent)', 'Licence value']]) {
+        const a = v >= 0 ? pos : neg, b = a + v; if (v >= 0) pos = b; else neg = b;
+        const rect = sv('rect', { x: Math.min(x(a), x(b)), y, width: Math.max(1, Math.abs(x(b) - x(a))), height: h, rx: 3, fill: col, 'fill-opacity': 0.9 });
+        rect.addEventListener('mousemove', ev => showTip(ev, `<b>${esc(r.label)}</b><div>${name}: ${mnok(v)}</div><div class="mut">Total ${mnok(r.total)}</div>`));
+        rect.addEventListener('mouseleave', hideTip);
+        svg.appendChild(rect);
+      }
+      svg.appendChild(txt({ x: x(Math.max(pos, 0)) + 6, y: y + h / 2 + 4, class: 'val' }, mnok(r.total)));
+    });
+    host.appendChild(svg);
+  }
+
+  // ---------- Monte Carlo: 10,000 pilots ----------
+  const MC = { draws: [], n: 0, target: 0, running: false, stale: true, sig: '' };
+  const mcSig = () => JSON.stringify(X);
+  function runMC(n, done, xIn = X) {
+    if (MC.running) { MC.queued = [n, done, xIn]; return; } // run after the current batch
+    MC.running = true; MC.draws = []; MC.target = n; MC.sig = JSON.stringify(xIn);
+    const x = E.clone(xIn);
+    const step = () => {
+      // Work in ~150 ms slices so the page stays responsive even when timers are throttled.
+      const t0 = performance.now();
+      while (MC.draws.length < n && performance.now() - t0 < 150) MC.draws.push(E.mcDraw(x, MC.draws.length));
+      $('#mc-progress').textContent = `${nf(MC.draws.length)} / ${nf(n)} pilots`;
+      if (MC.draws.length < n) yieldThen(step);
+      else {
+        MC.running = false; MC.stale = false; renderMC(); if (done) done();
+        if (MC.queued) { const q = MC.queued; MC.queued = null; runMC(...q); }
+      }
+    };
+    yieldThen(step);
+  }
+  // Yield to the browser without timer throttling (background tabs clamp setTimeout to ~1 s).
+  const yieldThen = cb => { const ch = new MessageChannel(); ch.port1.onmessage = () => cb(); ch.port2.postMessage(0); };
+  function renderMC() {
+    const ok = MC.draws.length > 0;
+    $('#mc-stale').hidden = !ok || MC.sig === mcSig();
+    if (!ok) return;
+    const s = E.mcSummary(MC.draws); MC.summary = s;
+    const tile = (k, a, b, note) => `<div class="kpi"><div class="kk">${k}</div><div class="kv">${a} <span style="color:var(--ink3);font-weight:500">→</span> ${b}</div><div class="ks">${note}</div></div>`;
+    $('#mc-kpis').innerHTML = [
+      tile('Chance of losing money', pct(s.full.pLoss, 1), pct(s.gated.pLoss, 1), 'launch blind → with Gate 1'),
+      tile('Expected ΔCPE', mnok(s.full.mean), mnok(s.gated.mean), 'licence-adjusted, present value'),
+      tile('Worst 5%', mnok(s.full.p5), mnok(s.gated.p5), '5th percentile outcome'),
+      `<div class="kpi"><div class="kk">Value of the gate</div><div class="kv">${mnok(s.gated.mean - s.full.mean)}</div><div class="ks">continue rate: Hub &amp; Book ${pct(s.goBooking, 0)}, group ${pct(s.goGroup, 0)}</div></div>`
+    ].join('');
+    chartMC($('#ch-mc'));
+    $('#mc-note').textContent = `${nf(s.n)} simulated pilots, seed ${X.mc.seed}. Each draw samples ${Object.keys(X.mc.ranges).length} uncertain inputs from triangular ranges; the gate measures behaviour with ${pct(X.mc.noise, 0)} error.`;
+  }
+  // Two histograms on one scale: launching blind vs the gated pilot.
+  function chartMC(host, compact) {
+    host.innerHTML = '';
+    if (!MC.draws.length) { host.innerHTML = '<p class="empty">Run the simulation to see the distribution.</p>'; return; }
+    const W = widthOf(host), H = compact ? 230 : 300, m = { l: 118, r: 16, t: 10, b: 30 };
+    const vals = MC.draws.flatMap(d => [d.full, d.gated]);
+    const lo = Math.min(...vals), hi = Math.max(...vals), nb = 44, bw = (hi - lo) / nb || 1;
+    const bins = key => { const c = new Array(nb).fill(0); MC.draws.forEach(d => { c[Math.min(nb - 1, Math.floor((d[key] - lo) / bw))]++; }); return c; };
+    const series = [{ key: 'full', label: 'Launch blind', col: 'var(--ink3)', c: bins('full') }, { key: 'gated', label: 'With Gate 1', col: 'var(--pos)', c: bins('gated') }];
+    const peak = Math.max(...series.flatMap(s => s.c));
+    const laneH = (H - m.t - m.b) / 2 - 8;
+    const x = v => m.l + (v - lo) / (hi - lo || 1) * (W - m.l - m.r);
+    const svg = sv('svg', { viewBox: `0 0 ${W} ${H}`, width: W, height: H, role: 'img', 'aria-label': 'Distribution of simulated outcomes, blind launch versus gated pilot' });
+    if (lo < 0) svg.appendChild(sv('rect', { x: x(lo), y: m.t, width: Math.max(0, x(0) - x(lo)), height: H - m.t - m.b, fill: 'var(--neg)', 'fill-opacity': 0.07 }));
+    for (const t of niceTicks(lo, hi, 6)) {
+      svg.appendChild(sv('line', { x1: x(t), x2: x(t), y1: m.t, y2: H - m.b, class: t === 0 ? 'zero' : 'grid' }));
+      svg.appendChild(txt({ x: x(t), y: H - 9, class: 'ax', 'text-anchor': 'middle' }, kfmt(t)));
+    }
+    series.forEach((s, j) => {
+      const base = m.t + (j + 1) * (laneH + 8);
+      svg.appendChild(txt({ x: 8, y: base - laneH / 2, class: 'lab b' }, s.label));
+      const st = MC.summary[s.key];
+      svg.appendChild(txt({ x: 8, y: base - laneH / 2 + 17, class: 'ax' }, `loss ${pct(st.pLoss, 1)} · mean ${kfmt(st.mean)}`));
+      s.c.forEach((c, i) => {
+        if (!c) return;
+        const h = c / peak * laneH, a = lo + i * bw;
+        const r = sv('rect', { x: x(a) + 0.5, y: base - h, width: Math.max(1, x(a + bw) - x(a) - 1), height: h, fill: a + bw <= 0 ? 'var(--neg)' : s.col, 'fill-opacity': 0.85 });
+        r.addEventListener('mousemove', ev => showTip(ev, `<b>${s.label}</b><div>${kfmt(a)} to ${kfmt(a + bw)} NOK</div><div class="mut">${nf(c)} pilots (${pct(c / MC.draws.length, 1)})</div>`));
+        r.addEventListener('mouseleave', hideTip);
+        svg.appendChild(r);
+      });
+      svg.appendChild(sv('line', { x1: x(st.mean), x2: x(st.mean), y1: base - laneH - 2, y2: base, stroke: 'var(--ink)', 'stroke-width': 1.5, 'stroke-dasharray': '3 2' }));
+    });
+    host.appendChild(svg);
+  }
+  function rangesTable() {
+    const rows = Object.entries(X.mc.ranges).map(([k, [lo, mo, hi]]) => {
+      const q = metaOf(k) || { label: k, fmt: 'num', src: 'AS' };
+      return `<tr><th scope="row">${esc(q.label)}</th><td>${fmtVal(q, lo)}</td><td>${fmtVal(q, mo)}</td><td>${fmtVal(q, hi)}</td><td><span class="tag t-${q.src}">${SRC[q.src]}</span></td></tr>`;
+    }).join('');
+    return `<thead><tr><th>Uncertain input</th><th>Low</th><th>Most likely</th><th>High</th><th>Basis</th></tr></thead><tbody>${rows}</tbody>`;
+  }
+
+  // ---------- A4 appendix, printed from the engine ----------
+  const STATE_SVG = `<svg viewBox="0 0 760 330" role="img" aria-label="Relationship states and where each initiative acts" font-size="13" style="width:100%;height:auto"><defs><marker id="apx-ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#8a837a"/></marker></defs><g fill="none" stroke="#8a837a" stroke-width="1.25"><path d="M24 120H88" marker-end="url(#apx-ar)"/><path d="M250 112H298" marker-end="url(#apx-ar)"/><path d="M300 130H252" marker-end="url(#apx-ar)"/><path d="M460 112H508" marker-end="url(#apx-ar)"/><path d="M510 130H462" marker-end="url(#apx-ar)"/><path d="M170 90C170 44 590 44 590 88" marker-end="url(#apx-ar)"/><path d="M210 150L316 218" marker-end="url(#apx-ar)"/><path d="M380 150V218" marker-end="url(#apx-ar)"/><path d="M550 150L444 218" marker-end="url(#apx-ar)"/><path d="M300 262C200 282 140 222 140 152" marker-end="url(#apx-ar)"/><path d="M460 250H560" marker-end="url(#apx-ar)"/></g><g font-size="11.5" fill="#4d4842"><text x="24" y="96">new</text><text x="24" y="110">customers</text><text x="380" y="40" text-anchor="middle">direct upgrade to Pass</text><text x="176" y="270" text-anchor="end">win-back</text><text x="568" y="254">gone for good</text></g><g stroke="#8a837a" stroke-width="1.25" fill="#fff"><rect x="90" y="90" width="160" height="60" rx="8"/><rect x="300" y="90" width="160" height="60" rx="8"/><rect x="510" y="90" width="160" height="60" rx="8"/><rect x="300" y="220" width="160" height="60" rx="8"/></g><g text-anchor="middle" fill="#15120e"><text x="170" y="116" font-weight="600">Acquaintance</text><text x="380" y="116" font-weight="600">Friend</text><text x="590" y="116" font-weight="600">Partner</text><text x="380" y="246" font-weight="600">Lapsed</text></g><g text-anchor="middle" font-size="11.5" fill="#4d4842"><text x="170" y="134">occasional rider</text><text x="380" y="134">weekly rider</text><text x="590" y="134">Voi Pass holder</text><text x="380" y="264">inactive</text></g><g fill="#e8473f" fill-opacity=".14" stroke="#e8473f" stroke-width="1.5"><circle cx="485" cy="94" r="10"/><circle cx="398" cy="184" r="10"/><circle cx="532" cy="192" r="10"/><circle cx="250" cy="188" r="10"/><circle cx="56" cy="142" r="10"/></g><g text-anchor="middle" font-size="11.5" font-weight="600" fill="#15120e"><text x="485" y="98">1</text><text x="398" y="188">2</text><text x="532" y="196">2</text><text x="250" y="192">3</text><text x="56" y="146">4</text></g><g font-size="11.5" fill="#15120e"><text x="24" y="306"><tspan font-weight="600">Hub &amp; Book:</tspan> 1 Pass includes booking, more Friends upgrade · 2 bookers lapse less · 3 better placement, fewer failed searches</text><text x="24" y="324"><tspan font-weight="600">Group package:</tspan> 4 registered guests join as new Acquaintances · 2 hosts lapse less</text></g></svg>`;
+  function exhibit(code, go, caption) {
+    const url = linkFor(code, go);
+    return `<div class="apx-ex"><div class="apx-qr">${qrSvg(url, 54)}</div><div><div class="apx-cap">${caption}</div><div class="apx-code">#${esc(code)}${go ? ' · ' + esc(go) : ''}</div></div></div>`;
+  }
+  function apxPage(no, kicker, title, body) {
+    return `<section class="page"><header class="apx-h"><span>Appendix A${no ? '.' + no : ''} · ${kicker}</span><span>Voi Customer Portfolio Engine · v4 · ${esc(CFG.version || '17 Oct 2026')}</span></header><h2 class="apx-t">${title}</h2>${body}<footer class="apx-f"><span>Every exhibit has a scenario code. Scan it, or open the engine and paste the code after #, to reproduce it.</span><span>A${no || 1}</span></footer></section>`;
+  }
+  function buildAppendix() {
+    const saved = E.clone(X), savedView = Object.assign({}, view);
+    const alt = {};
+    for (const k of Object.keys(PRESETS)) { applyPreset(k); alt[k] = Object.fromEntries(E.scenarios(X).map(r => [r.id, r])); }
+    applyPreset('central'); view.scenario = 'both';
+    const list = E.scenarios(X), by = Object.fromEntries(list.map(s => [s.id, s])), cmp = by.both, cal = cmp.sc.cal, s = MC.summary;
+    const L = X.licence;
+    const big = (k, v, note) => `<div class="apx-big"><div class="k">${k}</div><div class="v">${v}</div><div class="n">${note}</div></div>`;
+    const p1 = `<section class="page apx-poster"><header class="apx-h"><span>Appendix A · Voi Oslo · printed from the Customer Portfolio Engine</span><span>${esc(CFG.version || '17 Oct 2026')}</span></header>
+      <div class="apx-hero"><div><div class="apx-kick">Two customers, one licence</div><h1 class="apx-h1">Riders create the value.<br>The city decides if Voi keeps it.</h1>
+      <p class="apx-dek">Oslo re-tenders Voi's permit every two years and has removed an incumbent operator in three rounds running. This engine values two segment initiatives at both levels: the riders' relationship states, and the chance that the city renews the permit.</p></div>
+      <div class="apx-mainqr">${qrSvg(linkFor('s=central&v=both'), 116)}<div>Scan to open the live engine<br><b>#s=central</b></div></div></div>
+      <div class="apx-bigs">${big('Licence-adjusted ΔCPE, both initiatives', mnok(cmp.dCPEL), `36 months, present value, after ${nok(cmp.setup)} setup`)}${big('Rider value', mnok(cmp.riderL), 'relationship migration, weighted by renewal')}${big('Licence value', mnok(cmp.licValue), `renewal chance ${pct(L.p0, 0)} → ${pct(cmp.pRenew, 1)}`)}</div>
+      <div class="apx-two"><div class="apx-card"><div class="apx-lvl">Level 1 · the city</div><div class="apx-cardt">Permit ends about 31 Mar 2027</div><ul><li>Three permits, two years, no extension</li><li>Award criteria: public space 40%, safety 40%, environment 20% (2022)</li><li>1 pp of renewal chance = ${mnok(cmp.licencePerPP, false)}</li><li>Setup repaid by ${nf(cmp.setup / cmp.licencePerPP, 2)} pp alone</li></ul></div>
+      <div class="apx-card"><div class="apx-lvl">Level 2 · the riders</div><div class="apx-cardt">${nf(cal.active)} monthly customers, ${pct(cal.mix.P, 1)} on Voi Pass</div><ul><li>Hub &amp; Book (Convenience Seekers): ${mnok(by.booking.dCPE)} rider ΔCPE</li><li>Group package (Social Leisure Seekers): ${mnok(by.group.dCPE)}</li><li>Hub zones are essential: city-wide loses money</li><li>Payback month ${cmp.payback || '–'} (rider level)</li></ul></div></div>
+      <div class="apx-card apx-mc"><div class="apx-lvl">${s ? nf(s.n) : '–'} simulated pilots · licence-adjusted ΔCPE, NOK</div><div id="apx-ch-mc"></div>
+      <div class="apx-bigs sm">${s ? big('Chance of losing money', `${pct(s.full.pLoss, 1)} → ${pct(s.gated.pLoss, 1)}`, 'launch blind → with Gate 1') + big('Expected ΔCPE', `${mnok(s.gated.mean)}`, `blind ${mnok(s.full.mean)}`) + big('Value of the gate', mnok(s.gated.mean - s.full.mean), 'what the stop rules are worth') : ''}</div></div>
+      <footer class="apx-f"><span>Sources in A6. Behavioural effects are assumptions; the pilot replaces them with measurements.</span><span>A1</span></footer></section>`;
+    const calibRows = [
+      ['Voi Norway net revenue 2025', 'EUR 19.0m', 'Voi Annual Report 2025, Note 2'], ['Oslo share of that revenue', pct(X.osloShare, 0), 'Derived from fleet and trips (60–85%)'],
+      ['Oslo e-scooter trips 2025 × Voi share', `20.4m × ${pct(X.voiTripShare, 1)}`, 'Ruter Årsrapport 2025; Voi 2024'], ['Net revenue per ride', nf(cal.revPerRide, 2) + ' NOK', 'Derived'],
+      ['Monthly active customers', nf(cal.active), 'Trips ÷ rides per customer'], ['Voi Pass, net of 12% VAT', nf(cal.fee) + ' NOK', 'List price 399 NOK (2024)'],
+      ['Vehicle cost per ride', nf(X.costPerRide, 2) + ' NOK', 'Annual report'], ['Field labour', nf(X.fieldHourly) + ' NOK/h', 'SSB table 11418 + employer costs'],
+      ['Mix A / F / P', `${pct(cal.mix.A, 0)} / ${pct(cal.mix.F, 0)} / ${pct(cal.mix.P, 0)}`, 'Survey users 69 / 22 / 9%']
+    ];
+    const p2 = apxPage(2, 'Model', 'How the engine values a customer portfolio',
+      `<p class="apx-p">Customers in each of four survey segments move monthly between four relationship states (Johnson &amp; Selnes, 2004). Value is the discounted margin of all customers over 36 months, minus setup (Berger &amp; Nasr, 1998; Gupta, Lehmann &amp; Stuart, 2004). After the permit ends, each month only counts with the probability that Oslo has renewed it.</p>
+      <div class="apx-fig">${STATE_SVG}</div>
+      <div class="apx-math"><div>n<sub>s,t+1</sub> = n<sub>s,t</sub> M<sub>s</sub> + a<sub>s</sub> e<sub>A</sub></div><div>C<sub>t</sub> = Σ<sub>s</sub> [(A r<sub>A</sub> + F r<sub>F</sub>)(p − c) + P(f − r<sub>P</sub> c)] + B<sub>t</sub> + G<sub>t</sub></div><div>ΔCPE<sub>L</sub> = Σ<sub>t</sub> S<sub>t</sub>(π) C<sub>t</sub> / (1+i)<sup>t</sup> − setup − baseline, &nbsp; S<sub>t</sub> = π<sup>k(t)</sup></div></div>
+      <table class="apx-tbl"><thead><tr><th>Calibration anchor</th><th>Value</th><th>Basis</th></tr></thead><tbody>${calibRows.map(r => `<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join('')}</tbody></table>
+      ${exhibit('s=central&v=both', 'portfolio', 'Open the live state diagram, month by month')}`);
+    const p3 = apxPage(3, 'Initiatives and licence', 'Both initiatives are designed to score with the city',
+      `<p class="apx-p">Oslo awards three two-year permits on written bids. Each initiative is therefore judged twice: on what it does for riders, and on what it does for the award criteria. Value by level, central case:</p>
+      <div class="legend"><span><i class="sw" style="background:var(--sA)"></i>Rider value, weighted by renewal</span><span><i class="sw" style="background:var(--accent)"></i>Licence value: a better chance of keeping the permit</span></div>
+      <div class="apx-fig" id="apx-ch-levels"></div>
+      <table class="apx-tbl small"><thead><tr><th>Criterion</th><th>Weight</th><th>Hub &amp; Book</th><th>Group package</th></tr></thead><tbody>${CRITERIA.map(r => `<tr><td>${esc(r[0])}</td><td>${esc(r[1])}</td><td>${esc(r[2])}</td><td>${esc(r[3])}</td></tr>`).join('')}</tbody></table>
+      <h3 class="apx-s">The engine rejected two of our own designs</h3>
+      <table class="apx-tbl small"><thead><tr><th>Design</th><th>Rider ΔCPE</th><th>Licence-adjusted ΔCPE</th><th>Why</th></tr></thead><tbody>
+        <tr><td><b>Hub &amp; Book in hub zones, 25 kr</b> (chosen)</td><td>${mnok(by.booking.dCPE)}</td><td>${mnok(by.booking.dCPEL)}</td><td>Three in four bookings are served by holding a nearby scooter</td></tr>
+        <tr><td>Booking city-wide, 15 kr (rejected)</td><td>${mnok(alt.city.booking.dCPE)}</td><td>${mnok(alt.city.booking.dCPEL)}</td><td>Half of bookings need a 73 kr overnight placement</td></tr>
+        <tr><td><b>Group package, safe evening to 22:00</b> (chosen)</td><td>${mnok(by.group.dCPE)}</td><td>${mnok(by.group.dCPEL)}</td><td>Fewer occasions, but supports the city's safety goal</td></tr>
+        <tr><td>Group package until 23:00 (rejected)</td><td>${mnok(alt.late.group.dCPE)}</td><td>${mnok(alt.late.group.dCPEL)}</td><td>More rides, but late group riding costs renewal chance</td></tr>
+      </tbody></table>
+      <div class="apx-exrow">${exhibit('s=central&v=booking', 'initiatives', `Hub zones: ${mnok(by.booking.dCPE)} rider ΔCPE`)}${exhibit('s=city&v=booking', 'initiatives', 'City-wide booking: the rejected design')}${exhibit('s=late&v=group', 'city', 'Late-night package: the rejected design')}</div>`);
+    const p4 = apxPage(4, 'Uncertainty', `${s ? nf(s.n) : '10,000'} pilots: what the gate is worth`,
+      `<p class="apx-p">Each simulated pilot draws every uncertain input from its range. It then compares two strategies. <b>Launch blind</b> runs both initiatives for 36 months whatever happens. <b>With Gate 1</b> measures behaviour after month ${X.mc.gateMonth}, with ${pct(X.mc.noise, 0)} error, and continues an initiative only if its remaining value is positive. The difference is the value of the stop rules: a real option.</p>
+      <div class="apx-fig" id="apx-ch-mc2"></div>
+      <table class="apx-tbl small tight">${rangesTable()}</table>
+      ${exhibit(stateCode(), 'pilots', 'Re-run the simulation with your own ranges')}`);
+    const p5 = apxPage(5, 'Sensitivity and control', 'What the answer depends on, and when to stop',
+      `<p class="apx-p">Rider ΔCPE when one input moves ±50%. Blue bars show the input lowered and orange bars the input raised; the black line is the central estimate. The break-even values become the pilot owner's stop rules.</p>
+      <div class="apx-fig" id="apx-ch-tornado"></div>
+      <div id="apx-control"></div>
+      ${exhibit('s=central&v=both', 'risk', 'Move any input and watch the stop rules update')}`);
+    const idx = Object.entries(PRESETS).map(([k, p]) => `<div class="apx-idx">${qrSvg(linkFor(`s=${k}&v=both`), 62)}<div><b>${esc(p.label)}</b><div class="apx-code">#s=${k}</div><div class="n">${esc(p.note)}</div></div></div>`).join('');
+    const p6 = apxPage(6, 'Validation and sources', 'How we know the engine computes what it says',
+      `<p class="apx-p">The engine was programmed twice: in JavaScript (this tool) and independently in Python, with a different method for the baseline. The two agree on ΔCPE, licence-adjusted ΔCPE, setup, payback and Pass share in seven test cases. Automated checks confirm that the baseline stays flat, that calibration reproduces revenue per ride and trips, and that the ΔCPE components add up.</p>
+      <p class="apx-p"><b>Limits.</b> The survey is a convenience sample of 72, mostly students, so it supports needs, not effect sizes. No public e-scooter retention data exists, and costs are averages, not marginal costs. Renewal chance and its uplift are judgements: Oslo publishes criteria but not scores. There is no seasonality, competitor response or terminal value. The simulation shows how these uncertainties combine; it does not remove them.</p>
+      <h3 class="apx-s">Scenario index</h3><div class="apx-idxs">${idx}</div>
+      <table class="apx-tbl small"><thead><tr><th>Scenario, both initiatives</th><th>Rider ΔCPE</th><th>Licence-adjusted ΔCPE</th><th>Renewal chance</th><th>Payback</th></tr></thead><tbody>${Object.entries(PRESETS).map(([k, p]) => { const r = alt[k].both; return `<tr><td>${esc(p.label)}</td><td>${mnok(r.dCPE)}</td><td>${mnok(r.dCPEL)}</td><td>${pct(r.pRenew, 1)}</td><td>${r.payback ? 'month ' + r.payback : 'none'}</td></tr>`; }).join('')}</tbody></table>
+      <p class="apx-src"><b>Key sources.</b> Voi Technology AB, Annual Report 2025 and press releases (11 Feb, 14 Mar 2025). Ruter, Årsrapport 2025. Oslo kommune, FOR-2024-11-20-2821 and byrådssak 128/24. Bergen kommune (16 Feb 2026). SSB table 11418. TØI reports 1748/2020 and 2127/2025. Kabra, Belavina &amp; Girotra (2020); Shah et al. (2023); Raviv, Tzur &amp; Forma (2013); Cambe et al. (2018); Johnson &amp; Selnes (2004); Gupta, Lehmann &amp; Stuart (2004); Berger &amp; Nasr (1998). Full register in the source file.</p>`);
+    $('#apx-pages').innerHTML = p1 + p2 + p3 + p4 + p5 + p6;
+    if (MC.draws.length) { chartMC($('#apx-ch-mc'), true); chartMC($('#apx-ch-mc2'), true); }
+    chartLevels(list, $('#apx-ch-levels'));
+    chartTornado(cmp.on, $('#apx-ch-tornado'), 9);
+    const ctl = document.createElement('table'); ctl.className = 'apx-tbl small'; ctl.id = 'apx-ctl';
+    $('#apx-control').appendChild(ctl);
+    controlTable(cmp.on, ctl);
+    X = saved; Object.assign(view, savedView);
+  }
+  function openAppendix() {
+    document.body.classList.add('apx-on'); $('#appendix').hidden = false; window.scrollTo(0, 0);
+    const go = () => { buildAppendix(); document.body.dataset.apxReady = '1'; };
+    const central = E.clone(DEFAULTS), want = Math.max(central.mc.draws, CFG.printDraws || 0, MC.draws.length);
+    if (MC.sig !== JSON.stringify(central) || MC.draws.length < want) {
+      $('#apx-status').textContent = 'Running the simulation…';
+      runMC(want, () => { $('#apx-status').textContent = ''; go(); }, central);
+    } else go();
+  }
+  function closeAppendix() { document.body.classList.remove('apx-on'); $('#appendix').hidden = true; refresh(); }
+
+  function refresh() {
+    const errs = E.validate(X);
+    $('#errors').hidden = !errs.length;
+    $('#errors').innerHTML = errs.length ? '<b>Fix these inputs to update results</b><ul>' + errs.map(e => `<li>${esc(e)}</li>`).join('') + '</ul>' : '';
+    document.body.classList.toggle('invalid', errs.length > 0);
+    if (errs.length) return;
+    const list = E.scenarios(X);
+    const cmp = list.find(s => s.id === view.scenario);
+    document.querySelectorAll('#scen-btns button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.sc === view.scenario)));
+    $('#flow-month').max = X.horizon; if (view.flowMonth > X.horizon) view.flowMonth = X.horizon;
+    $('#flow-month').value = view.flowMonth; $('#flow-m').textContent = view.flowMonth;
+    const cal = cmp.sc.cal;
+    hero(list, cmp);
+    citySection(list, cmp);
+    calibStats(cal);
+    chartFlow(cmp);
+    segCards(cal);
+    initiativeResults(list);
+    chartBridge(cmp);
+    chartPortfolio(cmp);
+    chartPayback(list);
+    chartTornado(cmp.on);
+    scenarioTable(list);
+    controlTable(cmp.on);
+    sourcesTable();
+    $('#tbl-ranges').innerHTML = rangesTable();
+    renderMC();
+    window.__voiLast = { list, cmp };
+  }
+
+  function download(name, text, type) {
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([text], { type }));
+    a.download = name; document.body.appendChild(a); a.click();
+    setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 500);
+  }
+  function exportCSV() {
+    const { list } = window.__voiLast;
+    const head = ['scenario', 'month', 'discount_factor', 'contribution_nok', 'delta_vs_baseline_nok'].concat(COMP.map(c => c[0])).concat(E.SEGS.flatMap(s => E.STATES.map(k => `${s}_${k}`)));
+    const lines = [head.join(',')];
+    for (const s of list) s.sc.months.forEach((o, i) => {
+      lines.push([s.id, o.m, o.df.toFixed(6), o.total.toFixed(2), (o.total - s.base.months[i].total).toFixed(2)]
+        .concat(COMP.map(c => o.flows[c[0]].toFixed(2)))
+        .concat(E.SEGS.flatMap(sg => E.STATES.map(k => o.states[sg][k].toFixed(2)))).join(','));
+    });
+    download('voi_portfolio_engine_monthly.csv', lines.join('\n'), 'text/csv');
+  }
+
+  // Highlight the section in view in the top navigation.
+  function navSpy() {
+    const links = [...document.querySelectorAll('nav.sec a')];
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) links.forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + e.target.id));
+    }), { rootMargin: '-45% 0px -50% 0px' });
+    document.querySelectorAll('section.block').forEach(s => io.observe(s));
+  }
+
+  function init() {
+    const goTo = readHash();
+    buildInputs();
+    $('#scen-btns').innerHTML = E.SCENARIOS.map(s => `<button type="button" data-sc="${s.id}">${esc({ none: 'Baseline', booking: 'Booking', group: 'Group', both: 'Both' }[s.id])}</button>`).join('');
+    $('#scen-btns').addEventListener('click', e => { const b = e.target.closest('button'); if (b) { view.scenario = b.dataset.sc; refresh(); } });
+    const segOpts = `<option value="ALL">All segments</option>` + E.SEGS.map(s => `<option value="${s}">${SEG_NAMES[s]}</option>`).join('');
+    $('#seg-sel').innerHTML = segOpts; $('#flow-seg').innerHTML = segOpts;
+    $('#seg-sel').addEventListener('change', e => { view.seg = e.target.value; refresh(); });
+    $('#flow-seg').addEventListener('change', e => { view.flowSeg = e.target.value; refresh(); });
+    $('#flow-mode').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; view.flowMode = b.dataset.v; document.querySelectorAll('#flow-mode button').forEach(x => x.setAttribute('aria-pressed', String(x === b))); refresh(); });
+    $('#flow-month').addEventListener('input', e => { view.flowMonth = +e.target.value; $('#flow-m').textContent = view.flowMonth; chartFlow(window.__voiLast.cmp); });
+    $('#design-ctl').addEventListener('click', e => {
+      const b = e.target.closest('button'); if (!b) return;
+      for (const [k, v] of Object.entries(DESIGNS[b.dataset.d].values)) E.set(X, k, v);
+      syncInputs(); refresh();
+    });
+    $('#open-drawer').addEventListener('click', () => drawer(true));
+    document.querySelectorAll('[data-open-drawer]').forEach(a => a.addEventListener('click', e => { e.preventDefault(); drawer(true); }));
+    $('#close-drawer').addEventListener('click', () => drawer(false));
+    $('#scrim').addEventListener('click', () => drawer(false));
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') drawer(false); });
+    $('#reset').addEventListener('click', () => { X = E.clone(DEFAULTS); syncInputs(); refresh(); });
+    $('#exp-json').addEventListener('click', () => download('voi_portfolio_engine_inputs.json', JSON.stringify(X, null, 2), 'application/json'));
+    $('#exp-csv').addEventListener('click', exportCSV);
+    let rz, lastW = window.innerWidth; window.addEventListener('resize', () => { if (window.innerWidth === lastW) return; lastW = window.innerWidth; clearTimeout(rz); rz = setTimeout(refresh, 120); });
+    $('#gdesign-ctl').addEventListener('click', e => {
+      const b = e.target.closest('button'); if (!b) return;
+      for (const [k, v] of Object.entries(GDESIGNS[b.dataset.d].values)) E.set(X, k, v);
+      syncInputs(); refresh();
+    });
+    $('#share').addEventListener('click', shareScenario);
+    $('#open-apx').addEventListener('click', openAppendix);
+    $('#apx-print').addEventListener('click', () => window.print());
+    $('#apx-close').addEventListener('click', closeAppendix);
+    $('#mc-run').addEventListener('click', () => runMC(+$('#mc-n').value));
+    window.addEventListener('hashchange', () => { readHash(); syncInputs(); refresh(); });
+    navSpy();
+    refresh();
+    const q = new URLSearchParams(location.search);
+    if (q.get('draws')) CFG.printDraws = +q.get('draws');
+    if (q.get('print') === '1') openAppendix();
+    else {
+      if (goTo && document.getElementById(goTo)) setTimeout(() => document.getElementById(goTo).scrollIntoView({ behavior: 'instant' }), 60);
+      setTimeout(() => runMC(X.mc.draws, () => hero(window.__voiLast.list, window.__voiLast.cmp)), 400);
+    }
+  }
+  window.VoiUI = { META, refresh, getInputs: () => X, setInputs: v => { X = v; syncInputs(); refresh(); } };
+  document.addEventListener('DOMContentLoaded', init);
+})();
+</script>
+</body>
+</html>
