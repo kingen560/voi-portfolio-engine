@@ -691,7 +691,7 @@ details.card.adv[open] > summary { margin-bottom: 16px; }
 <header class="top">
   <div class="wrap">
     <a class="brand" href="#p=overview" aria-label="Portfolio Lab, overview"><span class="brand-voi">voi<span>.</span></span><span class="brand-name"><span class="bt">Portfolio lab</span><span class="ver" id="ver-tag"></span></span></a>
-    <div class="workspace-id"><span>Oslo / Customer portfolio</span><b id="page-caption">Overview</b></div>
+    <div class="workspace-id"><span>Oslo / Customer portfolio</span><b id="page-caption">Make a decision</b></div>
     <nav class="tabs" aria-label="Workspace" id="tabs">
       <button type="button" data-page="overview" id="tab-overview" aria-controls="v-overview"><span class="nav-no" aria-hidden="true">01</span><span>Make a decision<small>The offers and their value</small></span></button>
       <button type="button" data-page="offers" id="tab-offers" aria-controls="v-offers"><span class="nav-no" aria-hidden="true">02</span><span>Explore the offers<small>Design, price and customer effects</small></span></button>
@@ -2027,7 +2027,7 @@ globalThis.VoiRegression = function (x) {
     { key: 'booking.adoptP', label: 'Eligible subscribers who book', group: 'booking', min: 0, max: 1, step: 0.01, fmt: 'pct', src: 'AS', per: 'eligible subscribers', when: 'each month after ramp-up', metric: 'Booking customers / eligible subscribers', tornado: true },
     { key: 'booking.perAdopter', label: 'Bookings per booking customer', group: 'booking', min: 0, max: 40, step: 1, fmt: 'num', src: 'AS', per: 'booking customer', when: 'monthly', plain: 'Eight is about two commute days a week.', tornado: true, range: [4, 12] },
     { key: 'booking.passIncluded', label: 'Bookings included in Voi Pass', group: 'booking', min: 0, max: 20, step: 1, fmt: 'int', src: 'PD', per: 'subscriber', when: 'monthly', note: 'The upgrade incentive scales with the share of bookings the Pass covers; every included booking still costs a placement.', be: [0, 20] },
-    { key: 'booking.fee', label: 'Booking fee (incl. VAT)', group: 'booking', key6: true, min: 0, max: 60, step: 1, fmt: 'nok', src: 'PD', ref: ['competitors'], per: 'booking', when: 'paid at booking', plain: 'What the customer pays for a guaranteed scooter. Converted to net revenue at the VAT rate.', note: 'Set at 35 kr: at 25 kr a booking costs more to place and hold than it earns. The adoption inputs were set for 25 kr and the central case assumes demand holds at 35 kr; the price table under Design the offers shows the value if it falls. Benchmarks: Voi’s free-unlock add-on 29 kr a month; Dott and Lime 10–15 minute holds free.', metric: 'Price test: conversion at 25, 35 and 45 kr', tornado: true, range: [25, 45], be: [0, 80] },
+    { key: 'booking.fee', label: 'Booking fee (incl. VAT)', group: 'booking', key6: true, min: 0, max: 60, step: 1, fmt: 'nok', src: 'PD', ref: ['competitors'], per: 'booking', when: 'paid at booking', plain: 'What the customer pays for a guaranteed scooter. Converted to net revenue at the VAT rate.', note: 'Set at 35 kr: at 25 kr a booking costs more to place and hold than it earns. The adoption inputs were set for 25 kr and the central case assumes demand holds at 35 kr; the price table under Explore the offers shows the value if it falls. Benchmarks: Voi’s free-unlock add-on 29 kr a month; Dott and Lime 10–15 minute holds free.', metric: 'Price test: conversion at 25, 35 and 45 kr', tornado: true, range: [25, 45], be: [0, 80] },
     { key: 'booking.feeElasticity', label: 'Demand response to the fee', group: 'booking', min: 0, max: 3, step: 0.05, fmt: 'num', src: 'AS', plain: 'Local adoption elasticity at the reference fee. The linear form applies the percentage response directly; the logit form shares that local slope but bends away from the reference. 0 holds adoption fixed. Neither is estimated for Voi.', metric: 'Price test across hub zones' },
     { key: 'booking.logitDemand', label: 'Use bounded logit price response', group: 'booking', type: 'bool', src: 'PD', note: 'Alternative unestimated demand structure. Linear and logit share adoption at the reference fee and the same local price elasticity there. Logit(p) = logit(p0) − elasticity × (fee − reference) / reference / (1 − p0), for 0 < p0 < 1. Price-response envelopes and the assumption challenge test both forms. Train (2009), chapter 3, motivates the probability form, not its Voi parameter values.' },
     { key: 'booking.feeRef', label: 'Fee at which adoption is estimated', group: 'booking', min: 1, max: 60, step: 1, fmt: 'nok', src: 'PD', plain: 'The adoption inputs describe demand at this fee.' },
@@ -2163,7 +2163,7 @@ globalThis.VoiRegression = function (x) {
   };
   for (const q of META) {
     q.cls = CLS_OVERRIDE[q.key] || CLS_DEFAULT[q.src];
-    if (q.key.startsWith('segShares.')) { q.cls = 'assumed'; q.label += ' (scenario weight)'; q.note += ' Applying this sample fraction to a customer portfolio is an assumption. Compare alternative weights under Compare outcomes.'; }
+    if (q.key.startsWith('segShares.')) { q.cls = 'assumed'; q.label += ' (scenario weight)'; q.note += ' Applying this sample fraction to a customer portfolio is an assumption. Compare alternative weights under Uncertainty & risk.'; }
     if (PP.includes(q.key)) q.fmt = 'pp';
     q.syn = Object.entries(SYN).filter(([, ks]) => ks.includes(q.key)).map(([s]) => s).join(', ');
   }
@@ -2707,7 +2707,7 @@ globalThis.VoiRegression = function (x) {
     const inc = { booking: by.both.dCPE - by.group.dCPE, group: by.both.dCPE - by.booking.dCPE };
     const opts = ['none', 'booking', 'group', 'both'];
     const sv0 = MC.summary && MC.sig === mcSig() && R0.best === view.scenario ? strategyVerdict(MC.summary) : null;
-    $('#rec').innerHTML = `<b>${esc(R0.head)}</b> ${esc(R0.text)}${best === 'both' ? ` Hub &amp; Book adds ${mnok1(inc.booking)} on top of Voi Together; Voi Together adds ${mnok1(inc.group)} on top of Hub &amp; Book.` : ''}${sv0 ? ` <b>Rollout:</b> ${esc(sv0.text)}` : best !== 'none' ? ' <span class="mut">The rollout strategy is compared under Compare outcomes.</span>' : ''}${best !== view.scenario && best !== 'none' ? ` <span class="mut">You are viewing ${INV[view.scenario]}.</span>` : ''}`;
+    $('#rec').innerHTML = `<b>${esc(R0.head)}</b> ${esc(R0.text)}${best === 'both' ? ` Hub &amp; Book adds ${mnok1(inc.booking)} on top of Voi Together; Voi Together adds ${mnok1(inc.group)} on top of Hub &amp; Book.` : ''}${sv0 ? ` <b>Rollout:</b> ${esc(sv0.text)}` : best !== 'none' ? ' <span class="mut">Compare rollout strategies under <a href="#" data-goto="compare">Inspect the model → Uncertainty &amp; risk</a>.</span>' : ''}${best !== view.scenario && best !== 'none' ? ` <span class="mut">You are viewing ${INV[view.scenario]}.</span>` : ''}`;
     $('#tbl-portfolio').innerHTML = `<thead><tr><th>Option</th><th class="num">Estimated value</th><th class="num">Adds when the other runs</th><th class="num">Setup</th><th>Setup budget</th><th class="num">Peak funding need</th><th>Payback</th></tr></thead><tbody>` + opts.map(id => {
       const s = by[id], none = id === 'none';
       return `<tr class="${id === best ? 'sel' : ''}"><th scope="row">${INV[id]}${id === best ? ' <span class="pill ok">highest feasible</span>' : ''}</th><td class="num"><b class="${s.dCPE < 0 ? 'bad' : ''}">${none ? '0' : mnok(s.dCPE)}</b></td><td class="num">${none || id === 'both' ? '–' : mnok(inc[id])}</td><td class="num">${none ? '–' : nok(s.setup)}</td><td>${none ? '–' : s.withinBudget ? '<span class="pill ok">within</span>' : '<span class="pill bad">over</span>'}</td><td class="num">${none ? '–' : nok(s.peakFunding)}</td><td>${none ? '–' : s.payback ? 'Month ' + s.payback : '<span class="bad">none</span>'}</td></tr>`;
@@ -2747,7 +2747,7 @@ globalThis.VoiRegression = function (x) {
       return `<tr class="${r.current ? 'sel' : ''}"><th scope="row">${esc(r.label)}${r.current ? ' <span class="chip">in configuration</span>' : ''}</th><td class="num"><b class="${r.v < 0 ? 'bad' : ''}">${mnok(r.v)}</b>${rel}</td><td>${vpill(vd)}</td><td class="note">${esc(r.note || '')}</td></tr>`;
     }).join('') + '</tbody>';
   }
-  // ---------- Design the offers ----------
+  // ---------- Explore the offers ----------
   function buildOffers() {
     $('#offers').innerHTML = ['booking', 'group'].map(id => {
       const o = OFFERS[id], designs = o.designs;
@@ -2877,7 +2877,7 @@ globalThis.VoiRegression = function (x) {
       rows.map(r => `<tr><td>${r[0]}</td><th scope="row">${esc(r[1])}</th><td>${esc(r[2])}</td><td class="note">${esc(r[3])}</td><td>${r[4]}</td><td>${esc(r[5])}</td></tr>`).join('') + '</tbody>';
   }
 
-  // ---------- Compare outcomes ----------
+  // ---------- Uncertainty & risk ----------
   function comparePage() {
     behaviourTable(); key10Effects(); renderRobust(); cohortTable();
     stressTable();
@@ -3296,7 +3296,7 @@ globalThis.VoiRegression = function (x) {
     const r = (l, c, note, sel) => `<tr${sel ? ' class="sel"' : ''}><th scope="row">${l}<div class="note">${note}</div></th><td class="num"><b>${mnok(c.dCPE)}</b></td><td>${c.payback ? 'Month ' + c.payback : 'none'}</td><td class="num">${nok(c.peakFunding)}</td><td class="num">${nok(c.spend)}</td></tr>`;
     $('#tbl-rollout').innerHTML = `<thead><tr><th>Strategy, central inputs</th><th class="num">Value</th><th>Payback</th><th class="num">Peak funding</th><th class="num">Spend</th></tr></thead><tbody>${r('Direct rollout', st.direct, `full coverage from launch, full-scale capacity bought at launch, ${pct(R.directHoldout, 0)} holdout`, R.mode === 'full')}${r('Pilot, automatic scale-up', st.auto, `${pct(R.pilotCoverage, 0)} coverage to month ${R.gateMonth}, then scale-up whatever it shows`, R.mode === 'pilot')}${r('Pilot, informed decision', st.informed, `the same pilot; at the gate: ${lc1(CHOICE[st.choice])} (perfect knowledge at central inputs)`, false)}</tbody>`;
     const ms = MC.summary && MC.sig === mcSig() ? MC.summary : null;
-    $('#rollout-note').innerHTML = `With every input at its central value nothing goes wrong, so the stop option adds ${mnok(st.informed.dCPE - st.auto.dCPE)} and the comparison of strategies has to be made under uncertainty. ${ms ? esc(strategyVerdict(ms).text) : 'Run the simulation under Compare outcomes to compare the strategies under uncertainty.'}`;
+    $('#rollout-note').innerHTML = `With every input at its central value nothing goes wrong, so the stop option adds ${mnok(st.informed.dCPE - st.auto.dCPE)} and the comparison of strategies has to be made under uncertainty. ${ms ? esc(strategyVerdict(ms).text) : 'Run the simulation under Uncertainty & risk to compare the strategies under uncertainty.'}`;
   }
   // Investment and continuation thresholds for each key assumption, per offer on its own.
   function thresholds() {
@@ -3347,7 +3347,7 @@ globalThis.VoiRegression = function (x) {
       `<tr><td>Both</td><th scope="row">Seasonality</th><td colspan="5">All effects are read against the holdout in the same months, never against the plan, so a winter pilot is not mistaken for a failed one.</td></tr></tbody>`;
   }
 
-  // ---------- Evidence & method ----------
+  // ---------- Evidence & calculations ----------
   function evidencePage() {
     const cal = CUR.cmp.sc.cal;
     calibStats(cal); chartFlow(CUR.cmp); segCards(cal);
@@ -3763,7 +3763,7 @@ globalThis.VoiRegression = function (x) {
           ['Direct rollout', `full coverage from the launch month; scale-up cost paid at launch; holdout ${pct(X.rollout.directHoldout, 0)}`, mnok(st.direct.dCPE)],
           ['Pilot, automatic scale-up', `${pct(X.rollout.pilotCoverage, 0)} coverage and a ${pct(X.rollout.holdout, 0)} holdout to month ${X.rollout.gateMonth}; scale-up after the gate`, mnok(st.auto.dCPE)],
           ['Pilot, informed decision', `best of ${E.combos(on, X.rollout.gateMonth).length} continue/stop combinations at the gate: ${lc1(CHOICE[st.choice])}`, mnok(st.informed.dCPE)],
-          SEP(ms ? `Simulated outcomes, ${nf(ms.n)} draws under assumed ranges` : 'Simulated outcomes: run the simulation under Compare outcomes'),
+          SEP(ms ? `Simulated outcomes, ${nf(ms.n)} draws under assumed ranges` : 'Simulated outcomes: run the simulation under Uncertainty & risk'),
           ...(ms ? STRATS.map(([k, l]) => [l, `mean · 5th percentile ${mnok(ms[k].p5)} · loss in ${pct(ms[k].pLoss, 0)} of draws`, mnok(ms[k].mean)]).concat([
             TOT('Value of the stop decision', 'informed pilot − automatic pilot, draw by draw', mnok(ms.stopValue.mean)),
             TOT('Pilot strategy versus direct rollout', `informed pilot − direct rollout, draw by draw; the pilot is better in ${pct(ms.pPilotBetter, 0)} of draws`, mnok(ms.pilotVsDirect.mean))]) : [])
@@ -3940,7 +3940,7 @@ globalThis.VoiRegression = function (x) {
     if (!isB) { add('Unit', esc(unitWord(q))); add('Per (denominator)', q.per && esc(q.per)); add('Period', q.when && esc(q.when)); }
     add('Evidence status', `${clsTag(q)} ${esc(CLS[q.cls][1])}${q.hyp ? ' <span class="hyp">Hypothesis</span>' : ''}`);
     add('Where the number comes from', `${esc(SRC[q.src])}${q.note ? ': ' + esc(q.note) : ''}`);
-    if (CALC_OF[key] || q.cls === 'calculated' || q.cls === 'calibrated') add('Calculation', esc(CALC_OF[key] || 'See the calculation steps under Evidence & method.'));
+    if (CALC_OF[key] || q.cls === 'calculated' || q.cls === 'calibrated') add('Calculation', esc(CALC_OF[key] || 'See the calculation steps under Evidence & calculations.'));
     if (q.mech) add('What supports the mechanism', `${esc(q.mech)}${q.cls === 'assumed' ? ' <span class="mut">This supports the mechanism, not the number entered.</span>' : ''}`);
     const unres = (q.ref || []).filter(r => REF_STATUS[r]);
     if (q.ref) add('Sources', refLinks(q) + (unres.length ? `<div class="note">${unres.map(r => `${esc(REF_STATUS[r][0])}: ${esc(REF_STATUS[r][1])}`).join(' ')}</div>` : ''));
@@ -4054,7 +4054,7 @@ globalThis.VoiRegression = function (x) {
     CUR = { list, by, cmp: by[view.scenario] };
     if ($('#key10').dataset.city !== String(X.booking.citywide)) { buildKey10(); syncInputs(); }
     controlBar();
-    $('#scope-summary').textContent = `${D.scope(X).description} Starting active customers: approximately ${nf(Math.round(CUR.cmp.sc.cal.active))}. Current CS/SLS weights: ${pct(X.segShares.CS, 1)} / ${pct(X.segShares.SLS, 1)}. Change the scale here and challenge the weights under Compare outcomes.`;
+    $('#scope-summary').textContent = `${D.scope(X).description} Starting active customers: approximately ${nf(Math.round(CUR.cmp.sc.cal.active))}. Current CS/SLS weights: ${pct(X.segShares.CS, 1)} / ${pct(X.segShares.SLS, 1)}. Change the scale here and challenge the weights under Uncertainty & risk.`;
     updateHash();
     $('#flow-month').max = X.horizon; if (view.flowMonth > X.horizon) view.flowMonth = X.horizon;
     $('#flow-month').value = view.flowMonth; $('#flow-m').textContent = view.flowMonth;
