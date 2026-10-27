@@ -14,7 +14,7 @@ Restore resets the chosen input to its value when opened. Other current assumpti
 
 ## Evidence and limits
 
-Release 6.4.0 makes the sources, extraction steps, transformations and remaining gaps visible. It separates reproduced survey facts and reported financial anchors from constructed Oslo estimates and unmeasured treatment effects. The original sample has 72 respondents; its proportions are not measured Oslo market shares. Existing aggregate source checks can be inspected in the app. Raw respondent records and private course materials are not uploaded.
+Release 6.4.1 makes the sources, extraction steps, transformations and remaining gaps visible. It separates reproduced survey facts and reported financial anchors from constructed Oslo estimates and unmeasured treatment effects. The original sample has 72 respondents; its proportions are not measured Oslo market shares. Existing aggregate source checks can be inspected in the app. Raw respondent records and private course materials are not uploaded.
 
 Switching costs and competitive protection are discussed as hypotheses to test. The model adds no independent protection premium and does not identify rival choices, multi-homing or causal switching effects. Offer rankings and simulated probabilities remain conditional on the entered assumptions. The economic core and defaults are unchanged from 6.3.
 
