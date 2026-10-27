@@ -672,6 +672,111 @@ details.card.adv[open] > summary { margin-bottom: 16px; }
   .wrap { max-width: none; padding: 0; }
   .card, .timeline-disclosure { break-inside: avoid; }
 }
+/* 6.4 — a guided first experiment, with the evidence trail ahead of the mechanics. */
+.sr { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+#global-investment-slot:empty { display: none; }
+#global-investment-slot { min-width: 0; }
+body[data-page="overview"] .ctlbar { position: static; }
+body[data-page="overview"] .ctlbar .wrap { padding-block: 9px; }
+.hero-intro { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(260px, .9fr); gap: 10px 35px; align-items: end; margin-bottom: 24px; }
+.hero-intro .eyebrow { grid-column: 1 / -1; }
+.hero-intro h1 { font-size: clamp(29px, 3.5vw, 46px); margin: 8px 0 0; }
+.hero-intro .lead { font-size: 13px; line-height: 1.7; margin: 0 0 4px; }
+.guided-grid { grid-template-columns: minmax(0, 1.2fr) minmax(285px, .8fr); gap: 25px; align-items: stretch; }
+.guided-workspace { background: var(--card); border: 1px solid var(--line2); border-radius: 4px; padding: 23px; }
+.guide-step { display: grid; grid-template-columns: 24px minmax(0, 1fr); gap: 12px; }
+.guide-step + .guide-step { border-top: 1px solid var(--line); margin-top: 23px; padding-top: 23px; }
+.step-no { font: 11px/23px var(--mono); color: var(--accent-ink); background: var(--accent-soft); width: 24px; height: 24px; text-align: center; border-radius: 50%; flex: none; }
+.guide-step h2, .guide-result-step h2 { font-size: 16px; line-height: 1.4; letter-spacing: -.02em; margin: 0 0 7px; font-weight: 600; }
+.guide-step p { font-size: 12px; color: var(--ink2); line-height: 1.65; margin: 7px 0 12px; }
+#decision-investment-slot .investment-choice { display: block; }
+#decision-investment-slot .gl { display: none; }
+#decision-investment-slot .seg-ctl { display: flex; flex-wrap: wrap; gap: 2px; width: 100%; }
+#decision-investment-slot .seg-ctl button { flex: 1; padding: 10px 7px; font-size: 11px; }
+#guide-driver { width: 100%; max-width: 100%; font-size: 12px; padding: 9px; background: var(--bg2); border-color: var(--line2); }
+.guide-input { border: 0; margin: 12px 0 0; padding: 0; }
+.guide-input .ctl { display: grid; grid-template-columns: minmax(30px, 1fr) 67px auto; gap: 10px; margin-top: 8px; }
+.guide-input .ctl input[type="range"] { width: 100%; }
+.guide-input .ctl input[type="number"] { width: 67px; padding: 8px 5px; font-size: 14px; background: var(--bg); }
+.guide-input .lab { font-size: 11px; }
+#guide-help { margin-top: 12px; }
+#guide-reference { font-size: 10px; line-height: 1.7; margin-bottom: 0; }
+#guide-restore { font-size: 11px; padding: 5px 8px; }
+.guided-grid .hero-card { margin: 0; padding: 23px; background: var(--bg2); border: 1px solid var(--line2); border-radius: 4px; }
+.guide-result-step { display: flex; gap: 10px; align-items: center; margin-bottom: 18px; }
+.guide-result-step h2 { margin: 0; }
+.guided-grid .hero-card .big { font-size: clamp(34px, 3.5vw, 48px); margin: 13px 0 8px; }
+.guide-read-hint { font-size: 12px; line-height: 1.65; color: var(--ink2); }
+.guide-effect { padding: 15px 0; border-block: 1px solid var(--line2); display: grid; gap: 4px; margin: 17px 0; }
+.guide-effect-label { font-size: 11px; font-weight: 600; }
+.guide-effect b { font: 24px var(--mono); letter-spacing: -.05em; }
+.guide-effect > span:last-child { font-size: 10px; color: var(--ink2); line-height: 1.7; }
+.source-signpost { font-size: 12px; color: var(--ink2); margin: 16px 0; line-height: 1.7; }
+.source-signpost a { color: var(--accent-ink); font-weight: 600; white-space: normal; }
+.funding-disclosure { border-top: 1px solid var(--line2); padding-top: 12px; }
+.funding-disclosure > summary { cursor: pointer; font-size: 12px; font-weight: 600; }
+.funding-disclosure .kpis { margin-top: 12px; }
+#rec-short { font-size: 13px; }
+.evidence-intro { padding-top: 28px; }
+.evidence-legend { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; border: 1px solid var(--line2); border-radius: 4px; background: var(--card); margin-bottom: 12px; }
+.evidence-legend > div { padding: 17px; border-right: 1px solid var(--line); }
+.evidence-legend > div:last-child { border-right: 0; }
+.evidence-legend b, .evidence-legend span { display: block; }
+.evidence-legend b { font-size: 12px; margin-bottom: 6px; }
+.evidence-legend span { font-size: 11px; color: var(--ink2); line-height: 1.6; }
+main .evidence-trail { display: grid; grid-template-columns: 205px minmax(0, 1fr); gap: 24px; margin: 18px 0; padding: 22px; align-items: start; }
+#evidence-trail-nav { display: grid; gap: 7px; }
+#evidence-trail-nav button { text-align: left; font: 12px/1.6 Archivo, sans-serif; padding: 11px; border: 1px solid var(--line); border-radius: 3px; background: transparent; color: var(--ink2); cursor: pointer; }
+#evidence-trail-nav button[aria-pressed="true"] { border-color: var(--line2); background: var(--bg2); color: var(--ink); font-weight: 600; box-shadow: inset 3px 0 var(--accent); }
+#evidence-trail-detail { min-width: 0; }
+.trail-heading { border-bottom: 1px solid var(--line); padding-bottom: 13px; margin-bottom: 16px; }
+.trail-heading .eyebrow { font-size: 9px; }
+.trail-heading h3 { margin: 9px 0; }
+.trail-fact { background: var(--bg2); border-left: 3px solid var(--line2); padding: 15px; font-size: 12px; line-height: 1.7; }
+.trail-fact p { margin: 9px 0 0; color: var(--ink2); }
+.evidence-chain { display: grid; grid-template-columns: 132px minmax(0, 1fr); gap: 13px 18px; padding: 18px 0; margin: 0; font-size: 12px; border-bottom: 1px solid var(--line); }
+.evidence-chain dt { font-weight: 600; }
+.evidence-chain dd { margin: 0; color: var(--ink2); line-height: 1.75; }
+.trail-inputs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 13px 18px; margin: 18px 0; }
+.trail-inputs > div { padding: 10px; background: var(--bg); display: grid; gap: 4px; font-size: 11px; min-width: 0; }
+.trail-inputs a { line-height: 1.6; }
+.trail-inputs b { font: 16px var(--mono); }
+.trail-inputs small { font-size: 10px; color: var(--ink2); line-height: 1.7; }
+#evidence-ranking-card, #report-use, #v-evidence > details { margin-bottom: 16px; }
+#report-use { font-size: 12px; line-height: 1.8; }
+#report-use ul { padding-left: 19px; }
+#report-use li + li { margin-top: 9px; }
+.defence-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin: 15px 0; }
+.defence-grid h4 { margin: 0 0 8px; }
+.defence-grid p { color: var(--ink2); font-size: 12px; line-height: 1.75; }
+#v-evidence .sh h3 { font-size: 17px; }
+#source-register .refs { columns: auto; }
+.tag + .tag { margin-left: 5px; }
+@media (max-width: 1100px) and (min-width: 901px) { .guided-grid { grid-template-columns: 1fr; } }
+@media (max-width: 800px) {
+  .hero-intro, .guided-grid { grid-template-columns: 1fr; }
+  .hero-intro { gap: 12px; }
+  .hero-intro .eyebrow { grid-column: 1; }
+  .hero-intro h1 { font-size: 35px; }
+  main .evidence-trail { grid-template-columns: 1fr; gap: 20px; }
+  #evidence-trail-nav { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .evidence-legend { grid-template-columns: 1fr; }
+  .evidence-legend > div { border-right: 0; border-bottom: 1px solid var(--line); padding: 13px 16px; }
+  .evidence-legend > div:last-child { border-bottom: 0; }
+}
+@media (max-width: 650px) {
+  .guided-workspace, .guided-grid .hero-card { padding: 18px; }
+  .guide-step { grid-template-columns: 22px minmax(0, 1fr); gap: 10px; }
+  .guide-step h2, .guide-result-step h2 { font-size: 15px; }
+  #decision-investment-slot .seg-ctl { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  #decision-investment-slot .seg-ctl button { font-size: 11px; }
+  .hero-intro h1 { font-size: 32px; }
+  .evidence-chain { grid-template-columns: 1fr; gap: 4px; }
+  .evidence-chain dd { margin-bottom: 12px; }
+  .trail-inputs, .defence-grid { grid-template-columns: 1fr; }
+  main .evidence-trail { padding: 17px; }
+  .source-signpost { margin-top: 15px; }
+}
 
 </style>
 </head>
@@ -695,17 +800,17 @@ details.card.adv[open] > summary { margin-bottom: 16px; }
     <nav class="tabs" aria-label="Workspace" id="tabs">
       <button type="button" data-page="overview" id="tab-overview" aria-controls="v-overview"><span class="nav-no" aria-hidden="true">01</span><span>Make a decision<small>The offers and their value</small></span></button>
       <button type="button" data-page="offers" id="tab-offers" aria-controls="v-offers"><span class="nav-no" aria-hidden="true">02</span><span>Explore the offers<small>Design, price and customer effects</small></span></button>
-      <button type="button" data-page="evidence" id="tab-evidence" aria-controls="v-evidence"><span class="nav-no" aria-hidden="true">03</span><span>Inspect the model<small>Calculations, risk and delivery</small></span></button>
+      <button type="button" data-page="evidence" id="tab-evidence" aria-controls="v-evidence"><span class="nav-no" aria-hidden="true">03</span><span>Evidence &amp; model<small>Sources, assumptions and limitations</small></span></button>
     </nav>
     <div class="rail-note"><svg viewBox="0 0 120 34" aria-hidden="true"><path d="M1 27H38L58 7H118" fill="none" stroke="#91b39b" stroke-width="1.5"/><path d="M1 7H38L58 27H118" fill="none" stroke="#f29674" stroke-width="1.5"/><circle cx="20" cy="27" r="3" fill="#172824" stroke="#91b39b"/><circle cx="78" cy="7" r="3" fill="#172824" stroke="#91b39b"/><circle cx="98" cy="27" r="3" fill="#172824" stroke="#f29674"/></svg><strong>Two offers. One portfolio.</strong>Student decision model<br>Oslo, Norway</div>
-    <select class="mob-tabs" id="mob-tabs" aria-label="Workspace"><option value="overview">01 · Make a decision</option><option value="offers">02 · Explore the offers</option><option value="evidence">03 · Inspect the model</option></select>
+    <select class="mob-tabs" id="mob-tabs" aria-label="Workspace"><option value="overview">01 · Make a decision</option><option value="offers">02 · Explore the offers</option><option value="evidence">03 · Evidence &amp; model</option></select>
     <span class="spacer"></span>
     <button class="btn ghost theme-toggle" id="theme-toggle" type="button" aria-label="Switch to dark appearance" aria-pressed="false"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="4"/><path d="M10 0V3M10 17V20M0 10H3M17 10H20M3 3L5 5M15 15L17 17M17 3L15 5M5 15L3 17"/></svg></button>
   </div>
 </header>
 <div class="ctlbar" role="region" aria-label="Current decision and model settings">
   <div class="wrap">
-    <div class="ctl-g investment-choice"><span class="gl" id="gl-inv">View investment</span><div class="seg-ctl" id="inv-ctl" role="group" aria-labelledby="gl-inv"></div></div>
+    <div id="global-investment-slot"></div>
     <details id="model-settings" class="model-settings">
       <summary>Model settings <span id="settings-status"></span></summary>
       <div class="settings-body">
@@ -722,7 +827,7 @@ details.card.adv[open] > summary { margin-bottom: 16px; }
 <main id="main" tabindex="-1">
 <div class="wrap">
   <nav class="inspect-nav" id="inspect-nav" aria-label="Model inspection" hidden>
-    <button type="button" data-page="evidence" id="inspect-evidence">Evidence &amp; calculations</button>
+    <button type="button" data-page="evidence" id="inspect-evidence">Data &amp; sources</button>
     <button type="button" data-page="compare" id="tab-compare">Uncertainty &amp; risk</button>
     <button type="button" data-page="delivery" id="tab-delivery">Delivery &amp; pilot</button>
   </nav>
@@ -730,23 +835,27 @@ details.card.adv[open] > summary { margin-bottom: 16px; }
   <!-- 1 · OVERVIEW -->
   <section class="view" id="v-overview" aria-labelledby="tab-overview">
     <div class="hero">
-      <div class="hero-grid">
-        <div>
-          <div class="eyebrow">Voi Oslo / Two customer needs</div>
-          <h1>Which experience<br><em>is worth funding?</em></h1>
-          <p class="lead" id="lead"></p>
+      <div class="hero-intro"><div class="eyebrow">Voi Oslo / Customer portfolio decisions</div><h1>Change one assumption.<br><em>See what it changes.</em></h1><p class="lead" id="lead"></p></div>
+      <div class="hero-grid guided-grid">
+        <div class="guided-workspace" id="guide-panel" aria-label="Try the model in three steps">
+          <section class="guide-step"><span class="step-no" aria-hidden="true">1</span><div><h2>Choose an investment</h2><p>Compare it with today's Voi, without either new offer.</p><div id="decision-investment-slot">    <div class="ctl-g investment-choice"><span class="gl" id="gl-inv">View investment</span><div class="seg-ctl" id="inv-ctl" role="group" aria-labelledby="gl-inv"></div></div></div></div></section>
+          <section class="guide-step"><span class="step-no" aria-hidden="true">2</span><div><h2>Change one assumption</h2><label class="sr" for="guide-driver">Assumption to explore</label><select id="guide-driver"></select><div id="guide-control"></div><p id="guide-help"></p><button class="btn ghost" id="guide-restore" type="button">Restore this assumption</button><p class="note" id="guide-reference"></p></div></section>
         </div>
         <div class="hero-card">
+          <div class="guide-result-step"><span class="step-no" aria-hidden="true">3</span><h2>Read the result</h2></div>
           <div class="k"><span id="hero-k">Incremental portfolio value</span><span class="chip" id="hero-chip"></span></div>
           <div class="big num" id="hero-big">–</div>
           <div id="hero-verdict" style="margin:6px 0 8px"></div>
+          <p class="guide-read-hint" id="guide-read-hint"></p>
+          <div id="guide-effect" class="guide-effect" role="status" aria-live="polite"></div>
           <div class="s" id="hero-s"></div>
           <div class="spark" id="hero-spark" hidden></div>
         </div>
       </div>
-      <div class="kpis" id="kpis"></div>
+      <p class="source-signpost">The figures combine source observations and assumptions. <a href="#" data-goto="evidence">See where the numbers come from ↗</a></p>
+      <details class="funding-disclosure"><summary>Funding needs and payback</summary><div class="kpis" id="kpis"></div></details>
     </div>
-      <div class="card"><h3>What the current case suggests</h3><p class="rec" id="rec"></p><details class="decision-table"><summary>Compare all four investments</summary><div class="tw"><table class="t" id="tbl-portfolio"></table></div><p class="note" style="margin-top:8px">“Adds when the other runs”: what the offer adds when the other offer is already funded. Setup is compared with the setup budget; peak funding is a separate cash requirement. Every option is valued against the same baseline: today’s Voi, with Group Rides and short holds as they are.</p></details></div>
+      <div class="card"><h3>Across the four investments</h3><p class="rec" id="rec-short"></p><details class="decision-table"><summary>See the recommendation and all four investments</summary><p class="rec" id="rec"></p><div class="tw"><table class="t" id="tbl-portfolio"></table></div><p class="note" style="margin-top:8px">“Adds when the other runs”: what the offer adds when the other offer is already funded. Setup is compared with the setup budget; peak funding is a separate cash requirement. Every option is valued against the same baseline: today’s Voi, with Group Rides and short holds as they are.</p></details></div>
     <div class="customer-choices" aria-label="Customer needs and proposed experiences">
       <article class="card customer-choice">
         <span class="chip">01 / Convenience Seekers</span><h3>Know a scooter will be there.</h3>
@@ -766,7 +875,7 @@ details.card.adv[open] > summary { margin-bottom: 16px; }
       </article>
     </div>
     <div class="stack">
-      <div class="card decision-caveats"><h3>Before treating this as a decision</h3><div id="decision-caveats"></div><button class="btn ghost" type="button" data-goto="compare">Test what could change the answer ↗</button></div>
+      <details class="card decision-caveats adv"><summary><h3>What could make the result wrong?</h3></summary><div id="decision-caveats"></div><button class="btn ghost" type="button" data-goto="compare">Test what could change the answer ↗</button></details>
       <details class="timeline-disclosure" id="timeline-disclosure"><summary><span><b>Explore the timeline</b><small>See how value and customer effects develop, month by month.</small></span><span aria-hidden="true">＋</span></summary><p class="timeline-help">The headline above always covers the full model horizon. The timeline below shows only the month you choose.</p><div id="simulator-root"></div></details>
       <div class="next-steps"><button class="btn" type="button" data-goto="offers">02 · Change an offer ↗</button><button class="btn ghost" type="button" data-goto="evidence">03 · Check the calculations ↗</button></div>
     </div>
@@ -790,7 +899,7 @@ details.card.adv[open] > summary { margin-bottom: 16px; }
   <section class="view" id="v-compare" aria-labelledby="tab-compare" hidden>
     <div class="sh" style="padding-top:36px"><div><div class="no">03 / INSPECT · UNCERTAINTY</div><h2>What could change the answer?</h2><p>Start with the customer-behaviour test. For a deeper check, open one analysis below: stress cases, the joint assumption challenge or the simulation. Each answers a different question.</p></div></div>
     <div class="stack">
-      <div class="card"><h3>How much rests on unmeasured customer behaviour</h3><p class="sub">Each row switches off one family of future-behaviour benefits and recalculates every investment. These are conditional stress tests, not an exact split of the value: the effects interact.</p><div class="tw"><table class="t" id="tbl-behav"></table></div></div>
+      <div class="card" id="behaviour-test"><h3>How much rests on unmeasured customer behaviour</h3><p class="sub">Each row switches off one family of future-behaviour benefits and recalculates every investment. These are conditional stress tests, not an exact split of the value: the effects interact.</p><div class="tw"><table class="t" id="tbl-behav"></table></div></div>
       <details class="card adv"><summary><h3>The ten assumptions that matter most</h3></summary><p class="sub">Change one here and every result updates. Each line shows the value range the assumption’s plausible range implies. All other inputs are under Edit all inputs.</p><div class="levers" id="key10"></div></details>
       <details class="card adv" id="robust-card"><summary><h3>Challenge several assumptions together</h3></summary><p class="sub">Challenge future-behaviour benefits, booking price response, segment weights and baseline lapse rates together. Each future compares the same four investment options. Cases have no assigned likelihoods.</p><div class="toolbar"><button class="btn primary" type="button" id="robust-run">Run assumption challenge</button><button class="btn" type="button" id="robust-export" disabled>Export cases and results</button><span class="mut" id="robust-progress" role="status"></span></div><p id="robust-note" class="note"></p><div class="tw"><table class="t" id="tbl-robust"></table></div><details><summary>Definitions, assumptions and all cases</summary><p class="note">Future-behaviour benefits: 0%, 50%, 100% of your inputs, including guest activation. Booking price response: 0, 0.5, 1 and your current value, under linear and logit forms sharing reference adoption and local elasticity. Segment weights: current, equal, or target-segment weights halved then all weights normalised. Baseline lapse rates: ×0.7, ×1, ×1.3; engagement recalibrates as specified. These are deliberate stress levels, not estimated uncertainty intervals.</p><div class="tw"><table class="t" id="tbl-robust-cases"></table></div></details></details>
       <details class="card adv"><summary><h3>How much does customer scale change the decision?</h3></summary><p class="sub">The same offers for different named starting cohorts. Setup, operating capacity and organizational costs remain fixed. Baseline replacement inflow remains active; these portfolios are not closed cohorts.</p><div class="tw"><table class="t" id="tbl-cohort-scale"></table></div></details>
@@ -842,7 +951,13 @@ details.card.adv[open] > summary { margin-bottom: 16px; }
 
   <!-- 5 · EVIDENCE & METHOD -->
   <section class="view" id="v-evidence" aria-labelledby="tab-evidence" hidden>
-    <div class="sh" style="padding-top:28px"><div><div class="no">03 / INSPECT · EVIDENCE</div><h2>Follow the numbers.</h2><p>Open a worked calculation to see how an input reaches the result. Definitions, population scope and the full evidence register are available below. Use the tabs above for uncertainty or implementation.</p></div></div>
+    <div class="sh evidence-intro"><div><div class="no">03 / EVIDENCE &amp; MODEL</div><h2>Where did the numbers come from?</h2><p>Start with the evidence trail. It shows the source, what we extracted, how it enters the model and what remains unmeasured. Calculations and the full source register are available below.</p></div></div>
+    <div class="evidence-legend" aria-label="How to read the evidence"><div><b>Source observations</b><span>Survey responses and reported totals.</span></div><div><b>Our transformations</b><span>Calculations and estimates built on those facts.</span></div><div><b>Assumptions to test</b><span>Future responses, new-service costs and competitive protection.</span></div></div>
+    <p class="note" id="evidence-status-note"></p>
+    <section class="evidence-trail card" aria-label="Source to assumption trail"><nav id="evidence-trail-nav" aria-label="Evidence questions"></nav><div id="evidence-trail-detail"></div></section>
+    <details class="card adv" id="evidence-ranking-card"><summary><h3>Can we trust the relative ranking of the offers?</h3></summary><p class="sub">Not yet as an empirical forecast. These cases value each offer alone against the same no-new-offer baseline. Changing the unmeasured response assumptions can change the comparison. Values are conditional; no probability or validated relative effect is implied.</p><div class="tw"><table class="t" id="evidence-ranking"></table></div><p class="note">Delivery, price response, population and customer mix remain as entered. Use the wider assumption challenge under Uncertainty &amp; risk before drawing a robust conclusion.</p></details>
+    <details class="card adv" id="report-use"><summary><h3>How this supports the business report</h3></summary><p>Keep the report self-contained. Use a compact scenario table, cite the source facts and state the decisive assumptions. The interactive model supplies a transparent way to challenge the proposed investment; its existence does not establish that its forecast is correct.</p><ul><li><b>Situation and customer value:</b> explain the need evidence, its sample limits, satisfaction, switching costs and competitive imitation.</li><li><b>Initiatives, financial goals and budget:</b> show conditional value alongside setup, peak cash need, scope and the assumptions that could reverse the choice.</li><li><b>Implementation and control:</b> specify the owner, pilot measure and continuation rule for the unmeasured effects.</li></ul><p class="note">The assignment is a business report with a 10-page limit plus references and permitted appendices. Include a model link only as supplementary material if the submission format allows it; the reader should understand the argument without operating this site.</p></details>
+
     <details class="card adv"><summary><h3>What this model establishes — and what it does not</h3></summary><p>This is a conditional decision model. Occasional, Frequent, Subscriber and Inactive are usage states; they do not measure trust or cooperation in the relationship typology of Johnson &amp; Selnes. Monthly transitions and treatment effects are scenario inputs. A 36-month incremental value has no terminal value and is not a complete estimate of Voi's lifetime customer equity.</p><p>Cross-language checks verify arithmetic and implementation. External validation against Voi outcomes, a fitted price-response model and causal treatment-effect estimation remain to be done. Monte Carlo ranges describe assumed input uncertainty; the assumption challenge separately tests demand structure, future-benefit channels, segment weights and baseline dynamics.</p><p class="note">Methodological inspirations: <a href="https://ecommons.cornell.edu/entities/publication/22d27c0a-b390-418d-a76b-9ebd360bab11" target="_blank" rel="noopener">Johnson &amp; Selnes (2004)</a>; <a href="https://www.rand.org/pubs/tools/TL320/tool/robust-decision-making.html" target="_blank" rel="noopener">RAND Robust Decision Making</a>; <a href="https://www.ispor.org/docs/default-source/resources/outcomes-research-guidelines-index/model_parameter_estimation_and_uncertainty-6.pdf" target="_blank" rel="noopener">Briggs et al. (2012)</a>; <a href="https://www.ispor.org/docs/default-source/resources/outcomes-research-guidelines-index/model_transparency_and_validation-7.pdf" target="_blank" rel="noopener">Eddy et al. (2012)</a>. The decision-analysis guidance is adapted from other sectors; it supplies no Voi effect sizes. <a href="https://eml.berkeley.edu/books/choice2.html" target="_blank" rel="noopener">Train (2009)</a> motivates the unestimated logit probability form. BG/NBD estimation and spatial fleet optimisation are deferred until transaction and spatial data exist.</p><p class="note">The ordinary case assumes the current market structure. Revisit inputs and mechanisms if competition, customer needs, regulation or technology change; an unexpected disruption may require a new model.</p></details>
 
     <div class="sh" style="padding-top:36px"><div><div class="no">INPUTS &amp; SOURCES</div><h3>What the numbers rest on</h3><p>The baseline is calibrated to Voi's 2025 revenue, Ruter's trip count and our survey's usage mix. Each input says where its number comes from and, separately, what supports the mechanism behind it.</p></div>
@@ -851,7 +966,9 @@ details.card.adv[open] > summary { margin-bottom: 16px; }
       <details class="card adv" id="scope-card"><summary><h3>Population scope and generalisation</h3></summary><p class="sub" id="scope-summary"></p><div class="levers" id="scope-controls"></div><p class="note">The 72-person convenience sample informs needs and exploratory segment descriptions. Its proportions do not establish Oslo market shares. A named starting cohort retains the model's baseline replacement inflow, organizational costs and logistics capacity.</p></details>
       <details class="card adv"><summary><h3>Worked examples</h3></summary><p class="sub">One booking, one group trip, the three rollout strategies, one month and the headline value. Every figure comes from the engine’s own counts and factors; click any value for its definition and evidence.</p><div id="calc-main"></div></details>
       <details class="card adv"><summary><h3>Glossary</h3></summary><p class="sub">Search in ordinary words. Every input links to its definition, evidence, range and pilot measure.</p><input class="search" id="gl-search" type="search" placeholder="Try: customers leaving, extra rides, registration" aria-label="Search the glossary" style="width:min(460px,100%)"><div id="glossary" style="margin-top:8px"></div></details>
-      <details class="card adv" id="adv"><summary><h3 style="display:inline">Advanced evidence</h3> <span class="mut">calibration, transition matrices, survey transformations, simulation mechanics, validation, full input register and sources</span></summary>
+      <details class="card adv" id="source-register"><summary><h3>All inputs, their evidence status and sources</h3></summary><div class="stack" style="margin-top:16px">      <div><h3>Input register</h3><p class="sub">Every input: value, evidence status, where the number comes from, and what supports the mechanism.</p><div class="tw"><table class="t" id="tbl-src"></table></div></div>
+      <div><h3>Sources</h3><ol class="refs" id="refs"></ol></div></div></details>
+      <details class="card adv" id="adv"><summary><h3 style="display:inline">Technical methods and verification</h3> <span class="mut">calibration, transition matrices, survey transformations, simulation mechanics and internal verification</span></summary>
       <div class="stack" style="margin-top:14px">
       <div class="stats" id="calib" style="margin:0"></div>
       <div><h4 class="calc-h">Calculation steps behind the baseline and the simulation</h4><div id="calc-adv"></div></div>
@@ -875,8 +992,7 @@ details.card.adv[open] > summary { margin-bottom: 16px; }
       <div class="card"><h3>Double-counting audit</h3><p class="sub">Every place where one customer or one ride could be counted twice, and how the model prevents it.</p><div class="tw"><table class="t" id="tbl-audit"></table></div></div>
       <div class="card"><h3>Validation</h3><p class="sub">Decision-critical tests, run live in this page on the current inputs, and the independent re-implementation.</p><div class="tw"><table class="t" id="tbl-tests"></table></div><div class="toolbar" style="margin-top:10px"><button class="btn" type="button" id="run-reg">Run the full regression suite</button><span class="mut" id="reg-status"></span></div><div class="tw"><table class="t" id="tbl-reg"></table></div></div>
       <div class="card"><h3>Licence lens: a judgement, kept out of the headline</h3><p class="sub">Oslo awards three two-year permits on written bids and has replaced an incumbent in three rounds running. No licence effect is assumed; the lens shows only how large one would have to be to repay the setup.</p><div class="stats" id="city-stats"></div><div class="tw"><table class="t" id="tbl-criteria"></table></div></div>
-      <div class="card"><h3>Input register</h3><p class="sub">Every input: value, evidence status, where the number comes from, and what supports the mechanism.</p><div class="tw"><table class="t" id="tbl-src"></table></div></div>
-      <div class="card"><h3>Sources</h3><ol class="refs" id="refs"></ol></div>
+
       </div></details>
     </div>
   </section>
@@ -905,8 +1021,8 @@ details.card.adv[open] > summary { margin-bottom: 16px; }
 <div id="errors" role="alert" hidden></div>
 <div id="tip" hidden></div>
 <div id="toast" hidden></div>
-<script>window.VOI_DEFAULTS = {"horizon": 36, "population": {"useCalibrated": true, "activeCustomers": 10000}, "discountAnnual": 0.1, "norwayRevenueEURm": 19.0, "nokPerEur": 11.7173, "osloShare": 0.75, "ruterTripsM": 20.4, "voiTripShare": 0.355, "costPerRide": 7.67, "passPrice": 399, "vat": 0.25, "hourly": 545.05, "fieldHourly": 400, "segShares": {"CS": 0.3056, "SLS": 0.2917, "CR": 0.2083, "TC": 0.1944}, "rides": {"A": 1.3, "F": 12, "P": 15}, "trans": {"AF": 0.05, "AP": 0.01, "AL": 0.1, "FA": 0.12, "FP": 0.02, "FL": 0.05, "PA": 0.02, "PF": 0.07, "PL": 0.035, "LA": 0.04, "LX": 0.05}, "surveyMix": true, "engagement": {"CS": 0.5455, "SLS": 0.25, "CR": 0.0, "TC": 0.3077}, "engagementPooled": 0.3088, "shrink": 0.5, "useQ24": false, "q24": {"CS": 5.0, "SLS": 4.29, "CR": 2.6, "TC": 4.14, "mean": 4.12}, "booking": {"citywide": false, "cityEligible": 0.8, "cityMoveShare": 0.5, "logitDemand": false, "eligible": 0.4, "adoptF": 0.25, "adoptP": 0.5, "perAdopter": 8, "passIncluded": 0, "fee": 35, "fulfil": 0.95, "noShow": 0.12, "compensation": 20, "moveShare": 0.25, "minutesPerMove": 8, "transportPerMove": 20, "supportPer": 0.5, "capacity": 3000, "overtimePremium": 0.5, "incShare": 0.25, "upgradeUplift": 0.04, "lapseRed": 0.03, "spillover": 0.01, "ramp": 4, "holdDisplace": 0.05, "feeElasticity": 0.0, "feeRef": 25}, "group": {"occasionRate": 0.6, "serviceable": 0.7, "initiate": 0.06, "availBase": 0.75, "reserve": true, "reserveLift": 0.15, "bookingInteraction": 0.05, "complete": 0.9, "vehicles": 3, "split": false, "splitFriction": 0.25, "splitTxn": 1.0, "targetShare": 0.5, "discount": 0.15, "incShare": 0.47, "guestsNew": 0.35, "register": 0.25, "partner": false, "partnerLift": 1.25, "partnerCost": 10, "partnerFunding": 15, "support": 3, "holdFail": 0.15, "displaceProb": 0.1, "repeat": 0.03, "lapseRed": 0.04, "ramp": 3, "activate": 0.5, "activateSplit": 0.3, "guestUnique": 0.7, "groupsPerHost": 1.3, "discountElasticity": 0.0, "discountRef": 0.15, "availCap": 0.95, "easyInvite": true, "inviteLift": 0.25, "targeted": false, "targetPrecision": 0.5, "guestCredit": false, "creditLift": 0.15, "partnerShare": 0.1}, "budget": 750000, "licence": {"renewMonth": 6, "period": 24, "p0": 0.8, "bkEffect": 0.0, "grEffect": 0.0}, "mc": {"seed": 2026, "draws": 1000, "noise": 0.15, "rho": 0.5, "groups": {"demand": ["booking.adoptF", "booking.adoptP", "group.initiate", "group.inviteLift"], "additionality": ["booking.incShare", "group.incShare"], "delivery": ["group.availBase", "group.complete"], "retention": ["booking.lapseRed", "booking.upgradeUplift", "group.lapseRed", "group.repeat"]}, "dist": {"osloShare": {"state": "uncertain", "lo": 0.6, "hi": 0.85}, "voiTripShare": {"state": "uncertain", "lo": 0.333, "hi": 0.366}, "fieldHourly": {"state": "uncertain", "lo": 340, "hi": 520}, "booking.eligible": {"state": "uncertain", "lo": 0.25, "hi": 0.55}, "booking.adoptF": {"state": "uncertain", "lo": 0.12, "hi": 0.4}, "booking.adoptP": {"state": "uncertain", "lo": 0.25, "hi": 0.7}, "booking.moveShare": {"state": "uncertain", "lo": 0.15, "hi": 0.4}, "booking.minutesPerMove": {"state": "uncertain", "lo": 4, "hi": 15}, "booking.noShow": {"state": "uncertain", "lo": 0.05, "hi": 0.25}, "booking.incShare": {"state": "uncertain", "lo": 0.1, "hi": 0.4}, "booking.upgradeUplift": {"state": "uncertain", "lo": 0, "hi": 0.08}, "booking.lapseRed": {"state": "uncertain", "lo": 0, "hi": 0.06}, "booking.spillover": {"state": "uncertain", "lo": 0, "hi": 0.02}, "group.initiate": {"state": "uncertain", "lo": 0.03, "hi": 0.1}, "group.availBase": {"state": "uncertain", "lo": 0.6, "hi": 0.85}, "group.complete": {"state": "uncertain", "lo": 0.75, "hi": 0.95}, "group.incShare": {"state": "uncertain", "lo": 0.2, "hi": 0.65}, "group.register": {"state": "uncertain", "lo": 0.1, "hi": 0.4}, "group.repeat": {"state": "uncertain", "lo": 0, "hi": 0.06}, "group.lapseRed": {"state": "uncertain", "lo": 0, "hi": 0.08}, "group.activate": {"state": "uncertain", "lo": 0.3, "hi": 0.7}, "group.inviteLift": {"state": "uncertain", "lo": 0, "hi": 0.5}, "group.targetPrecision": {"state": "uncertain", "lo": 0.2, "hi": 0.7}, "group.creditLift": {"state": "uncertain", "lo": 0, "hi": 0.3}, "booking.cityEligible": {"state": "uncertain", "lo": 0.4, "hi": 1.0}, "booking.cityMoveShare": {"state": "uncertain", "lo": 0.25, "hi": 0.75}}}, "paymentFee": 0.025, "maintPct": 0.15, "rollout": {"mode": "pilot", "pilotCoverage": 0.3, "holdout": 0.1, "gateMonth": 9, "scaleUp": {"booking": 150000, "group": 20000}, "shutdown": {"booking": 30000, "group": 15000}, "directHoldout": 0}, "org": {"booking": [{"area": "Product and technology", "task": "Booking flow, hub-zone logic and credits in the app", "owner": "Product lead", "hours": 280, "external": 40000, "ready": 3, "monthly": 8, "kpi": "Booking completion in the app", "dep": "", "current": "In-app hold of a nearby scooter for a few minutes; unlock now", "limitation": "No booking ahead, no hub zones, no promise that a scooter will be there"}, {"area": "Fleet operations", "task": "Overnight placement inside existing night routes", "owner": "Head of operations, Oslo", "hours": 120, "external": 0, "ready": 2, "monthly": 20, "kpi": "Availability at the booked time", "dep": "", "current": "Night crews rebalance and swap batteries against a demand forecast", "limitation": "Placement is not tied to individual next-morning bookings"}, {"area": "Analytics", "task": "Hub demand forecast, holdout design and CPE tracking", "owner": "Analytics lead", "hours": 100, "external": 0, "ready": 3, "monthly": 8, "kpi": "Incremental contribution vs holdout", "dep": "Booking flow", "current": "Demand forecasting for rebalancing", "limitation": "No randomised holdout or customer-level incrementality tracking"}, {"area": "Commercial and public affairs", "task": "Pricing, Pass terms and commitments in the Oslo bid", "owner": "Commercial manager", "hours": 60, "external": 10000, "ready": 1, "monthly": 2, "kpi": "Fee conversion; bid commitments met", "dep": "", "current": "Pass and pay-as-you-go price list", "limitation": "No price for a guaranteed scooter; bid commitments not linked to segments"}, {"area": "Customer support", "task": "Credit and exception process for failed bookings", "owner": "Support lead", "hours": 40, "external": 0, "ready": 3, "monthly": 2, "kpi": "Credits per 1,000 bookings", "dep": "Booking flow", "current": "Ride complaints and refunds handled case by case", "limitation": "No standard credit when a promise is broken"}], "group": [{"area": "Product and technology", "task": "Invitations, shared meeting point, nearby-vehicle view", "owner": "Product lead", "hours": 180, "external": 15000, "ready": 3, "monthly": 3, "kpi": "Group completion rate", "dep": "", "current": "Group Rides: one account unlocks up to five scooters and pays for all", "limitation": "No invitations, shared meeting point or nearby-scooter view for guests"}, {"area": "Fleet operations", "task": "Short group hold at the meeting point", "owner": "Head of operations, Oslo", "hours": 40, "external": 0, "ready": 3, "monthly": 1, "kpi": "Availability at intended departure", "dep": "Invitations", "feature": "reserve", "current": "Individual hold of one scooter", "limitation": "No hold for several scooters at one meeting point"}, {"area": "Product and technology", "task": "Split payment between guests' accounts", "owner": "Product lead", "hours": 80, "external": 5000, "ready": 4, "monthly": 1, "kpi": "Completion of groups with new guests", "dep": "Invitations", "feature": "split", "current": "The host pays for every scooter", "limitation": "Guests never register, so Voi cannot reach them again"}, {"area": "Marketing and CRM", "task": "Repeat-use journey after the first group trip", "owner": "CRM manager", "hours": 60, "external": 0, "ready": 3, "monthly": 3, "kpi": "Incremental repeat contribution", "dep": "Invitations", "current": "Generic e-mail and push campaigns", "limitation": "No follow-up journey triggered by a group trip"}, {"area": "Partnerships", "task": "Event and venue partners: selection, funding per group and duties", "owner": "Partnership manager", "hours": 60, "external": 10000, "ready": 3, "monthly": 2, "kpi": "Contribution per partner-generated trip", "dep": "", "feature": "partner", "current": "Ad-hoc local promotions", "limitation": "No agreements where venues pay for the groups they receive"}, {"area": "Customer support", "task": "Group issues and evening safety follow-up", "owner": "Support lead", "hours": 30, "external": 0, "ready": 3, "monthly": 1, "kpi": "Incidents per 100,000 evening trips", "dep": "", "current": "Standard support and safety messages", "limitation": "No evening follow-up for groups"}, {"area": "Product and technology", "task": "Join by link without the app (web check-in for guests)", "owner": "Product lead", "hours": 120, "external": 10000, "ready": 4, "monthly": 1, "kpi": "Share of guests joining by link; groups started per occasion", "dep": "Invitations", "feature": "easyInvite", "current": "Guests ride on the host's account", "limitation": "Every guest must download the app to see the group"}, {"area": "Analytics", "task": "Uplift targeting: offer the group incentive only where it changes behaviour", "owner": "Analytics lead", "hours": 80, "external": 0, "ready": 4, "monthly": 2, "kpi": "Extra groups per krone of incentive (A/B)", "dep": "Invitations", "feature": "targeted", "current": "Promotions sent broadly", "limitation": "Discounts also go to groups that would ride anyway"}, {"area": "Marketing and CRM", "task": "First ride free for new guests after a group trip", "owner": "CRM manager", "hours": 30, "external": 0, "ready": 3, "monthly": 1, "kpi": "Guests with a first paid ride within 30 days", "dep": "Invitations", "feature": "guestCredit", "current": "Generic welcome offers", "limitation": "Not tied to the guest's first group trip"}], "common": [{"area": "Management", "task": "Sponsor, pilot owner, budget ownership and gate reviews", "owner": "Country manager, Norway", "hours": 60, "external": 0, "ready": 1, "monthly": 6, "kpi": "Investment against agreed thresholds", "dep": "", "current": "Initiatives owned inside separate functions", "limitation": "No single pilot owner, budget or gate review"}]}, "season": {"amp": 0.0, "peakMonth": 10}}; window.VOI_CONFIG = {"publicUrl": "https://kingen560.github.io/voi-portfolio-engine/", "version": "23 Oct 2026"};</script>
-<script>// Voi Customer Portfolio Engine v6.3.0: calculation core. No DOM access; see ui.js.
+<script>window.VOI_DEFAULTS = {"horizon": 36, "population": {"useCalibrated": true, "activeCustomers": 10000}, "discountAnnual": 0.1, "norwayRevenueEURm": 19.0, "nokPerEur": 11.7173, "osloShare": 0.75, "ruterTripsM": 20.4, "voiTripShare": 0.355, "costPerRide": 7.67, "passPrice": 399, "vat": 0.25, "hourly": 545.05, "fieldHourly": 400, "segShares": {"CS": 0.3056, "SLS": 0.2917, "CR": 0.2083, "TC": 0.1944}, "rides": {"A": 1.3, "F": 12, "P": 15}, "trans": {"AF": 0.05, "AP": 0.01, "AL": 0.1, "FA": 0.12, "FP": 0.02, "FL": 0.05, "PA": 0.02, "PF": 0.07, "PL": 0.035, "LA": 0.04, "LX": 0.05}, "surveyMix": true, "engagement": {"CS": 0.5455, "SLS": 0.25, "CR": 0.0, "TC": 0.3077}, "engagementPooled": 0.3088, "shrink": 0.5, "useQ24": false, "q24": {"CS": 5.0, "SLS": 4.29, "CR": 2.6, "TC": 4.14, "mean": 4.12}, "booking": {"citywide": false, "cityEligible": 0.8, "cityMoveShare": 0.5, "logitDemand": false, "eligible": 0.4, "adoptF": 0.25, "adoptP": 0.5, "perAdopter": 8, "passIncluded": 0, "fee": 35, "fulfil": 0.95, "noShow": 0.12, "compensation": 20, "moveShare": 0.25, "minutesPerMove": 8, "transportPerMove": 20, "supportPer": 0.5, "capacity": 3000, "overtimePremium": 0.5, "incShare": 0.25, "upgradeUplift": 0.04, "lapseRed": 0.03, "spillover": 0.01, "ramp": 4, "holdDisplace": 0.05, "feeElasticity": 0.0, "feeRef": 25}, "group": {"occasionRate": 0.6, "serviceable": 0.7, "initiate": 0.06, "availBase": 0.75, "reserve": true, "reserveLift": 0.15, "bookingInteraction": 0.05, "complete": 0.9, "vehicles": 3, "split": false, "splitFriction": 0.25, "splitTxn": 1.0, "targetShare": 0.5, "discount": 0.15, "incShare": 0.47, "guestsNew": 0.35, "register": 0.25, "partner": false, "partnerLift": 1.25, "partnerCost": 10, "partnerFunding": 15, "support": 3, "holdFail": 0.15, "displaceProb": 0.1, "repeat": 0.03, "lapseRed": 0.04, "ramp": 3, "activate": 0.5, "activateSplit": 0.3, "guestUnique": 0.7, "groupsPerHost": 1.3, "discountElasticity": 0.0, "discountRef": 0.15, "availCap": 0.95, "easyInvite": true, "inviteLift": 0.25, "targeted": false, "targetPrecision": 0.5, "guestCredit": false, "creditLift": 0.15, "partnerShare": 0.1}, "budget": 750000, "licence": {"renewMonth": 6, "period": 24, "p0": 0.8, "bkEffect": 0.0, "grEffect": 0.0}, "mc": {"seed": 2026, "draws": 1000, "noise": 0.15, "rho": 0.5, "groups": {"demand": ["booking.adoptF", "booking.adoptP", "group.initiate", "group.inviteLift"], "additionality": ["booking.incShare", "group.incShare"], "delivery": ["group.availBase", "group.complete"], "retention": ["booking.lapseRed", "booking.upgradeUplift", "group.lapseRed", "group.repeat"]}, "dist": {"osloShare": {"state": "uncertain", "lo": 0.6, "hi": 0.85}, "voiTripShare": {"state": "uncertain", "lo": 0.333, "hi": 0.366}, "fieldHourly": {"state": "uncertain", "lo": 340, "hi": 520}, "booking.eligible": {"state": "uncertain", "lo": 0.25, "hi": 0.55}, "booking.adoptF": {"state": "uncertain", "lo": 0.12, "hi": 0.4}, "booking.adoptP": {"state": "uncertain", "lo": 0.25, "hi": 0.7}, "booking.moveShare": {"state": "uncertain", "lo": 0.15, "hi": 0.4}, "booking.minutesPerMove": {"state": "uncertain", "lo": 4, "hi": 15}, "booking.noShow": {"state": "uncertain", "lo": 0.05, "hi": 0.25}, "booking.incShare": {"state": "uncertain", "lo": 0.1, "hi": 0.4}, "booking.upgradeUplift": {"state": "uncertain", "lo": 0, "hi": 0.08}, "booking.lapseRed": {"state": "uncertain", "lo": 0, "hi": 0.06}, "booking.spillover": {"state": "uncertain", "lo": 0, "hi": 0.02}, "group.initiate": {"state": "uncertain", "lo": 0.03, "hi": 0.1}, "group.availBase": {"state": "uncertain", "lo": 0.6, "hi": 0.85}, "group.complete": {"state": "uncertain", "lo": 0.75, "hi": 0.95}, "group.incShare": {"state": "uncertain", "lo": 0.2, "hi": 0.65}, "group.register": {"state": "uncertain", "lo": 0.1, "hi": 0.4}, "group.repeat": {"state": "uncertain", "lo": 0, "hi": 0.06}, "group.lapseRed": {"state": "uncertain", "lo": 0, "hi": 0.08}, "group.activate": {"state": "uncertain", "lo": 0.3, "hi": 0.7}, "group.inviteLift": {"state": "uncertain", "lo": 0, "hi": 0.5}, "group.targetPrecision": {"state": "uncertain", "lo": 0.2, "hi": 0.7}, "group.creditLift": {"state": "uncertain", "lo": 0, "hi": 0.3}, "booking.cityEligible": {"state": "uncertain", "lo": 0.4, "hi": 1.0}, "booking.cityMoveShare": {"state": "uncertain", "lo": 0.25, "hi": 0.75}}}, "paymentFee": 0.025, "maintPct": 0.15, "rollout": {"mode": "pilot", "pilotCoverage": 0.3, "holdout": 0.1, "gateMonth": 9, "scaleUp": {"booking": 150000, "group": 20000}, "shutdown": {"booking": 30000, "group": 15000}, "directHoldout": 0}, "org": {"booking": [{"area": "Product and technology", "task": "Booking flow, hub-zone logic and credits in the app", "owner": "Product lead", "hours": 280, "external": 40000, "ready": 3, "monthly": 8, "kpi": "Booking completion in the app", "dep": "", "current": "In-app hold of a nearby scooter for a few minutes; unlock now", "limitation": "No booking ahead, no hub zones, no promise that a scooter will be there"}, {"area": "Fleet operations", "task": "Overnight placement inside existing night routes", "owner": "Head of operations, Oslo", "hours": 120, "external": 0, "ready": 2, "monthly": 20, "kpi": "Availability at the booked time", "dep": "", "current": "Night crews rebalance and swap batteries against a demand forecast", "limitation": "Placement is not tied to individual next-morning bookings"}, {"area": "Analytics", "task": "Hub demand forecast, holdout design and CPE tracking", "owner": "Analytics lead", "hours": 100, "external": 0, "ready": 3, "monthly": 8, "kpi": "Incremental contribution vs holdout", "dep": "Booking flow", "current": "Demand forecasting for rebalancing", "limitation": "No randomised holdout or customer-level incrementality tracking"}, {"area": "Commercial and public affairs", "task": "Pricing, Pass terms and commitments in the Oslo bid", "owner": "Commercial manager", "hours": 60, "external": 10000, "ready": 1, "monthly": 2, "kpi": "Fee conversion; bid commitments met", "dep": "", "current": "Pass and pay-as-you-go price list", "limitation": "No price for a guaranteed scooter; bid commitments not linked to segments"}, {"area": "Customer support", "task": "Credit and exception process for failed bookings", "owner": "Support lead", "hours": 40, "external": 0, "ready": 3, "monthly": 2, "kpi": "Credits per 1,000 bookings", "dep": "Booking flow", "current": "Ride complaints and refunds handled case by case", "limitation": "No standard credit when a promise is broken"}], "group": [{"area": "Product and technology", "task": "Invitations, shared meeting point, nearby-vehicle view", "owner": "Product lead", "hours": 180, "external": 15000, "ready": 3, "monthly": 3, "kpi": "Group completion rate", "dep": "", "current": "Group Rides: one account unlocks up to five scooters and pays for all", "limitation": "No invitations, shared meeting point or nearby-scooter view for guests"}, {"area": "Fleet operations", "task": "Short group hold at the meeting point", "owner": "Head of operations, Oslo", "hours": 40, "external": 0, "ready": 3, "monthly": 1, "kpi": "Availability at intended departure", "dep": "Invitations", "feature": "reserve", "current": "Individual hold of one scooter", "limitation": "No hold for several scooters at one meeting point"}, {"area": "Product and technology", "task": "Split payment between guests' accounts", "owner": "Product lead", "hours": 80, "external": 5000, "ready": 4, "monthly": 1, "kpi": "Completion of groups with new guests", "dep": "Invitations", "feature": "split", "current": "The host pays for every scooter", "limitation": "Guests never register, so Voi cannot reach them again"}, {"area": "Marketing and CRM", "task": "Repeat-use journey after the first group trip", "owner": "CRM manager", "hours": 60, "external": 0, "ready": 3, "monthly": 3, "kpi": "Incremental repeat contribution", "dep": "Invitations", "current": "Generic e-mail and push campaigns", "limitation": "No follow-up journey triggered by a group trip"}, {"area": "Partnerships", "task": "Event and venue partners: selection, funding per group and duties", "owner": "Partnership manager", "hours": 60, "external": 10000, "ready": 3, "monthly": 2, "kpi": "Contribution per partner-generated trip", "dep": "", "feature": "partner", "current": "Ad-hoc local promotions", "limitation": "No agreements where venues pay for the groups they receive"}, {"area": "Customer support", "task": "Group issues and evening safety follow-up", "owner": "Support lead", "hours": 30, "external": 0, "ready": 3, "monthly": 1, "kpi": "Incidents per 100,000 evening trips", "dep": "", "current": "Standard support and safety messages", "limitation": "No evening follow-up for groups"}, {"area": "Product and technology", "task": "Join by link without the app (web check-in for guests)", "owner": "Product lead", "hours": 120, "external": 10000, "ready": 4, "monthly": 1, "kpi": "Share of guests joining by link; groups started per occasion", "dep": "Invitations", "feature": "easyInvite", "current": "Guests ride on the host's account", "limitation": "Every guest must download the app to see the group"}, {"area": "Analytics", "task": "Uplift targeting: offer the group incentive only where it changes behaviour", "owner": "Analytics lead", "hours": 80, "external": 0, "ready": 4, "monthly": 2, "kpi": "Extra groups per krone of incentive (A/B)", "dep": "Invitations", "feature": "targeted", "current": "Promotions sent broadly", "limitation": "Discounts also go to groups that would ride anyway"}, {"area": "Marketing and CRM", "task": "First ride free for new guests after a group trip", "owner": "CRM manager", "hours": 30, "external": 0, "ready": 3, "monthly": 1, "kpi": "Guests with a first paid ride within 30 days", "dep": "Invitations", "feature": "guestCredit", "current": "Generic welcome offers", "limitation": "Not tied to the guest's first group trip"}], "common": [{"area": "Management", "task": "Sponsor, pilot owner, budget ownership and gate reviews", "owner": "Country manager, Norway", "hours": 60, "external": 0, "ready": 1, "monthly": 6, "kpi": "Investment against agreed thresholds", "dep": "", "current": "Initiatives owned inside separate functions", "limitation": "No single pilot owner, budget or gate review"}]}, "season": {"amp": 0.0, "peakMonth": 10}}; window.VOI_CONFIG = {"publicUrl": "https://kingen560.github.io/voi-portfolio-engine/", "version": "23 Oct 2026"}; window.VOI_EVIDENCE = {"version": "6.4.0", "scope": "Evidence provenance and design interpretation. No new treatment-effect estimates or economic assumptions are introduced.", "trails": [{"id": "survey", "question": "Why these customer groups?", "status": "Survey observations", "refs": ["survey"], "found": "Opened the supplied VOI_Dataset_Original.sav, counted the existing QCL_4 memberships, and recomputed selected question means and category counts. No re-clustering or causal estimation was performed.", "used": "Need scores motivate the two propositions. The existing clusters provide exploratory profiles. Their sample proportions become explicitly assumed scenario weights when applied to an Oslo portfolio.", "limit": "72 convenience-sample respondents. Neither representative Oslo segment sizes, willingness to pay for these exact offers, nor their causal effects were measured. Two of 22 Convenience Seekers chose priority access or reservations as their top Pass benefit; that combined survey option is not a paid-booking adoption rate.", "measure": "Recruit eligible riders beyond the original sample, test the exact offer and price, and compare assigned groups with a concurrent holdout.", "inputs": ["segShares.CS", "segShares.SLS", "engagement.CS", "engagement.SLS"]}, {"id": "finance", "question": "Which financial figures are reported?", "status": "Reported anchors + calculations", "refs": ["voiAR25", "ecb"], "found": "Located Norway revenue in Note 2 of the saved Voi 2025 annual report. Checked the report text and reproduced the average vehicle-cost calculation from group revenue, vehicle profit and rides. Retained the recorded ECB 2025 annual conversion; its portal could not be re-fetched in this review.", "used": "Norway revenue is converted to NOK, then multiplied by an assumed Oslo allocation. Group average vehicle cost anchors a scenario unit cost; it is not an observed marginal Oslo cost.", "limit": "A company report validates its reported totals, not the proposed offers' revenue, incremental costs or retention effects. Oslo revenue and PAYG unit revenue are model estimates.", "measure": "Obtain actual Oslo net revenue, product mix and incremental service costs from Voi; reconcile those with the selected period.", "inputs": ["norwayRevenueEURm", "nokPerEur", "costPerRide"]}, {"id": "scale", "question": "How did we reach the Oslo scale?", "status": "Estimates built on reported totals", "refs": ["ruter25", "voiPR0314", "voiPR0211"], "found": "The original collection recorded Ruter's 20.4m Oslo rental e-scooter trips in 2025 and Voi's historical trip/fleet information. Ruter's page returned 403 during this review, so that recorded anchor has not been freshly verified here. Neither a 2025 Voi trip share nor its Oslo revenue allocation is reported in the evidence held.", "used": "All-operator trips \u00d7 an assumed Voi trip share gives estimated Voi trips. Norway revenue \u00d7 an assumed Oslo share gives estimated Oslo revenue. Trips divided by assumed customer usage imply active customers. A named starting cohort is available instead.", "limit": "The scale, starting customer mix and baseline transition rates are constructed. Applying sample shares to this scale does not turn them into observed Oslo market shares. Named cohorts retain replacement inflow and fixed operating costs.", "measure": "Validate active customers, Voi trips, cohort transitions and segment weights against operator data. Use a clearly named cohort when only its size is known.", "inputs": ["ruterTripsM", "voiTripShare", "osloShare", "population.useCalibrated", "population.activeCustomers"]}, {"id": "costs", "question": "Where do delivery costs come from?", "status": "Literature context + planning allowances", "refs": ["ssb", "osorio", "raviv", "liu"], "found": "Used wage benchmarks and published rebalancing studies to identify labour, handling, transport and capacity categories. The cited studies concern other places, vehicles or historical arrangements; they do not price the proposed Oslo operation.", "used": "Entered planning hours, field labour, vehicle transport, fulfilment and dedicated placement into the cost structure. The 400 NOK field-hour and 20 NOK vehicle allowance are planning inputs, with labour counted separately.", "limit": "No proposed-service crew logs, supplier quotes or observed booking-placement fraction have been supplied. Average fleet cost and historical contractor payments do not establish marginal placement cost.", "measure": "Record dedicated placements per booking, labour minutes, route kilometres, capacity overflow and fulfilment failures during the pilot.", "inputs": ["fieldHourly", "booking.moveShare", "booking.cityMoveShare", "booking.minutesPerMove", "booking.transportPerMove"]}, {"id": "behaviour", "question": "Which effects are still assumptions?", "status": "Unmeasured response assumptions", "refs": ["kabra", "shah", "cambe"], "found": "Used published mobility studies to identify plausible mechanisms and our survey to describe customer needs. No dataset in this project measures response to the proposed booking/group packages or a causal reduction in Voi lapse.", "used": "Adoption, additional trips, repeat use, lapse reduction and guest activation are scenario inputs with stated ranges. The engine combines them with contribution and delivery costs. Literature coefficients are not fitted Voi treatment effects.", "limit": "A source supporting availability or relationship development does not validate the entered effect size. Monte Carlo probabilities are conditional on assumed distributions. Even the relative ranking of the two offers remains unvalidated.", "measure": "Randomise offer assignment, retain a concurrent control, track all rides and contribution per assigned rider, and distinguish genuine new guests from existing customers.", "inputs": ["booking.adoptF", "booking.incShare", "booking.lapseRed", "group.initiate", "group.incShare", "group.lapseRed"]}, {"id": "competition", "question": "What protects value from competitors?", "status": "Theory + our design interpretation", "refs": ["burnham03", "js04", "course5"], "found": "Read the supplied course material on satisfaction, switching costs and loyalty; checked Burnham et al.'s publisher abstract and the supplied Johnson & Selnes text on relationship development and switching. No Voi-specific switching-cost scale, rival-response dataset or exclusive partner contract was supplied.", "used": "Distinguish time/effort costs, financial losses and relational attachment. Assess which the offer might create, how competitors could copy it and what customers actually gain. Potential protection is a hypothesis to investigate.", "limit": "Remaining active is not proof of attitudinal loyalty or switching barriers. Inactivity can reflect switching, seasonality or no travel need. The model has no competitor states, multi-homing behaviour or separate switching-cost coefficient. Lower lapse already represents any hypothesised retention benefit: no second protection premium is added.", "measure": "Track competing-app usage and share of rides, switching reasons, satisfaction, perceived time/effort to change provider and lost benefits. Compare both offers after rival imitation or a better competing offer.", "inputs": ["booking.lapseRed", "booking.upgradeUplift", "group.lapseRed", "group.repeat"]}], "audit": {"audit_version": "6.4.0", "scope": "Internal reproduction of aggregate source facts; not external or causal validation.", "survey": {"file": "VOI_Dataset_Original.sav", "sha256": "c2b8eb1adc2397b14f878f82746496e05dd75b44622e1a8661eba7761ca43be5", "n": 72, "cluster_field": "QCL_4", "profiles": {"CS": {"cluster": 3, "respondents": 22, "users": 22, "weekly": 12, "subscribers": 4, "attribute_means": {"Q7": 6.2273, "Q8": 6.6818, "Q12": 6.3182, "Q14": 4.4545, "Q15": 3.9091, "Q16": 2.8182, "Q24": 5.0}, "reservation_top_benefit": 2, "fallback_counts": {"Public transport": 12, "Bicycle": 4, "Walk": 3, "Car": 2, "Another e-scooter provider": 1}}, "SLS": {"cluster": 1, "respondents": 21, "users": 20, "weekly": 5, "subscribers": 2, "attribute_means": {"Q7": 4.8095, "Q8": 4.9524, "Q12": 5.0476, "Q14": 6.0476, "Q15": 6.7143, "Q16": 6.0952, "Q24": 4.2857}, "reservation_top_benefit": 0, "fallback_counts": {"Taxi or ride-hailing": 7, "Walk": 5, "Public transport": 5, "Another e-scooter provider": 3, "Bicycle": 1}}, "CR": {"cluster": 2, "respondents": 15, "users": 13, "weekly": 0, "subscribers": 0, "attribute_means": {"Q7": 4.0667, "Q8": 6.5333, "Q12": 5.8667, "Q14": 3.6, "Q15": 2.9333, "Q16": 2.2667, "Q24": 2.6}, "reservation_top_benefit": 0, "fallback_counts": {"Walk": 6, "Public transport": 3, "Bicycle": 3, "Car": 2, "Another e-scooter provider": 1}}, "TC": {"cluster": 4, "respondents": 14, "users": 13, "weekly": 4, "subscribers": 0, "attribute_means": {"Q7": 5.7143, "Q8": 5.4286, "Q12": 5.2143, "Q14": 3.2143, "Q15": 3.6429, "Q16": 3.7143, "Q24": 4.1429}, "reservation_top_benefit": 2, "fallback_counts": {"Walk": 6, "Bicycle": 5, "Public transport": 2, "Another e-scooter provider": 1}}}, "usage_states": {"users": 68, "occasional_without_pass": 47, "frequent_without_pass": 15, "subscribers": 6}, "limit": "Convenience sample. Existing memberships are reproduced, not independently re-estimated or validated."}, "annual_report": {"file": "Voi_Annual_Report_2025.pdf", "locator": "Note 2, Norway revenue; vehicle-profit and ride totals", "pdf_sha256": "a6e71f2b1477a62bf1d1f3688b6747672b22dc711cec554c7a8c69f41f1995a4", "norway_revenue_eur_m": 19.0, "group_revenue_eur_m": 178.2, "vehicle_profit_eur_m": 102.4, "rides_m": 115.815, "vehicle_cost_formula_nok": 7.668880024176487, "rounded_model_value": 7.67, "limit": "Group average operating cost, not an observed marginal Oslo ride cost."}, "other_sources": {"Ruter_2025": "Retained from original source collection; automated refetch returned 403 in this review.", "ECB_2025": "Retained from original source collection; portal refetch returned 503 in this review.", "Burnham_2003": "Publisher abstract and supplied Lecture 5 checked; no effect size transferred.", "Johnson_Selnes_2004": "Supplied full text on relationship development and switching checked; usage states are an adaptation."}}};</script>
+<script>// Voi Customer Portfolio Engine v6.4.0: calculation core. No DOM access; see ui.js.
 // Every monetary flow is an increment against a steady-state baseline in which no initiative runs.
 (function (root) {
   'use strict';
@@ -917,7 +1033,7 @@ details.card.adv[open] > summary { margin-bottom: 16px; }
   const get = (o, path) => path.split('.').reduce((a, k) => a[k], o);
   const set = (o, path, v) => { const k = path.split('.'); const last = k.pop(); k.reduce((a, q) => a[q], o)[last] = v; };
   const clamp01 = v => Math.min(1, Math.max(0, v));
-  const VERSION = '6.3.0';
+  const VERSION = '6.4.0';
   const bookingEligibility = x => x.booking.citywide ? x.booking.cityEligible : x.booking.eligible;
   const bookingMoveShare = x => x.booking.citywide ? x.booking.cityMoveShare : x.booking.moveShare;
   // Alternative demand structures share reference adoption and its LOCAL price elasticity.
@@ -1917,6 +2033,83 @@ globalThis.VoiRegression = function (x) {
   return out;
 };
 </script>
+<script>// Guided interaction and evidence provenance. Presentation only: uses the existing financial engine.
+(function (root) {
+  'use strict';
+  root.createVoiReview = function (api) {
+    const E = root.VoiEngine, registry = root.VOI_EVIDENCE, audit = registry.audit, $ = s => document.querySelector(s), esc = api.esc;
+    const initial = E.clone(api.inputs());
+    let driver = '', evidenceId = 'survey', last = null;
+    const comparison = (x, id) => E.compare(x, api.options[id]);
+    function drivers() {
+      const selected = api.selected(), x = api.inputs();
+      return [
+        { key: x.booking.citywide ? 'booking.cityMoveShare' : 'booking.moveShare', label: 'Bookings needing a dedicated placement', offer: 'booking', explanation: 'Move this up to test a more expensive delivery promise. Look at the change in extra portfolio value on the right. The placement fraction is an assumption, not a measured Oslo rate.' },
+        { key: 'group.incShare', label: 'Group trips that are genuinely additional', offer: 'group', explanation: 'Move this down if more groups would already ride without the new offer. Look at the lost extra value. This counterfactual share needs a holdout test.' }
+      ].filter(d => selected === 'both' || selected === 'none' || d.offer === selected);
+    }
+    function guide(data) {
+      last = data;
+      const list = drivers(), select = $('#guide-driver'), previous = driver;
+      if (!list.some(d => d.key === driver)) driver = list[0].key;
+      select.innerHTML = list.map(d => `<option value="${d.key}">${esc(d.label)}</option>`).join(''); select.value = driver;
+      const d = list.find(d => d.key === driver), q = api.meta(driver), disabled = api.selected() === 'none';
+      if (previous !== driver || !$('#guide-control .inp')) {
+        $('#guide-control').innerHTML = `<div class="inp guide-input" data-key="${driver}"><div class="lab"><label for="guide-value">Your scenario value</label><span class="tag c-assumed">Assumption</span></div><div class="ctl"><input type="range" min="${q.min * 100}" max="${q.max * 100}" step="${q.step * 100}" data-role="range" aria-label="${esc(d.label)}"><input type="number" id="guide-value" min="${q.min * 100}" max="${q.max * 100}" step="${q.step * 100}" data-role="num"><span class="unit">%</span></div></div>`;
+      }
+      const current = E.get(api.inputs(), driver), reference = E.get(initial, driver), row = $('#guide-control .inp');
+      row.querySelector('[data-role="num"]').value = +(current * 100).toFixed(4);
+      row.querySelector('[data-role="range"]').value = current * 100;
+      select.disabled = disabled; row.querySelectorAll('input').forEach(el => { el.disabled = disabled; });
+      $('#guide-restore').disabled = disabled || current === reference;
+      $('#guide-help').textContent = disabled ? 'Choose an offer in step 1 to change its assumptions and see the result.' : d.explanation;
+      $('#guide-reference').textContent = `Reference when opened: ${api.percent(reference, 1)}. Only the selected assumption differs between the two calculations; other current inputs are held the same.`;
+      const y = E.clone(api.inputs()); E.set(y, driver, reference);
+      const ref = comparison(y, api.selected()).dCPE, value = data.by[api.selected()].dCPE, difference = value - ref;
+      $('#guide-effect').innerHTML = `<span class="guide-effect-label">Effect of this assumption change</span><b id="guide-delta" data-value="${difference}" data-reference="${ref}">${api.money(difference)}</b><span>${api.money(ref)} at ${api.percent(reference, 1)} → ${api.money(value)} at your ${api.percent(current, 1)}.</span>`;
+      $('#guide-effect').hidden = disabled;
+      $('#guide-read-hint').textContent = disabled ? 'The no-new-offer baseline has zero incremental value.' : 'This is the estimated extra contribution after setup over the full horizon. A positive result depends on the entered assumptions; it is not an observed return.';
+    }
+    function fields(keys) {
+      return `<div class="trail-inputs">${keys.map(key => {
+        const q = api.meta(key), current = E.get(api.inputs(), key), base = E.get(api.defaults, key), edited = JSON.stringify(current) !== JSON.stringify(base);
+        const fmt = v => q.type === 'bool' ? (v ? 'On' : 'Off') : api.format(q, v);
+        return `<div data-evidence-key="${key}"><a href="#" data-var="${key}">${esc(q.label)}</a><b>${esc(fmt(current))}</b><small>${edited ? 'Edited model input' : 'Reference model input'} · original ${esc(fmt(base))}</small></div>`;
+      }).join('')}</div>`;
+    }
+    function facts(id, data) {
+      const p = audit.survey.profiles, cal = data.cmp.sc.cal, x = api.inputs();
+      if (id === 'survey') return `<div class="trail-fact"><b>${audit.survey.n} respondents → four existing clusters</b><p>Convenience Seekers ${p.CS.respondents}; Social Leisure Seekers ${p.SLS.respondents}; Cautious Riders ${p.CR.respondents}; Transport Connectors ${p.TC.respondents}.</p><p>CS: availability ${p.CS.attribute_means.Q7.toFixed(2)}, battery ${p.CS.attribute_means.Q8.toFixed(2)}, simple app ${p.CS.attribute_means.Q12.toFixed(2)}. SLS: riding with friends ${p.SLS.attribute_means.Q16.toFixed(2)}. Scores are means on 1–7 survey items.</p><p>${p.CS.reservation_top_benefit} of ${p.CS.respondents} CS respondents chose the combined “priority access or reservations” benefit. It was not a test of this exact service or price.</p></div>`;
+      if (id === 'finance') return `<div class="trail-fact"><b>Reported Norway revenue: EUR ${audit.annual_report.norway_revenue_eur_m.toFixed(1)}m</b><p>Group average vehicle cost: (EUR 178.2m revenue − EUR 102.4m vehicle profit) ÷ 115.815m rides × 11.7173 NOK/EUR = ${audit.annual_report.vehicle_cost_formula_nok.toFixed(4)} NOK per ride; rounded reference ${audit.annual_report.rounded_model_value} NOK.</p><p>These are reported totals and an arithmetic transformation. They do not measure the new offers' future cash flows.</p></div>`;
+      if (id === 'scale') return `<div class="trail-fact"><b>Two allocation assumptions connect public totals to Oslo</b><p>Entered Norway revenue × ${api.percent(x.osloShare, 1)} Oslo allocation. Recorded Oslo trips × ${api.percent(x.voiTripShare, 1)} Voi trip share. Estimated active customers in the current scope: ${api.number(Math.round(cal.active))}.</p><p>Baseline calibration also uses assumed usage and transitions. Fitting the selected totals does not validate future customer behaviour.</p></div>`;
+      if (id === 'costs') return `<div class="trail-fact"><b>Planning allowances, with labour and vehicle costs separate</b><p>Current field labour ${api.format(api.meta('fieldHourly'), x.fieldHourly)}; vehicle transport ${api.format(api.meta('booking.transportPerMove'), x.booking.transportPerMove)} per dedicated placement; labour minutes ${api.number(x.booking.minutesPerMove, 1)} per placement.</p><p>The selected placement fraction controls how many bookings incur these costs. Organizational build and running hours are also estimates to validate.</p></div>`;
+      if (id === 'behaviour') return `<div class="trail-fact"><b>The proposed offers have not been tested in these data</b><p>Current adoption, additionality and retention inputs are shown below. The original survey measures needs and stated preferences; it does not estimate these causal response rates.</p><p>Compare the ranking with future-behaviour benefits removed. A ranking change reveals assumption dependence, not the probability of a future outcome.</p></div>`;
+      return `<div class="trail-fact"><b>Switching costs and competitive protection are hypotheses</b><p>Procedural: time and effort to change provider. Financial: benefits or money lost on leaving. Relational: attachment or coordination that would be lost. These concepts are drawn from Burnham et al. (2003) and the supplied course material; no numerical Voi coefficient is transferred.</p></div><div class="defence-grid"><article><h4>Hub &amp; Book</h4><p>Reliable recurring departures could support habits and trust. That is our design interpretation. An unused paid Pass allowance could create a temporary benefit-loss cost only if the customer actually values it. Neither effect is measured here.</p><p><b>What can a rival copy?</b> The booking feature or price. Any durable advantage would need evidence of superior fulfilment, useful locations or valued integration.</p></article><article><h4>Voi Together</h4><p>Repeated group planning could create coordination value. Friends belong to the group, so a Voi invitation link does not by itself establish a proprietary network or relational lock-in.</p><p><b>What can a rival copy?</b> The invitation and group flow. Useful partner integration might matter; no exclusive partnership or protection is assumed.</p></article></div><p class="note">Measure satisfaction and voluntary preference alongside perceived switching costs. Repeated riding alone cannot tell them apart. No exit penalty or extra competitive-protection value is added to this engine.</p>`;
+    }
+    function trail(data) {
+      const item = registry.trails.find(t => t.id === evidenceId);
+      if (!$('#evidence-trail-nav').children.length) $('#evidence-trail-nav').innerHTML = registry.trails.map(t => `<button type="button" data-evidence-trail="${t.id}" aria-pressed="${t.id === evidenceId}">${esc(t.question)}</button>`).join('');
+      $('#evidence-trail-nav').querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.evidenceTrail === evidenceId)));
+      $('#evidence-trail-detail').innerHTML = `<div class="trail-heading"><span class="eyebrow">${esc(item.status)}</span><h3>${esc(item.question)}</h3>${api.references(item.refs)}</div>${facts(item.id, data)}<dl class="evidence-chain"><dt>How we found it</dt><dd>${esc(item.found)}</dd><dt>How it enters the model</dt><dd>${esc(item.used)}</dd><dt>What it cannot establish</dt><dd>${esc(item.limit)}</dd><dt>What to collect next</dt><dd>${esc(item.measure)}</dd></dl>${fields(item.inputs)}${item.id === 'competition' || item.id === 'behaviour' ? '<button class="btn" type="button" data-goto="compare" data-anchor="behaviour-test">Inspect the no-retention stress test ↗</button>' : ''}`;
+    }
+    function evidence(data) {
+      last = data; trail(data);
+      const x = api.inputs(), off = api.noFuture(x), noRet = E.clone(x);
+      for (const k of ['booking.upgradeUplift', 'booking.lapseRed', 'booking.spillover', 'group.lapseRed', 'group.repeat']) E.set(noRet, k, 0);
+      const rows = [['Current assumptions', x], ['No retention / repeat-use advantage', noRet], ['No future-behaviour benefits', off]];
+      $('#evidence-ranking').innerHTML = `<thead><tr><th>Conditional case</th><th>Hub &amp; Book alone</th><th>Voi Together alone</th></tr></thead><tbody>${rows.map(([name, inputs]) => `<tr><th scope="row">${name}</th>${['booking', 'group'].map(id => `<td class="num">${api.money(comparison(inputs, id).dCPE)}</td>`).join('')}</tr>`).join('')}</tbody>`;
+      $('#evidence-status-note').textContent = 'The source trail below distinguishes reproduced survey facts, reported financial anchors, constructed estimates and unmeasured responses. These categories are not a validation score.';
+    }
+    function summary() {
+      return { version: registry.version, scope: registry.scope, currentInputs: E.clone(api.inputs()), trails: E.clone(registry.trails), aggregateChecks: E.clone(audit), note: 'Published facts and model reference values are separate from current edited inputs. Internal verification is not predictive validation.' };
+    }
+    $('#guide-driver').addEventListener('change', e => { driver = e.target.value; if (last) guide(last); });
+    $('#guide-restore').addEventListener('click', () => api.restore(driver, E.get(initial, driver), initial.mc.dist[driver]));
+    $('#evidence-trail-nav').addEventListener('click', e => { const b = e.target.closest('[data-evidence-trail]'); if (!b) return; evidenceId = b.dataset.evidenceTrail; if (last) trail(last); });
+    return { guide, evidence, summary };
+  };
+})(typeof window !== 'undefined' ? window : globalThis);
+</script>
 <script>// Voi Customer Portfolio Engine: interface. Depends on VoiEngine and VOI_DEFAULTS.
 (function () {
   'use strict';
@@ -1926,6 +2119,7 @@ globalThis.VoiRegression = function (x) {
   const VERSION = E.VERSION;
   let X = E.clone(DEFAULTS);
   let simulator = null;
+  let review = null;
 
   // ---------- Sources: every input points to the evidence for its number and for its mechanism ----------
   const SRC = {
@@ -1959,7 +2153,9 @@ globalThis.VoiRegression = function (x) {
     competitors: ['Dott reservations (ridedott.com/reservations, May 2025); Lime reservations (li.me).', ''],
     voiTerms: ['Voi user agreement, Norway: Group Rides up to five vehicles; discounts not valid for guests.', ''],
     survey: ['Our survey dataset VOI_Dataset_Original.sav (n=72, convenience sample), four-cluster solution QCL_4.', ''],
-    js04: ['Johnson, M. D. & Selnes, F. (2004). Customer portfolio management. Journal of Marketing 68(2), 1–17.', ''],
+    js04: ['Johnson, M. D. & Selnes, F. (2004). Customer portfolio management. Journal of Marketing 68(2), 1–17.', 'https://ecommons.cornell.edu/entities/publication/22d27c0a-b390-418d-a76b-9ebd360bab11'],
+    burnham03: ['Burnham, T. A., Frels, J. K. & Mahajan, V. (2003). Consumer Switching Costs: A Typology, Antecedents, and Consequences. Journal of the Academy of Marketing Science 31(2), 109–126. Publisher abstract checked; no Voi coefficient transferred.', 'https://doi.org/10.1177/0092070302250897'],
+    course5: ['Customer Centricity, Lecture 5: Customer satisfaction, switching costs and customer loyalty, slides 12–14, 18–25. Supplied course material; conceptual guidance, not Voi effect estimates.', ''],
     gupta04: ['Gupta, S., Lehmann, D. R. & Stuart, J. A. (2004). Valuing customers. Journal of Marketing Research 41(1), 7–18.', ''],
     berger98: ['Berger, P. D. & Nasr, N. I. (1998). Customer lifetime value. Journal of Interactive Marketing 12(1), 17–30.', ''],
     rust04: ['Rust, R. T., Lemon, K. N. & Zeithaml, V. A. (2004). Return on marketing. Journal of Marketing 68(1), 109–127.', ''],
@@ -2009,7 +2205,7 @@ globalThis.VoiRegression = function (x) {
     { key: 'rides.P', label: 'Rides a month: Subscriber (Voi Pass)', group: 'dynamics', min: 0, max: 60, step: 0.5, fmt: 'num', src: 'DV', ref: ['survey'], per: 'subscriber', when: 'monthly', note: 'Current subscribers: 15.2 (n=6).' },
     { key: 'trans.AF', label: 'Occasional → Frequent', group: 'dynamics', min: 0, max: 0.5, step: 0.005, fmt: 'pct', src: 'DV', ref: ['survey', 'lime'], per: 'occasional riders', when: 'monthly', note: 'With the other moves, set so that the steady mix matches the survey (69/22/9).' },
     { key: 'trans.AP', label: 'Occasional → Subscriber', group: 'dynamics', min: 0, max: 0.5, step: 0.005, fmt: 'pct', src: 'AS', per: 'occasional riders', when: 'monthly' },
-    { key: 'trans.AL', label: 'Occasional → Inactive', group: 'dynamics', min: 0, max: 0.6, step: 0.005, fmt: 'pct', src: 'AS', ref: ['cambe'], per: 'occasional riders', when: 'monthly', note: 'Assumed 10% a month. No e-scooter operator publishes cohort retention.', mech: 'A comparable service loses many users quickly: about 60% of Lyon bike-share users leave within a year (Cambe et al. 2018). That supports high lapse, not this number.', tornado: true, range: [0.08, 0.12] },
+    { key: 'trans.AL', label: 'Occasional → Inactive', group: 'dynamics', min: 0, max: 0.6, step: 0.005, fmt: 'pct', src: 'AS', ref: ['cambe'], per: 'occasional riders', when: 'monthly', note: 'Assumed 10% a month. No operator-specific cohort retention estimate was supplied for this project.', mech: 'A comparable service loses many users quickly: about 60% of Lyon bike-share users leave within a year (Cambe et al. 2018). That supports high lapse, not this number.', tornado: true, range: [0.08, 0.12] },
     { key: 'trans.FA', label: 'Frequent → Occasional', group: 'dynamics', min: 0, max: 0.5, step: 0.005, fmt: 'pct', src: 'AS', ref: ['toi1748'], per: 'frequent riders', when: 'monthly' },
     { key: 'trans.FP', label: 'Frequent → Subscriber', group: 'dynamics', min: 0, max: 0.5, step: 0.005, fmt: 'pct', src: 'AS', per: 'frequent riders', when: 'monthly' },
     { key: 'trans.FL', label: 'Frequent → Inactive', group: 'dynamics', min: 0, max: 0.5, step: 0.005, fmt: 'pct', src: 'AS', per: 'frequent riders', when: 'monthly' },
@@ -2023,7 +2219,7 @@ globalThis.VoiRegression = function (x) {
     { key: 'booking.eligible', label: 'Hub footprint: eligible Convenience Seekers', group: 'booking', min: 0, max: 1, step: 0.01, fmt: 'pct', src: 'AS', ref: ['survey'], per: 'Convenience Seekers who ride', when: 'once hubs are live', mech: 'Survey: 8 of 22 CS ride mainly to work or study (Q21); 12 of 22 would otherwise take public transport (Q22). This does not identify geographic reach.', metric: 'Share of CS trips starting in hub zones (trip data)', tornado: true },
     { key: 'booking.cityEligible', label: 'City-wide footprint: eligible Convenience Seekers', group: 'booking', key6: true, min: 0, max: 1, step: 0.01, fmt: 'pct', src: 'AS', per: 'Convenience Seekers who ride', note: '80% is an illustrative reach assumption, not a survey estimate. City-wide remains focused on CS; it does not automatically acquire other segments. Test reach independently from the fee and placement need.', metric: 'Eligible CS trip origins / all CS trip origins', tornado: true },
     { key: 'booking.cityMoveShare', label: 'City-wide footprint: bookings requiring placement', group: 'booking', key6: true, min: 0, max: 1, step: 0.01, fmt: 'pct', src: 'AS', per: 'city-wide booking', note: '50% is an analyst scenario. The matched-price table exposes it next to the separate hub assumption. No observed Oslo placement fraction establishes this value.', metric: 'Dedicated placements / city-wide booking attempts', tornado: true, be: [0, 1] },
-    { key: 'booking.adoptF', label: 'Eligible frequent riders who book', group: 'booking', key6: true, min: 0, max: 1, step: 0.01, fmt: 'pct', src: 'AS', per: 'eligible frequent riders', when: 'each month after ramp-up', plain: 'Of eligible frequent riders without a Pass, the share who book in a given month.', mech: 'Unproven: no Convenience Seeker ranked reservations as the top Pass benefit (Q25).', metric: 'Booking customers / eligible frequent riders', tornado: true },
+    { key: 'booking.adoptF', label: 'Eligible frequent riders who book', group: 'booking', key6: true, min: 0, max: 1, step: 0.01, fmt: 'pct', src: 'AS', per: 'eligible frequent riders', when: 'each month after ramp-up', plain: 'Of eligible frequent riders without a Pass, the share who book in a given month.', mech: 'Unproven: 2 of 22 Convenience Seekers chose the combined priority-access/reservations benefit (Q25). This does not estimate paid-booking adoption.', metric: 'Booking customers / eligible frequent riders', tornado: true },
     { key: 'booking.adoptP', label: 'Eligible subscribers who book', group: 'booking', min: 0, max: 1, step: 0.01, fmt: 'pct', src: 'AS', per: 'eligible subscribers', when: 'each month after ramp-up', metric: 'Booking customers / eligible subscribers', tornado: true },
     { key: 'booking.perAdopter', label: 'Bookings per booking customer', group: 'booking', min: 0, max: 40, step: 1, fmt: 'num', src: 'AS', per: 'booking customer', when: 'monthly', plain: 'Eight is about two commute days a week.', tornado: true, range: [4, 12] },
     { key: 'booking.passIncluded', label: 'Bookings included in Voi Pass', group: 'booking', min: 0, max: 20, step: 1, fmt: 'int', src: 'PD', per: 'subscriber', when: 'monthly', note: 'The upgrade incentive scales with the share of bookings the Pass covers; every included booking still costs a placement.', be: [0, 20] },
@@ -2043,7 +2239,7 @@ globalThis.VoiRegression = function (x) {
     { key: 'booking.supportPer', label: 'Support cost per booking', group: 'booking', min: 0, max: 10, step: 0.1, fmt: 'nok', src: 'AS', per: 'booking' },
     { key: 'booking.incShare', label: 'Booked rides that are extra rides', group: 'booking', key6: true, min: 0, max: 1, step: 0.01, fmt: 'pct', src: 'AS', ref: ['kabra', 'shah'], per: 'completed booking', plain: 'Of rides taken on a booked scooter, the share that would not have happened on Voi without the booking.', mech: 'Availability drives ridership: +10% availability gave +12.2% rides (Kabra et al. 2020); fleet elasticity 0.64 (Shah et al. 2023). The number for Oslo is not measured.', metric: 'Randomised offer exposure vs concurrent holdout: total rides per assigned customer, alongside booking volume', tornado: true, be: [0, 1] },
     { key: 'booking.upgradeUplift', label: 'Extra upgrades to Voi Pass per booking customer', group: 'booking', hyp: true, min: 0, max: 0.3, step: 0.005, fmt: 'pct', src: 'AS', per: 'booking frequent rider', when: 'monthly', note: 'Applies in proportion to the bookings the Pass includes; zero for a paid add-on.', metric: 'Pass conversion by randomised offer assignment; per-booker effects need additional assumptions', tornado: true },
-    { key: 'booking.lapseRed', label: 'Lower lapse for booking customers', group: 'booking', key6: true, hyp: true, min: 0, max: 0.05, step: 0.001, fmt: 'pct', src: 'AS', per: 'booking customer', when: 'monthly, while booking', plain: 'Percentage points less chance each month that a booking customer stops riding. A hypothesis: no e-scooter retention data is public.', metric: 'Monthly lapse by randomised offer assignment; per-booker effects need additional assumptions', tornado: true, be: [0, 0.05] },
+    { key: 'booking.lapseRed', label: 'Lower lapse for booking customers', group: 'booking', key6: true, hyp: true, min: 0, max: 0.05, step: 0.001, fmt: 'pct', src: 'AS', per: 'booking customer', when: 'monthly, while booking', plain: 'Percentage points less chance each month that a booking customer stops riding. A hypothesis: no operator-specific retention effect is available in the evidence held.', metric: 'Monthly lapse by randomised offer assignment; per-booker effects need additional assumptions', tornado: true, be: [0, 0.05] },
     { key: 'booking.spillover', label: 'Lower lapse for non-bookers in hub zones', group: 'booking', hyp: true, min: 0, max: 0.05, step: 0.001, fmt: 'pct', src: 'AS', ref: ['kabra'], per: 'occasional rider in hub segments', when: 'monthly', mech: 'Better placement helps everyone nearby: about three quarters of the Paris availability effect came from fewer abandoned searches (Kabra et al. 2020).', metric: 'Failed searches in hub zones', tornado: true, be: [0, 0.05] },
     { key: 'booking.ramp', label: 'Months to full adoption after launch', group: 'booking', min: 1, max: 24, step: 1, fmt: 'int', unit: 'months', src: 'AS' },
     // Offer 2: Voi Together
@@ -2117,13 +2313,13 @@ globalThis.VoiRegression = function (x) {
   // ---------- Evidence status: five categories, explained once ----------
   const CLS = {
     observed: ['Observed', 'Taken from a report, an official statistic or our survey, without modelling.'],
-    calculated: ['Calculated', 'Worked out arithmetically from observed figures.'],
-    calibrated: ['Calibrated', 'Set by the model so that its baseline reproduces observed figures.'],
+    calculated: ['Calculated', 'Worked out arithmetically from source figures and stated assumptions; uncertainty in those inputs remains.'],
+    calibrated: ['Calibrated', 'Set by the model so that its baseline reproduces the selected anchors, some of which are estimates.'],
     assumed: ['Assumed', 'An analyst judgement, sometimes informed by literature or comparable services; not measured for Voi in Oslo.'],
     design: ['Design choice', 'A decision about the offer, the pilot or the model, not a fact about the world.']
   };
   const CLS_DEFAULT = { AR: 'observed', EXT: 'observed', SV: 'observed', DV: 'calculated', LIT: 'assumed', AS: 'assumed', PD: 'design' };
-  const CLS_OVERRIDE = { osloShare: 'assumed', voiTripShare: 'assumed', costPerRide: 'calculated', fieldHourly: 'calculated', shrink: 'design', 'trans.AF': 'assumed', discountAnnual: 'assumed' };
+  const CLS_OVERRIDE = { osloShare: 'assumed', voiTripShare: 'assumed', costPerRide: 'calculated', fieldHourly: 'assumed', shrink: 'design', 'trans.AF': 'assumed', discountAnnual: 'assumed' };
   // Additive changes to monthly transition probabilities and to availability are percentage points.
   const PP = ['booking.upgradeUplift', 'booking.lapseRed', 'booking.spillover', 'group.reserveLift', 'group.bookingInteraction', 'group.repeat', 'group.lapseRed', 'group.creditLift', 'licence.bkEffect', 'licence.grEffect'];
   const SYN = {
@@ -2154,7 +2350,7 @@ globalThis.VoiRegression = function (x) {
     'booking.noShow': 'Comparable pre-booked services: 5–25%.',
     'booking.incShare': '10–40%; an availability elasticity of 0.64 (Shah et al. 2023) suggests most booked rides would happen anyway.',
     'booking.upgradeUplift': 'Zero to twice the central value; it only matters if the Pass includes bookings.',
-    'booking.lapseRed': 'From no effect to 6 pp; no e-scooter retention data exists.', 'booking.spillover': 'From no effect to 2 pp.',
+    'booking.lapseRed': 'From no effect to 6 pp; no operator-specific retention effect is available in this project.', 'booking.spillover': 'From no effect to 2 pp.',
     'group.initiate': '3–10% of eligible occasions.', 'group.availBase': '60–85% chance all scooters are there without a hold.',
     'group.complete': '75–95% of groups with scooters complete.', 'group.incShare': '20–65%; the low end if most groups would ride anyway with Group Rides.',
     'group.register': '10–40% of new guests register.', 'group.repeat': '0–6 pp.', 'group.lapseRed': '0–8 pp.',
@@ -2167,7 +2363,7 @@ globalThis.VoiRegression = function (x) {
     if (PP.includes(q.key)) q.fmt = 'pp';
     q.syn = Object.entries(SYN).filter(([, ks]) => ks.includes(q.key)).map(([s]) => s).join(', ');
   }
-  const clsTag = q => `<span class="tag c-${q.cls}" title="${esc(CLS[q.cls][1])}">${CLS[q.cls][0]}</span>`;
+  const clsTag = q => `<span class="tag c-${q.cls}" title="${esc(CLS[q.cls][1])}">${CLS[q.cls][0]}</span>${q.key && !same(E.get(X, q.key), E.get(DEFAULTS, q.key)) ? '<span class="tag c-design" title="The current value differs from the original model reference. Its source classification does not verify this edit.">Edited input</span>' : ''}`;
   const GROUPS = [
     { id: 'booking', title: 'Hub & Book', sub: 'Convenience Seekers' },
     { id: 'group', title: 'Voi Together', sub: 'Social Leisure Seekers' },
@@ -2659,7 +2855,7 @@ globalThis.VoiRegression = function (x) {
     const vd = verdict(cmp.dCPE, ne);
     const big = $('#hero-big');
     big.className = 'big num ' + (cmp.dCPE < 0 ? 'neg' : 'pos');
-    countTo(big, 'hero', any ? cmp.dCPE : 0, v => any ? mnok1(v) : '–');
+    countTo(big, 'hero', any ? cmp.dCPE : 0, v => any ? mnok1(v) : '0 kr');
     $('#hero-k').innerHTML = `Full-horizon extra value · ${X.horizon} months ${any ? xb('value') : ''}`;
     $('#hero-chip').textContent = INV[view.scenario];
     $('#hero-verdict').innerHTML = any ? vpill(vd) : '';
@@ -2678,7 +2874,7 @@ globalThis.VoiRegression = function (x) {
       if (cmp.payback) svg.appendChild(sv('circle', { cx: x(cmp.payback), cy: y(0), r: 4, fill: 'var(--card)', stroke: 'var(--ink)', 'stroke-width': 2 }));
       host.appendChild(svg);
     }
-    $('#lead').innerHTML = `<b>A scooter when you need it. A group that starts together.</b> Compare Hub &amp; Book and Voi Together, follow the customer effects, and test what is worth funding.`;
+    $('#lead').innerHTML = `Hub &amp; Book promises a scooter for a planned departure. Voi Together helps friends start a trip together. Try the three steps below; every result uses the current assumptions.`;
     if (simulator) simulator.refresh(CUR);
     const tiles = [
       { k: 'Setup', n: 'setup', v: any ? nok(cmp.setup) : '–', s: any ? `planning estimate · ${cmp.withinBudget ? 'within' : 'over'} the ${nok(X.budget)} budget` : 'no offer' },
@@ -2687,6 +2883,7 @@ globalThis.VoiRegression = function (x) {
     ];
     $('#kpis').innerHTML = tiles.map(t => `<div class="kpi"><div class="kk">${t.k} ${any ? xb(t.n) : ''}</div><div class="kv">${t.v}</div><div class="ks">${t.s}</div></div>`).join('');
     portfolioTable();
+    if (review) review.guide(CUR);
     $('#decision-caveats').innerHTML = `<ul><li><b>Customer behaviour is not measured.</b> With future retention, repeat-use and guest-activation benefits off, this investment is worth ${any ? mnokA(ne) : '0 NOK'}. These effects can interact.</li><li><b>Scale is an assumption.</b> ${esc(configParts().scope)}. The survey of 72 people does not establish Oslo segment shares.</li><li><b>This is a conditional case.</b> Price response and delivery costs need testing. Inspect uncertainty before choosing a rollout strategy.</li></ul>`;
   }
   // Compare the four investments against the budget; the recommendation is the best feasible one.
@@ -2707,6 +2904,7 @@ globalThis.VoiRegression = function (x) {
     const inc = { booking: by.both.dCPE - by.group.dCPE, group: by.both.dCPE - by.booking.dCPE };
     const opts = ['none', 'booking', 'group', 'both'];
     const sv0 = MC.summary && MC.sig === mcSig() && R0.best === view.scenario ? strategyVerdict(MC.summary) : null;
+    $('#rec-short').textContent = R0.head + ' The ranking is conditional; the proposed customer responses are not yet validated.';
     $('#rec').innerHTML = `<b>${esc(R0.head)}</b> ${esc(R0.text)}${best === 'both' ? ` Hub &amp; Book adds ${mnok1(inc.booking)} on top of Voi Together; Voi Together adds ${mnok1(inc.group)} on top of Hub &amp; Book.` : ''}${sv0 ? ` <b>Rollout:</b> ${esc(sv0.text)}` : best !== 'none' ? ' <span class="mut">Compare rollout strategies under <a href="#" data-goto="compare">Inspect the model → Uncertainty &amp; risk</a>.</span>' : ''}${best !== view.scenario && best !== 'none' ? ` <span class="mut">You are viewing ${INV[view.scenario]}.</span>` : ''}`;
     $('#tbl-portfolio').innerHTML = `<thead><tr><th>Option</th><th class="num">Estimated value</th><th class="num">Adds when the other runs</th><th class="num">Setup</th><th>Setup budget</th><th class="num">Peak funding need</th><th>Payback</th></tr></thead><tbody>` + opts.map(id => {
       const s = by[id], none = id === 'none';
@@ -3351,6 +3549,7 @@ globalThis.VoiRegression = function (x) {
   function evidencePage() {
     const cal = CUR.cmp.sc.cal;
     calibStats(cal); chartFlow(CUR.cmp); segCards(cal);
+    if (review) review.evidence(CUR);
     auditTable(); testsTable(); citySection(); calcFull(); sourcesTable(); refsList(); glossary($('#gl-search').value);
   }
   function calibStats(cal) {
@@ -3972,6 +4171,7 @@ globalThis.VoiRegression = function (x) {
 
   // ---------- Glossary: variables and concepts, searchable in ordinary words ----------
   const CONCEPTS = [
+    ['Switching costs', 'loyalty, competition, barriers, multi-homing', 'Perceived time, money or relationship value lost on changing provider. These are possible retention mechanisms, not measured Voi coefficients or an additional equity premium in this model.', 'benefits'],
     ['Incremental portfolio value', 'CPE, customer equity, value, NPV', 'The discounted contribution of all Voi customers with the offers, minus the same without them, minus setup.', 'discount'],
     ['Contribution', 'margin, profit before fixed costs', 'Revenue minus the costs of serving it.', 'outputs'], ['Peak funding', 'cash need, funding, liquidity', 'The largest cumulative cash shortfall.', 'outputs'],
     ['Discounted payback', 'break-even month, payback', 'The first month the cumulative discounted value covers setup.', 'outputs'],
@@ -3999,7 +4199,7 @@ globalThis.VoiRegression = function (x) {
   }
 
   function sourcesTable() {
-    $('#tbl-src').innerHTML = `<thead><tr><th>Input</th><th>Value</th><th>Status</th><th>Where the number comes from</th><th>What supports the mechanism (not the number)</th><th>Sources</th></tr></thead><tbody>` + META.filter(q => q.group !== 'org').map(q => {
+    $('#tbl-src').innerHTML = `<thead><tr><th>Input</th><th>Value</th><th>Status</th><th>Where the number comes from</th><th>What supports the mechanism (not the number)</th><th>Sources</th></tr></thead><tbody>` + META.map(q => {
       const v = E.get(X, q.key);
       return `<tr><th scope="row"><a class="vl" href="#" data-var="${q.key}">${esc(q.label)}</a>${q.hyp ? ' <span class="hyp">Hypothesis</span>' : ''}<div class="note">${esc([unitWord(q), q.per && 'per ' + q.per, q.when].filter(Boolean).join(' · '))}</div></th><td>${q.type === 'bool' ? (v ? 'on' : 'off') : fmtVal(q, v)}</td><td>${clsTag(q)}</td><td>${esc(SRC[q.src])}<div class="note">${esc(q.note || q.plain || '')}</div></td><td class="note">${esc(q.mech || (q.src === 'AS' && ['booking', 'group', 'dynamics'].includes(q.group) ? 'Not established: to be measured in the pilot' : '–'))}</td><td>${refLinks(q) || '<span class="mut">–</span>'}</td></tr>`;
     }).join('') + '</tbody>';
@@ -4029,8 +4229,11 @@ globalThis.VoiRegression = function (x) {
     if (!PAGES.includes(p)) return;
     if (simulator && p !== 'overview') simulator.pause();
     view.page = p;
+    const investment = $('.investment-choice'), destination = $(p === 'overview' ? '#decision-investment-slot' : '#global-investment-slot');
+    if (investment && investment.parentElement !== destination) destination.appendChild(investment);
+    document.body.dataset.page = p;
     const inspection = inspectPage(p), stage = inspection ? 'evidence' : p;
-    $('#page-caption').textContent = { overview: 'Make a decision', offers: 'Explore the offers', compare: 'Inspect / Uncertainty & risk', delivery: 'Inspect / Delivery & pilot', evidence: 'Inspect / Evidence & calculations' }[p];
+    $('#page-caption').textContent = { overview: 'Make a decision', offers: 'Explore the offers', compare: 'Inspect / Uncertainty & risk', delivery: 'Inspect / Delivery & pilot', evidence: 'Evidence / Data & sources' }[p];
     PAGES.forEach(q => { $('#v-' + q).hidden = q !== p; });
     document.querySelectorAll('#tabs [data-page], #inspect-nav [data-page]').forEach(b => {
       const selected = b.closest('#tabs') ? b.dataset.page === stage : b.dataset.page === p;
@@ -4093,13 +4296,16 @@ globalThis.VoiRegression = function (x) {
     simulator = window.createVoiSimulator({ inputs: () => X, selected: () => view.scenario, page: () => view.page, esc, money: mnok, number: nf, changed: updateHash,
       select: id => { if (ON[id]) { view.scenario = id; refresh(); } } });
     simulator.restore(location.hash.slice(1));
+    review = window.createVoiReview({ inputs: () => X, defaults: DEFAULTS, selected: () => view.scenario, options: ON,
+      meta: metaOf, esc, money: mnokA, number: nf, percent: pct, format: fmtVal, references: ids => refLinks({ ref: ids }), noFuture: noEffect,
+      restore: (key, value, dist) => change('Restored the guided assumption', () => { E.set(X, key, value); if (dist) X.mc.dist[key] = E.clone(dist); }) });
     committed = E.clone(X);
     buildInputs();
     buildOffers();
     buildKey10();
     ['population.useCalibrated', 'population.activeCustomers'].forEach(key => $('#scope-controls').appendChild(inputRow(metaOf(key), true)));
     $('#ver-tag').textContent = 'v' + VERSION;
-    $('#foot-ver').innerHTML = `<b style="color:var(--ink2)">Voi Customer Portfolio Engine v${VERSION}</b> · built ${esc(CFG.version || '')} · conditional student decision model · inputs and monthly results can be exported.`;
+    $('#foot-ver').innerHTML = `<b style="color:var(--ink2)">Voi Customer Portfolio Engine v${VERSION}</b> · reference inputs ${esc(CFG.version || '')} · conditional student decision model · inputs and monthly results can be exported.`;
     $('#inv-ctl').innerHTML = Object.keys(ON).map(k => `<button type="button" data-v="${k}">${INV[k]}</button>`).join('');
     $('#inv-ctl').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; view.scenario = b.dataset.v; updateHash(); refresh(); });
     $('#dep-ctl').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; change(`Deployment: ${b.textContent}`, () => { X.rollout.mode = b.dataset.v; }); });
@@ -4183,7 +4389,7 @@ globalThis.VoiRegression = function (x) {
     $('#eb-undo').addEventListener('click', undo);
     $('#eb-close').addEventListener('click', () => { $('#edit-banner').hidden = true; });
     $('#reset').addEventListener('click', () => change('Reset to defaults', () => { X = E.clone(DEFAULTS); }));
-    $('#exp-json').addEventListener('click', () => { commit(); const R0 = recommend(CUR.by); download(`voi_portfolio_engine_v${VERSION}_inputs.json`, JSON.stringify({ engine: 'Voi Customer Portfolio Engine', version: VERSION, configuration: configLine(), investment: view.scenario, recommendation: { outcome: R0.kind, option: R0.best, statement: R0.head + ' ' + R0.text, rollout: MC.summary && MC.sig === mcSig() ? strategyVerdict(MC.summary).text : 'simulation not run for this configuration' }, link: linkFor(stateCode()), inputs: X, decisionAnalysis: { scope: D.scope(X), matchedPrices: matchedPrices(), assumptionChallenge: ROBUST.summary && ROBUST.sig === decisionSig() ? ROBUST.summary : null, gateInformation: MC.summary && MC.sig === mcSig() ? MC.summary.information : null, protocol: D.protocol } }, null, 2), 'application/json'); });
+    $('#exp-json').addEventListener('click', () => { commit(); const R0 = recommend(CUR.by); download(`voi_portfolio_engine_v${VERSION}_inputs.json`, JSON.stringify({ engine: 'Voi Customer Portfolio Engine', version: VERSION, configuration: configLine(), investment: view.scenario, recommendation: { outcome: R0.kind, option: R0.best, statement: R0.head + ' ' + R0.text, rollout: MC.summary && MC.sig === mcSig() ? strategyVerdict(MC.summary).text : 'simulation not run for this configuration' }, link: linkFor(stateCode()), inputs: X, evidence: review.summary(), decisionAnalysis: { scope: D.scope(X), matchedPrices: matchedPrices(), assumptionChallenge: ROBUST.summary && ROBUST.sig === decisionSig() ? ROBUST.summary : null, gateInformation: MC.summary && MC.sig === mcSig() ? MC.summary.information : null, protocol: D.protocol } }, null, 2), 'application/json'); });
     $('#exp-csv').addEventListener('click', exportCSV);
     $('#save-cmp').addEventListener('click', saveCurrent);
     let rz, lastW = window.innerWidth; window.addEventListener('resize', () => { if (window.innerWidth === lastW) return; lastW = window.innerWidth; clearTimeout(rz); rz = setTimeout(refresh, 120); });

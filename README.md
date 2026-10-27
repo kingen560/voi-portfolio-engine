@@ -1,24 +1,24 @@
 # Voi Portfolio Lab
 
-A student decision model for the Customer Centricity assignment: two proposed customer experiences for Voi Oslo.
+A student decision model for two proposed customer experiences in Voi Oslo.
 
 [Open the interactive model](https://kingen560.github.io/voi-portfolio-engine/)
 
-## How to use it
+## Start here
 
-1. **Make a decision:** understand the offers, their estimated value and the main caveats.
-2. **Explore the offers:** change the design and open the key inputs when needed.
-3. **Inspect the model:** follow calculations, test uncertainty or review delivery and the pilot.
+1. Choose an investment.
+2. Change one assumption: booking placements or genuinely additional group trips.
+3. Read the difference in estimated value. Only that input differs between the paired calculations.
 
-Model settings contains presets, deployment choices and all inputs. The optional timeline distinguishes the inspected month from the full-horizon value. Monte Carlo and the assumption challenge run on request. Inputs and monthly results can be exported from the evidence page.
+Restore resets the chosen input to its value when opened. Other current assumptions are kept the same. Explore the offers for the full product designs. Evidence & model opens with the source trail, followed by calculations, uncertainty and delivery.
 
-## Scope
+## Evidence and limits
 
-Release 6.3.0 simplifies navigation and removes Market review, A4 reporting and Share link. The economic calculations and default assumptions are unchanged from 6.2.
+Release 6.4.0 makes the sources, extraction steps, transformations and remaining gaps visible. It separates reproduced survey facts and reported financial anchors from constructed Oslo estimates and unmeasured treatment effects. The original sample has 72 respondents; its proportions are not measured Oslo market shares. Existing aggregate source checks can be inspected in the app. Raw respondent records and private course materials are not uploaded.
 
-Results are conditional scenarios, not verified Voi forecasts. The convenience survey informs needs and exploratory segments; it does not establish market shares or causal treatment effects. Source classifications, worked examples, limitations and verification tools are available inside the model.
+Switching costs and competitive protection are discussed as hypotheses to test. The model adds no independent protection premium and does not identify rival choices, multi-homing or causal switching effects. Offer rankings and simulated probabilities remain conditional on the entered assumptions. The economic core and defaults are unchanged from 6.3.
 
-The application is self-contained and runs locally in the browser. No analytics or automatic data feed is included. Saved comparisons and appearance preferences stay in browser storage. External source links open only when followed.
+The optional timeline, complete assumptions, evidence register, pilot rules and JSON/CSV exports remain available. Monte Carlo runs only on request. Market review, A4 reporting and Share link remain retired. All calculations run in the browser, with no analytics or automatic data feed.
 
 Independent student analysis, not affiliated with or endorsed by Voi Technology.
 
