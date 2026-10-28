@@ -4,17 +4,15 @@ A student decision model for two proposed customer experiences in Voi Oslo.
 
 [Open the interactive model](https://kingen560.github.io/voi-portfolio-engine/)
 
-## Start here
+## Investment case
 
-1. Choose an investment.
-2. Change one assumption: booking placements or genuinely additional group trips.
-3. Read the difference in estimated value. Only that input differs between the paired calculations.
+Choose an investment and inspect its extra portfolio value, setup, peak funding and payback. The two proposal cards compare each offer alone against today's Voi and show the existing no-retention/repeat-benefit stress case. Combined value includes shared costs and interactions.
 
-Restore resets the chosen input to its value when opened. Other current assumptions are kept the same. Explore the offers for the full product designs. Evidence & model opens with the source trail, followed by calculations, uncertainty and delivery.
+Follow either customer mechanism through delivery, customer value, assumed behaviour and portfolio consequence. Inspecting a mechanism does not change the investment. Assumption links open their definitions and editing route. The optional introduction offers the one-assumption experiment. Explore the offers for their full designs; Evidence & model starts with source provenance.
 
 ## Evidence and limits
 
-Release 6.4.1 makes the sources, extraction steps, transformations and remaining gaps visible. It separates reproduced survey facts and reported financial anchors from constructed Oslo estimates and unmeasured treatment effects. The original sample has 72 respondents; its proportions are not measured Oslo market shares. Existing aggregate source checks can be inspected in the app. Raw respondent records and private course materials are not uploaded.
+Release 6.5.0 retains the source trail, extraction steps, transformations and remaining gaps. It separates reproduced survey facts and reported financial anchors from constructed Oslo estimates and unmeasured treatment effects. The original sample has 72 respondents; its proportions are not measured Oslo market shares. Existing aggregate source checks can be inspected in the app. Raw respondent records and private course materials are not uploaded.
 
 Switching costs and competitive protection are discussed as hypotheses to test. The model adds no independent protection premium and does not identify rival choices, multi-homing or causal switching effects. Offer rankings and simulated probabilities remain conditional on the entered assumptions. The economic core and defaults are unchanged from 6.3.
 
