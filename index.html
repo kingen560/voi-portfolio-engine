@@ -896,6 +896,121 @@ main .evidence-trail { display: grid; grid-template-columns: 205px minmax(0, 1fr
   .mechanism-choice button { flex: 1; }
   .intro-disclosure { padding-inline: 16px; }
 }
+/* 6.6 — multi-input workbench, persistent edits and live joint results. */
+.workbench-hero { padding-bottom: 6px; }
+.workbench-hero .hero-intro { margin-bottom: 18px; }
+.scenario-workspace { display: grid; grid-template-columns: minmax(0, 1fr) 285px; gap: 22px; align-items: start; margin: 8px 0 35px; }
+.workbench-inputs { min-width: 0; }
+.workbench-toolbar { display: flex; justify-content: space-between; gap: 15px; align-items: start; margin-bottom: 17px; }
+.workbench-toolbar h2 { font-size: 20px; letter-spacing: -.03em; margin: 0 0 7px; }
+.workbench-toolbar p { font-size: 11px; line-height: 1.65; color: var(--ink2); margin: 0; max-width: 350px; }
+.workbench-toolbar > div:last-child { display: grid; gap: 6px; flex: none; }
+.workbench-toolbar .btn { font-size: 10px; padding: 6px 9px; }
+.workbench-columns { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.workbench-offer { background: var(--card); border: 1px solid var(--line2); border-top: 3px solid var(--accent); border-radius: 4px; min-width: 0; padding: 15px 13px; }
+.workbench-offer + .workbench-offer { border-top-color: var(--sP); }
+.workbench-offer header { margin-bottom: 20px; }
+.workbench-offer header .eyebrow { font-size: 8px; }
+.workbench-offer h3 { font-size: 20px; letter-spacing: -.035em; margin: 7px 0 0; }
+.workbench-control-group { border: 0; border-top: 1px solid var(--line); padding: 10px 0 0; margin: 0 0 20px; min-width: 0; }
+.workbench-control-group:last-child { margin-bottom: 0; }
+.workbench-control-group legend { padding: 0 7px 0 0; font: 9px var(--mono); color: var(--ink3); }
+.workbench-inputs .inp { border: 0; border-bottom: 1px solid var(--line); border-radius: 0; padding: 11px 0; margin: 0; background: transparent; min-width: 0; }
+.workbench-inputs .inp:last-child { border-bottom: 0; }
+.workbench-inputs .lab { align-items: start; gap: 8px; margin-bottom: 7px; }
+.workbench-inputs .lab label { font-size: 11px; line-height: 1.45; }
+.workbench-inputs .lab > span { display: inline-flex; gap: 3px; align-items: center; flex-wrap: wrap; justify-content: end; }
+.workbench-inputs .tag { font-size: 8px; padding: 2px 4px; }
+.workbench-inputs .hyp { display: none; }
+.workbench-inputs .xb { font-size: 10px; }
+.workbench-inputs .ctl { display: grid; grid-template-columns: minmax(25px, 1fr) 59px auto; gap: 7px; align-items: center; }
+.workbench-inputs .ctl input[type=number] { width: 59px; min-width: 0; padding: 6px 3px; font-size: 12px; background: var(--bg); }
+.workbench-inputs .ctl input[type=range] { width: 100%; min-width: 0; }
+.workbench-inputs .control-context { color: var(--ink3); font-size: 9px; line-height: 1.5; margin-top: 5px; }
+.workbench-inputs .chk { font-size: 11px; line-height: 1.6; }
+.workbench-inputs .unit { font-size: 10px; }
+.workbench-inputs .inactive-control { opacity: .55; }
+.workbench-shared { background: var(--card); border: 1px solid var(--line2); border-radius: 4px; margin-top: 16px; padding: 0 14px; }
+.workbench-shared > summary { cursor: pointer; padding: 14px 0; font-size: 12px; font-weight: 600; }
+.workbench-shared-inputs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 22px; padding-bottom: 12px; }
+.workbench-input-note { font-size: 10px; line-height: 1.7; color: var(--ink2); margin: 12px 0 0; }
+.workbench-results { position: sticky; top: 92px; border: 1px solid var(--line2); border-radius: 4px; padding: 15px; background: var(--card); max-height: calc(100dvh - 110px); overflow-y: auto; scrollbar-width: thin; }
+.workbench-results .decision-metrics { display: block; }
+.workbench-results .hero-card { padding: 0 0 12px; border: 0; border-bottom: 1px solid var(--line); background: transparent; margin: 0; }
+.workbench-results .hero-card .k { font-size: 10px; gap: 5px; }
+.workbench-results .hero-card .big { font-size: 34px; margin: 14px 0 10px; }
+.workbench-results .hero-card .chip { font-size: 8px; }
+.workbench-results .hero-card .verdict { font-size: 9px; line-height: 1.6; white-space: normal; }
+.workbench-results .decision-finance .kpis { display: block; margin: 0; border: 0; background: transparent; }
+.workbench-results .decision-finance .kpi { border: 0; border-bottom: 1px solid var(--line); padding: 10px 0; display: grid; grid-template-columns: 1fr auto; gap: 3px 8px; }
+.workbench-results .decision-finance .kk { font-size: 10px; }
+.workbench-results .decision-finance .kv { grid-column: 2; grid-row: 1; margin: 0; font-size: 15px; letter-spacing: -.04em; }
+.workbench-results .decision-finance .ks { grid-column: 1 / -1; font-size: 9px; line-height: 1.5; }
+.workbench-change { display: grid; gap: 5px; padding: 13px 0 9px; }
+.workbench-change > span { font-size: 10px; color: var(--ink2); }
+.workbench-change > b { font: 21px var(--mono); letter-spacing: -.05em; }
+.workbench-change small { font-size: 9px; line-height: 1.6; color: var(--ink2); }
+.workbench-changes { font-size: 9px; line-height: 1.7; margin-bottom: 8px; }
+.workbench-changes summary { cursor: pointer; }
+.workbench-changes ul { padding-left: 12px; margin: 8px 0; }
+.workbench-changes li { padding: 4px 0; }
+.workbench-changes li span, .workbench-changes li b { display: block; }
+#workbench-restore { font-size: 10px; padding: 5px 7px; }
+.workbench-comparison { border-top: 1px solid var(--line); margin-top: 13px; padding-top: 10px; }
+.workbench-comparison h3 { font-size: 10px; margin: 0 0 7px; }
+#workbench-comparison > div { display: flex; justify-content: space-between; gap: 10px; padding: 5px 0; font-size: 10px; }
+#workbench-comparison > div.selected { font-weight: 600; }
+#workbench-comparison b { font: 12px var(--mono); white-space: nowrap; }
+.workbench-scope { margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--line); }
+.workbench-scope summary { cursor: pointer; font-size: 9px; }
+.workbench-scope .s { color: var(--ink2); font-size: 10px; line-height: 1.7; margin-top: 8px; }
+.workbench-results .source-signpost { font-size: 10px; margin: 10px 0 0; }
+.workbench-live-strip { display: none; }
+.workbench-help-body { max-width: 850px; padding: 0 0 16px; font-size: 12px; line-height: 1.8; color: var(--ink2); }
+.offers-workbench-link { margin: 0 0 20px; }
+@media (max-width: 1150px) {
+  .scenario-workspace { grid-template-columns: minmax(0, 1fr) 260px; gap: 15px; }
+  .workbench-columns { grid-template-columns: 1fr; }
+}
+@media (max-width: 900px) {
+  .scenario-workspace { grid-template-columns: 1fr; }
+  .workbench-results { grid-row: 1; position: static; max-height: none; overflow: visible; }
+  .workbench-results .decision-metrics { display: grid; grid-template-columns: .8fr 1.2fr; gap: 20px; }
+  .workbench-results .hero-card { border-bottom: 0; }
+  .workbench-results .workbench-comparison, .workbench-results .workbench-scope, .workbench-results .source-signpost { display: none; }
+  .workbench-columns { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .workbench-live-strip { display: flex; justify-content: space-between; align-items: center; gap: 15px; position: sticky; top: 76px; z-index: 8; padding: 10px 12px; margin: 0 0 12px; background: var(--ink); color: var(--card); border-radius: 3px; }
+  .workbench-live-strip > span { font-size: 10px; }
+  .workbench-live-strip b { display: block; font: 20px var(--mono); margin-top: 3px; }
+  .workbench-live-strip small { font-size: 10px; text-align: right; max-width: 150px; }
+}
+@media (max-width: 650px) {
+  .workbench-hero .hero-intro h1 { font-size: 30px; }
+  .workbench-results { padding: 15px; }
+  .workbench-results .decision-metrics { grid-template-columns: 1fr; gap: 4px; }
+  .workbench-results .hero-card { border-bottom: 1px solid var(--line); }
+  .workbench-results .decision-finance .kpis { grid-template-columns: 1fr; }
+  .workbench-toolbar { display: block; }
+  .workbench-toolbar > div:last-child { display: flex; flex-wrap: wrap; margin-top: 12px; }
+  .workbench-columns, .workbench-shared-inputs { grid-template-columns: 1fr; }
+  .workbench-offer { padding: 17px; }
+  .workbench-inputs .lab label, .workbench-inputs .chk { font-size: 12px; }
+  .workbench-inputs .control-context { font-size: 10px; }
+  .workbench-inputs .ctl input[type=number] { font-size: 14px; padding-block: 8px; }
+  .workbench-inputs .inp { padding-block: 13px; }
+  .workbench-live-strip { top: 64px; }
+}
+.workbench-results-link { display: none; }
+.workbench-hero .hero-intro h1 { font-size: clamp(28px, 3vw, 39px); }
+@media (max-width: 900px) {
+  .scenario-workspace .workbench-results { grid-row: auto; }
+  .workbench-results .workbench-comparison, .workbench-results .workbench-scope, .workbench-results .source-signpost { display: block; }
+  .workbench-results-link { display: inline-flex; }
+  .workbench-hero { padding-top: 22px; }
+  .workbench-hero .hero-intro { gap: 8px; margin-bottom: 12px; }
+  .workbench-hero .hero-intro h1 { font-size: 28px; margin-top: 0; }
+  .workbench-hero .hero-intro .lead { font-size: 12px; }
+}
 
 </style>
 </head>
@@ -933,7 +1048,7 @@ main .evidence-trail { display: grid; grid-template-columns: 205px minmax(0, 1fr
     <details id="model-settings" class="model-settings">
       <summary>Model settings <span id="settings-status"></span></summary>
       <div class="settings-body">
-        <p class="note">These choices affect every result. Start with the current case; change one assumption at a time.</p>
+        <p class="note">These choices affect every result. Your edits combine in the current scenario.</p>
         <div class="ctl-g"><label class="gl" for="preset-sel">Assumptions</label><select id="preset-sel"></select><button class="btn" id="open-drawer" type="button" aria-controls="drawer" aria-expanded="false">Edit all inputs<span class="chip" id="chg-count" hidden></span></button></div>
         <div class="ctl-g"><span class="gl" id="gl-dep">Deployment</span><div class="seg-ctl" id="dep-ctl" role="group" aria-labelledby="gl-dep"><button type="button" data-v="pilot">Pilot, then scale</button><button type="button" data-v="full">Full rollout</button></div></div>
         <div class="cfg" id="cfg-line"></div>
@@ -953,25 +1068,36 @@ main .evidence-trail { display: grid; grid-template-columns: 205px minmax(0, 1fr
 
   <!-- 1 · OVERVIEW -->
   <section class="view" id="v-overview" aria-labelledby="tab-overview">
-    <div class="hero">
-      <div class="hero-intro"><div class="eyebrow">Voi Oslo / Investment case</div><h1>Which experience<br><em>is worth funding?</em></h1><p class="lead" id="lead"></p></div>
+    <div class="hero workbench-hero">
+      <div class="hero-intro"><div class="eyebrow">Voi Oslo / Customer portfolio simulator</div><h1>Scenario workbench.</h1><p class="lead" id="lead"></p></div>
       <div class="case-selector"><h2>Investment case</h2><div id="decision-investment-slot"><div class="ctl-g investment-choice"><span class="gl" id="gl-inv">Investment</span><div class="seg-ctl" id="inv-ctl" role="group" aria-labelledby="gl-inv"></div></div></div></div>
-      <div class="decision-metrics">
-        <div class="hero-card">
-          <div class="k"><span id="hero-k">Incremental portfolio value</span><span class="chip" id="hero-chip"></span></div>
-          <div class="big num" id="hero-big">–</div>
-          <div id="hero-verdict" style="margin:6px 0 8px"></div>
-          <div class="spark" id="hero-spark" hidden></div>
-        </div>
-        <div class="decision-finance"><div class="kpis" id="kpis" aria-label="Funding requirements and payback"></div><div class="s" id="hero-s"></div></div>
-      </div>
-      <p class="source-signpost">Conditional estimates from the current inputs. <a href="#" data-goto="evidence">Sources and assumptions ↗</a></p>
     </div>
+    <section class="scenario-workspace" id="scenario-workspace" aria-label="Multi-input scenario workbench">
+      <div class="workbench-inputs">
+        <div class="workbench-toolbar"><div><h2>Scenario inputs</h2><p>Change several inputs together. Every result uses the full current configuration.</p></div><div><button class="btn" type="button" id="workbench-all" aria-controls="drawer" aria-expanded="false">Edit all model inputs</button><button class="btn ghost workbench-results-link" type="button" data-goto="overview" data-anchor="workbench-results">Funding &amp; results ↗</button><button class="btn ghost" type="button" data-goto="compare" data-anchor="mc-card">Simulate uncertainty ↗</button></div></div>
+        <div class="workbench-live-strip" id="workbench-live-strip" role="status" aria-live="polite"></div>
+        <div class="workbench-columns"><article class="workbench-offer"><header><span class="eyebrow">Convenience Seekers</span><h3>Hub &amp; Book</h3></header><div id="workbench-booking"></div></article><article class="workbench-offer"><header><span class="eyebrow">Social Leisure Seekers</span><h3>Voi Together</h3></header><div id="workbench-group"></div></article></div>
+        <details class="workbench-shared"><summary>Portfolio scale, horizon and unit economics</summary><div id="workbench-shared" class="workbench-shared-inputs"></div></details>
+        <p class="workbench-input-note">Sliders and number fields set the current scenario. Use “?” for definitions and evidence. Simulation ranges and Fixed/Uncertain settings remain under Edit all model inputs.</p>
+      </div>
+      <aside class="workbench-results" id="workbench-results" aria-label="Live investment results">
+        <div class="decision-metrics">
+          <div class="hero-card"><div class="k"><span id="hero-k">Extra portfolio value</span><span class="chip" id="hero-chip"></span></div><div class="big num" id="hero-big">–</div><div id="hero-verdict"></div><div class="spark" id="hero-spark" hidden></div></div>
+          <div class="decision-finance"><div class="kpis" id="kpis" aria-label="Funding requirements and payback"></div></div>
+        </div>
+        <div class="workbench-change" id="workbench-change" role="status" aria-live="polite"></div>
+        <div class="workbench-changes" id="workbench-changes"></div>
+        <button class="btn ghost" type="button" id="workbench-restore">Restore opening inputs</button>
+        <div class="workbench-comparison"><h3>All investment cases</h3><div id="workbench-comparison"></div></div>
+        <details class="workbench-scope"><summary>Scope and valuation basis</summary><div class="s" id="hero-s"></div></details>
+        <p class="source-signpost"><a href="#" data-goto="evidence">Sources and assumptions ↗</a></p>
+      </aside>
+    </section>
     <section class="offer-comparison" aria-labelledby="offer-comparison-heading"><div class="section-heading"><div><span class="eyebrow">01 / Compare the proposals</span><h2 id="offer-comparison-heading">Two needs. Two investment cases.</h2></div><p>Each offer below is valued alone against today's Voi. The combined case above includes shared costs and interactions.</p></div><div class="customer-choices" id="decision-offers" aria-label="Customer needs and proposed experiences"></div><p class="note comparison-note">The stress case removes assumed retention, repeat-use, booking-upgrade and placement-spillover gains. Each case is recalculated; the difference is not an additive value component.</p></section>
     <div class="card portfolio-verdict"><h3>Across the four investments</h3><p class="rec" id="rec-short"></p><details class="decision-table"><summary>See the recommendation and all four investments</summary><p class="rec" id="rec"></p><div class="tw"><table class="t" id="tbl-portfolio"></table></div><p class="note" style="margin-top:8px">“Adds when the other runs”: what the offer adds when the other offer is already funded. Setup is compared with the setup budget; peak funding is a separate cash requirement. Every option is valued against the same baseline: today’s Voi, with Group Rides and short holds as they are.</p></details></div>
     <section class="customer-mechanisms" id="customer-mechanisms" aria-labelledby="mechanism-heading"><div class="section-heading"><div><span class="eyebrow">02 / Trace the customer mechanism</span><h2 id="mechanism-heading">From experience to portfolio value.</h2></div><p>Follow either offer through delivery, customer value and the behaviour entered into the engine.</p></div><div id="mechanism-choice" class="mechanism-choice" role="group" aria-label="Customer mechanism to inspect"><button type="button" data-mechanism="booking" aria-pressed="true">Hub &amp; Book</button><button type="button" data-mechanism="group" aria-pressed="false">Voi Together</button></div><div id="mechanism-detail"></div></section>
     <div class="stack">
-      <details class="intro-disclosure" id="guide-intro"><summary><span><b>New to the model?</b><small>Open a guided, one-assumption experiment.</small></span><span aria-hidden="true">＋</span></summary><div class="guided-workspace" id="guide-panel" aria-label="Try the model in three steps"><section class="guide-step"><span class="step-no" aria-hidden="true">1</span><div><h2>Choose an investment</h2><p>Use the investment selector above. Every case is compared with today's Voi, without either new offer.</p></div></section><section class="guide-step"><span class="step-no" aria-hidden="true">2</span><div><h2>Change one assumption</h2><label class="sr" for="guide-driver">Assumption to explore</label><select id="guide-driver"></select><div id="guide-control"></div><p id="guide-help"></p><button class="btn ghost" id="guide-restore" type="button">Restore this assumption</button><p class="note" id="guide-reference"></p></div></section><section class="guide-step"><span class="step-no" aria-hidden="true">3</span><div class="guide-result-step"><h2>Read the result</h2><p class="guide-read-hint" id="guide-read-hint"></p><div id="guide-effect" class="guide-effect" role="status" aria-live="polite"></div></div></section></div></details>
+      <details class="intro-disclosure" id="workbench-help"><summary><span><b>Using the workbench</b><small>Current inputs, combined effects and uncertainty.</small></span><span aria-hidden="true">＋</span></summary><div class="workbench-help-body"><p>Edit as many inputs as you need. Earlier edits stay in the configuration, including edits made on other pages. The result is the combined effect of the whole case.</p><p>The opening comparison uses the same selected investment with the inputs loaded when you opened the page. It is a reference case, not a causal allocation to individual sliders. Restore opening inputs returns all model inputs and uncertainty settings to that loaded configuration; Undo can reverse the restore.</p><p>The displayed scenario uses the entered point values. Run the uncertainty analysis to compare distributions and rollout strategies. Changing a point value does not make an uncertain input fixed.</p></div></details>
       <details class="card decision-caveats adv"><summary><h3>What could make the result wrong?</h3></summary><div id="decision-caveats"></div><button class="btn ghost" type="button" data-goto="compare">Test what could change the answer ↗</button></details>
       <details class="timeline-disclosure" id="timeline-disclosure"><summary><span><b>Explore the timeline</b><small>See how value and customer effects develop, month by month.</small></span><span aria-hidden="true">＋</span></summary><p class="timeline-help">The headline above always covers the full model horizon. The timeline below shows only the month you choose.</p><div id="simulator-root"></div></details>
       <div class="next-steps"><button class="btn" type="button" data-goto="offers">02 · Change an offer ↗</button><button class="btn ghost" type="button" data-goto="evidence">03 · Check the calculations ↗</button></div>
@@ -980,9 +1106,9 @@ main .evidence-trail { display: grid; grid-template-columns: 205px minmax(0, 1fr
 
   <!-- 2 · DESIGN THE OFFERS -->
   <section class="view" id="v-offers" aria-labelledby="tab-offers" hidden>
-    <div class="sh" style="padding-top:36px"><div><div class="no">02 / EXPLORE</div><h2>Start with the customer.</h2><p>Choose the experience and design first. Open its key inputs when you want to change the assumptions, or compare prices and extensions below.</p></div></div>
+    <div class="sh" style="padding-top:36px"><div><div class="no">02 / EXPLORE</div><h2>Start with the customer.</h2><p>Edit the open controls for both offers; earlier edits stay in the case. Use the workbench for live investment comparisons, or open every model input.</p></div></div>
 
-    <div class="grid2" id="offers"></div>
+    <div class="offers-workbench-link"><button class="btn" type="button" data-goto="overview" data-anchor="scenario-workspace">Open scenario workbench ↗</button></div><div class="grid2" id="offers"></div>
     <div class="stack" style="margin-top:16px">
     <details class="card adv"><summary><h3>Compare named design scenarios</h3></summary><p class="sub">These packages have different prices and assumptions. Their ranking is conditional, not a controlled comparison or a price optimum. Compare footprints at the same price below.</p><div class="tw"><table class="t" id="tbl-decision"></table></div></details>
       <details class="card adv" id="matched-price-card"><summary><h3>Compare footprints at the same price</h3></summary><p class="sub" id="matched-price-note"></p><div class="tw"><table class="t" id="tbl-matched-price"></table></div><p class="note">The envelope tests booking price response (0, 0.5 and 1, plus your current value) under both linear and locally matched logit forms. It is not a confidence interval. Reach, fulfilment, capacity and placement costs remain explicit assumptions; no price is declared optimal.</p></details>
@@ -1119,7 +1245,7 @@ main .evidence-trail { display: grid; grid-template-columns: 205px minmax(0, 1fr
 <div id="tip" hidden></div>
 <div id="toast" hidden></div>
 <script>window.VOI_DEFAULTS = {"horizon": 36, "population": {"useCalibrated": true, "activeCustomers": 10000}, "discountAnnual": 0.1, "norwayRevenueEURm": 19.0, "nokPerEur": 11.7173, "osloShare": 0.75, "ruterTripsM": 20.4, "voiTripShare": 0.355, "costPerRide": 7.67, "passPrice": 399, "vat": 0.25, "hourly": 545.05, "fieldHourly": 400, "segShares": {"CS": 0.3056, "SLS": 0.2917, "CR": 0.2083, "TC": 0.1944}, "rides": {"A": 1.3, "F": 12, "P": 15}, "trans": {"AF": 0.05, "AP": 0.01, "AL": 0.1, "FA": 0.12, "FP": 0.02, "FL": 0.05, "PA": 0.02, "PF": 0.07, "PL": 0.035, "LA": 0.04, "LX": 0.05}, "surveyMix": true, "engagement": {"CS": 0.5455, "SLS": 0.25, "CR": 0.0, "TC": 0.3077}, "engagementPooled": 0.3088, "shrink": 0.5, "useQ24": false, "q24": {"CS": 5.0, "SLS": 4.29, "CR": 2.6, "TC": 4.14, "mean": 4.12}, "booking": {"citywide": false, "cityEligible": 0.8, "cityMoveShare": 0.5, "logitDemand": false, "eligible": 0.4, "adoptF": 0.25, "adoptP": 0.5, "perAdopter": 8, "passIncluded": 0, "fee": 35, "fulfil": 0.95, "noShow": 0.12, "compensation": 20, "moveShare": 0.25, "minutesPerMove": 8, "transportPerMove": 20, "supportPer": 0.5, "capacity": 3000, "overtimePremium": 0.5, "incShare": 0.25, "upgradeUplift": 0.04, "lapseRed": 0.03, "spillover": 0.01, "ramp": 4, "holdDisplace": 0.05, "feeElasticity": 0.0, "feeRef": 25}, "group": {"occasionRate": 0.6, "serviceable": 0.7, "initiate": 0.06, "availBase": 0.75, "reserve": true, "reserveLift": 0.15, "bookingInteraction": 0.05, "complete": 0.9, "vehicles": 3, "split": false, "splitFriction": 0.25, "splitTxn": 1.0, "targetShare": 0.5, "discount": 0.15, "incShare": 0.47, "guestsNew": 0.35, "register": 0.25, "partner": false, "partnerLift": 1.25, "partnerCost": 10, "partnerFunding": 15, "support": 3, "holdFail": 0.15, "displaceProb": 0.1, "repeat": 0.03, "lapseRed": 0.04, "ramp": 3, "activate": 0.5, "activateSplit": 0.3, "guestUnique": 0.7, "groupsPerHost": 1.3, "discountElasticity": 0.0, "discountRef": 0.15, "availCap": 0.95, "easyInvite": true, "inviteLift": 0.25, "targeted": false, "targetPrecision": 0.5, "guestCredit": false, "creditLift": 0.15, "partnerShare": 0.1}, "budget": 750000, "licence": {"renewMonth": 6, "period": 24, "p0": 0.8, "bkEffect": 0.0, "grEffect": 0.0}, "mc": {"seed": 2026, "draws": 1000, "noise": 0.15, "rho": 0.5, "groups": {"demand": ["booking.adoptF", "booking.adoptP", "group.initiate", "group.inviteLift"], "additionality": ["booking.incShare", "group.incShare"], "delivery": ["group.availBase", "group.complete"], "retention": ["booking.lapseRed", "booking.upgradeUplift", "group.lapseRed", "group.repeat"]}, "dist": {"osloShare": {"state": "uncertain", "lo": 0.6, "hi": 0.85}, "voiTripShare": {"state": "uncertain", "lo": 0.333, "hi": 0.366}, "fieldHourly": {"state": "uncertain", "lo": 340, "hi": 520}, "booking.eligible": {"state": "uncertain", "lo": 0.25, "hi": 0.55}, "booking.adoptF": {"state": "uncertain", "lo": 0.12, "hi": 0.4}, "booking.adoptP": {"state": "uncertain", "lo": 0.25, "hi": 0.7}, "booking.moveShare": {"state": "uncertain", "lo": 0.15, "hi": 0.4}, "booking.minutesPerMove": {"state": "uncertain", "lo": 4, "hi": 15}, "booking.noShow": {"state": "uncertain", "lo": 0.05, "hi": 0.25}, "booking.incShare": {"state": "uncertain", "lo": 0.1, "hi": 0.4}, "booking.upgradeUplift": {"state": "uncertain", "lo": 0, "hi": 0.08}, "booking.lapseRed": {"state": "uncertain", "lo": 0, "hi": 0.06}, "booking.spillover": {"state": "uncertain", "lo": 0, "hi": 0.02}, "group.initiate": {"state": "uncertain", "lo": 0.03, "hi": 0.1}, "group.availBase": {"state": "uncertain", "lo": 0.6, "hi": 0.85}, "group.complete": {"state": "uncertain", "lo": 0.75, "hi": 0.95}, "group.incShare": {"state": "uncertain", "lo": 0.2, "hi": 0.65}, "group.register": {"state": "uncertain", "lo": 0.1, "hi": 0.4}, "group.repeat": {"state": "uncertain", "lo": 0, "hi": 0.06}, "group.lapseRed": {"state": "uncertain", "lo": 0, "hi": 0.08}, "group.activate": {"state": "uncertain", "lo": 0.3, "hi": 0.7}, "group.inviteLift": {"state": "uncertain", "lo": 0, "hi": 0.5}, "group.targetPrecision": {"state": "uncertain", "lo": 0.2, "hi": 0.7}, "group.creditLift": {"state": "uncertain", "lo": 0, "hi": 0.3}, "booking.cityEligible": {"state": "uncertain", "lo": 0.4, "hi": 1.0}, "booking.cityMoveShare": {"state": "uncertain", "lo": 0.25, "hi": 0.75}}}, "paymentFee": 0.025, "maintPct": 0.15, "rollout": {"mode": "pilot", "pilotCoverage": 0.3, "holdout": 0.1, "gateMonth": 9, "scaleUp": {"booking": 150000, "group": 20000}, "shutdown": {"booking": 30000, "group": 15000}, "directHoldout": 0}, "org": {"booking": [{"area": "Product and technology", "task": "Booking flow, hub-zone logic and credits in the app", "owner": "Product lead", "hours": 280, "external": 40000, "ready": 3, "monthly": 8, "kpi": "Booking completion in the app", "dep": "", "current": "In-app hold of a nearby scooter for a few minutes; unlock now", "limitation": "No booking ahead, no hub zones, no promise that a scooter will be there"}, {"area": "Fleet operations", "task": "Overnight placement inside existing night routes", "owner": "Head of operations, Oslo", "hours": 120, "external": 0, "ready": 2, "monthly": 20, "kpi": "Availability at the booked time", "dep": "", "current": "Night crews rebalance and swap batteries against a demand forecast", "limitation": "Placement is not tied to individual next-morning bookings"}, {"area": "Analytics", "task": "Hub demand forecast, holdout design and CPE tracking", "owner": "Analytics lead", "hours": 100, "external": 0, "ready": 3, "monthly": 8, "kpi": "Incremental contribution vs holdout", "dep": "Booking flow", "current": "Demand forecasting for rebalancing", "limitation": "No randomised holdout or customer-level incrementality tracking"}, {"area": "Commercial and public affairs", "task": "Pricing, Pass terms and commitments in the Oslo bid", "owner": "Commercial manager", "hours": 60, "external": 10000, "ready": 1, "monthly": 2, "kpi": "Fee conversion; bid commitments met", "dep": "", "current": "Pass and pay-as-you-go price list", "limitation": "No price for a guaranteed scooter; bid commitments not linked to segments"}, {"area": "Customer support", "task": "Credit and exception process for failed bookings", "owner": "Support lead", "hours": 40, "external": 0, "ready": 3, "monthly": 2, "kpi": "Credits per 1,000 bookings", "dep": "Booking flow", "current": "Ride complaints and refunds handled case by case", "limitation": "No standard credit when a promise is broken"}], "group": [{"area": "Product and technology", "task": "Invitations, shared meeting point, nearby-vehicle view", "owner": "Product lead", "hours": 180, "external": 15000, "ready": 3, "monthly": 3, "kpi": "Group completion rate", "dep": "", "current": "Group Rides: one account unlocks up to five scooters and pays for all", "limitation": "No invitations, shared meeting point or nearby-scooter view for guests"}, {"area": "Fleet operations", "task": "Short group hold at the meeting point", "owner": "Head of operations, Oslo", "hours": 40, "external": 0, "ready": 3, "monthly": 1, "kpi": "Availability at intended departure", "dep": "Invitations", "feature": "reserve", "current": "Individual hold of one scooter", "limitation": "No hold for several scooters at one meeting point"}, {"area": "Product and technology", "task": "Split payment between guests' accounts", "owner": "Product lead", "hours": 80, "external": 5000, "ready": 4, "monthly": 1, "kpi": "Completion of groups with new guests", "dep": "Invitations", "feature": "split", "current": "The host pays for every scooter", "limitation": "Guests never register, so Voi cannot reach them again"}, {"area": "Marketing and CRM", "task": "Repeat-use journey after the first group trip", "owner": "CRM manager", "hours": 60, "external": 0, "ready": 3, "monthly": 3, "kpi": "Incremental repeat contribution", "dep": "Invitations", "current": "Generic e-mail and push campaigns", "limitation": "No follow-up journey triggered by a group trip"}, {"area": "Partnerships", "task": "Event and venue partners: selection, funding per group and duties", "owner": "Partnership manager", "hours": 60, "external": 10000, "ready": 3, "monthly": 2, "kpi": "Contribution per partner-generated trip", "dep": "", "feature": "partner", "current": "Ad-hoc local promotions", "limitation": "No agreements where venues pay for the groups they receive"}, {"area": "Customer support", "task": "Group issues and evening safety follow-up", "owner": "Support lead", "hours": 30, "external": 0, "ready": 3, "monthly": 1, "kpi": "Incidents per 100,000 evening trips", "dep": "", "current": "Standard support and safety messages", "limitation": "No evening follow-up for groups"}, {"area": "Product and technology", "task": "Join by link without the app (web check-in for guests)", "owner": "Product lead", "hours": 120, "external": 10000, "ready": 4, "monthly": 1, "kpi": "Share of guests joining by link; groups started per occasion", "dep": "Invitations", "feature": "easyInvite", "current": "Guests ride on the host's account", "limitation": "Every guest must download the app to see the group"}, {"area": "Analytics", "task": "Uplift targeting: offer the group incentive only where it changes behaviour", "owner": "Analytics lead", "hours": 80, "external": 0, "ready": 4, "monthly": 2, "kpi": "Extra groups per krone of incentive (A/B)", "dep": "Invitations", "feature": "targeted", "current": "Promotions sent broadly", "limitation": "Discounts also go to groups that would ride anyway"}, {"area": "Marketing and CRM", "task": "First ride free for new guests after a group trip", "owner": "CRM manager", "hours": 30, "external": 0, "ready": 3, "monthly": 1, "kpi": "Guests with a first paid ride within 30 days", "dep": "Invitations", "feature": "guestCredit", "current": "Generic welcome offers", "limitation": "Not tied to the guest's first group trip"}], "common": [{"area": "Management", "task": "Sponsor, pilot owner, budget ownership and gate reviews", "owner": "Country manager, Norway", "hours": 60, "external": 0, "ready": 1, "monthly": 6, "kpi": "Investment against agreed thresholds", "dep": "", "current": "Initiatives owned inside separate functions", "limitation": "No single pilot owner, budget or gate review"}]}, "season": {"amp": 0.0, "peakMonth": 10}}; window.VOI_CONFIG = {"publicUrl": "https://kingen560.github.io/voi-portfolio-engine/", "version": "23 Oct 2026"}; window.VOI_EVIDENCE = {"version": "6.4.1", "scope": "Evidence provenance and design interpretation. No new treatment-effect estimates or economic assumptions are introduced.", "trails": [{"id": "survey", "question": "Why these customer groups?", "status": "Survey observations", "refs": ["survey"], "found": "Opened the supplied VOI_Dataset_Original.sav, counted the existing QCL_4 memberships, and recomputed selected question means and category counts. No re-clustering or causal estimation was performed.", "used": "Need scores motivate the two propositions. The existing clusters provide exploratory profiles. Their sample proportions become explicitly assumed scenario weights when applied to an Oslo portfolio.", "limit": "72 convenience-sample respondents. Neither representative Oslo segment sizes, willingness to pay for these exact offers, nor their causal effects were measured. Two of 22 Convenience Seekers chose priority access or reservations as their top Pass benefit; that combined survey option is not a paid-booking adoption rate.", "measure": "Recruit eligible riders beyond the original sample, test the exact offer and price, and compare assigned groups with a concurrent holdout.", "inputs": ["segShares.CS", "segShares.SLS", "engagement.CS", "engagement.SLS"]}, {"id": "finance", "question": "Which financial figures are reported?", "status": "Reported anchors + calculations", "refs": ["voiAR25", "ecb"], "found": "Located Norway revenue in Note 2 of the saved Voi 2025 annual report. Checked the report text and reproduced the average vehicle-cost calculation from group revenue, vehicle profit and rides. Retained the recorded ECB 2025 annual conversion; its portal could not be re-fetched in this review.", "used": "Norway revenue is converted to NOK, then multiplied by an assumed Oslo allocation. Group average vehicle cost anchors a scenario unit cost; it is not an observed marginal Oslo cost.", "limit": "A company report validates its reported totals, not the proposed offers' revenue, incremental costs or retention effects. Oslo revenue and PAYG unit revenue are model estimates.", "measure": "Obtain actual Oslo net revenue, product mix and incremental service costs from Voi; reconcile those with the selected period.", "inputs": ["norwayRevenueEURm", "nokPerEur", "costPerRide"]}, {"id": "scale", "question": "How did we reach the Oslo scale?", "status": "Estimates built on reported totals", "refs": ["ruter25", "voiPR0314", "voiPR0211"], "found": "The original collection recorded Ruter's 20.4m Oslo rental e-scooter trips in 2025 and Voi's historical trip/fleet information. Ruter's page returned 403 during this review, so that recorded anchor has not been freshly verified here. Neither a 2025 Voi trip share nor its Oslo revenue allocation is reported in the evidence held.", "used": "All-operator trips \u00d7 an assumed Voi trip share gives estimated Voi trips. Norway revenue \u00d7 an assumed Oslo share gives estimated Oslo revenue. Trips divided by assumed customer usage imply active customers. A named starting cohort is available instead.", "limit": "The scale, starting customer mix and baseline transition rates are constructed. Applying sample shares to this scale does not turn them into observed Oslo market shares. Named cohorts retain replacement inflow and fixed operating costs.", "measure": "Validate active customers, Voi trips, cohort transitions and segment weights against operator data. Use a clearly named cohort when only its size is known.", "inputs": ["ruterTripsM", "voiTripShare", "osloShare", "population.useCalibrated", "population.activeCustomers"]}, {"id": "costs", "question": "Where do delivery costs come from?", "status": "Literature context + planning allowances", "refs": ["ssb", "osorio", "raviv", "liu"], "found": "Used wage benchmarks and published rebalancing studies to identify labour, handling, transport and capacity categories. The cited studies concern other places, vehicles or historical arrangements; they do not price the proposed Oslo operation.", "used": "Entered planning hours, field labour, vehicle transport, fulfilment and dedicated placement into the cost structure. The 400 NOK field-hour and 20 NOK vehicle allowance are planning inputs, with labour counted separately.", "limit": "No proposed-service crew logs, supplier quotes or observed booking-placement fraction have been supplied. Average fleet cost and historical contractor payments do not establish marginal placement cost.", "measure": "Record dedicated placements per booking, labour minutes, route kilometres, capacity overflow and fulfilment failures during the pilot.", "inputs": ["fieldHourly", "booking.moveShare", "booking.cityMoveShare", "booking.minutesPerMove", "booking.transportPerMove"]}, {"id": "behaviour", "question": "Which effects are still assumptions?", "status": "Unmeasured response assumptions", "refs": ["kabra", "shah", "cambe"], "found": "Used published mobility studies to identify plausible mechanisms and our survey to describe customer needs. No dataset in this project measures response to the proposed booking/group packages or a causal reduction in Voi lapse.", "used": "Adoption, additional trips, repeat use, lapse reduction and guest activation are scenario inputs with stated ranges. The engine combines them with contribution and delivery costs. Literature coefficients are not fitted Voi treatment effects.", "limit": "A source supporting availability or relationship development does not validate the entered effect size. Monte Carlo probabilities are conditional on assumed distributions. Even the relative ranking of the two offers remains unvalidated.", "measure": "Randomise offer assignment, retain a concurrent control, track all rides and contribution per assigned rider, and distinguish genuine new guests from existing customers.", "inputs": ["booking.adoptF", "booking.incShare", "booking.lapseRed", "group.initiate", "group.incShare", "group.lapseRed"]}, {"id": "competition", "question": "What protects value from competitors?", "status": "Theory + our design interpretation", "refs": ["burnham03", "js04", "course5"], "found": "Read the supplied course material on satisfaction, switching costs and loyalty; checked Burnham et al.'s publisher abstract and the supplied Johnson & Selnes text on relationship development and switching. No Voi-specific switching-cost scale, rival-response dataset or exclusive partner contract was supplied.", "used": "Distinguish time/effort costs, financial losses and relational attachment. Assess which the offer might create, how competitors could copy it and what customers actually gain. Potential protection is a hypothesis to investigate.", "limit": "Remaining active is not proof of attitudinal loyalty or switching barriers. Inactivity can reflect switching, seasonality or no travel need. The model has no competitor states, multi-homing behaviour or separate switching-cost coefficient. Lower lapse already represents any hypothesised retention benefit: no second protection premium is added.", "measure": "Track competing-app usage and share of rides, switching reasons, satisfaction, perceived time/effort to change provider and lost benefits. Compare both offers after rival imitation or a better competing offer.", "inputs": ["booking.lapseRed", "booking.upgradeUplift", "group.lapseRed", "group.repeat"]}], "audit": {"audit_version": "6.4.1", "scope": "Internal reproduction of aggregate source facts; not external or causal validation.", "survey": {"file": "VOI_Dataset_Original.sav", "sha256": "c2b8eb1adc2397b14f878f82746496e05dd75b44622e1a8661eba7761ca43be5", "n": 72, "cluster_field": "QCL_4", "profiles": {"CS": {"cluster": 3, "respondents": 22, "users": 22, "weekly": 12, "subscribers": 4, "attribute_means": {"Q7": 6.2273, "Q8": 6.6818, "Q12": 6.3182, "Q14": 4.4545, "Q15": 3.9091, "Q16": 2.8182, "Q24": 5.0}, "reservation_top_benefit": 2, "fallback_counts": {"Public transport": 12, "Bicycle": 4, "Walk": 3, "Car": 2, "Another e-scooter provider": 1}}, "SLS": {"cluster": 1, "respondents": 21, "users": 20, "weekly": 5, "subscribers": 2, "attribute_means": {"Q7": 4.8095, "Q8": 4.9524, "Q12": 5.0476, "Q14": 6.0476, "Q15": 6.7143, "Q16": 6.0952, "Q24": 4.2857}, "reservation_top_benefit": 0, "fallback_counts": {"Taxi or ride-hailing": 7, "Walk": 5, "Public transport": 5, "Another e-scooter provider": 3, "Bicycle": 1}}, "CR": {"cluster": 2, "respondents": 15, "users": 13, "weekly": 0, "subscribers": 0, "attribute_means": {"Q7": 4.0667, "Q8": 6.5333, "Q12": 5.8667, "Q14": 3.6, "Q15": 2.9333, "Q16": 2.2667, "Q24": 2.6}, "reservation_top_benefit": 0, "fallback_counts": {"Walk": 6, "Public transport": 3, "Bicycle": 3, "Car": 2, "Another e-scooter provider": 1}}, "TC": {"cluster": 4, "respondents": 14, "users": 13, "weekly": 4, "subscribers": 0, "attribute_means": {"Q7": 5.7143, "Q8": 5.4286, "Q12": 5.2143, "Q14": 3.2143, "Q15": 3.6429, "Q16": 3.7143, "Q24": 4.1429}, "reservation_top_benefit": 2, "fallback_counts": {"Walk": 6, "Bicycle": 5, "Public transport": 2, "Another e-scooter provider": 1}}}, "usage_states": {"users": 68, "occasional_without_pass": 47, "frequent_without_pass": 15, "subscribers": 6}, "limit": "Convenience sample. Existing memberships are reproduced, not independently re-estimated or validated."}, "annual_report": {"file": "Voi_Annual_Report_2025.pdf", "locator": "Note 2, Norway revenue; vehicle-profit and ride totals", "pdf_sha256": "a6e71f2b1477a62bf1d1f3688b6747672b22dc711cec554c7a8c69f41f1995a4", "norway_revenue_eur_m": 19.0, "group_revenue_eur_m": 178.2, "vehicle_profit_eur_m": 102.4, "rides_m": 115.815, "vehicle_cost_formula_nok": 7.668880024176487, "rounded_model_value": 7.67, "limit": "Group average operating cost, not an observed marginal Oslo ride cost."}, "other_sources": {"Ruter_2025": "Retained from original source collection; automated refetch returned 403 in this review.", "ECB_2025": "Retained from original source collection; portal refetch returned 503 in this review.", "Burnham_2003": "Publisher abstract and supplied Lecture 5 checked; no effect size transferred.", "Johnson_Selnes_2004": "Supplied full text on relationship development and switching checked; usage states are an adaptation."}}};</script>
-<script>// Voi Customer Portfolio Engine v6.5.2: calculation core. No DOM access; see ui.js.
+<script>// Voi Customer Portfolio Engine v6.6.0: calculation core. No DOM access; see ui.js.
 // Every monetary flow is an increment against a steady-state baseline in which no initiative runs.
 (function (root) {
   'use strict';
@@ -1130,7 +1256,7 @@ main .evidence-trail { display: grid; grid-template-columns: 205px minmax(0, 1fr
   const get = (o, path) => path.split('.').reduce((a, k) => a[k], o);
   const set = (o, path, v) => { const k = path.split('.'); const last = k.pop(); k.reduce((a, q) => a[q], o)[last] = v; };
   const clamp01 = v => Math.min(1, Math.max(0, v));
-  const VERSION = '6.5.2';
+  const VERSION = '6.6.0';
   const bookingEligibility = x => x.booking.citywide ? x.booking.cityEligible : x.booking.eligible;
   const bookingMoveShare = x => x.booking.citywide ? x.booking.cityMoveShare : x.booking.moveShare;
   // Alternative demand structures share reference adoption and its LOCAL price elasticity.
@@ -2136,7 +2262,7 @@ globalThis.VoiRegression = function (x) {
   root.createVoiReview = function (api) {
     const E = root.VoiEngine, registry = root.VOI_EVIDENCE, audit = registry.audit, $ = s => document.querySelector(s), esc = api.esc;
     const initial = E.clone(api.inputs());
-    let driver = '', evidenceId = 'survey', last = null, mechanismId = api.selected() === 'group' ? 'group' : 'booking', seenInvestment = api.selected(), stressCache = null;
+    let evidenceId = 'survey', last = null, mechanismId = api.selected() === 'group' ? 'group' : 'booking', seenInvestment = api.selected(), stressCache = null;
     const comparison = (x, id) => E.compare(x, api.options[id]);
     const names = { booking: 'Hub & Book', group: 'Voi Together' };
     const inputLink = (key, label) => `<a href="#" data-var="${key}"><span>${esc(label || api.meta(key).label)}</span> <b>${esc(api.format(api.meta(key), E.get(api.inputs(), key)))}</b></a>`;
@@ -2168,34 +2294,57 @@ globalThis.VoiRegression = function (x) {
       const economics = booking ? 'Booking fees and additional ride contribution, plus changes in future customer-state contribution, less placements, service costs, running costs and setup.' : 'Additional group-trip contribution and later contribution from hosts and new guests, less discounts on existing trips, service costs, running costs and setup.';
       $('#mechanism-detail').innerHTML = `<ol class="mechanism-chain" aria-label="${names[mechanismId]} customer value chain"><li><span class="chain-stage">01 / Offer &amp; delivery</span><h3>${booking ? 'Deliver a dependable departure.' : 'Make the shared start work.'}</h3><p>${delivery}</p><div class="chain-inputs">${booking ? inputLink('booking.fulfil', 'Booking fulfilment') : inputLink('group.complete', 'Base completion after availability')}</div><span class="chain-status">Design + delivery assumptions</span></li><li><span class="chain-stage">02 / Customer value</span><h3>${booking ? 'Reduce uncertainty.' : 'Reduce coordination effort.'}</h3><p>${customer}</p><div class="need-signal"><b>Survey need signal</b><p>${need} The convenience sample motivates the proposition; it does not measure its effect.</p></div><span class="chain-status">Observed need · proposed outcome</span></li><li><span class="chain-stage">03 / Behaviour in the model</span><h3>Test the response.</h3><div class="chain-inputs">${behaviours}</div><p class="chain-exposure">${exposure}</p><span class="chain-status hypothesis">Unmeasured response assumptions</span></li><li><span class="chain-stage">04 / Portfolio consequence</span><h3>Value the changed contribution.</h3><b class="mechanism-value ${value < 0 ? 'bad' : ''}" data-mechanism-value="${mechanismId}" data-value="${value}">${api.money(value)}</b><small>Offer alone · ${x.horizon} months · versus no new offer</small><p>${economics}</p><a href="#" data-goto="evidence" data-anchor="cs-${mechanismId}">Inspect the worked calculation ↗</a><span class="chain-status">Conditional discounted value</span></li></ol><div class="mechanism-foot"><p>The customer-outcome → behaviour link is a hypothesis. Satisfaction, preference and switching costs are not separately estimated. No extra protection premium is added on top of the entered retention benefit.</p><div><button class="btn ghost" type="button" data-goto="compare" data-anchor="behaviour-test">Challenge the behaviour assumptions ↗</button><button class="btn ghost" type="button" data-open-evidence="competition">Switching costs &amp; competitive protection ↗</button></div></div>`;
     }
-    function drivers() {
-      const selected = api.selected(), x = api.inputs();
-      return [
-        { key: x.booking.citywide ? 'booking.cityMoveShare' : 'booking.moveShare', label: 'Bookings needing a dedicated placement', offer: 'booking', explanation: 'Move this up to test a more expensive delivery promise. Look at the change in extra portfolio value in step 3. The placement fraction is an assumption, not a measured Oslo rate.' },
-        { key: 'group.incShare', label: 'Group trips that are genuinely additional', offer: 'group', explanation: 'Move this down if more groups would already ride without the new offer. Look at the lost extra value. This counterfactual share needs a holdout test.' }
-      ].filter(d => selected === 'both' || selected === 'none' || d.offer === selected);
+    function buildWorkbench() {
+      const group = (host, title, keys) => {
+        const fieldset = document.createElement('fieldset'); fieldset.className = 'workbench-control-group';
+        const legend = document.createElement('legend'); legend.textContent = title; fieldset.appendChild(legend);
+        keys.forEach(key => fieldset.appendChild(api.control(key))); host.appendChild(fieldset); return fieldset;
+      };
+      const booking = $('#workbench-booking'), together = $('#workbench-group');
+      group(booking, 'Pricing & customer response', ['booking.fee', 'booking.feeElasticity', 'booking.adoptF', 'booking.adoptP', 'booking.incShare', 'booking.lapseRed']);
+      const delivery = group(booking, 'Footprint & delivery', ['booking.citywide']);
+      const footprint = document.createElement('div'); footprint.id = 'workbench-footprint'; delivery.appendChild(footprint);
+      ['booking.fulfil', 'booking.minutesPerMove'].forEach(key => delivery.appendChild(api.control(key)));
+      group(together, 'Demand & repeat use', ['group.initiate', 'group.discount', 'group.discountElasticity', 'group.incShare', 'group.lapseRed', 'group.repeat']);
+      const guests = group(together, 'Delivery & guest acquisition', ['group.availBase', 'group.complete', 'group.guestsNew', 'group.split']);
+      const activation = document.createElement('div'); activation.id = 'workbench-activation'; guests.appendChild(activation);
+      ['group.reserve', 'group.guestCredit', 'group.creditLift'].forEach(key => guests.appendChild(api.control(key)));
+      ['horizon', 'discountAnnual', 'budget', 'costPerRide', 'fieldHourly', 'population.useCalibrated', 'population.activeCustomers'].forEach(key => $('#workbench-shared').appendChild(api.control(key)));
+      $('#workbench-all').textContent = `All ${api.keys.length - 1} model inputs`;
+      syncWorkbench(); api.sync();
     }
-    function guide(data) {
-      last = data;
-      const list = drivers(), select = $('#guide-driver');
-      if (!list.some(d => d.key === driver)) driver = list[0].key;
-      select.innerHTML = list.map(d => `<option value="${d.key}">${esc(d.label)}</option>`).join(''); select.value = driver;
-      const d = list.find(d => d.key === driver), q = api.meta(driver), disabled = api.selected() === 'none';
-      if ($('#guide-control .inp')?.dataset.key !== driver) {
-        $('#guide-control').innerHTML = `<div class="inp guide-input" data-key="${driver}"><div class="lab"><label for="guide-value">Your scenario value</label><span class="tag c-assumed">Assumption</span></div><div class="ctl"><input type="range" min="${q.min * 100}" max="${q.max * 100}" step="${q.step * 100}" data-role="range" aria-label="${esc(d.label)}"><input type="number" id="guide-value" min="${q.min * 100}" max="${q.max * 100}" step="${q.step * 100}" data-role="num"><span class="unit">%</span></div></div>`;
+    function syncWorkbench() {
+      const x = api.inputs(), footprint = $('#workbench-footprint'), activation = $('#workbench-activation'); let rebuilt = false;
+      if (footprint.dataset.city !== String(x.booking.citywide)) {
+        footprint.replaceChildren(...(x.booking.citywide ? ['booking.cityEligible', 'booking.cityMoveShare'] : ['booking.eligible', 'booking.moveShare']).map(api.control));
+        footprint.dataset.city = String(x.booking.citywide); rebuilt = true;
       }
-      const current = E.get(api.inputs(), driver), reference = E.get(initial, driver), row = $('#guide-control .inp');
-      row.querySelector('[data-role="num"]').value = +(current * 100).toFixed(4);
-      row.querySelector('[data-role="range"]').value = current * 100;
-      select.disabled = disabled; row.querySelectorAll('input').forEach(el => { el.disabled = disabled; });
-      $('#guide-restore').disabled = disabled || current === reference;
-      $('#guide-help').textContent = disabled ? 'Choose an offer in step 1 to change its assumptions and see the result.' : d.explanation;
-      $('#guide-reference').textContent = `Reference when opened: ${api.percent(reference, 1)}. Only the selected assumption differs between the two calculations; other current inputs are held the same.`;
-      const y = E.clone(api.inputs()); E.set(y, driver, reference);
-      const ref = comparison(y, api.selected()).dCPE, value = data.by[api.selected()].dCPE, difference = value - ref;
-      $('#guide-effect').innerHTML = `<span class="guide-effect-label">Effect of this assumption change</span><b id="guide-delta" data-value="${difference}" data-reference="${ref}">${api.money(difference)}</b><span>${api.money(ref)} at ${api.percent(reference, 1)} → ${api.money(value)} at your ${api.percent(current, 1)}.</span>`;
-      $('#guide-effect').hidden = disabled;
-      $('#guide-read-hint').textContent = disabled ? 'The no-new-offer baseline has zero incremental value.' : 'This is the estimated extra contribution after setup over the full horizon. A positive result depends on the entered assumptions; it is not an observed return.';
+      if (activation.dataset.split !== String(x.group.split)) {
+        activation.replaceChildren(api.control(x.group.split ? 'group.activateSplit' : 'group.activate'));
+        activation.dataset.split = String(x.group.split); rebuilt = true;
+      }
+      $('#workbench-group [data-key="group.creditLift"]').hidden = !x.group.guestCredit;
+      const cohort = $('#workbench-shared [data-key="population.activeCustomers"]');
+      cohort.querySelectorAll('input').forEach(input => { input.disabled = x.population.useCalibrated; });
+      cohort.classList.toggle('inactive-control', x.population.useCalibrated);
+      cohort.querySelector('.control-context').textContent = x.population.useCalibrated ? 'Turn off calibrated Oslo scale to set a named cohort.' : 'Starting active customers in the named cohort.';
+      if (rebuilt) api.sync();
+    }
+    let openingBy = null;
+    function overview(data) {
+      last = data; syncWorkbench();
+      const x = api.inputs(), selected = api.selected(), label = { none: 'Neither', booking: 'Hub & Book', group: 'Voi Together', both: 'Both offers' }[selected];
+      if (!openingBy && !E.validate(initial).length) openingBy = Object.fromEntries(E.scenarios(initial).map(row => [row.id, row]));
+      const current = data.by[selected].dCPE, reference = openingBy ? openingBy[selected].dCPE : null, delta = reference === null ? null : current - reference;
+      const changed = api.keys.filter(key => JSON.stringify(E.get(x, key)) !== JSON.stringify(E.get(initial, key)));
+      const rangeChanged = JSON.stringify(x.mc.dist) !== JSON.stringify(initial.mc.dist);
+      $('#workbench-change').innerHTML = reference === null ? '<span>Opening inputs were invalid; no opening comparison is available.</span>' : `<span>Combined change vs opening inputs</span><b id="workbench-delta" data-value="${delta}" data-reference="${reference}">${api.money(delta)}</b><small>${api.money(reference)} → ${api.money(current)} · same ${esc(label)} investment, all input changes included.</small>`;
+      const expanded = $('#workbench-changes details')?.open;
+      const format = (key, value) => key === 'rollout.mode' ? String(value) : api.meta(key).type === 'bool' ? (value ? 'On' : 'Off') : api.format(api.meta(key), value);
+      $('#workbench-changes').innerHTML = `<details${expanded ? ' open' : ''}><summary>${changed.length} model input${changed.length === 1 ? '' : 's'} changed since opening</summary><ul>${changed.map(key => `<li><span>${esc(key === 'rollout.mode' ? 'Deployment' : api.meta(key).label)}</span><b>${esc(format(key, E.get(initial, key)))} → ${esc(format(key, E.get(x, key)))}</b></li>`).join('') || '<li>No model inputs changed.</li>'}</ul>${rangeChanged ? '<p>Uncertainty settings also differ from opening.</p>' : ''}</details>`;
+      $('#workbench-restore').disabled = JSON.stringify(x) === JSON.stringify(initial) || !openingBy;
+      $('#workbench-comparison').innerHTML = ['booking', 'group', 'both'].map(id => `<div${id === selected ? ' class="selected"' : ''}><span>${id === 'both' ? 'Both offers' : names[id]}</span><b data-workbench-case="${id}" data-value="${data.by[id].dCPE}" class="${data.by[id].dCPE < 0 ? 'bad' : ''}">${api.money(data.by[id].dCPE)}</b></div>`).join('');
+      $('#workbench-live-strip').innerHTML = `<span>${esc(label)}<b>${api.money(current)}</b></span><small>${delta === null ? '' : api.money(delta) + ' vs opening inputs'}</small>`;
       decision(data);
     }
     function fields(keys) {
@@ -2231,8 +2380,9 @@ globalThis.VoiRegression = function (x) {
     function summary() {
       return { version: registry.version, scope: registry.scope, currentInputs: E.clone(api.inputs()), trails: E.clone(registry.trails), aggregateChecks: E.clone(audit), note: 'Published facts and model reference values are separate from current edited inputs. Internal verification is not predictive validation.' };
     }
-    $('#guide-driver').addEventListener('change', e => { driver = e.target.value; if (last) guide(last); });
-    $('#guide-restore').addEventListener('click', () => api.restore(driver, E.get(initial, driver), initial.mc.dist[driver]));
+    buildWorkbench();
+    $('#workbench-all').addEventListener('click', () => api.openInputs());
+    $('#workbench-restore').addEventListener('click', () => api.restoreAll(initial));
     $('#evidence-trail-nav').addEventListener('click', e => { const b = e.target.closest('[data-evidence-trail]'); if (!b) return; evidenceId = b.dataset.evidenceTrail; if (last) trail(last); });
     for (const host of [$('#decision-offers'), $('#mechanism-choice')]) host.addEventListener('click', e => {
       const button = e.target.closest('[data-mechanism]'); if (!button) return;
@@ -2243,7 +2393,7 @@ globalThis.VoiRegression = function (x) {
       const button = e.target.closest('[data-open-evidence]'); if (!button) return;
       evidenceId = button.dataset.openEvidence; api.navigate('evidence', 'evidence-trail-detail');
     });
-    return { guide, evidence, summary };
+    return { overview, evidence, summary };
   };
 })(typeof window !== 'undefined' ? window : globalThis);
 </script>
@@ -2611,20 +2761,20 @@ globalThis.VoiRegression = function (x) {
   const unitOf = q => q.fmt === 'pp' ? 'pp' : q.fmt === 'pct' ? '%' : q.fmt === 'nok' || q.fmt === 'nok0' ? 'kr' : (q.unit || '');
   const unitWord = q => q.type === 'bool' ? 'on or off' : q.fmt === 'pp' ? 'percentage points, added to or taken from a rate' : q.fmt === 'pct' ? 'share, %' : q.fmt === 'nok' || q.fmt === 'nok0' ? 'NOK' : q.unit || 'number';
   const round = (v, step) => { const d = Math.max(0, Math.ceil(-Math.log10(step)) + 1); return Number(v.toFixed(d)); };
-  function inputRow(q, compact, prefix = 'kv_') {
+  function inputRow(q, compact, prefix = 'kv_', concise = false) {
     const row = document.createElement('div');
     row.className = 'inp'; row.dataset.key = q.key;
     row.dataset.search = [q.label, q.plain, q.note, q.mech, q.syn, SRC[q.src], CLS[q.cls][0], GROUPS.find(g => g.id === q.group)?.title].filter(Boolean).join(' ').toLowerCase();
     const id = (compact ? prefix : 'in_') + q.key.replace(/\./g, '_');
     const tag = `${clsTag(q)} <button type="button" class="xb" data-var="${q.key}" aria-label="Explain ${esc(q.label)}">?</button>${q.hyp ? ' <span class="hyp" title="A behavioural effect that is not yet measured">Hypothesis</span>' : ''}`;
     const metaLine = [unitWord(q), q.per && 'per ' + q.per, q.when, 'basis: ' + SRC[q.src]].filter(Boolean).join(' · ');
-    const below = `${q.plain ? `<div class="plain">${esc(q.plain)}</div>` : ''}${!compact && q.note ? `<div class="note">${esc(q.note)}</div>` : ''}${q.mech && !compact ? `<div class="meta">Mechanism: ${esc(q.mech)}</div>` : ''}<div class="meta">${esc(metaLine)}${q.ref ? ' · ' + refLinks(q) : ''}</div>${compact && q.metric ? `<div class="meta">Pilot measures: ${esc(q.metric)}</div>` : ''}`;
+    const below = concise ? `<div class="control-context">${esc([q.per && 'per ' + q.per, q.when].filter(Boolean).join(' · '))}</div>` : `${q.plain ? `<div class="plain">${esc(q.plain)}</div>` : ''}${!compact && q.note ? `<div class="note">${esc(q.note)}</div>` : ''}${q.mech && !compact ? `<div class="meta">Mechanism: ${esc(q.mech)}</div>` : ''}<div class="meta">${esc(metaLine)}${q.ref ? ' · ' + refLinks(q) : ''}</div>${compact && q.metric ? `<div class="meta">Pilot measures: ${esc(q.metric)}</div>` : ''}`;
     if (q.type === 'bool') {
       row.innerHTML = `<label class="chk"><input type="checkbox" id="${id}" data-role="bool"> ${esc(q.label)}</label><div style="margin-top:4px">${tag}</div>${below}`;
       return row;
     }
     const sc = scaleOf(q), step = q.step * sc;
-    const dist = DEFAULTS.mc.dist[q.key] ? `<div class="dist"><span class="mut">Simulation</span> <select data-role="dstate" aria-label="${esc(q.label)}: simulation state"><option value="uncertain">Uncertain</option><option value="fixed">Fixed</option></select><span class="drange"> low <input type="number" data-role="dlo" step="${step}" aria-label="${esc(q.label)}: low end of range"> – high <input type="number" data-role="dhi" step="${step}" aria-label="${esc(q.label)}: high end of range"> ${esc(unitOf(q))}</span> <span class="mut dnote"></span></div>` : '';
+    const dist = !concise && DEFAULTS.mc.dist[q.key] ? `<div class="dist"><span class="mut">Simulation</span> <select data-role="dstate" aria-label="${esc(q.label)}: simulation state"><option value="uncertain">Uncertain</option><option value="fixed">Fixed</option></select><span class="drange"> low <input type="number" data-role="dlo" step="${step}" aria-label="${esc(q.label)}: low end of range"> – high <input type="number" data-role="dhi" step="${step}" aria-label="${esc(q.label)}: high end of range"> ${esc(unitOf(q))}</span> <span class="mut dnote"></span></div>` : '';
     row.innerHTML = `<div class="lab"><label for="${id}">${esc(q.label)}</label><span>${tag}</span></div>
       <div class="ctl"><input type="range" min="${q.min * sc}" max="${q.max * sc}" step="${step}" data-role="range" aria-label="${esc(q.label)}" tabindex="-1">
       <input type="number" id="${id}" min="${q.min * sc}" max="${q.max * sc}" step="${step}" data-role="num"><span class="unit">${esc(unitOf(q))}</span></div>${dist}${below}`;
@@ -2777,19 +2927,25 @@ globalThis.VoiRegression = function (x) {
   }
 
   // Drawer
-  function drawer(open, group) {
+  let drawerOrigin = null;
+  function drawer(open, group, launcher) {
     const wasOpen = $('#drawer').classList.contains('on');
+    if (open && !wasOpen) drawerOrigin = launcher || document.activeElement;
     if (open) closeExplain();
     $('#drawer').classList.toggle('on', open);
     $('#drawer').toggleAttribute('inert', !open);
     $('#scrim').classList.toggle('on', open || $('#explain').classList.contains('on'));
     $('#drawer').setAttribute('aria-hidden', String(!open)); $('#open-drawer').setAttribute('aria-expanded', String(open));
+    $('#workbench-all').setAttribute('aria-expanded', String(open));
     if (open && group) {
       $('#inp-search').value = ''; filterInputs('');
       const d = document.querySelector(`#inputs details[data-group="${group}"]`);
       if (d) { d.open = true; setTimeout(() => { if ($('#drawer').classList.contains('on')) { d.scrollIntoView({ block: 'start' }); d.querySelector('summary').focus(); } }, 220); }
     } else if (open) setTimeout(() => { if ($('#drawer').classList.contains('on')) $('#inp-search').focus(); }, 200);
-    if (!open && wasOpen) $('#open-drawer').focus({ preventScroll: true });
+    if (!open && wasOpen) {
+      const origin = drawerOrigin && drawerOrigin.isConnected && !drawerOrigin.closest('[hidden], [inert], details:not([open])') ? drawerOrigin : (view.page === 'overview' ? $('#workbench-all') : $('#open-drawer'));
+      origin.focus({ preventScroll: true });
+    }
   }
 
   // Tooltip
@@ -3011,7 +3167,7 @@ globalThis.VoiRegression = function (x) {
       if (cmp.payback) svg.appendChild(sv('circle', { cx: x(cmp.payback), cy: y(0), r: 4, fill: 'var(--card)', stroke: 'var(--ink)', 'stroke-width': 2 }));
       host.appendChild(svg);
     }
-    $('#lead').innerHTML = `Compare Hub &amp; Book and Voi Together against today's Voi. Inspect the funding, the customer response assumptions and the portfolio value they imply.`;
+    $('#lead').innerHTML = `Change customer response, pricing and delivery together. Compare the combined investment case and trace the customer mechanisms behind the value.`;
     if (simulator) simulator.refresh(CUR);
     const tiles = [
       { k: 'Setup', n: 'setup', v: any ? nok(cmp.setup) : '–', s: any ? `planning estimate · ${cmp.withinBudget ? 'within' : 'over'} the ${nok(X.budget)} budget` : 'no offer' },
@@ -3020,7 +3176,7 @@ globalThis.VoiRegression = function (x) {
     ];
     $('#kpis').innerHTML = tiles.map(t => `<div class="kpi"><div class="kk">${t.k} ${any ? xb(t.n) : ''}</div><div class="kv">${t.v}</div><div class="ks">${t.s}</div></div>`).join('');
     portfolioTable();
-    if (review) review.guide(CUR);
+    if (review) review.overview(CUR);
     $('#decision-caveats').innerHTML = `<ul><li><b>Customer behaviour is not measured.</b> With future retention, repeat-use and guest-activation benefits off, this investment is worth ${any ? mnokA(ne) : '0 NOK'}. These effects can interact.</li><li><b>Scale is an assumption.</b> ${esc(configParts().scope)}. The survey of 72 people does not establish Oslo segment shares.</li><li><b>This is a conditional case.</b> Price response and delivery costs need testing. Inspect uncertainty before choosing a rollout strategy.</li></ul>`;
   }
   // Compare the four investments against the budget; the recommendation is the best feasible one.
@@ -3083,6 +3239,7 @@ globalThis.VoiRegression = function (x) {
     }).join('') + '</tbody>';
   }
   // ---------- Explore the offers ----------
+  const offerKeyMeta = id => META.filter(q => q.group === id && q.key6 && activeMeta(q)).map(q => q.key === 'group.activate' && X.group.split ? metaOf('group.activateSplit') : q);
   function buildOffers() {
     $('#offers').innerHTML = ['booking', 'group'].map(id => {
       const o = OFFERS[id], designs = o.designs;
@@ -3093,16 +3250,17 @@ globalThis.VoiRegression = function (x) {
         <div class="of-s"><div class="of-k">Price</div><p id="price-${id}"></p></div>
         <div class="of-s"><div class="of-k">Today, and what is new</div><p>${esc(o.today)}</p><p style="margin-top:6px"><b>New:</b> ${esc(o.isNew)}</p></div>
         <div class="of-s"><div class="of-k">Design choice</div><div class="seg-ctl" data-design="${id}" role="group" aria-label="${OFFER[id]} design" style="flex-wrap:wrap;max-width:100%">${Object.entries(designs).map(([k, d]) => `<button type="button" data-d="${k}">${esc(d.label)}</button>`).join('')}</div><p id="dnote-${id}" style="margin-top:6px"></p></div>
-        <details class="offer-tuning"><summary>Adjust key inputs and inspect the funnel</summary><div class="of-s"><div class="of-k">Key inputs</div><div class="levers" id="keys-${id}"></div><p style="margin-top:8px"><a href="#" data-open-group="${id}">All ${META.filter(q => q.group === id).length} inputs for ${OFFER[id]}</a></p></div>
+        <details class="offer-tuning" open><summary>Adjust key inputs and inspect the funnel</summary><div class="of-s"><div class="of-k">Key inputs</div><div class="levers" id="keys-${id}"></div><p style="margin-top:8px"><a href="#" data-open-group="${id}">All ${META.filter(q => q.group === id).length} inputs for ${OFFER[id]}</a></p></div>
         <div class="of-s"><div class="of-k">Repeat use: a hypothesis</div><p>${esc(o.hyp)}</p></div>
         <div class="of-s"><div class="of-k">Funnel</div><div class="fn" id="fn-${id}"></div></div></details>
         <div class="of-s"><div class="res" id="res-${id}"></div></div>
       </div>`;
     }).join('');
-    for (const id of ['booking', 'group']) META.filter(q => q.group === id && q.key6 && activeMeta(q)).forEach(q => $('#keys-' + id).appendChild(inputRow(q, true)));
+    for (const id of ['booking', 'group']) offerKeyMeta(id).forEach(q => $('#keys-' + id).appendChild(inputRow(q, true)));
     $('#keys-booking').dataset.city = String(X.booking.citywide);
+    $('#keys-group').dataset.split = String(X.group.split);
     $('#offers').addEventListener('click', e => {
-      const a = e.target.closest('[data-open-group]'); if (a) { e.preventDefault(); drawer(true, a.dataset.openGroup); return; }
+      const a = e.target.closest('[data-open-group]'); if (a) { e.preventDefault(); drawer(true, a.dataset.openGroup, a); return; }
       const b = e.target.closest('[data-design] button'); if (!b) return;
       const id = b.closest('[data-design]').dataset.design, d = OFFERS[id].designs[b.dataset.d];
       change(`${OFFER[id]} design: ${d.label}`, () => { for (const [k, v] of Object.entries(d.values)) setInputValue(k, v); });
@@ -3113,6 +3271,10 @@ globalThis.VoiRegression = function (x) {
       const host = $('#keys-booking'); host.innerHTML = ''; host.dataset.city = String(X.booking.citywide);
       META.filter(q => q.group === 'booking' && q.key6 && activeMeta(q)).forEach(q => host.appendChild(inputRow(q, true)));
       syncInputs();
+    }
+    if ($('#keys-group').dataset.split !== String(X.group.split)) {
+      const host = $('#keys-group'); host.replaceChildren(...offerKeyMeta('group').map(q => inputRow(q, true)));
+      host.dataset.split = String(X.group.split); syncInputs();
     }
     decisionTable();
     matchedPriceTable();
@@ -4435,7 +4597,9 @@ globalThis.VoiRegression = function (x) {
     simulator.restore(location.hash.slice(1));
     review = window.createVoiReview({ inputs: () => X, defaults: DEFAULTS, selected: () => view.scenario, options: ON,
       meta: metaOf, esc, money: mnokA, moneyNok: nok, number: nf, percent: pct, format: fmtVal, references: ids => refLinks({ ref: ids }), noFuture: noEffect, navigate: navigateTo,
-      restore: (key, value, dist) => change('Restored the guided assumption', () => { E.set(X, key, value); if (dist) X.mc.dist[key] = E.clone(dist); }) });
+      control: key => inputRow(metaOf(key), true, 'scenario_', true), sync: syncInputs,
+      keys: META.map(q => q.key).concat(['rollout.mode']), openInputs: () => drawer(true, undefined, $('#workbench-all')),
+      restoreAll: values => change('Restored opening inputs', () => { X = E.clone(values); }) });
     committed = E.clone(X);
     buildInputs();
     buildOffers();
@@ -4478,7 +4642,7 @@ globalThis.VoiRegression = function (x) {
     $('#flow-seg').addEventListener('change', e => { view.flowSeg = e.target.value; refresh(); });
     $('#flow-mode').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; view.flowMode = b.dataset.v; document.querySelectorAll('#flow-mode button').forEach(x => x.setAttribute('aria-pressed', String(x === b))); refresh(); });
     $('#flow-month').addEventListener('input', e => { view.flowMonth = +e.target.value; $('#flow-m').textContent = view.flowMonth; chartFlow(CUR.cmp); });
-    $('#open-drawer').addEventListener('click', () => drawer(true));
+    $('#open-drawer').addEventListener('click', e => drawer(true, undefined, e.currentTarget));
     document.addEventListener('click', e => {
       const a = e.target.closest('[data-open-drawer]'); if (a) { e.preventDefault(); drawer(true); }
       const offer = e.target.closest('[data-offer]'); if (offer) { e.preventDefault(); navigateTo('offers', 'offer-' + offer.dataset.offer); }
