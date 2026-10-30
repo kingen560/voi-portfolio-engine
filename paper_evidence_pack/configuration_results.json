@@ -1,7 +1,7 @@
 {
   "schemaVersion": 7,
   "modelVersion": "7.2.0",
-  "createdAt": "2026-10-30T21:18:24.243Z",
+  "createdAt": "2026-10-30T21:31:45.537Z",
   "currency": "NOK",
   "monetaryBasis": "Net of VAT; economic contribution includes resource/opportunity costs. Actual cash funding uses the entered additional cash share of internal office hours. Real/nominal consistency remains a planning assumption.",
   "rankingBasis": "Pilot followed by expansion; candidates and funding constraints use this implementation path",
@@ -55156,7 +55156,7 @@
     "input_registry.json": "b5c3af77613d2c6ed53dff6492d16befcea3cf63bcc8ba0e0ee2b396e67377af",
     "forecast_audit.json": "a14b7ff0f9d497bc594ce3a39057ac0a05b79e2d1af6b226910de3ba72df25fe",
     "generate_pack.cjs": "bc14da6492f7c957b97445dba5f9d27193b3e6aeb817fcc2b49c90dd6f7b2bcd",
-    "make_evidence_pack.py": "e83c8b29055dceed8145f3b9302a95df9e2b01690ec83a43436f05fc5a4c035c"
+    "make_evidence_pack.py": "5674219ed4468522f00cbba1c54f23c8dfdc7b4008c279e7831ed0c4cf150ead"
   },
   "report": {
     "id": "report-hub-first",
