@@ -1,25 +1,36 @@
-# Voi Portfolio Lab
+# Voi Portfolio Lab 7.1
 
-A student decision model for two proposed customer experiences in Voi Oslo.
+A student decision model for two proposed customer experiences at Voi Oslo:
+- **Hub & Book:** paid next-morning booking for Convenience Seekers;
+- **Voi Together:** easier group trips for Social Leisure Seekers.
 
-[Open the interactive model](https://kingen560.github.io/voi-portfolio-engine/)
+[Open the interactive model](https://kingen560.github.io/voi-portfolio-engine/) · [Previous version 6.6](https://kingen560.github.io/voi-portfolio-engine/archive/v6.6/)
 
-## Scenario workbench
+## What the model does
 
-Edit customer response, pricing, delivery and retention for both offers directly on the main page. Multiple edits stay active together. Live results show their combined investment value, funding and payback, plus each investment case. Shared controls cover cohort scale, horizon, budget and unit economics.
+**Candidates.** It compares no investment, the four current-input options and a catalogue of eleven named designs, including their combinations.
 
-The opening comparison uses the same investment with the configuration loaded when the page opened. Restore opening inputs restores that entire configuration and its uncertainty settings, and can be undone. The earlier one-variable exercise is removed. Both offer key-input panels start open; the full model editor and manual uncertainty analysis are directly accessible.
+**Ranking basis.** Every candidate is valued as commercial rollout to the stated scope, against the same no-offer baseline. The pilot is shown separately as a learning plan with its own cost.
 
-Customer mechanisms still connect delivery, customer value, assumed behaviour and portfolio consequence. Evidence & model retains the source trail.
+**Planning scope.** The Oslo market, estimated from 2025 inputs (about 124,800 active customers). Two alternatives are available:
+- consistent 2024 inputs, as a lower bound;
+- a 10,000-customer pilot cohort.
+
+**What must be true.** For each input, the break-even point and the point where another design takes the lead.
+
+**What changes the choice.** One defensible switch at a time.
+
+**Paired uncertainty.** Reported as shares of tested combinations, not as probabilities.
+
+All calculations run in the browser, with no analytics or data feed. JSON, CSV and a current-case evidence note can be exported.
 
 ## Evidence and limits
 
-Release 6.6.0 retains the source trail, extraction steps, transformations and remaining gaps. It separates reproduced survey facts and reported financial anchors from constructed Oslo estimates and unmeasured treatment effects. The original sample has 72 respondents; its proportions are not measured Oslo market shares. Existing aggregate source checks can be inspected in the app. Raw respondent records and private course materials are not uploaded.
-
-Switching costs and competitive protection are discussed as hypotheses to test. The model adds no independent protection premium and does not identify rival choices, multi-homing or causal switching effects. Offer rankings and simulated probabilities remain conditional on the entered assumptions. The economic core and defaults are unchanged from 6.3.
-
-The optional timeline, complete assumptions, evidence register, pilot rules and JSON/CSV exports remain available. Monte Carlo runs only on request. Market review, A4 reporting and Share link remain retired. All calculations run in the browser, with no analytics or automatic data feed.
+- **Conditional results.** Results depend on stated assumptions and are not validated forecasts or causal estimates. Unmeasured relationship effects (retention, repeat use, upgrades, spillover) are off by default.
+- **Sample.** The survey has 72 respondents. Its proportions are not measured Oslo market shares. Raw respondent records and private course materials are not uploaded.
+- **Assumed inputs.** Placement costs, internal hours and price response are assumptions. The recommended design's lead also rests on a stated payment rule for guests.
+- **Superseded pack.** `paper_evidence_pack/` is the frozen v7.0.0 case for a 10,000-customer cohort. It has been superseded by 7.1.
 
 Independent student analysis, not affiliated with or endorsed by Voi Technology.
 
-Archivo and IBM Plex Mono are embedded under the SIL Open Font License; see `FONT_LICENSES.txt`.
+Archivo and IBM Plex Mono are embedded under the SIL Open Font License; see FONT_LICENSES.txt and `licenses/`.
