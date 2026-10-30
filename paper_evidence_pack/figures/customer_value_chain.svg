@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
   "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="628.2pt" height="180.72pt" viewBox="0 0 628.2 180.72" xmlns="http://www.w3.org/2000/svg" version="1.1">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="628.2pt" height="186.264pt" viewBox="0 0 628.2 186.264" xmlns="http://www.w3.org/2000/svg" version="1.1">
  <metadata>
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-10-28T16:19:50.770198</dc:date>
+    <dc:date>2026-10-30T22:18:49.696581</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -21,109 +21,147 @@
  </defs>
  <g id="figure_1">
   <g id="patch_1">
-   <path d="M 0 180.72 
-L 628.2 180.72 
+   <path d="M 0 186.264 
+L 628.2 186.264 
 L 628.2 0 
 L 0 0 
 z
-" style="fill: #f8f8f3"/>
+" style="fill: #f7f7f0"/>
   </g>
   <g id="axes_1">
    <g id="patch_2">
-    <path d="M 141.167544 92.0232 
-Q 148.374478 92.0232 154.463378 92.0232 
-" clip-path="url(#p188482f029)" style="fill: none; stroke: #e95e49; stroke-linecap: round"/>
-    <path d="M 149.263378 89.4232 
-L 154.463378 92.0232 
-L 149.263378 94.6232 
-" clip-path="url(#p188482f029)" style="fill: none; stroke: #e95e49; stroke-linecap: round"/>
+    <path d="M 8.316 144.1368 
+L 150.048 144.1368 
+Q 152.28 144.1368 152.28 141.9192 
+L 152.28 30.4848 
+Q 152.28 28.2672 150.048 28.2672 
+L 8.316 28.2672 
+Q 6.084 28.2672 6.084 30.4848 
+L 6.084 141.9192 
+Q 6.084 144.1368 8.316 144.1368 
+z
+" clip-path="url(#pa251aff3d1)" style="fill: #e8ede3"/>
    </g>
    <g id="patch_3">
-    <path d="M 297.686544 92.0232 
-Q 304.893478 92.0232 310.982378 92.0232 
-" clip-path="url(#p188482f029)" style="fill: none; stroke: #e95e49; stroke-linecap: round"/>
-    <path d="M 305.782378 89.4232 
-L 310.982378 92.0232 
-L 305.782378 94.6232 
-" clip-path="url(#p188482f029)" style="fill: none; stroke: #e95e49; stroke-linecap: round"/>
+    <path d="M 154.280953 100.3392 
+Q 156.744993 100.3392 158.090999 100.3392 
+" clip-path="url(#pa251aff3d1)" style="fill: none; stroke: #dc604c; stroke-linecap: round"/>
+    <path d="M 153.290999 97.9392 
+L 158.090999 100.3392 
+L 153.290999 102.7392 
+z
+" clip-path="url(#pa251aff3d1)" style="fill: #dc604c; stroke: #dc604c; stroke-linecap: round"/>
    </g>
    <g id="patch_4">
-    <path d="M 454.205544 92.0232 
-Q 461.412478 92.0232 467.501378 92.0232 
-" clip-path="url(#p188482f029)" style="fill: none; stroke: #e95e49; stroke-linecap: round"/>
-    <path d="M 462.301378 89.4232 
-L 467.501378 92.0232 
-L 462.301378 94.6232 
-" clip-path="url(#p188482f029)" style="fill: none; stroke: #e95e49; stroke-linecap: round"/>
+    <path d="M 163.44 144.1368 
+L 305.172 144.1368 
+Q 307.404 144.1368 307.404 141.9192 
+L 307.404 30.4848 
+Q 307.404 28.2672 305.172 28.2672 
+L 163.44 28.2672 
+Q 161.208 28.2672 161.208 30.4848 
+L 161.208 141.9192 
+Q 161.208 144.1368 163.44 144.1368 
+z
+" clip-path="url(#pa251aff3d1)" style="fill: #e8ede3"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 309.404953 100.3392 
+Q 311.868993 100.3392 313.214999 100.3392 
+" clip-path="url(#pa251aff3d1)" style="fill: none; stroke: #dc604c; stroke-linecap: round"/>
+    <path d="M 308.414999 97.9392 
+L 313.214999 100.3392 
+L 308.414999 102.7392 
+z
+" clip-path="url(#pa251aff3d1)" style="fill: #dc604c; stroke: #dc604c; stroke-linecap: round"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 318.564 144.1368 
+L 460.296 144.1368 
+Q 462.528 144.1368 462.528 141.9192 
+L 462.528 30.4848 
+Q 462.528 28.2672 460.296 28.2672 
+L 318.564 28.2672 
+Q 316.332 28.2672 316.332 30.4848 
+L 316.332 141.9192 
+Q 316.332 144.1368 318.564 144.1368 
+z
+" clip-path="url(#pa251aff3d1)" style="fill: #e8ede3"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 464.528953 100.3392 
+Q 466.992993 100.3392 468.338999 100.3392 
+" clip-path="url(#pa251aff3d1)" style="fill: none; stroke: #dc604c; stroke-linecap: round"/>
+    <path d="M 463.538999 97.9392 
+L 468.338999 100.3392 
+L 463.538999 102.7392 
+z
+" clip-path="url(#pa251aff3d1)" style="fill: #dc604c; stroke: #dc604c; stroke-linecap: round"/>
+   </g>
+   <g id="patch_8">
+    <path d="M 473.688 144.1368 
+L 615.42 144.1368 
+Q 617.652 144.1368 617.652 141.9192 
+L 617.652 30.4848 
+Q 617.652 28.2672 615.42 28.2672 
+L 473.688 28.2672 
+Q 471.456 28.2672 471.456 30.4848 
+L 471.456 141.9192 
+Q 471.456 144.1368 473.688 144.1368 
+z
+" clip-path="url(#pa251aff3d1)" style="fill: #e8ede3"/>
    </g>
    <g id="text_1">
-    <text style="font-weight: 700; font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #202924" x="7.2" y="48.78" transform="rotate(-0 7.2 48.78)">Customer need</text>
+    <text style="font-weight: 700; font-size: 9.4px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #202924" x="14.454" y="53.149797" transform="rotate(-0 14.454 53.149797)">CUSTOMER NEED</text>
    </g>
    <g id="text_2">
-    <g id="patch_5">
-     <path d="M -4.8 114.07932 
-L 143.646875 114.07932 
-L 143.646875 66.073852 
-L -4.8 66.073852 
-z
-" style="fill: #e6eadf"/>
-    </g>
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; fill: #202924" transform="translate(7.2 86.673266)">Reliable pickup / easier</text>
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; fill: #202924" transform="translate(7.2 98.676)">coordination with friends</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; fill: #202924" transform="translate(14.454 79.052175)">Reliable nearby pickup</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; fill: #202924" transform="translate(14.454 93.052175)">and sufficient battery</text>
    </g>
    <g id="text_3">
-    <text style="font-weight: 700; font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #202924" x="163.719" y="48.78" transform="rotate(-0 163.719 48.78)">Experienced value</text>
+    <text style="font-size: 8.8px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #6a756b" x="14.454" y="134.191425" transform="rotate(-0 14.454 134.191425)">Survey need signal</text>
    </g>
    <g id="text_4">
-    <g id="patch_6">
-     <path d="M 151.719 114.07932 
-L 305.226813 114.07932 
-L 305.226813 66.073852 
-L 151.719 66.073852 
-z
-" style="fill: #e6eadf"/>
-    </g>
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; fill: #202924" transform="translate(163.719 86.673266)">Fulfilment, effort, clarity,</text>
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; fill: #202924" transform="translate(163.719 98.676)">satisfaction and total cost</text>
+    <text style="font-weight: 700; font-size: 9.4px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #202924" x="169.578" y="53.149797" transform="rotate(-0 169.578 53.149797)">EXPERIENCED VALUE</text>
    </g>
    <g id="text_5">
-    <text style="font-weight: 700; font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #202924" x="320.238" y="48.78" transform="rotate(-0 320.238 48.78)">Behaviour hypothesis</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; fill: #202924" transform="translate(169.578 79.052175)">Less searching</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; fill: #202924" transform="translate(169.578 93.052175)">and uncertainty;</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; fill: #202924" transform="translate(169.578 107.052175)">clear service and remedy</text>
    </g>
    <g id="text_6">
-    <g id="patch_7">
-     <path d="M 308.238 114.07932 
-L 461.617688 114.07932 
-L 461.617688 66.073852 
-L 308.238 66.073852 
-z
-" style="fill: #e6eadf"/>
-    </g>
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; fill: #202924" transform="translate(320.238 86.673266)">Adoption, additional trips,</text>
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; fill: #202924" transform="translate(320.238 98.676)">repeat use and retention</text>
+    <text style="font-size: 8.8px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #6a756b" x="169.578" y="134.191425" transform="rotate(-0 169.578 134.191425)">Product hypothesis</text>
    </g>
    <g id="text_7">
-    <text style="font-weight: 700; font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #202924" x="476.757" y="48.78" transform="rotate(-0 476.757 48.78)">Portfolio consequence</text>
+    <text style="font-weight: 700; font-size: 9.4px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #202924" x="324.702" y="53.149797" transform="rotate(-0 324.702 53.149797)">CUSTOMER RESPONSE</text>
    </g>
    <g id="text_8">
-    <g id="patch_8">
-     <path d="M 464.757 114.07932 
-L 615.605438 114.07932 
-L 615.605438 66.073852 
-L 464.757 66.073852 
-z
-" style="fill: #e6eadf"/>
-    </g>
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; fill: #202924" transform="translate(476.757 86.673266)">Incremental contribution,</text>
-    <text style="font-size: 10px; font-family: 'DejaVu Sans'; fill: #202924" transform="translate(476.757 98.676)">cash needs and decision</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; fill: #202924" transform="translate(324.702 79.052175)">Paid bookings and</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; fill: #202924" transform="translate(324.702 93.052175)">genuinely additional</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; fill: #202924" transform="translate(324.702 107.052175)">completed rides</text>
    </g>
    <g id="text_9">
-    <text style="font-size: 9px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #202924" x="7.2" y="160.2144" transform="rotate(-0 7.2 160.2144)">Need scores support relevance. Each behavioural link requires evidence; no causal coefficient is inferred from the survey.</text>
+    <text style="font-size: 8.8px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #6a756b" x="324.702" y="134.191425" transform="rotate(-0 324.702 134.191425)">Unmeasured response</text>
+   </g>
+   <g id="text_10">
+    <text style="font-weight: 700; font-size: 9.4px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #202924" x="479.826" y="53.149797" transform="rotate(-0 479.826 53.149797)">ECONOMIC VALUE</text>
+   </g>
+   <g id="text_11">
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; fill: #202924" transform="translate(479.826 80.020925)">Incremental contribution</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; fill: #202924" transform="translate(479.826 93.052175)">after delivery and</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; fill: #202924" transform="translate(479.826 108.020925)">investment costs</text>
+   </g>
+   <g id="text_12">
+    <text style="font-size: 8.8px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #6a756b" x="479.826" y="134.191425" transform="rotate(-0 479.826 134.191425)">Conditional valuation</text>
+   </g>
+   <g id="text_13">
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #6a756b" x="7.2" y="168.5304" transform="rotate(-0 7.2 168.5304)">Customer need supports relevance. It does not establish demand for this exact booking product or a treatment effect.</text>
    </g>
   </g>
  </g>
  <defs>
-  <clipPath id="p188482f029">
-   <rect x="7.2" y="7.2" width="613.8" height="166.32"/>
+  <clipPath id="pa251aff3d1">
+   <rect x="7.2" y="7.2" width="613.8" height="171.864"/>
   </clipPath>
  </defs>
 </svg>
