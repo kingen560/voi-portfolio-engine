@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="628.2pt" height="180.72pt" viewBox="0 0 628.2 180.72" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-10-28T16:19:50.770198</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.2, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 180.72 
+L 628.2 180.72 
+L 628.2 0 
+L 0 0 
+z
+" style="fill: #f8f8f3"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 141.167544 92.0232 
+Q 148.374478 92.0232 154.463378 92.0232 
+" clip-path="url(#p188482f029)" style="fill: none; stroke: #e95e49; stroke-linecap: round"/>
+    <path d="M 149.263378 89.4232 
+L 154.463378 92.0232 
+L 149.263378 94.6232 
+" clip-path="url(#p188482f029)" style="fill: none; stroke: #e95e49; stroke-linecap: round"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 297.686544 92.0232 
+Q 304.893478 92.0232 310.982378 92.0232 
+" clip-path="url(#p188482f029)" style="fill: none; stroke: #e95e49; stroke-linecap: round"/>
+    <path d="M 305.782378 89.4232 
+L 310.982378 92.0232 
+L 305.782378 94.6232 
+" clip-path="url(#p188482f029)" style="fill: none; stroke: #e95e49; stroke-linecap: round"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 454.205544 92.0232 
+Q 461.412478 92.0232 467.501378 92.0232 
+" clip-path="url(#p188482f029)" style="fill: none; stroke: #e95e49; stroke-linecap: round"/>
+    <path d="M 462.301378 89.4232 
+L 467.501378 92.0232 
+L 462.301378 94.6232 
+" clip-path="url(#p188482f029)" style="fill: none; stroke: #e95e49; stroke-linecap: round"/>
+   </g>
+   <g id="text_1">
+    <text style="font-weight: 700; font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #202924" x="7.2" y="48.78" transform="rotate(-0 7.2 48.78)">Customer need</text>
+   </g>
+   <g id="text_2">
+    <g id="patch_5">
+     <path d="M -4.8 114.07932 
+L 143.646875 114.07932 
+L 143.646875 66.073852 
+L -4.8 66.073852 
+z
+" style="fill: #e6eadf"/>
+    </g>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; fill: #202924" transform="translate(7.2 86.673266)">Reliable pickup / easier</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; fill: #202924" transform="translate(7.2 98.676)">coordination with friends</text>
+   </g>
+   <g id="text_3">
+    <text style="font-weight: 700; font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #202924" x="163.719" y="48.78" transform="rotate(-0 163.719 48.78)">Experienced value</text>
+   </g>
+   <g id="text_4">
+    <g id="patch_6">
+     <path d="M 151.719 114.07932 
+L 305.226813 114.07932 
+L 305.226813 66.073852 
+L 151.719 66.073852 
+z
+" style="fill: #e6eadf"/>
+    </g>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; fill: #202924" transform="translate(163.719 86.673266)">Fulfilment, effort, clarity,</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; fill: #202924" transform="translate(163.719 98.676)">satisfaction and total cost</text>
+   </g>
+   <g id="text_5">
+    <text style="font-weight: 700; font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #202924" x="320.238" y="48.78" transform="rotate(-0 320.238 48.78)">Behaviour hypothesis</text>
+   </g>
+   <g id="text_6">
+    <g id="patch_7">
+     <path d="M 308.238 114.07932 
+L 461.617688 114.07932 
+L 461.617688 66.073852 
+L 308.238 66.073852 
+z
+" style="fill: #e6eadf"/>
+    </g>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; fill: #202924" transform="translate(320.238 86.673266)">Adoption, additional trips,</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; fill: #202924" transform="translate(320.238 98.676)">repeat use and retention</text>
+   </g>
+   <g id="text_7">
+    <text style="font-weight: 700; font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #202924" x="476.757" y="48.78" transform="rotate(-0 476.757 48.78)">Portfolio consequence</text>
+   </g>
+   <g id="text_8">
+    <g id="patch_8">
+     <path d="M 464.757 114.07932 
+L 615.605438 114.07932 
+L 615.605438 66.073852 
+L 464.757 66.073852 
+z
+" style="fill: #e6eadf"/>
+    </g>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; fill: #202924" transform="translate(476.757 86.673266)">Incremental contribution,</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; fill: #202924" transform="translate(476.757 98.676)">cash needs and decision</text>
+   </g>
+   <g id="text_9">
+    <text style="font-size: 9px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #202924" x="7.2" y="160.2144" transform="rotate(-0 7.2 160.2144)">Need scores support relevance. Each behavioural link requires evidence; no causal coefficient is inferred from the survey.</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p188482f029">
+   <rect x="7.2" y="7.2" width="613.8" height="166.32"/>
+  </clipPath>
+ </defs>
+</svg>
