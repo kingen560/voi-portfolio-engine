@@ -1,5 +1,9 @@
-# First-time reader acceptance test
+# Five minute first reader check
 
-Status: pending three real first-time readers. Automated browser tests are not human usability evidence.
+Recruit three readers who have not helped build the simulator. Give each the report-case entry point without coaching.
 
-Give each reader five minutes, with no coaching. Ask them to (1) identify the preferred conditional investment, (2) state cohort scale and the difference between point scenario and expected value, (3) name two unmeasured assumptions, (4) change a price and a delivery input, and (5) identify the next evidence and retention assessment date. Record completion, time, wrong interpretations and navigation problems. Release acceptance requires all three to identify the recommendation, key assumptions and next evidence within five minutes. Revise confusing labels and retest failures.
+Ask them to identify the selected implementation, the model's highest-value feasible alternative, the two financial targets, the main operating assumptions, funding needs and the next evidence required.
+
+Record time, wrong interpretations and navigation problems. Check explicitly that they distinguish a pilot alone from pilot followed by expansion, economic value from cash, a target from a model output, and a share of assumed scenarios from an observed probability.
+
+Acceptance requires all three to identify the decision, its key assumptions and next evidence within five minutes. Correct misunderstood labels and repeat failed checks. Automated tests do not prove this human criterion.

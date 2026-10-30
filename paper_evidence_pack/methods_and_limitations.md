@@ -1,37 +1,72 @@
-# Methods and limitations / Voi Portfolio Lab 7
+# Methods and limitations
 
-Frozen configuration: `4fc8f515adf767ee3fb3815588d8df7d47faae9a51b0699f2c47d56900aca49a`. Model 7.0.0; generated 2026-10-28T15:16:57.934Z.
+Model 7.2.0. Frozen on 2026-10-30. Configuration SHA256: cc19695f4f1a48599f5bccc5995f3d76110c861d4ca54f517ae45911868e9331.
 
-## Research question
-Under what customer, operational and competitive conditions do Hub & Book and Voi Together deserve investment, and what evidence changes that decision?
+## Decision and scope
 
-## Scope and computation
-The starting portfolio has 10,000 illustrative active customers, sample-derived segment weights and replacement inflow. It is not an observed Voi cohort or a closed attrition-only cohort. Horizon: 36 months; annual discount: 10%; no terminal value.
+Hub & Book first is the report's proposed strategic priority. The catalogue ranking remains a separate conditional economic comparison; this pack does not force booking to rank first.
 
-ΔCPE = sum over months of [(offer operating cash − no-offer operating cash) / (1 + annual discount)^(month/12)] − setup.
+The named report configuration evaluates Hub & Book through pilot then expansion, with 20% dedicated additional placement as an improvement objective. Reference and stress cases change only that share to 25% and 30%. The Oslo market is estimated at 124,822 active customers; sample segment proportions are assumed portfolio weights. This is not an observed customer cohort.
 
-This is finite-horizon incremental discounted operating contribution, not full lifetime customer equity. Four usage states (occasional, frequent, subscriber, inactive) must not be equated with acquaintance/friend/partner relationships.
+The commercial catalogue and the report's pilot implementation are different comparisons. The commercial catalogue's preferred candidate is Hub paid booking + coordination + split payment at +NOK 1.72m. The report does not relabel that result to make its preferred initiative win.
 
-Revenue is net of VAT. The starting blended net revenue benchmark is 178.2m EUR /115.815m rides ×11.7173 NOK/EUR = 18.0290 NOK/ride. It is a group average proxy. PAYG revenue is the residual after net Pass revenue, not an observed PAYG tariff. The 399 kr Pass is a historical planning benchmark, not a verified current Oslo price. Average vehicle cost is not measured Oslo marginal cost.
+## Valuation and cash
 
-Retention effects are relative reductions among exposed bookers/hosts, bounded before exposure weighting. They start at zero. Repeat, upgrade and placement spillover start at zero. Acquisition, adoption, additionality, costs and baseline dynamics remain assumptions. Zero placements produce zero placement-driven spillover. Guest acquisition is valued through subsequent states, with no up-front CLV added.
+Finite-horizon economic contribution = discounted incremental economic contribution against the same no-offer baseline, less resource setup cost. In symbols: value = -resource_setup + sum_m(economic_contribution_m / (1 + annual_discount)^(m/12)). Horizon 36 months; assumed annual discount 10%; no terminal value. Discounted payback refers to economic recovery from project start.
 
-Default fee response 1 and group incentive response 2 are deliberately explicit, unestimated planning hypotheses. Tested ranges include zero response and alternatives; these are not estimated confidence intervals. Do not infer willingness to pay from Q25/Q26. Uncertainty draws use paired triangular scenario ranges and assumed dependency, not observed probabilities of business success.
+Cash flows and peak funding use incremental cash expenditure. Full internal-office opportunity cost remains in economic value; 100% is treated as extra cash. Change this share only when a staffing and financing explanation supports it. Lower cash funding is not an increase in economic value.
 
-Launch investment includes scale-up purchased at launch in direct rollout. Peak cash is the deepest cumulative undiscounted deficit. The 750,000 kr launch budget is a design allowance, not specified by Assignment 2. No total funding ceiling is entered, so cash affordability is unconfirmed.
+Revenue basis: market. Current blended net revenue is 23.0560 NOK per ride. The market allocation and group benchmark are proxies, not observed Oslo marginal economics. PAYG is reconciled after net Pass revenue. Historical Pass pricing and ordinary ride cost remain planning inputs.
 
-## Frozen finding
-All active investments have negative current-case value at the chosen scale and build assumptions. Both offers: −1.78 MNOK, launch 669,104 kr, peak funding 1,953,210 kr. The appropriate current-case result is no investment. This does not establish that either customer proposition is intrinsically unviable; right-sized delivery cost, scale and behaviour require investigation. Fixed costs have not been reduced to make the case positive.
+## Product assumptions and limitations
 
-The v6.6 result of +4.18 MNOK uses a different scope, different assumptions and old mechanics. It is retained as an archive, not used as evidence of v7 accuracy.
+| Assumption | Entered planning value | Argument and required evidence |
+| --- | --- | --- |
+| Hub concentration | 20% additional placement; 40% eligible reach | Select approved hubs and time windows with existing usable supply. Reduced placement must be achievable without simply losing customers. Measure geocoded requests, failed searches and incremental crew jobs. |
+| Service reliability | 95% fulfilment | Verify a usable, sufficiently charged vehicle at the promised location and time. Record failures and remedies; measure reliability jointly with placement and reach. |
+| Price and response | NOK 35 fee; 8 bookings per adopter/month | A convenience need does not establish willingness to pay. Test fee conversion and repeat booking among eligible customers; include non-users in the economic evaluation. |
+| Demand response | 15% frequent / 30% subscriber adoption at the entered fee | Adoption is price-adjusted from a reference fee; both rates and the response coefficient remain assumptions. Record conversion at tested prices and compare assigned cohorts. |
+| Scale and unit economics | 124,822 estimated active customers; 23.06 net NOK/ride | Oslo scale and revenue allocation are constructed estimates. The survey is not representative. Validate city customer counts, segment reach and marginal costs before committing to scale. |
+| Internal resource cost | 100% of internal office-hour cost treated as new cash | Keep the full economic opportunity cost. Finance must distinguish hiring, contractor or replacement cash expenditure from existing salaried capacity. |
 
-## Competition and theory
-Use course literature critically: Johnson & Selnes (2004) and Selnes & Lanseng (2024) motivate dynamic portfolio allocation; Burnham, Frels & Mahajan (2003) distinguishes procedural, financial and relational switching costs. Satisfaction, retention and switching barriers are different constructs. A group invitation network is not automatically proprietary to Voi. Rival imitation, relative price disadvantage and fading retention advantages are scenario mechanisms, with no separate defence premium.
+The behavioural model has occasional, frequent, subscriber and inactive usage states. These do not identify acquaintance, friend or partner relationships. Additional retention, repeat, upgrade and placement-spillover benefits are switched off in this report case. Genuine extra PAYG ride contribution is counted, while extra Pass rides incur operating cost. Discounts on non-additional trips are costs.
 
-Mobility studies identify operating mechanisms and cost categories, not treatment effects or exact Oslo costs. In particular Kabra, Belavina & Girotra (2020), Management Science 66(9), 3803–3824, doi:10.1287/mnsc.2019.3407, is a bike-share analogue. The current survey supports segment descriptions, not representative shares or causal coefficients.
+Lower additional placement is not an observed efficiency gain. The five-point change is a joint operational hypothesis with unchanged price, reach and fulfilment. It must be tested as a coherent product design, not treated as a free cost reduction.
 
-## Forecasting
-No compatible historical scooter trip series was obtained in this audit. This is a data-availability finding, not proof that none exists. Explicit seasonality scenarios are used. No Prophet model was fitted to invented or analogue-as-Voi data. The optional pipeline requires completed scooter trips, documented comparable regimes and rolling validation. Three forecast origins compare 30/90-day errors against a seasonal baseline. Future demand indices enter both intervention and counterfactual once; no aggregate forecast estimates offer adoption or retention.
+## Uncertainty, competition and forecasting
 
-## Reproduction
-Run generate_pack.cjs, then make_evidence_pack.py. The JSON contains frozen inputs, all four results, monthly cash, analysis, provenance and source identifiers. The CSV contains all monthly cash flows. Preserve the hash and model version when copying any figure into the paper.
+The paired analysis uses the pilot implementation path and includes the selected investment and the no-investment comparison. Its assumed ranges and dependencies describe tested combinations, not observed probabilities or calibrated forecasts. A change in ranges changes this scenario experiment; it is not new evidence of product performance. The point result is not a simulated mean.
+
+Competitor imitation and price effects operate through entered demand and relationship mechanisms. The no-offer world is static unless an external stress is applied to both worlds. No proprietary switching barrier or independent protection premium is assumed. Continued operating rights are a condition, not a proven 36-month entitlement.
+
+No compatible historical scooter trip series was obtained in this audit. This is a data-availability finding, not proof that none exists. Explicit seasonality scenarios are used. Availability feeds and city-bike trips are not observed Voi trip demand. No Prophet forecast is fitted or claimed.
+
+## Reproducibility
+
+The accompanying JSON contains all configurations, options, assumptions, source IDs and source-code hashes. monthly_results.csv gives pilot and commercial monthly results for all three report cases; implementation_monthly_results.csv gives the catalogue comparison export. Figures are computed from the same frozen case. The manifest lists every output hash.
+
+The source register records provenance and limits; academic theories justify mechanisms, not numerical treatment effects. Three genuine first-time-reader checks remain a human acceptance task.
+
+## References
+
+Voi Technology AB (2026). Annual Report and Sustainability Statement 2025, Note 2. https://attachment.news.eu.nasdaq.com/a534eaecb2d7c0996d894f06920f9ee27
+
+Ruter (2026). Årsrapport 2025: Slik reiste vi i 2025. https://ruter.no/rapporter/aarsrapport2025/aaret-2025/slik-reiste-vi-i-2025
+
+European Central Bank. EXR.A.NOK.EUR.SP00.A, annual average 2025.
+
+Statistics Norway (SSB). Table 11418: monthly earnings by occupation, 2025. https://www.ssb.no/statbank/table/11418
+
+Our survey dataset VOI_Dataset_Original.sav (n=72, convenience sample), four-cluster solution QCL_4.
+
+Johnson, M. D. & Selnes, F. (2004). Customer portfolio management. Journal of Marketing 68(2), 1–17. https://ecommons.cornell.edu/entities/publication/22d27c0a-b390-418d-a76b-9ebd360bab11
+
+Burnham, T. A., Frels, J. K. & Mahajan, V. (2003). Consumer Switching Costs: A Typology, Antecedents, and Consequences. Journal of the Academy of Marketing Science 31(2), 109–126. Publisher abstract checked; no Voi coefficient transferred. https://doi.org/10.1177/0092070302250897
+
+Osorio, J., Lei, C. & Ouyang, Y. (2021). Optimal rebalancing and on-board charging of shared electric scooters. Transportation Research Part B 147, 197–219. Introduction, p. 197: historical contractor payments for overnight charging and placement. https://par.nsf.gov/servlets/purl/10313347
+
+Selnes, F., & Johnson, M. D. (2022). Manage your customer portfolio for maximum lifetime value. MIT Sloan Management Review, 64(1), 22-27.
+
+Selnes, F., & Lanseng, E. J. (2024). Marketing management: A customer-centric approach. SAGE. Customer Portfolio Management chapter, pp. 141-186.
+
+Gupta, S., Lehmann, D. R., & Stuart, J. A. (2004). Valuing customers. Journal of Marketing Research, 41(1), 7-18.

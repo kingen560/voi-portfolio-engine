@@ -1,15 +1,33 @@
-# Pilot measurement protocol
+# Hub and Book pilot protocol
 
-Primary economic outcome: incremental contribution per assigned eligible customer, including non-users and all directly attributable operating cost. Use a concurrent control, not an unadjusted before/after comparison.
+## Decision
 
-Assignment: stable matched hub-zone clusters where placements change shared supply. Keep invitation networks in one arm; deduplicate guests, record cross-arm exposure and analyse at the assignment level. Per-booker selection does not identify causal retention effects. The planning allocation is 50/50; recruitment and cluster counts remain unknown.
+Test whether paid pickup assurance can meet the proposed economic target of NOK 0.90m over 36 months and discounted payback by month 24, while providing a reliable and relevant customer service. The current improvement calculation is +NOK 0.95m with month 21. This is an investment appraisal to update, not a measured treatment effect.
 
-Guardrails: fulfilment, adequate battery, compensation, group completion, displaced open-market trips, payment clarity, complaints, customer effort and satisfaction. Agree operational thresholds before recruitment. Diagnose seasonality using concurrent control observations.
+## Implementation and timing
 
-Operational window runs from launch through ramp completion. Retention assessment requires six complete months after the ramp. Do not claim retention readiness at an earlier gate. The contribution SD, ICC, attrition and minimum worthwhile effect are not supplied; no default 15% measurement precision is assumed.
+Launch is model month 4; the first treated cohort completes its ramp in month 7. Review follows month 9; expansion starts in month 10 only after a positive decision. Pilot coverage is 30%; 50% of that coverage remains control until release after month 9. Later cohorts each follow their own ramp.
 
-Measure price response using booking fee tests at 25/35/45 kr, adoption by assignment, booking frequency, dedicated placement share and minutes, net incremental trips, guest identity and first paid activation. Collect competing-app usage, switching reasons and perceived procedural/financial/relational costs separately from satisfaction.
+The six-complete-month post-ramp retention window ends in month 13. The current case does not require a retention uplift. Any future retention claim requires a concurrent control through the relevant window, rather than automatic release at the earlier operational gate.
 
-Continuation compares avoidable future costs and contribution, excluding sunk setup. Respect funding and service guardrails. Stop or redesign when delivery fails or incremental contribution cannot cover future cost. A retention-dependent investment waits for its full observation window and defensible effect estimate.
+## Assignment and outcomes
 
-Owners: Country manager sponsors the decision; pilot owner coordinates Product, Operations, Commercial, Analytics and Finance. Product owns flow/terms, Operations owns capacity and service quality, Commercial owns price tests, Analytics owns assignment/incrementality, Finance owns cost boundaries and cash needs.
+Primary outcome: incremental contribution per assigned eligible customer, including those who never book, against a concurrent control. Use stable hub-zone clusters, record supply spillover and geographic contamination, and analyse at the assignment level. Per-booker comparisons do not identify the causal effect of offering the service.
+
+Measure price conversion, bookings per adopter, fulfilment at the promised time with sufficient battery, incremental placement jobs and minutes, marginal transport/support costs, displaced open-market rides, refunds and customer effort/satisfaction. Track competing-app use and reasons for switching separately from satisfaction.
+
+## Gate and financing
+
+Update the full-programme appraisal against both economic targets. Expansion also requires positive future incremental contribution after remaining avoidable costs, feasibility under entered cash/capacity constraints, and delivery of the service promise. A change to the approved targets requires a board decision. Dedicated placement at 20% is an improvement objective; it is not a substitute for measuring full delivery economics. If the evidence does not support the appraisal, redesign or stop. Exclude sunk setup from the continuation decision.
+
+Pre-specify sampling, confidence requirements and service guardrails. No sample-size or detection claim is made until baseline, outcome variance, clusters, clustering, allocation and attrition inputs are supplied and checked. Few clusters or interference need specialist design review.
+
+## Owners
+
+| Owner | Responsibility |
+| --- | --- |
+| Oslo country manager / programme owner | Sponsor, cross-functional decisions and escalation. |
+| Operations | Hub choice, battery-qualified supply, placement jobs/minutes, fulfilment and capacity. |
+| Product and Commercial | Truthful promise, booking flow, fee tests, refunds and terms. |
+| Analytics | Stable assignment, contamination log, assigned-customer outcomes and refreshed appraisal. |
+| Finance | Resource-cost boundaries, actual new cash, funding ceiling and continuation economics. |
