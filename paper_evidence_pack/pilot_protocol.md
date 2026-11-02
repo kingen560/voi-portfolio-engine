@@ -2,7 +2,7 @@
 
 ## Decision
 
-Test whether paid pickup assurance can meet the proposed economic target of NOK 0.90m over 36 months and discounted payback by month 24, while providing a reliable and relevant customer service. The current improvement calculation is +NOK 0.95m with month 21. This is an investment appraisal to update, not a measured treatment effect.
+Test whether paid pickup assurance can achieve discounted economic value at least 1 times the selected path's maximum cash need over 36 months and discounted payback by month 24, while providing a reliable and relevant customer service. This is a normative capital-allocation policy, chosen independently of the case result; it is not an observed Voi hurdle or an empirically estimated optimum. The current improvement calculation is +NOK 0.95m with month 21 and capital efficiency 1.53. This is an investment appraisal to update, not a measured treatment effect.
 
 ## Implementation and timing
 
@@ -18,7 +18,7 @@ Measure price conversion, bookings per adopter, fulfilment at the promised time 
 
 ## Gate and financing
 
-Update the full-programme appraisal against both economic targets. Expansion also requires positive future incremental contribution after remaining avoidable costs, feasibility under entered cash/capacity constraints, and delivery of the service promise. A change to the approved targets requires a board decision. Dedicated placement at 20% is an improvement objective; it is not a substitute for measuring full delivery economics. If the evidence does not support the appraisal, redesign or stop. Exclude sunk setup from the continuation decision.
+Update the full-programme appraisal against both economic targets. Expansion also requires positive future incremental contribution after remaining avoidable costs, feasibility under entered cash/capacity constraints, continued operating rights, and delivery of the service promise. A change to the approved targets requires a board decision. Dedicated placement at 20% is an improvement objective; it is not a substitute for measuring full delivery economics. If any gate fails, redesign or stop: the displayed expansion scenario does not make expansion automatic. Exclude sunk setup from the continuation decision.
 
 Pre-specify sampling, confidence requirements and service guardrails. No sample-size or detection claim is made until baseline, outcome variance, clusters, clustering, allocation and attrition inputs are supplied and checked. Few clusters or interference need specialist design review.
 

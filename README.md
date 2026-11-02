@@ -1,4 +1,4 @@
-# Voi Portfolio Lab 7.2
+# Voi Portfolio Lab 7.2.1
 
 A student decision simulator for Voi Oslo, with a frozen report case and transparent assumptions.
 
@@ -18,8 +18,15 @@ The estimated 124,822 active Oslo customers are a constructed planning scope. Th
 
 No calibrated forecast, causal effect or observed probability of success is claimed. No raw respondent records, private course materials or model_work files are included. All calculations run in the browser without analytics or a data feed.
 
+## Review corrections
+
+The November review keeps the pilot ranking basis and shows direct rollout alongside. Group confirmation is pending. The report proposes net discounted value at least equal to peak cash and discounted payback within24months; first-stage capital efficiency supports Hub-first without overriding the economic ranking. A weak-case pilot stops at its gate; expanding it is a separate adverse scenario.
+
+The cited original7.2app and pack are immutable below, configuration SHA256 cc19695f4f1a48599f5bccc5995f3d76110c861d4ca54f517ae45911868e9331. The updated evidence pack is dated and labelled7.2.1.
+
 ## Archives
 
+- [Cited original7.2 application](https://kingen560.github.io/voi-portfolio-engine/archive/v7.2/) and [its frozen evidence pack](https://kingen560.github.io/voi-portfolio-engine/archive/v7.2/paper_evidence_pack/)
 - [Original 6.6 application](https://kingen560.github.io/voi-portfolio-engine/archive/v6.6/)
 - [Previous 7.1 application](https://kingen560.github.io/voi-portfolio-engine/archive/v7.1/)
 - [Historical 7.0 evidence pack](https://kingen560.github.io/voi-portfolio-engine/archive/v7.0/paper_evidence_pack/)

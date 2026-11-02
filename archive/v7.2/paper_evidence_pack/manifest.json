@@ -1,0 +1,25 @@
+{
+  "modelVersion": "7.2.0",
+  "reportCase": "report-hub-first",
+  "selectedInvestment": "booking",
+  "basis": "pilot",
+  "configurationHash": "cc19695f4f1a48599f5bccc5995f3d76110c861d4ca54f517ae45911868e9331",
+  "files": {
+    "Voi_v7_evidence_pack.pdf": "7485c55df986e7f21f4650a09be279e6d32da140d1b4edadd13188b1ef0f8324",
+    "configuration_results.json": "9c497893bd2200b4ec2ac2d02916c9411b905c522fe3c4414a9773eebe1ffc8c",
+    "figures/customer_value_chain.png": "0452f80cb7d6602c1e695c8ee717f18a6806d8d72ea6061d87381ff80811b654",
+    "figures/customer_value_chain.svg": "01036b3108282e080812b87758dde5b144933ba33a7a4a8acb43e55aeba6b7c0",
+    "figures/decision_boundaries.png": "0760e84c247e208f624c7550e9e5b9bca19ca9d477d29df10228043137de7149",
+    "figures/decision_boundaries.svg": "75fa67eebe863b0b88cd0e22ffa7ed7bc06308ccf5819b8b40dfe825159fa4cb",
+    "figures/monthly_cash_flow.png": "f0fd9cc1a832004d782086c4a4e5190ee8a7ca581bcb51dc2bd92acfee176547",
+    "figures/monthly_cash_flow.svg": "d3c3f6a8d6f2a9b86d87128042e15a12f40b51df70e2558f5459294c2408bec0",
+    "implementation_monthly_results.csv": "9359988a691bfffc5043e19325b35d0b7483d463d548ad67b4dcd170e571e2fa",
+    "index.html": "194b1d6a00c2dfe427cf0f8b65d40c6437629ad687ac14f525493be488d2c653",
+    "methods_and_limitations.md": "bd3c600c6065aa8ed0e0a1033ac7b667226932a6708bd314fd708683f2dffd58",
+    "monthly_results.csv": "e7e3c06be46f7eb40723980b519287f85d1bb0917bda1d31a44d69ddc811f019",
+    "pilot_protocol.md": "5899217e0ea5a4fd68aeca2a194eb8cc7636d846553f028110505260655c40c6",
+    "report_integration.md": "97b1ab815b92478b0b69b56c3578ed7fe6625dbf5fe1dab73272131ed85f9ea4",
+    "sources_assumptions.csv": "f214432523855247a2a6fd3943e3b3338b5fda4782305b69220eea6f48f58df0",
+    "usability_protocol.md": "98cd6e8fbca2105ce6ad3ede93dccc7b83d0c37908f0f18e4aa8c02fb04e122c"
+  }
+}
