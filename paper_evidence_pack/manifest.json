@@ -5,21 +5,21 @@
   "basis": "pilot",
   "configurationHash": "cc19695f4f1a48599f5bccc5995f3d76110c861d4ca54f517ae45911868e9331",
   "files": {
-    "Voi_v7_2_1_evidence_pack.pdf": "515b6741fa1b4de0fe02a7cdf8c04627cb26b4816ca2b18b4623754882dec7e1",
-    "configuration_results.json": "81c6a3982a98b092d7edb7915cb1afb1327b2de00b6fd9e6b66dcb0342d67863",
+    "Voi_v7_2_1_evidence_pack.pdf": "c97753614066438ba8755846e09309ab7c348148c8282650d43715e2877342cd",
+    "configuration_results.json": "0c2c9d3c2038cd1780253be99144fd9df44625b10f225904af1a9b9aaae0f661",
     "figures/customer_value_chain.png": "0452f80cb7d6602c1e695c8ee717f18a6806d8d72ea6061d87381ff80811b654",
-    "figures/customer_value_chain.svg": "54f1e7507e4548798d78cc6d97751162009e81b5c443e937d497a3d1f6074a68",
-    "figures/decision_boundaries.png": "0760e84c247e208f624c7550e9e5b9bca19ca9d477d29df10228043137de7149",
-    "figures/decision_boundaries.svg": "775c4f711835a051434eb1bce3ddca2dff72bc4c8e1f7b29287cbd73407ed18a",
-    "figures/monthly_cash_flow.png": "f3cf00023b43ed0f246d1a0bc25556fcc1b1a48094de28922273164509d6799c",
-    "figures/monthly_cash_flow.svg": "80ead40f762d557ba32d3322c40a457c76758768d1c311ba8f2b4994326e44bf",
+    "figures/customer_value_chain.svg": "f7e71c4f4c9416388564cee5ee4bef75b37bdc85ae8f6a43f5fa4f57136ef29c",
+    "figures/decision_boundaries.png": "d4dff12895e4086dcb260d31f687d3c0292e916a5b4ea7d889b0fcf3efdc184c",
+    "figures/decision_boundaries.svg": "4825471dfc7b91f48b9c2ff5ba2a631c2e3662b454f6ae1df36c76a5bd0a1efa",
+    "figures/monthly_cash_flow.png": "9a59d5332f0b7689d68b1aaab2a4d0e3758d890f71511947663efe3ed0505d11",
+    "figures/monthly_cash_flow.svg": "6df910edf5a8db9212bcbf26a4b01969d4dbbb07dc89bd225b37a8068e61b70f",
     "implementation_monthly_results.csv": "d43d5c3c0710f03a154edf06f9dc8dda38bff96a5aa79ebef11ec86bf8400a80",
-    "index.html": "89cd8474257a0e24c72686944c6e633f4fb4439e06c1af5f0731614ca4a1f0f3",
-    "methods_and_limitations.md": "e6c3d0366f6076e58e9f8b590f8464112a1f56ddf5c3842ccde7d085f15083bd",
+    "index.html": "e814a6f4edb6b4fd8954e8e17196ea95b7cca0c4fe7b8fc2e5c5ad1fe136cd10",
+    "methods_and_limitations.md": "1147eb24e10ff8288edf52d238921b0af260a20b96e331922bbc760fee2d6868",
     "monthly_results.csv": "16d96b4256b608641185992899878e46cad342bc7415afef2e49d0265e2f580a",
-    "pilot_protocol.md": "d2b9df5c6e0d05346a75222d34a78ddf8a68e3381e3632f23ee53fdcf8dadb54",
+    "pilot_protocol.md": "55cf1ed8619c809501e56f688229917153b47b6b63d1e878ffd2cbe6627a7ae4",
     "report_integration.md": "c18cd49afe8c938b1ae8bb77043692e97e681e569d373efd0ab5bb12ba21d2d3",
     "sources_assumptions.csv": "997267ff017f282618b748e8d4c128e5874f944f81c14d50ba74a6d130a444a1",
-    "usability_protocol.md": "98cd6e8fbca2105ce6ad3ede93dccc7b83d0c37908f0f18e4aa8c02fb04e122c"
+    "usability_protocol.md": "96b951befae26eb8f6ae57e26c82994bcffa639ee3a73ae1879a2bdb4c156e61"
   }
 }
