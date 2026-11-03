@@ -2,11 +2,13 @@
 
 ## Decision
 
-Test whether paid pickup assurance can achieve discounted economic value at least 1 times the selected path's maximum cash need over 36 months and discounted payback by month 24, while providing a reliable and relevant customer service. This is a normative capital-allocation policy, chosen independently of the case result; it is not an observed Voi hurdle or an empirically estimated optimum. The current improvement calculation is +NOK 0.95m with month 21 and capital efficiency 1.53. This is an investment appraisal to update, not a measured treatment effect.
+Test whether paid pickup assurance can achieve discounted economic value at least 1 times the selected path's maximum cash need over 36 months and discounted payback by month 24, while providing a reliable and relevant customer service. This is a normative capital-allocation policy, chosen independently of the case result; it is not an observed Voi hurdle or an empirically estimated optimum. The current improvement calculation is +NOK 0.95m with june 2028 (month 21) and capital efficiency 1.53. This is an investment appraisal to update, not a measured treatment effect.
 
 ## Implementation and timing
 
-Launch is model month 4; the first treated cohort completes its ramp in month 7. Review follows month 9; expansion starts in month 10 only after a positive decision. Pilot coverage is 30%; 50% of that coverage remains control until release after month 9. Later cohorts each follow their own ramp.
+Illustrative schedule: first operating month October 2026; setup September 2026. Calendar labels do not change the model timing.
+
+Launch is January 2027; the first treated cohort completes its ramp in April 2027. Review follows June 2027; expansion starts in July 2027 only after a positive decision. Pilot coverage is 30%; 50% of that coverage remains control until release after month 9. Later cohorts each follow their own ramp.
 
 The six-complete-month post-ramp retention window ends in month 13. The current case does not require a retention uplift. Any future retention claim requires a concurrent control through the relevant window, rather than automatic release at the earlier operational gate.
 

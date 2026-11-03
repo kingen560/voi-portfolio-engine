@@ -51740,8 +51740,8 @@
           "leadTakenBy": null
         },
         {
-          "label": "Adoption level (× assumed)",
-          "unit": "×",
+          "label": "Adoption level (\u00d7 assumed)",
+          "unit": "\u00d7",
           "current": 1,
           "lo": 0,
           "hi": 2,
@@ -51877,7 +51877,7 @@
           "withinTieBand": false
         },
         {
-          "label": "Seasonal demand ±40%",
+          "label": "Seasonal demand \u00b140%",
           "kind": "input",
           "value": 991660.8656083345,
           "best": "B1xG3",
@@ -51999,7 +51999,7 @@
       "label": "Estimate active customers from the Oslo market",
       "value": true,
       "status": "assumed",
-      "scope": "On (planning case): active customers = Voi Oslo trips (Ruter 2025 e-scooter trips × Voi share) ÷ 12 ÷ rides per active customer. Off: use the named cohort below. Revenue per ride is a separate setting (revenue basis). 2024 inputs (11.2m trips, 36.6% share, EUR 13.2m) give about 70,700 customers and are an alternative historical scale stress.",
+      "scope": "On (planning case): active customers = Voi Oslo trips (Ruter 2025 e-scooter trips \u00d7 Voi share) \u00f7 12 \u00f7 rides per active customer. Off: use the named cohort below. Revenue per ride is a separate setting (revenue basis). 2024 inputs (11.2m trips, 36.6% share, EUR 13.2m) give about 70,700 customers and are an alternative historical scale stress.",
       "sourceIds": [],
       "sourceDate": "See dated source register",
       "uncertainty": null
@@ -52053,7 +52053,7 @@
       "label": "Oslo share of Voi Norway revenue",
       "value": 0.75,
       "status": "derived",
-      "scope": "Sets revenue per ride whenever the revenue basis is the Oslo market allocation (the v7.1 planning case), whether active customers are estimated or entered. Not observed; compare the conditional equal-group-revenue-per-trip check without treating it as a measured city share. Drawn from 0.60–0.85 in the uncertainty analysis since v7.1, because it now sets revenue per ride (18.4–26.1 kr).",
+      "scope": "Sets revenue per ride whenever the revenue basis is the Oslo market allocation (the v7.1 planning case), whether active customers are estimated or entered. Not observed; compare the conditional equal-group-revenue-per-trip check without treating it as a measured city share. Drawn from 0.60\u20130.85 in the uncertainty analysis since v7.1, because it now sets revenue per ride (18.4\u201326.1 kr).",
       "sourceIds": [
         "voiPR0211",
         "voiPR0314"
@@ -52082,7 +52082,7 @@
       "label": "Voi share of Oslo trips",
       "value": 0.355,
       "status": "derived",
-      "scope": "An analyst-selected 35.5%, between Voi’s 2024 trip share (4.1m of 11.2m = 36.6%) and its 2025 fleet share (5,334 of 16,000 = 33.3%). The 2025 trip share is not reported.",
+      "scope": "An analyst-selected 35.5%, between Voi\u2019s 2024 trip share (4.1m of 11.2m = 36.6%) and its 2025 fleet share (5,334 of 16,000 = 33.3%). The 2025 trip share is not reported.",
       "sourceIds": [
         "voiPR0314"
       ],
@@ -52098,7 +52098,7 @@
       "label": "Vehicle operating cost per ride",
       "value": 7.67,
       "status": "derived",
-      "scope": "(Revenue − vehicle profit) / rides, 2025. An average, not a marginal cost.",
+      "scope": "(Revenue \u2212 vehicle profit) / rides, 2025. An average, not a marginal cost.",
       "sourceIds": [
         "voiAR25",
         "voiQ125"
@@ -52149,7 +52149,7 @@
       "label": "Field operations cost per hour",
       "value": 400,
       "status": "derived",
-      "scope": "SSB 2025: stock, freight and van workers 262–309 kr/h × about 1.29 employer costs, plus night supplement.",
+      "scope": "SSB 2025: stock, freight and van workers 262\u2013309 kr/h \u00d7 about 1.29 employer costs, plus night supplement.",
       "sourceIds": [
         "ssb"
       ],
@@ -52325,7 +52325,7 @@
       "label": "All users riding weekly or more",
       "value": 0.3088,
       "status": "observed",
-      "scope": "21 of 68. TØI 2019: 42% (Nov) to 70% (summer); Voi 2025: about half.",
+      "scope": "21 of 68. T\u00d8I 2019: 42% (Nov) to 70% (summer); Voi 2025: about half.",
       "sourceIds": [
         "survey",
         "toi1748",
@@ -52339,7 +52339,7 @@
       "label": "Shrinkage toward the pooled share",
       "value": 0.5,
       "status": "assumed",
-      "scope": "Clusters have 13–22 users; 50% guards against over-reading small cells.",
+      "scope": "Clusters have 13\u201322 users; 50% guards against over-reading small cells.",
       "sourceIds": [],
       "sourceDate": "See dated source register",
       "uncertainty": null
@@ -52395,7 +52395,7 @@
     },
     {
       "key": "trans.AF",
-      "label": "Occasional → Frequent",
+      "label": "Occasional \u2192 Frequent",
       "value": 0.05,
       "status": "assumed",
       "scope": "Baseline transition is assumed. Cross-sectional usage cannot identify monthly transitions.",
@@ -52408,7 +52408,7 @@
     },
     {
       "key": "trans.AP",
-      "label": "Occasional → Subscriber",
+      "label": "Occasional \u2192 Subscriber",
       "value": 0.01,
       "status": "assumed",
       "scope": "Scenario parameter; not a measured causal effect.",
@@ -52418,7 +52418,7 @@
     },
     {
       "key": "trans.AL",
-      "label": "Occasional → Inactive",
+      "label": "Occasional \u2192 Inactive",
       "value": 0.1,
       "status": "assumed",
       "scope": "Assumed 10% a month. No operator-specific cohort retention estimate was supplied for this project.",
@@ -52430,7 +52430,7 @@
     },
     {
       "key": "trans.FA",
-      "label": "Frequent → Occasional",
+      "label": "Frequent \u2192 Occasional",
       "value": 0.12,
       "status": "assumed",
       "scope": "Scenario parameter; not a measured causal effect.",
@@ -52442,7 +52442,7 @@
     },
     {
       "key": "trans.FP",
-      "label": "Frequent → Subscriber",
+      "label": "Frequent \u2192 Subscriber",
       "value": 0.02,
       "status": "assumed",
       "scope": "Scenario parameter; not a measured causal effect.",
@@ -52452,7 +52452,7 @@
     },
     {
       "key": "trans.FL",
-      "label": "Frequent → Inactive",
+      "label": "Frequent \u2192 Inactive",
       "value": 0.05,
       "status": "assumed",
       "scope": "Scenario parameter; not a measured causal effect.",
@@ -52462,7 +52462,7 @@
     },
     {
       "key": "trans.PA",
-      "label": "Subscriber → Occasional",
+      "label": "Subscriber \u2192 Occasional",
       "value": 0.02,
       "status": "assumed",
       "scope": "Scenario parameter; not a measured causal effect.",
@@ -52472,7 +52472,7 @@
     },
     {
       "key": "trans.PF",
-      "label": "Subscriber → Frequent",
+      "label": "Subscriber \u2192 Frequent",
       "value": 0.07,
       "status": "assumed",
       "scope": "Scenario parameter; not a measured causal effect.",
@@ -52482,7 +52482,7 @@
     },
     {
       "key": "trans.PL",
-      "label": "Subscriber → Inactive",
+      "label": "Subscriber \u2192 Inactive",
       "value": 0.035,
       "status": "assumed",
       "scope": "Assumed 3.5% a month (about 35% a year). Survey Q23: 5 of 11 respondents who have ever had a Pass no longer have one. That shows subscribers do leave, but without an observation period it cannot give a monthly rate.",
@@ -52494,7 +52494,7 @@
     },
     {
       "key": "trans.LA",
-      "label": "Inactive → Occasional (win-back)",
+      "label": "Inactive \u2192 Occasional (win-back)",
       "value": 0.04,
       "status": "assumed",
       "scope": "Scenario parameter; not a measured causal effect.",
@@ -52504,7 +52504,7 @@
     },
     {
       "key": "trans.LX",
-      "label": "Inactive → gone for good",
+      "label": "Inactive \u2192 gone for good",
       "value": 0.05,
       "status": "assumed",
       "scope": "Scenario parameter; not a measured causal effect.",
@@ -52609,7 +52609,7 @@
       "label": "Bookings included in Voi Pass",
       "value": 0,
       "status": "assumed",
-      "scope": "The upgrade incentive scales with the share of bookings the Pass covers; every included booking still costs a placement. Pass holders respond to the average fee they pay per booking (nothing within the allowance). The Pass price is a calibration input, so the allowance is not a priced tier. Under the linear response, a booking that costs a Pass holder nothing doubles their reference adoption (fee 0 is a 100% cut from the 25 kr anchor), so allowances beyond about 2 a month lie outside the response’s local range.",
+      "scope": "The upgrade incentive scales with the share of bookings the Pass covers; every included booking still costs a placement. Pass holders respond to the average fee they pay per booking (nothing within the allowance). The Pass price is a calibration input, so the allowance is not a priced tier. Under the linear response, a booking that costs a Pass holder nothing doubles their reference adoption (fee 0 is a 100% cut from the 25 kr anchor), so allowances beyond about 2 a month lie outside the response\u2019s local range.",
       "sourceIds": [],
       "sourceDate": "See dated source register",
       "uncertainty": null
@@ -52619,7 +52619,7 @@
       "label": "Booking fee (incl. VAT)",
       "value": 35,
       "status": "assumed",
-      "scope": "Set at 35 kr: at 25 kr a booking costs more to place and hold than it earns. The adoption inputs describe demand at the 25 kr reference fee; at 35 kr the default price response (elasticity 1) lowers adoption by 40%. The price table under Stress Test shows other responses. Benchmarks: Voi’s free-unlock add-on 29 kr a month; Dott and Lime offer 10–15 minute holds free (non-Oslo analogues: the Oslo permits are held by Voi, Ryde and Bolt).",
+      "scope": "Set at 35 kr: at 25 kr a booking costs more to place and hold than it earns. The adoption inputs describe demand at the 25 kr reference fee; at 35 kr the default price response (elasticity 1) lowers adoption by 40%. The price table under Stress Test shows other responses. Benchmarks: Voi\u2019s free-unlock add-on 29 kr a month; Dott and Lime offer 10\u201315 minute holds free (non-Oslo analogues: the Oslo permits are held by Voi, Ryde and Bolt).",
       "sourceIds": [
         "competitors"
       ],
@@ -52631,7 +52631,7 @@
       "label": "Demand response to the fee",
       "value": 1,
       "status": "assumed",
-      "scope": "Unestimated planning coefficient. Default 1; sensitivity range 0–2 is a scenario range, not an empirical confidence interval.",
+      "scope": "Unestimated planning coefficient. Default 1; sensitivity range 0\u20132 is a scenario range, not an empirical confidence interval.",
       "sourceIds": [],
       "sourceDate": "See dated source register",
       "uncertainty": {
@@ -52645,7 +52645,7 @@
       "label": "Use bounded logit price response",
       "value": false,
       "status": "assumed",
-      "scope": "Alternative unestimated demand structure. Linear and logit share adoption at the reference fee and the same local price elasticity there. Logit(p) = logit(p0) − elasticity × (fee − reference) / reference / (1 − p0), for 0 < p0 < 1. Price-response envelopes and the assumption challenge test both forms. Train (2009), chapter 3, motivates the probability form, not its Voi parameter values.",
+      "scope": "Alternative unestimated demand structure. Linear and logit share adoption at the reference fee and the same local price elasticity there. Logit(p) = logit(p0) \u2212 elasticity \u00d7 (fee \u2212 reference) / reference / (1 \u2212 p0), for 0 < p0 < 1. Price-response envelopes and the assumption challenge test both forms. Train (2009), chapter 3, motivates the probability form, not its Voi parameter values.",
       "sourceIds": [],
       "sourceDate": "See dated source register",
       "uncertainty": null
@@ -52717,7 +52717,7 @@
       "label": "Minutes per placement",
       "value": 8,
       "status": "analogue",
-      "scope": "Field time to move and park one scooter: about 1 minute of handling plus a 1–3 km detour at about 20 km/h.",
+      "scope": "Field time to move and park one scooter: about 1 minute of handling plus a 1\u20133 km detour at about 20 km/h.",
       "sourceIds": [
         "raviv",
         "liu"
@@ -53034,7 +53034,7 @@
       "label": "Demand response to the incentive",
       "value": 2,
       "status": "assumed",
-      "scope": "Unestimated planning coefficient. Default 2; range 0–4. Zero-response case is compared explicitly.",
+      "scope": "Unestimated planning coefficient. Default 2; range 0\u20134. Zero-response case is compared explicitly.",
       "sourceIds": [],
       "sourceDate": "See dated source register",
       "uncertainty": {
@@ -53058,7 +53058,7 @@
       "label": "Group trips that are additional",
       "value": 0.47,
       "status": "assumed",
-      "scope": "Ut sammen aims at trips out to an activity, 17–22, where the alternative is a shared taxi, the tram or not going. Assumed 47% (40% for the core offer); not measured.",
+      "scope": "Ut sammen aims at trips out to an activity, 17\u201322, where the alternative is a shared taxi, the tram or not going. Assumed 47% (40% for the core offer); not measured.",
       "sourceIds": [],
       "sourceDate": "See dated source register",
       "uncertainty": {
@@ -53218,7 +53218,7 @@
       "label": "Extra guests who take a ride of their own with the credit",
       "value": 0.15,
       "status": "assumed",
-      "scope": "Percentage points added to guest activation. Costs one ride’s net revenue per activated guest.",
+      "scope": "Percentage points added to guest activation. Costs one ride\u2019s net revenue per activated guest.",
       "sourceIds": [
         "schmitt11"
       ],
@@ -53314,7 +53314,7 @@
       "label": "Control share within the pilot",
       "value": 0.5,
       "status": "assumed",
-      "scope": "Share of pilot customers randomly not offered the service, so its effect can be measured. The retained control is pilot coverage × this share of the market and is released after the control release month.",
+      "scope": "Share of pilot customers randomly not offered the service, so its effect can be measured. The retained control is pilot coverage \u00d7 this share of the market and is released after the control release month.",
       "sourceIds": [
         "wedel16"
       ],
@@ -53336,7 +53336,7 @@
       "label": "Gate month",
       "value": 9,
       "status": "assumed",
-      "scope": "The month in which each offer is continued or stopped on the pilot’s measurements.",
+      "scope": "The month in which each offer is continued or stopped on the pilot\u2019s measurements.",
       "sourceIds": [],
       "sourceDate": "See dated source register",
       "uncertainty": null
@@ -53460,7 +53460,7 @@
     },
     {
       "key": "org.booking.0.hours",
-      "label": "Product and technology: Booking flow, hub-zone logic and credits in the app · build hours",
+      "label": "Product and technology: Booking flow, hub-zone logic and credits in the app \u00b7 build hours",
       "value": 280,
       "status": "assumed",
       "scope": "Owner: Product lead",
@@ -53470,7 +53470,7 @@
     },
     {
       "key": "org.booking.0.external",
-      "label": "Product and technology: Booking flow, hub-zone logic and credits in the app · external cost",
+      "label": "Product and technology: Booking flow, hub-zone logic and credits in the app \u00b7 external cost",
       "value": 40000,
       "status": "assumed",
       "scope": "Scenario parameter; not a measured causal effect.",
@@ -53480,7 +53480,7 @@
     },
     {
       "key": "org.booking.0.ready",
-      "label": "Product and technology: Booking flow, hub-zone logic and credits in the app · ready in month",
+      "label": "Product and technology: Booking flow, hub-zone logic and credits in the app \u00b7 ready in month",
       "value": 3,
       "status": "assumed",
       "scope": "Scenario parameter; not a measured causal effect.",
@@ -53490,7 +53490,7 @@
     },
     {
       "key": "org.booking.0.monthly",
-      "label": "Product and technology: Booking flow, hub-zone logic and credits in the app · running hours a month",
+      "label": "Product and technology: Booking flow, hub-zone logic and credits in the app \u00b7 running hours a month",
       "value": 8,
       "status": "assumed",
       "scope": "Scenario parameter; not a measured causal effect.",
@@ -53500,7 +53500,7 @@
     },
     {
       "key": "org.booking.1.hours",
-      "label": "Fleet operations: Overnight placement inside existing night routes · build hours",
+      "label": "Fleet operations: Overnight placement inside existing night routes \u00b7 build hours",
       "value": 120,
       "status": "assumed",
       "scope": "Owner: Head of operations, Oslo",
@@ -53510,7 +53510,7 @@
     },
     {
       "key": "org.booking.1.external",
-      "label": "Fleet operations: Overnight placement inside existing night routes · external cost",
+      "label": "Fleet operations: Overnight placement inside existing night routes \u00b7 external cost",
       "value": 0,
       "status": "assumed",
       "scope": "Scenario parameter; not a measured causal effect.",
@@ -53520,7 +53520,7 @@
     },
     {
       "key": "org.booking.1.ready",
-      "label": "Fleet operations: Overnight placement inside existing night routes · ready in month",
+      "label": "Fleet operations: Overnight placement inside existing night routes \u00b7 ready in month",
       "value": 2,
       "status": "assumed",
       "scope": "Scenario parameter; not a measured causal effect.",
@@ -53530,7 +53530,7 @@
     },
     {
       "key": "org.booking.1.monthly",
-      "label": "Fleet operations: Overnight placement inside existing night routes · running hours a month",
+      "label": "Fleet operations: Overnight placement inside existing night routes \u00b7 running hours a month",
       "value": 20,
       "status": "assumed",
       "scope": "Scenario parameter; not a measured causal effect.",
@@ -53540,7 +53540,7 @@
     },
     {
       "key": "org.booking.2.hours",
-      "label": "Analytics: Hub demand forecast, holdout design and CPE tracking · build hours",
+      "label": "Analytics: Hub demand forecast, holdout design and CPE tracking \u00b7 build hours",
       "value": 100,
       "status": "assumed",
       "scope": "Owner: Analytics lead",
@@ -53550,7 +53550,7 @@
     },
     {
       "key": "org.booking.2.external",
-      "label": "Analytics: Hub demand forecast, holdout design and CPE tracking · external cost",
+      "label": "Analytics: Hub demand forecast, holdout design and CPE tracking \u00b7 external cost",
       "value": 0,
       "status": "assumed",
       "scope": "Scenario parameter; not a measured causal effect.",
@@ -53560,7 +53560,7 @@
     },
     {
       "key": "org.booking.2.ready",
-      "label": "Analytics: Hub demand forecast, holdout design and CPE tracking · ready in month",
+      "label": "Analytics: Hub demand forecast, holdout design and CPE tracking \u00b7 ready in month",
       "value": 3,
       "status": "assumed",
       "scope": "Scenario parameter; not a measured causal effect.",
@@ -53570,7 +53570,7 @@
     },
     {
       "key": "org.booking.2.monthly",
-      "label": "Analytics: Hub demand forecast, holdout design and CPE tracking · running hours a month",
+      "label": "Analytics: Hub demand forecast, holdout design and CPE tracking \u00b7 running hours a month",
       "value": 8,
       "status": "assumed",
       "scope": "Scenario parameter; not a measured causal effect.",
@@ -53580,7 +53580,7 @@
     },
     {
       "key": "org.booking.3.hours",
-      "label": "Commercial and public affairs: Pricing, Pass terms and commitments in the Oslo bid · build hours",
+      "label": "Commercial and public affairs: Pricing, Pass terms and commitments in the Oslo bid \u00b7 build hours",
       "value": 60,
       "status": "assumed",
       "scope": "Owner: Commercial manager",
@@ -53590,7 +53590,7 @@
     },
     {
       "key": "org.booking.3.external",
-      "label": "Commercial and public affairs: Pricing, Pass terms and commitments in the Oslo bid · external cost",
+      "label": "Commercial and public affairs: Pricing, Pass terms and commitments in the Oslo bid \u00b7 external cost",
       "value": 10000,
       "status": "assumed",
       "scope": "Scenario parameter; not a measured causal effect.",
@@ -53600,7 +53600,7 @@
     },
     {
       "key": "org.booking.3.ready",
-      "label": "Commercial and public affairs: Pricing, Pass terms and commitments in the Oslo bid · ready in month",
+      "label": "Commercial and public affairs: Pricing, Pass terms and commitments in the Oslo bid \u00b7 ready in month",
       "value": 1,
       "status": "assumed",
       "scope": "Scenario parameter; not a measured causal effect.",
@@ -53610,7 +53610,7 @@
     },
     {
       "key": "org.booking.3.monthly",
-      "label": "Commercial and public affairs: Pricing, Pass terms and commitments in the Oslo bid · running hours a month",
+      "label": "Commercial and public affairs: Pricing, Pass terms and commitments in the Oslo bid \u00b7 running hours a month",
       "value": 2,
       "status": "assumed",
       "scope": "Scenario parameter; not a measured causal effect.",
@@ -53620,7 +53620,7 @@
     },
     {
       "key": "org.booking.4.hours",
-      "label": "Customer support: Credit and exception process for failed bookings · build hours",
+      "label": "Customer support: Credit and exception process for failed bookings \u00b7 build hours",
       "value": 40,
       "status": "assumed",
       "scope": "Owner: Support lead",
@@ -53630,7 +53630,7 @@
     },
     {
       "key": "org.booking.4.external",
-      "label": "Customer support: Credit and exception process for failed bookings · external cost",
+      "label": "Customer support: Credit and exception process for failed bookings \u00b7 external cost",
       "value": 0,
       "status": "assumed",
       "scope": "Scenario parameter; not a measured causal effect.",
@@ -53640,7 +53640,7 @@
     },
     {
       "key": "org.booking.4.ready",
-      "label": "Customer support: Credit and exception process for failed bookings · ready in month",
+      "label": "Customer support: Credit and exception process for failed bookings \u00b7 ready in month",
       "value": 3,
       "status": "assumed",
       "scope": "Scenario parameter; not a measured causal effect.",
@@ -53650,7 +53650,7 @@
     },
     {
       "key": "org.booking.4.monthly",
-      "label": "Customer support: Credit and exception process for failed bookings · running hours a month",
+      "label": "Customer support: Credit and exception process for failed bookings \u00b7 running hours a month",
       "value": 2,
       "status": "assumed",
       "scope": "Scenario parameter; not a measured causal effect.",
@@ -53660,7 +53660,7 @@
     },
     {
       "key": "org.group.0.hours",
-      "label": "Product and technology: Invitations, shared meeting point, nearby-vehicle view · build hours",
+      "label": "Product and technology: Invitations, shared meeting point, nearby-vehicle view \u00b7 build hours",
       "value": 180,
       "status": "assumed",
       "scope": "Owner: Product lead",
@@ -53670,7 +53670,7 @@
     },
     {
       "key": "org.group.0.external",
-      "label": "Product and technology: Invitations, shared meeting point, nearby-vehicle view · external cost",
+      "label": "Product and technology: Invitations, shared meeting point, nearby-vehicle view \u00b7 external cost",
       "value": 15000,
       "status": "assumed",
       "scope": "Scenario parameter; not a measured causal effect.",
@@ -53680,7 +53680,7 @@
     },
     {
       "key": "org.group.0.ready",
-      "label": "Product and technology: Invitations, shared meeting point, nearby-vehicle view · ready in month",
+      "label": "Product and technology: Invitations, shared meeting point, nearby-vehicle view \u00b7 ready in month",
       "value": 3,
       "status": "assumed",
       "scope": "Scenario parameter; not a measured causal effect.",
@@ -53690,7 +53690,7 @@
     },
     {
       "key": "org.group.0.monthly",
-      "label": "Product and technology: Invitations, shared meeting point, nearby-vehicle view · running hours a month",
+      "label": "Product and technology: Invitations, shared meeting point, nearby-vehicle view \u00b7 running hours a month",
       "value": 3,
       "status": "assumed",
       "scope": "Scenario parameter; not a measured causal effect.",
@@ -53700,7 +53700,7 @@
     },
     {
       "key": "org.group.1.hours",
-      "label": "Fleet operations: Short group hold at the meeting point · build hours",
+      "label": "Fleet operations: Short group hold at the meeting point \u00b7 build hours",
       "value": 40,
       "status": "assumed",
       "scope": "Owner: Head of operations, Oslo",
@@ -53710,7 +53710,7 @@
     },
     {
       "key": "org.group.1.external",
-      "label": "Fleet operations: Short group hold at the meeting point · external cost",
+      "label": "Fleet operations: Short group hold at the meeting point \u00b7 external cost",
       "value": 0,
       "status": "assumed",
       "scope": "Scenario parameter; not a measured causal effect.",
@@ -53720,7 +53720,7 @@
     },
     {
       "key": "org.group.1.ready",
-      "label": "Fleet operations: Short group hold at the meeting point · ready in month",
+      "label": "Fleet operations: Short group hold at the meeting point \u00b7 ready in month",
       "value": 3,
       "status": "assumed",
       "scope": "Scenario parameter; not a measured causal effect.",
@@ -53730,7 +53730,7 @@
     },
     {
       "key": "org.group.1.monthly",
-      "label": "Fleet operations: Short group hold at the meeting point · running hours a month",
+      "label": "Fleet operations: Short group hold at the meeting point \u00b7 running hours a month",
       "value": 1,
       "status": "assumed",
       "scope": "Scenario parameter; not a measured causal effect.",
@@ -53740,7 +53740,7 @@
     },
     {
       "key": "org.group.2.hours",
-      "label": "Product and technology: Split payment between guests' accounts · build hours",
+      "label": "Product and technology: Split payment between guests' accounts \u00b7 build hours",
       "value": 80,
       "status": "assumed",
       "scope": "Owner: Product lead",
@@ -53750,7 +53750,7 @@
     },
     {
       "key": "org.group.2.external",
-      "label": "Product and technology: Split payment between guests' accounts · external cost",
+      "label": "Product and technology: Split payment between guests' accounts \u00b7 external cost",
       "value": 5000,
       "status": "assumed",
       "scope": "Scenario parameter; not a measured causal effect.",
@@ -53760,7 +53760,7 @@
     },
     {
       "key": "org.group.2.ready",
-      "label": "Product and technology: Split payment between guests' accounts · ready in month",
+      "label": "Product and technology: Split payment between guests' accounts \u00b7 ready in month",
       "value": 4,
       "status": "assumed",
       "scope": "Scenario parameter; not a measured causal effect.",
@@ -53770,7 +53770,7 @@
     },
     {
       "key": "org.group.2.monthly",
-      "label": "Product and technology: Split payment between guests' accounts · running hours a month",
+      "label": "Product and technology: Split payment between guests' accounts \u00b7 running hours a month",
       "value": 1,
       "status": "assumed",
       "scope": "Scenario parameter; not a measured causal effect.",
@@ -53780,7 +53780,7 @@
     },
     {
       "key": "org.group.3.hours",
-      "label": "Marketing and CRM: Repeat-use journey after the first group trip · build hours",
+      "label": "Marketing and CRM: Repeat-use journey after the first group trip \u00b7 build hours",
       "value": 60,
       "status": "assumed",
       "scope": "Owner: CRM manager",
@@ -53790,7 +53790,7 @@
     },
     {
       "key": "org.group.3.external",
-      "label": "Marketing and CRM: Repeat-use journey after the first group trip · external cost",
+      "label": "Marketing and CRM: Repeat-use journey after the first group trip \u00b7 external cost",
       "value": 0,
       "status": "assumed",
       "scope": "Scenario parameter; not a measured causal effect.",
@@ -53800,7 +53800,7 @@
     },
     {
       "key": "org.group.3.ready",
-      "label": "Marketing and CRM: Repeat-use journey after the first group trip · ready in month",
+      "label": "Marketing and CRM: Repeat-use journey after the first group trip \u00b7 ready in month",
       "value": 3,
       "status": "assumed",
       "scope": "Scenario parameter; not a measured causal effect.",
@@ -53810,7 +53810,7 @@
     },
     {
       "key": "org.group.3.monthly",
-      "label": "Marketing and CRM: Repeat-use journey after the first group trip · running hours a month",
+      "label": "Marketing and CRM: Repeat-use journey after the first group trip \u00b7 running hours a month",
       "value": 3,
       "status": "assumed",
       "scope": "Scenario parameter; not a measured causal effect.",
@@ -53820,7 +53820,7 @@
     },
     {
       "key": "org.group.4.hours",
-      "label": "Partnerships: Event and venue partners: selection, funding per group and duties · build hours",
+      "label": "Partnerships: Event and venue partners: selection, funding per group and duties \u00b7 build hours",
       "value": 60,
       "status": "assumed",
       "scope": "Owner: Partnership manager",
@@ -53830,7 +53830,7 @@
     },
     {
       "key": "org.group.4.external",
-      "label": "Partnerships: Event and venue partners: selection, funding per group and duties · external cost",
+      "label": "Partnerships: Event and venue partners: selection, funding per group and duties \u00b7 external cost",
       "value": 10000,
       "status": "assumed",
       "scope": "Scenario parameter; not a measured causal effect.",
@@ -53840,7 +53840,7 @@
     },
     {
       "key": "org.group.4.ready",
-      "label": "Partnerships: Event and venue partners: selection, funding per group and duties · ready in month",
+      "label": "Partnerships: Event and venue partners: selection, funding per group and duties \u00b7 ready in month",
       "value": 3,
       "status": "assumed",
       "scope": "Scenario parameter; not a measured causal effect.",
@@ -53850,7 +53850,7 @@
     },
     {
       "key": "org.group.4.monthly",
-      "label": "Partnerships: Event and venue partners: selection, funding per group and duties · running hours a month",
+      "label": "Partnerships: Event and venue partners: selection, funding per group and duties \u00b7 running hours a month",
       "value": 2,
       "status": "assumed",
       "scope": "Scenario parameter; not a measured causal effect.",
@@ -53860,7 +53860,7 @@
     },
     {
       "key": "org.group.5.hours",
-      "label": "Customer support: Group issues and evening safety follow-up · build hours",
+      "label": "Customer support: Group issues and evening safety follow-up \u00b7 build hours",
       "value": 30,
       "status": "assumed",
       "scope": "Owner: Support lead",
@@ -53870,7 +53870,7 @@
     },
     {
       "key": "org.group.5.external",
-      "label": "Customer support: Group issues and evening safety follow-up · external cost",
+      "label": "Customer support: Group issues and evening safety follow-up \u00b7 external cost",
       "value": 0,
       "status": "assumed",
       "scope": "Scenario parameter; not a measured causal effect.",
@@ -53880,7 +53880,7 @@
     },
     {
       "key": "org.group.5.ready",
-      "label": "Customer support: Group issues and evening safety follow-up · ready in month",
+      "label": "Customer support: Group issues and evening safety follow-up \u00b7 ready in month",
       "value": 3,
       "status": "assumed",
       "scope": "Scenario parameter; not a measured causal effect.",
@@ -53890,7 +53890,7 @@
     },
     {
       "key": "org.group.5.monthly",
-      "label": "Customer support: Group issues and evening safety follow-up · running hours a month",
+      "label": "Customer support: Group issues and evening safety follow-up \u00b7 running hours a month",
       "value": 1,
       "status": "assumed",
       "scope": "Scenario parameter; not a measured causal effect.",
@@ -53900,7 +53900,7 @@
     },
     {
       "key": "org.group.6.hours",
-      "label": "Product and technology: Join by link without the app (web check-in for guests) · build hours",
+      "label": "Product and technology: Join by link without the app (web check-in for guests) \u00b7 build hours",
       "value": 120,
       "status": "assumed",
       "scope": "Owner: Product lead",
@@ -53910,7 +53910,7 @@
     },
     {
       "key": "org.group.6.external",
-      "label": "Product and technology: Join by link without the app (web check-in for guests) · external cost",
+      "label": "Product and technology: Join by link without the app (web check-in for guests) \u00b7 external cost",
       "value": 10000,
       "status": "assumed",
       "scope": "Scenario parameter; not a measured causal effect.",
@@ -53920,7 +53920,7 @@
     },
     {
       "key": "org.group.6.ready",
-      "label": "Product and technology: Join by link without the app (web check-in for guests) · ready in month",
+      "label": "Product and technology: Join by link without the app (web check-in for guests) \u00b7 ready in month",
       "value": 4,
       "status": "assumed",
       "scope": "Scenario parameter; not a measured causal effect.",
@@ -53930,7 +53930,7 @@
     },
     {
       "key": "org.group.6.monthly",
-      "label": "Product and technology: Join by link without the app (web check-in for guests) · running hours a month",
+      "label": "Product and technology: Join by link without the app (web check-in for guests) \u00b7 running hours a month",
       "value": 1,
       "status": "assumed",
       "scope": "Scenario parameter; not a measured causal effect.",
@@ -53940,7 +53940,7 @@
     },
     {
       "key": "org.group.7.hours",
-      "label": "Analytics: Uplift targeting: offer the group incentive only where it changes behaviour · build hours",
+      "label": "Analytics: Uplift targeting: offer the group incentive only where it changes behaviour \u00b7 build hours",
       "value": 80,
       "status": "assumed",
       "scope": "Owner: Analytics lead",
@@ -53950,7 +53950,7 @@
     },
     {
       "key": "org.group.7.external",
-      "label": "Analytics: Uplift targeting: offer the group incentive only where it changes behaviour · external cost",
+      "label": "Analytics: Uplift targeting: offer the group incentive only where it changes behaviour \u00b7 external cost",
       "value": 0,
       "status": "assumed",
       "scope": "Scenario parameter; not a measured causal effect.",
@@ -53960,7 +53960,7 @@
     },
     {
       "key": "org.group.7.ready",
-      "label": "Analytics: Uplift targeting: offer the group incentive only where it changes behaviour · ready in month",
+      "label": "Analytics: Uplift targeting: offer the group incentive only where it changes behaviour \u00b7 ready in month",
       "value": 4,
       "status": "assumed",
       "scope": "Scenario parameter; not a measured causal effect.",
@@ -53970,7 +53970,7 @@
     },
     {
       "key": "org.group.7.monthly",
-      "label": "Analytics: Uplift targeting: offer the group incentive only where it changes behaviour · running hours a month",
+      "label": "Analytics: Uplift targeting: offer the group incentive only where it changes behaviour \u00b7 running hours a month",
       "value": 2,
       "status": "assumed",
       "scope": "Scenario parameter; not a measured causal effect.",
@@ -53980,7 +53980,7 @@
     },
     {
       "key": "org.group.8.hours",
-      "label": "Marketing and CRM: First ride free for new guests after a group trip · build hours",
+      "label": "Marketing and CRM: First ride free for new guests after a group trip \u00b7 build hours",
       "value": 30,
       "status": "assumed",
       "scope": "Owner: CRM manager",
@@ -53990,7 +53990,7 @@
     },
     {
       "key": "org.group.8.external",
-      "label": "Marketing and CRM: First ride free for new guests after a group trip · external cost",
+      "label": "Marketing and CRM: First ride free for new guests after a group trip \u00b7 external cost",
       "value": 0,
       "status": "assumed",
       "scope": "Scenario parameter; not a measured causal effect.",
@@ -54000,7 +54000,7 @@
     },
     {
       "key": "org.group.8.ready",
-      "label": "Marketing and CRM: First ride free for new guests after a group trip · ready in month",
+      "label": "Marketing and CRM: First ride free for new guests after a group trip \u00b7 ready in month",
       "value": 3,
       "status": "assumed",
       "scope": "Scenario parameter; not a measured causal effect.",
@@ -54010,7 +54010,7 @@
     },
     {
       "key": "org.group.8.monthly",
-      "label": "Marketing and CRM: First ride free for new guests after a group trip · running hours a month",
+      "label": "Marketing and CRM: First ride free for new guests after a group trip \u00b7 running hours a month",
       "value": 1,
       "status": "assumed",
       "scope": "Scenario parameter; not a measured causal effect.",
@@ -54020,7 +54020,7 @@
     },
     {
       "key": "org.common.0.hours",
-      "label": "Management: Sponsor, pilot owner, budget ownership and gate reviews · build hours",
+      "label": "Management: Sponsor, pilot owner, budget ownership and gate reviews \u00b7 build hours",
       "value": 60,
       "status": "assumed",
       "scope": "Owner: Country manager, Norway",
@@ -54030,7 +54030,7 @@
     },
     {
       "key": "org.common.0.external",
-      "label": "Management: Sponsor, pilot owner, budget ownership and gate reviews · external cost",
+      "label": "Management: Sponsor, pilot owner, budget ownership and gate reviews \u00b7 external cost",
       "value": 0,
       "status": "assumed",
       "scope": "Scenario parameter; not a measured causal effect.",
@@ -54040,7 +54040,7 @@
     },
     {
       "key": "org.common.0.ready",
-      "label": "Management: Sponsor, pilot owner, budget ownership and gate reviews · ready in month",
+      "label": "Management: Sponsor, pilot owner, budget ownership and gate reviews \u00b7 ready in month",
       "value": 1,
       "status": "assumed",
       "scope": "Scenario parameter; not a measured causal effect.",
@@ -54050,7 +54050,7 @@
     },
     {
       "key": "org.common.0.monthly",
-      "label": "Management: Sponsor, pilot owner, budget ownership and gate reviews · running hours a month",
+      "label": "Management: Sponsor, pilot owner, budget ownership and gate reviews \u00b7 running hours a month",
       "value": 6,
       "status": "assumed",
       "scope": "Scenario parameter; not a measured causal effect.",
@@ -54133,7 +54133,7 @@
       "label": "Cohort blended net revenue per ride",
       "value": 18.028950135992744,
       "status": "derived",
-      "scope": "2025 group net revenue EUR178.2m /115.815m rides ×11.7173 NOK/EUR. Group average proxy, not observed Oslo or PAYG marginal revenue. Pass revenue is reconciled separately.",
+      "scope": "2025 group net revenue EUR178.2m /115.815m rides \u00d711.7173 NOK/EUR. Group average proxy, not observed Oslo or PAYG marginal revenue. Pass revenue is reconciled separately.",
       "sourceIds": [
         "voiAR25"
       ],
@@ -54145,7 +54145,7 @@
       "label": "Revenue per ride basis",
       "value": "market",
       "status": "assumed",
-      "scope": "Market: Voi Norway revenue × assumed Oslo share ÷ Voi Oslo trips (23.06 kr in 2025). Benchmark: group net revenue per ride (18.03 kr). Independent of how active customers are set. The ordinary cost per ride (7.67 kr) is the same group average either way.",
+      "scope": "Market: Voi Norway revenue \u00d7 assumed Oslo share \u00f7 Voi Oslo trips (23.06 kr in 2025). Benchmark: group net revenue per ride (18.03 kr). Independent of how active customers are set. The ordinary cost per ride (7.67 kr) is the same group average either way.",
       "sourceIds": [],
       "sourceDate": "See dated source register",
       "uncertainty": null
@@ -55523,7 +55523,7 @@
       ""
     ],
     "ruter25": [
-      "Ruter (2026). Årsrapport 2025: Slik reiste vi i 2025.",
+      "Ruter (2026). \u00c5rsrapport 2025: Slik reiste vi i 2025.",
       "https://ruter.no/rapporter/aarsrapport2025/aaret-2025/slik-reiste-vi-i-2025"
     ],
     "oslo": [
@@ -55547,7 +55547,7 @@
       ""
     ],
     "voiPricing": [
-      "Voi (12 Aug 2026). Vad kostar det att åka med Voi? Current prices and available passes vary by city and are shown in the app. Checked 21 Oct 2026.",
+      "Voi (12 Aug 2026). Vad kostar det att \u00e5ka med Voi? Current prices and available passes vary by city and are shown in the app. Checked 21 Oct 2026.",
       "https://voi.com/sv/hjalp/konton-och-betalningar/vad-kostar-det-att-aka-med-voi"
     ],
     "vat": [
@@ -55559,11 +55559,11 @@
       "https://www.skatteetaten.no/satser/merverdiavgift/"
     ],
     "toi1748": [
-      "Fearnley, N., Berge, S. H. & Johnsson, E. (2020). Delte elsparkesykler i Oslo. TØI-rapport 1748/2020.",
+      "Fearnley, N., Berge, S. H. & Johnsson, E. (2020). Delte elsparkesykler i Oslo. T\u00d8I-rapport 1748/2020.",
       ""
     ],
     "toi2127": [
-      "Egner, F. & Fearnley, N. (2025). Elsparkesykler og elsykler i Norge 2021–2024. TØI-rapport 2127/2025.",
+      "Egner, F. & Fearnley, N. (2025). Elsparkesykler og elsykler i Norge 2021\u20132024. T\u00d8I-rapport 2127/2025.",
       ""
     ],
     "lime": [
@@ -55571,11 +55571,11 @@
       ""
     ],
     "cambe": [
-      "Cambe, J. et al. (2018). Evolutions of individuals use of Lyon’s bike sharing system. arXiv:1803.11505 (preprint, bike-share analogue).",
+      "Cambe, J. et al. (2018). Evolutions of individuals use of Lyon\u2019s bike sharing system. arXiv:1803.11505 (preprint, bike-share analogue).",
       "https://arxiv.org/abs/1803.11505"
     ],
     "kabra": [
-      "Kabra, A., Belavina, E. & Girotra, K. (2020). Bike-share systems: accessibility and availability. Management Science 66(9), 3803–3824.",
+      "Kabra, A., Belavina, E. & Girotra, K. (2020). Bike-share systems: accessibility and availability. Management Science 66(9), 3803\u20133824.",
       "https://doi.org/10.1287/mnsc.2019.3407"
     ],
     "shah": [
@@ -55583,7 +55583,7 @@
       "https://doi.org/10.1016/j.tra.2023.103878"
     ],
     "raviv": [
-      "Raviv, T., Tzur, M. & Forma, I. A. (2013). Static repositioning in a bike-sharing system. EURO Journal on Transportation and Logistics 2, 187–229.",
+      "Raviv, T., Tzur, M. & Forma, I. A. (2013). Static repositioning in a bike-sharing system. EURO Journal on Transportation and Logistics 2, 187\u2013229.",
       "https://doi.org/10.1007/s13676-012-0017-6"
     ],
     "liu": [
@@ -55591,7 +55591,7 @@
       "https://arxiv.org/html/2403.16029v1"
     ],
     "osorio": [
-      "Osorio, J., Lei, C. & Ouyang, Y. (2021). Optimal rebalancing and on-board charging of shared electric scooters. Transportation Research Part B 147, 197–219. Introduction, p. 197: historical contractor payments for overnight charging and placement.",
+      "Osorio, J., Lei, C. & Ouyang, Y. (2021). Optimal rebalancing and on-board charging of shared electric scooters. Transportation Research Part B 147, 197\u2013219. Introduction, p. 197: historical contractor payments for overnight charging and placement.",
       "https://par.nsf.gov/servlets/purl/10313347"
     ],
     "noshow": [
@@ -55611,47 +55611,47 @@
       ""
     ],
     "js04": [
-      "Johnson, M. D. & Selnes, F. (2004). Customer portfolio management. Journal of Marketing 68(2), 1–17.",
+      "Johnson, M. D. & Selnes, F. (2004). Customer portfolio management. Journal of Marketing 68(2), 1\u201317.",
       "https://ecommons.cornell.edu/entities/publication/22d27c0a-b390-418d-a76b-9ebd360bab11"
     ],
     "burnham03": [
-      "Burnham, T. A., Frels, J. K. & Mahajan, V. (2003). Consumer Switching Costs: A Typology, Antecedents, and Consequences. Journal of the Academy of Marketing Science 31(2), 109–126. Publisher abstract checked; no Voi coefficient transferred.",
+      "Burnham, T. A., Frels, J. K. & Mahajan, V. (2003). Consumer Switching Costs: A Typology, Antecedents, and Consequences. Journal of the Academy of Marketing Science 31(2), 109\u2013126. Publisher abstract checked; no Voi coefficient transferred.",
       "https://doi.org/10.1177/0092070302250897"
     ],
     "course5": [
-      "Customer Centricity, Lecture 5: Customer satisfaction, switching costs and customer loyalty, slides 12–14, 18–25. Supplied course material; conceptual guidance, not Voi effect estimates.",
+      "Customer Centricity, Lecture 5: Customer satisfaction, switching costs and customer loyalty, slides 12\u201314, 18\u201325. Supplied course material; conceptual guidance, not Voi effect estimates.",
       ""
     ],
     "gupta04": [
-      "Gupta, S., Lehmann, D. R. & Stuart, J. A. (2004). Valuing customers. Journal of Marketing Research 41(1), 7–18.",
+      "Gupta, S., Lehmann, D. R. & Stuart, J. A. (2004). Valuing customers. Journal of Marketing Research 41(1), 7\u201318.",
       ""
     ],
     "berger98": [
-      "Berger, P. D. & Nasr, N. I. (1998). Customer lifetime value. Journal of Interactive Marketing 12(1), 17–30.",
+      "Berger, P. D. & Nasr, N. I. (1998). Customer lifetime value. Journal of Interactive Marketing 12(1), 17\u201330.",
       ""
     ],
     "rust04": [
-      "Rust, R. T., Lemon, K. N. & Zeithaml, V. A. (2004). Return on marketing. Journal of Marketing 68(1), 109–127.",
+      "Rust, R. T., Lemon, K. N. & Zeithaml, V. A. (2004). Return on marketing. Journal of Marketing 68(1), 109\u2013127.",
       ""
     ],
     "reinartz05": [
-      "Reinartz, W., Thomas, J. S. & Kumar, V. (2005). Balancing acquisition and retention resources. Journal of Marketing 69(1), 63–79.",
+      "Reinartz, W., Thomas, J. S. & Kumar, V. (2005). Balancing acquisition and retention resources. Journal of Marketing 69(1), 63\u201379.",
       ""
     ],
     "wedel16": [
-      "Wedel, M. & Kannan, P. K. (2016). Marketing analytics for data-rich environments. Journal of Marketing 80(6), 97–121.",
+      "Wedel, M. & Kannan, P. K. (2016). Marketing analytics for data-rich environments. Journal of Marketing 80(6), 97\u2013121.",
       ""
     ],
     "ascarza18": [
-      "Ascarza, E. (2018). Retention futility: targeting high-risk customers might be ineffective. Journal of Marketing Research 55(1), 80–98.",
+      "Ascarza, E. (2018). Retention futility: targeting high-risk customers might be ineffective. Journal of Marketing Research 55(1), 80\u201398.",
       ""
     ],
     "schmitt11": [
-      "Schmitt, P., Skiera, B. & Van den Bulte, C. (2011). Referral programs and customer value. Journal of Marketing 75(1), 46–59.",
+      "Schmitt, P., Skiera, B. & Van den Bulte, C. (2011). Referral programs and customer value. Journal of Marketing 75(1), 46\u201359.",
       ""
     ],
     "mittal01": [
-      "Mittal, V. & Kamakura, W. A. (2001). Satisfaction, repurchase intent and repurchase behavior. Journal of Marketing Research 38(1), 131–142.",
+      "Mittal, V. & Kamakura, W. A. (2001). Satisfaction, repurchase intent and repurchase behavior. Journal of Marketing Research 38(1), 131\u2013142.",
       ""
     ],
     "osloPermit": [
@@ -55702,9 +55702,9 @@
     "report_case.json": "0f045ca08fecf6af094c4225f0b96855644f403e68388311145546cf10b60754",
     "input_registry.json": "fda34b1fe5af714a4e26b3280478286ef94aaba3a826065c874cc4dc8cb4b853",
     "forecast_audit.json": "a14b7ff0f9d497bc594ce3a39057ac0a05b79e2d1af6b226910de3ba72df25fe",
-    "generate_pack.cjs": "5b9bae4cda4ecc2326021ea8f2d4831d5392d95b469d267de85192e31da67f13",
-    "make_evidence_pack.py": "8685f2e312c2d3f358007f730057a054d39397400c8d3d2b84baf0cfface2c67",
-    "verify_pack.cjs": "3f1dcafcd6578c1d83cda369b45b87f7b273b641f08d7f6452a0da6478e55463",
+    "generate_pack.cjs": "4176aa4eb5beeeaf830d2e185eb28cd2c1f5d4cd5e47000f1ca5303e4968b6d1",
+    "make_evidence_pack.py": "8b98cfec2c8b964af7bc97d76014c1fcfcdee105777b7cdf34492c28ceb59f61",
+    "verify_pack.cjs": "a706dbe67b6333978ad1503a6c35c7c86a10d56c30a94e3d39363cf9a8dc2a80",
     "report_review_evidence.json": "c7e581e8dfbbf56009e288fe74200379700ac38359aadd8f5e40c288db5aaac5",
     "review_numbers_2026_11_02.cjs": "f1b8bb122fa3b1526d1534198338e47ec2fc61d1d3b5596339eec10094be4947"
   },
@@ -55747,7 +55747,7 @@
         "origin": "Proposed independent capital discipline: generate net discounted value at least equal to peak cash committed and recover economic investment within a two-year review window. Not Voi policy, an empirical optimum or calibrated to the improvement result.",
         "priorityRule": "Among feasible positive-value candidates meeting both hurdles, prioritise value per NOK of peak cash for first-stage allocation; absolute value and delivery evidence remain visible.",
         "rankingBasis": "pilot",
-        "rankingRationale": "Compare the pilot-then-expansion plan proposed in the report; show direct rollout alongside. Expansion values are conditional on approval and operating rights. Group confirmation pending."
+        "rankingRationale": "Compare the pilot-then-expansion plan proposed in the report; show direct rollout alongside. Expansion values are conditional on approval and operating rights."
       },
       "referencePlacementShare": 0.25,
       "stressPlacementShare": 0.3,
@@ -55795,7 +55795,7 @@
       "origin": "Proposed independent capital discipline: generate net discounted value at least equal to peak cash committed and recover economic investment within a two-year review window. Not Voi policy, an empirical optimum or calibrated to the improvement result.",
       "priorityRule": "Among feasible positive-value candidates meeting both hurdles, prioritise value per NOK of peak cash for first-stage allocation; absolute value and delivery evidence remain visible.",
       "rankingBasis": "pilot",
-      "rankingRationale": "Compare the pilot-then-expansion plan proposed in the report; show direct rollout alongside. Expansion values are conditional on approval and operating rights. Group confirmation pending."
+      "rankingRationale": "Compare the pilot-then-expansion plan proposed in the report; show direct rollout alongside. Expansion values are conditional on approval and operating rights."
     },
     "cases": [
       {
@@ -61682,7 +61682,7 @@
         }
       }
     ],
-    "decision": "Hub & Book first is the report's proposed strategic priority. Candidates are ranked on the selected pilot-then-expansion plan because that is the proposed investment being appraised; direct rollout is shown alongside on the same baseline. Group confirmation of this ranking-basis decision remains pending. Capital efficiency informs the strategic priority without forcing the economic ranking.",
+    "decision": "Hub & Book first is the report's proposed strategic priority. Candidates are ranked on the selected pilot-then-expansion plan because that is the proposed investment being appraised; direct rollout is shown alongside on the same baseline. Capital efficiency informs the strategic priority without forcing the economic ranking.",
     "unitDefinitions": {
       "value": "NOK, finite-horizon incremental discounted economic contribution",
       "cash": "NOK, incremental undiscounted cash",
@@ -71233,7 +71233,6 @@
       }
     },
     "rankingBasisReason": "Appraise the proposed pilot-then-expansion investment; show direct rollout alongside on the same no-offer baseline.",
-    "rankingBasisGroupConfirmation": "Pending",
     "archiveCitation": {
       "version": "7.2.0",
       "url": "https://kingen560.github.io/voi-portfolio-engine/archive/v7.2/",

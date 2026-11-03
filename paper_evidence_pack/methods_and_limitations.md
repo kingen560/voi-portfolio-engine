@@ -6,26 +6,26 @@ Independent student analysis. Not affiliated with, endorsed by or commissioned b
 
 ## Decision and scope
 
-Hub & Book first is the report's proposed strategic priority. Candidates are ranked on the selected pilot-then-expansion plan because that is the proposed investment being appraised; direct rollout is shown alongside on the same baseline. Group confirmation of this ranking-basis decision remains pending. Capital efficiency informs the strategic priority without forcing the economic ranking.
+Hub & Book is the proposed first-stage priority on capital efficiency and delivery scope. Pilot then expansion is compared with direct rollout against the same no-offer baseline; absolute economic value remains the ranking rule.
 
 The named report configuration evaluates Hub & Book through pilot then expansion, with 20% dedicated additional placement as an improvement objective. Reference and stress cases change only that share to 25% and 30%. The Oslo market is estimated at 124,822 active customers; sample segment proportions are assumed portfolio weights. This is not an observed customer cohort.
 
-The selected pilot-then-expansion catalogue prefers B1×G3 (Hub paid booking + coordination + split payment) at NOK 1.074860m; the same design gives NOK 1.719723m on direct rollout. Direct rollout is a like-for-like alternative implementation, with one common no-offer baseline. The selected pilot plan is ranked because it is the proposed investment. Group confirmation of that basis remains pending. Capital efficiency does not force the catalogue ranking.
+The highest-value pilot-then-expansion design is Hub & Book + coordination + split payment at +NOK 1.07m; the same design gives +NOK 1.72m on direct rollout. Direct rollout is a like-for-like alternative implementation, with one common no-offer baseline. The selected pilot plan is ranked because it is the proposed investment. Capital efficiency does not force the catalogue ranking.
 
 ## Capital policy and staging
 
-Require discounted economic value at least 1 times the selected path's maximum cash need and discounted payback by month 24. This is a normative capital-allocation policy, chosen independently of the case result; it is not an observed Voi hurdle or an empirically estimated optimum. The resulting hurdle follows the capital required by the selected configuration. Hub & Book's selected-path hurdle is NOK 623,353 and its value per NOK of cash need is 1.53.
+Require discounted economic value at least 1 times the selected path's maximum cash need and discounted payback by month 24. This is a normative capital-allocation policy, chosen independently of the case result; it is not an observed Voi hurdle or an empirically estimated optimum. The resulting hurdle follows the capital required by the selected configuration. Hub & Book's selected-path hurdle is NOK 623,000 and its value per NOK of cash need is 1.53.
 
 For Hub & Book, direct rollout gives +NOK 1.41m against +NOK 0.95m for pilot then expansion: staging forgoes NOK 0.45m if the improvement assumptions hold. These are conditional full-programme values, not pilot-only outcomes. A failed gate requires stop or redesign, not automatic expansion.
 
-At 30% placement, expanding despite a failed gate gives -NOK 0.85m. Its NOK 905,782 maximum cash need is the month-36 deficit and is still growing at the horizon; it is not an established lifetime peak.
+At 30% placement, expanding despite a failed gate gives -NOK 0.85m. Its NOK 906,000 maximum cash need is the month-36 deficit and is still growing at the horizon; it is not an established lifetime peak.
 
 | Placement | Direct rollout value | Pilot + expansion value | Stop after gate value | Stop-path max cash |
 | --- | --- | --- | --- | --- |
-| 20% | +NOK 1.41m | +NOK 0.95m | -NOK 0.51m | NOK 511,618 |
-| 25% | +NOK 0.37m | +NOK 0.11m | -NOK 0.53m | NOK 537,635 |
-| 30% | -NOK 0.80m | -NOK 0.85m | -NOK 0.56m | NOK 563,652 |
-| 35% | -NOK 2.32m | -NOK 2.08m | -NOK 0.58m | NOK 589,669 |
+| 20% | +NOK 1.41m | +NOK 0.95m | -NOK 0.51m | NOK 512,000 |
+| 25% | +NOK 0.37m | +NOK 0.11m | -NOK 0.53m | NOK 538,000 |
+| 30% | -NOK 0.80m | -NOK 0.85m | -NOK 0.56m | NOK 564,000 |
+| 35% | -NOK 2.32m | -NOK 2.08m | -NOK 0.58m | NOK 590,000 |
 
 Stop after the gate includes the remaining wind-down month and excludes later expansion. The pilot protects downside only when its decision rule is followed. The source review evidence is preserved in the JSON with the original v7.2 configuration hash.
 
@@ -72,7 +72,7 @@ Lower additional placement is not an observed efficiency gain. The five-point ch
 
 The paired analysis uses the pilot implementation path and includes the selected investment and the no-investment comparison. Its assumed ranges and dependencies describe tested combinations, not observed probabilities or calibrated forecasts. A change in ranges changes this scenario experiment; it is not new evidence of product performance. The point result is not a simulated mean.
 
-Competitor imitation and price effects operate through entered demand and relationship mechanisms. The no-offer world is static unless an external stress is applied to both worlds. No proprietary switching barrier or independent protection premium is assumed. The current Oslo permit ends 31 March 2027 (model month 6), before the month-9 gate; renewal is not assumed granted. The 36-month horizon is a conditional medium-term appraisal, extending beyond a hypothetical next 24-month permit term. Booking reserves vehicles inside a capped fleet; the reliability promise could support a later tender but has no separate value premium.
+Competitor imitation and price effects operate through entered demand and relationship mechanisms. The no-offer world is static unless an external stress is applied to both worlds. No proprietary switching barrier or independent protection premium is assumed. The current Oslo permit ends 31 March 2027, before the June 2027 gate; renewal is not assumed granted. The 36-month horizon is a conditional medium-term appraisal, extending beyond a hypothetical next 24-month permit term. Booking reserves vehicles inside a capped fleet; the reliability promise could support a later tender but has no separate value premium.
 
 No compatible historical scooter trip series was obtained in this audit. This is a data-availability finding, not proof that none exists. Explicit seasonality scenarios are used. Availability feeds and city-bike trips are not observed Voi trip demand. No Prophet forecast is fitted or claimed.
 
