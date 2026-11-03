@@ -2,7 +2,7 @@
 
 A student decision simulator for Voi Oslo, with a frozen report case and transparent assumptions.
 
-[Open the report case](https://kingen560.github.io/voi-portfolio-engine/#case=report-hub-first) · [Explore ordinary defaults](https://kingen560.github.io/voi-portfolio-engine/) · [Frozen report evidence](https://kingen560.github.io/voi-portfolio-engine/paper_evidence_pack/)
+[Open the report case](https://kingen560.github.io/voi-portfolio-engine/#case=report-hub-first) · [Explore ordinary defaults](https://kingen560.github.io/voi-portfolio-engine/?mode=expert&case=defaults) · [Frozen report evidence](https://kingen560.github.io/voi-portfolio-engine/paper_evidence_pack/)
 
 ## Use it
 
