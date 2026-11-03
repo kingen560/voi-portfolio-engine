@@ -6,7 +6,9 @@ A student decision simulator for Voi Oslo, with a frozen report case and transpa
 
 ## Use it
 
-Choose an investment and implementation plan. The headline, alternatives, funding checks and uncertainty analysis use that same plan. Pilot then scale and direct rollout are compared explicitly. Both Hub & Book and Voi Together, including their design variants, remain available.
+Start with the report case's decision summary: Hub & Book's conditional first-stage priority, the extra value and funding of the highest-value alternative, and the operating assumptions to test. Editing those inputs updates the summary and can withdraw the Hub-first recommendation. Plain product names lead the comparison; catalogue codes remain in the detailed analysis.
+
+Choose an investment and implementation plan. The headline, alternatives, funding checks and uncertainty analysis use that same plan. Pilot then scale and direct rollout are compared explicitly. Both Hub & Book and Voi Together, including their design variants, remain available. A [one-page calculation guide](methods.pdf) explains the method; the full frozen data and provenance remain available separately.
 
 **Report case.** The paper proposes Hub & Book first, through a pilot and conditional expansion. The complete named configuration uses 20% additional dedicated placement as an operating objective; 25% is the reference and 30% the downside. It does not force booking to win the economic comparison. Loading the case replaces current inputs explicitly; Undo restores them.
 

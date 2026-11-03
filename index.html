@@ -28,6 +28,25 @@ caption{caption-side:top;text-align:left;font-size:12px;line-height:1.5;padding:
 
 /* Keep disclosure and exported/source links readable on small screens. */
 footer{overflow-wrap:anywhere}#non-affiliation{display:block;color:var(--ink);font-weight:600}.metrics>div{min-width:0}
+
+/* The report decision has a short reading path; the complete workbench stays below. */
+.decision-brief{border:1px solid #c8d5c4;border-left:5px solid var(--green);background:#eaf0e7;padding:23px 27px;margin:0 0 16px;overflow-wrap:anywhere}
+.decision-brief[data-status="reassess"]{border-color:#d9c99f;border-left-color:#8a661c;background:#f4efdf}
+.decision-brief[data-status="unavailable"]{border-color:#dfbbae;border-left-color:var(--red);background:#f6e8e1}
+.decision-kicker{font:11px/1.5 Mono,monospace;letter-spacing:1px;text-transform:uppercase;color:var(--green);margin:0 0 8px}
+.decision-brief[data-status="reassess"] .decision-kicker{color:#785a19}.decision-brief[data-status="unavailable"] .decision-kicker{color:var(--red)}
+.decision-heading{font-size:clamp(25px,2.6vw,34px);line-height:1.15;letter-spacing:-.7px;margin:0 0 9px}
+.decision-intro{font-size:15px;line-height:1.5;max-width:980px;margin:0 0 17px}
+.decision-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px 24px;border-top:1px solid #c3cfbf;border-bottom:1px solid #c3cfbf;padding:15px 0;margin:0 0 15px}
+.decision-metric{min-width:0}.decision-metric small{display:block;color:var(--muted);font-size:12px;line-height:1.4;margin-bottom:5px}.decision-metric strong{display:block;font:23px/1.3 Mono,monospace;letter-spacing:-.5px}
+.decision-tradeoff{font-size:14px;line-height:1.55;margin:12px 0 16px;max-width:1050px}.decision-tradeoff strong{font-weight:650}
+.decision-assumptions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px 25px;margin:14px 0}
+.decision-assumption{min-width:0;border-left:2px solid #a8bba2;padding-left:11px}.decision-assumption strong{display:block;font:20px/1.3 Mono,monospace;margin-bottom:4px}.decision-assumption span{display:block;font-size:12px;line-height:1.5;color:var(--muted)}
+.decision-footer{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap;margin-top:15px}.decision-footer .note{margin:0;max-width:650px}.decision-footer button{font-size:13px}.decision-footer button:first-of-type{background:var(--ink);color:var(--paper)}.decision-footer button:first-of-type:hover{background:var(--green)}
+.decision-detail{border-top:1px solid #c3cfbf;margin:17px 0 0;padding-top:2px}.decision-detail summary{font-size:13px}.decision-detail p{font-size:13px;line-height:1.6;margin:8px 0}.decision-detail table{font-size:12px}.decision-detail thead th{background:#dfe7da}.decision-detail th,.decision-detail td{padding:9px 8px}
+.report-case-bar.report-active{padding:10px 16px;background:transparent;border-left:1px solid var(--line);gap:15px;margin-bottom:18px}.report-case-bar.report-active b{font-size:13px}.report-case-bar.report-active p{font-size:12px;margin-top:1px}.report-case-bar.report-active button{font-size:12px;padding:7px 10px;background:transparent;color:var(--ink)}.report-case-bar.report-active button:hover{background:var(--ink);color:var(--paper)}
+@media(max-width:650px){.decision-brief{padding:18px 17px}.decision-heading{font-size:27px}.decision-intro{font-size:14px}.decision-metrics{gap:10px;padding:12px 0}.decision-metric small{font-size:11px}.decision-metric strong{font-size:18px;letter-spacing:-.6px}.decision-assumptions{grid-template-columns:1fr;gap:11px}.decision-assumption{display:grid;grid-template-columns:76px minmax(0,1fr);gap:9px;align-items:start}.decision-assumption strong{font-size:19px;margin:0}.decision-assumption span{font-size:12px}.decision-footer{align-items:stretch;gap:10px}.decision-footer .note{flex-basis:100%}.decision-footer button{flex:1 1 135px;text-align:center}.report-case-bar.report-active button{margin-top:9px}.decision-detail th,.decision-detail td{padding:8px 6px}}
+@media print{.decision-brief{background:white;border:1px solid #555;break-inside:avoid}.decision-kicker,.decision-intro,.decision-assumption span,.decision-metric small{color:black}.report-case-bar{display:none}}
 </style></head>
 <body>
 <a class="skip" href="#main">Skip to analysis</a>
@@ -37,7 +56,8 @@ footer{overflow-wrap:anywhere}#non-affiliation{display:block;color:var(--ink);fo
 <div id="startup" class="notice">Starting the calculation engine…</div><div id="notice" class="notice" hidden></div><div id="error" class="error" role="alert" hidden></div>
 <section id="page-design" aria-label="Design and decide">
 <div class="intro"><div><p class="eyebrow">CUSTOMER VALUE → BEHAVIOUR → CONTRIBUTION</p><h1>What would make<br>these offers worth funding?</h1><p>Build a case. Find its limits. Decide what to measure.</p></div><div class="scope-tag" id="scope-tag"></div></div>
-<section class="report-case-bar" aria-label="Named report configuration"><div><b id="case-name">Explore the planning assumptions</b><p class="note">The report proposes Hub & Book first. Load its complete case to reproduce the report; Undo restores your current inputs and selection.</p></div><button id="load-report-case">Load report case · Hub & Book</button></section>
+<section id="report-decision" class="decision-brief" aria-label="Report decision summary" hidden></section>
+<section class="report-case-bar" aria-label="Worked example configuration"><div><b id="case-name">Explore the planning assumptions</b><p class="note">Load the complete Hub & Book example to inspect its decision logic. Undo restores your current inputs and selection.</p></div><button id="load-report-case">Load Hub & Book example</button></section>
 <div class="command"><label>Investment<select id="investment"><option value="both">Both offers</option><option value="booking">Hub & Book</option><option value="group">Voi Together</option><option value="none">No investment</option></select></label><label>Implementation plan<select id="deployment" aria-describedby="pilot-plan-note"><option value="pilot">Pilot, then scale</option><option value="full">Direct rollout, no pilot</option></select></label><button id="undo">Undo</button><button id="editor-open">Complete input editor</button><button id="save">Save comparison</button><p id="pilot-plan-note" class="note command-note">The headline, comparison and funding checks use the selected implementation plan. The other path is shown separately.</p></div>
 <div class="workbench"><div class="inputs-column">
 <section class="shared panel"><h2>Set the scale</h2><div id="shared-controls" class="controls"></div><p id="scope-note" class="note"></p><div class="actions scope-presets" role="group" aria-label="Planning scope"><button data-preset="oslo2025">Oslo 2025 (planning case)</button><button data-preset="oslo2024">Oslo 2024 (scale stress)</button><button data-preset="cohort10k">10,000-customer pilot cohort</button></div><details><summary>Calibration, financing & timing</summary><div id="shared-extra" class="controls"></div><p id="calibration-note" class="note"></p></details></section>
@@ -65,7 +85,7 @@ footer{overflow-wrap:anywhere}#non-affiliation{display:block;color:var(--ink);fo
 <section class="panel"><h2>Can the study detect a worthwhile effect?</h2><p>Contribution per assigned customer is the primary economic outcome. Supply the design assumptions to obtain an approximate planning calculation.</p><div id="trial-controls" class="controls horizontal"></div><div id="power-results"></div></section>
 <section class="panel"><h2>Sources and assumptions</h2><p>Start with the assumptions that carry the report's investment case. Every input remains available in the complete register.</p><div id="key-assumptions" class="assumption-grid"></div><details id="full-register"><summary>Complete input and source register</summary><label>Find an input or source<input id="source-search" type="search" placeholder="e.g. adoption, survey, placement"></label><div id="register" class="table-wrap"></div></details><details><summary>Full bibliography</summary><div id="bibliography"></div></details><details><summary>Cost boundaries and calibration limits</summary><div id="cost-note"></div></details></section>
 <section class="panel"><h2>Forecasting data audit</h2><div id="forecast-audit"></div><label>Import documented monthly demand factors<input id="forecast-import" type="file" accept="application/json,.json"></label><p class="note">The same demand path is used with and without the offers. Imported factors replace the seasonal scenario for their stated months; they do not also increase customer stocks.</p></section>
-<section class="panel"><h2>Take the evidence into the paper</h2><div id="paper-map" class="table-wrap"></div><div class="actions"><button id="export-json">Export configuration & results</button><button id="export-csv">Export monthly CSV</button><button id="export-note">Download current-case evidence note</button><a class="button" href="paper_evidence_pack/index.html" id="paper-link">Open the frozen report case · Hub & Book, pilot first ↗</a></div><p class="note">Exports capture your current inputs, selected investment and implementation plan. The linked report pack is a separately frozen, dated configuration with its own hash. Editing the simulator does not silently alter it.</p><label>Import a saved configuration<input id="import" type="file" accept="application/json,.json"></label><div id="saved-comparisons"></div></section>
+<section class="panel"><h2>Take the evidence into the paper</h2><div id="paper-map" class="table-wrap"></div><div class="actions"><button id="export-json">Export configuration & results</button><button id="export-csv">Export monthly CSV</button><button id="export-note">Download current-case evidence note</button><a class="button" href="methods.pdf" id="methods-link">One-page calculation guide ↗</a><a class="button" href="paper_evidence_pack/index.html" id="paper-link">Detailed frozen data &amp; provenance ↗</a></div><p class="note">Exports capture your current inputs, selected investment and implementation plan. The linked report pack is a separately frozen, dated configuration with its own hash. Editing the simulator does not silently alter it.</p><label>Import a saved configuration<input id="import" type="file" accept="application/json,.json"></label><div id="saved-comparisons"></div></section>
 </section>
 </main><div id="mobile-current" class="mobile-current"><span id="mobile-value"></span><button id="jump-results">See results ↑</button></div><footer>VOI PORTFOLIO LAB / v7.2.1 · Independent student research prototype. <strong id="non-affiliation">Not affiliated with, endorsed by or commissioned by Voi.</strong> Conditional economics, not a validated investment forecast. <span id="footer-scope"></span></footer>
 <dialog id="editor"><div class="dialog-heading"><h2>Complete input editor</h2><button id="editor-close">Close</button></div><p>Point inputs and simulation ranges are separate. Source and assumption notes remain visible.</p><label>Search<input id="editor-search" type="search" placeholder="Find an input"></label><div id="editor-controls"></div></dialog>
@@ -4873,14 +4893,15 @@ footer{overflow-wrap:anywhere}#non-affiliation{display:block;color:var(--ink);fo
   const nf=(v,d=0)=>Number(v).toLocaleString('en-GB',{maximumFractionDigits:d,minimumFractionDigits:d});
   const money=v=>(v<0?'−':v>0?'+':'')+(Math.abs(v)<50000?nf(Math.abs(v))+' kr':nf(Math.abs(v)/1e6,2)+' MNOK');
   const cash=v=>nf(v)+' kr',pct=(v,d=1)=>nf(v*100,d)+'%';
+  const briefCash=v=>cash(Math.abs(v)<10000?v:Math.round(v/1000)*1000);
   const val=v=>'<span class="'+(v<0?'negative':'')+'">'+money(v)+'</span>';
   const status=q=>({AR:'observed',EXT:'observed',SV:'observed',DV:'derived',AS:'assumed',PD:'assumed',LIT:'analogue'})[q.src]||'assumed';
   const META=new Map(R.META.map(q=>[q.key,q]));
-  // Candidate names: the four current-input options keep their names; catalogue designs carry their id (B1×G3).
+  // Plain product names lead the reader; catalogue codes remain in detailed tables and exports.
   const SHORT={none:'No investment',booking:'Hub & Book',group:'Voi Together',both:'Both offers'};
   const isDesign=id=>A.CATALOGUE.some(c=>c.id===id);
   const shortId=id=>SHORT[id]||String(id).replace('x','×');
-  const fullName=id=>isDesign(id)?shortId(id)+' · '+A.LABEL[id]:A.LABEL[id]||String(id);
+  const fullName=id=>isDesign(id)?A.LABEL[id].replace(/^Hub paid booking/, 'Hub & Book'):A.LABEL[id]||String(id);
   const basisLabel=b=>(META.get('economics.revenueBasis')?.options||[]).find(([v])=>v===b)?.[1]||b;
   const BUDGET_FLAG='Launch investment exceeds the launch budget';
   let X=E.clone(DEFAULTS),opening,openingSelected='both',openingScenario='custom',openingResult=null,history=[],selected='both',scenarioId='custom',page='design',last=null,commercialLast=null,analysis=null,maps=null,competition=null,thresholds=null,worker=null,running=null,token=0,editorMode='inputs',launcher=null;
@@ -5036,6 +5057,53 @@ footer{overflow-wrap:anywhere}#non-affiliation{display:block;color:var(--ink);fo
     const fragility=r=>r.margin==null?Infinity:Math.abs(r.margin);
     return th.rows.filter(r=>requirement(r,positive)).sort((a,b)=>fragility(a)-fragility(b)).slice(0,n).map(r=>requirement(r,positive));
   }
+  // Report priority is a transparent capital-allocation judgement, separate from
+  // the unchanged absolute-value ranking. Reassess it when edited inputs fail.
+  let guideSensitivity=null;
+  function renderReportDecision() {
+    const el=$('#report-decision'),active=scenarioId.startsWith(REPORT.id);
+    el.hidden=!active;$('.report-case-bar').classList.toggle('report-active',active);
+    if(!active){el.innerHTML='';return;}
+    const hub=A.find(last,'booking'),best=A.find(last,last.best),targets=A.reportTargets(hub,REPORT.targets);
+    const qualified=A.candidates(last).filter(q=>q.id!=='none'&&q.feasible&&q.value>0&&A.reportTargets(q,REPORT.targets).meets);
+    const efficient=qualified.reduce((a,q)=>!a||A.capitalEfficiency(q)>A.capitalEfficiency(a)+1e-9?q:a,null);
+    const narrowHub=!X.booking.citywide&&X.booking.passIncluded===0;
+    const serviceGuard=REPORT.patch['booking.fulfil'],qualityMet=X.booking.fulfil>=serviceGuard;
+    const supported=hub.feasible&&hub.value>0&&targets.meets&&qualityMet&&narrowHub&&(!efficient||targets.capitalEfficiency>=A.capitalEfficiency(efficient)-1e-9);
+    const state=!hub.feasible||hub.value<=0?'unavailable':supported?'supported':'reassess';
+    const extraValue=best.value-hub.value,extraCash=best.peakFunding-hub.peakFunding;
+    el.dataset.status=state;el.dataset.hubValue=hub.value;el.dataset.hubPeakCash=hub.peakFunding;
+    el.dataset.extraValue=extraValue;el.dataset.extraCash=extraCash;
+    const title=supported?'Hub & Book first':state==='unavailable'?'Hub & Book is not supported here':'Reassess Hub & Book';
+    const intro=supported?(decisionBasis()==='pilot'?'Prioritise a focused pilot, then expand if the evidence supports it.':'Hub & Book meets the decision criteria on direct rollout. Compare the pilot path before committing.')
+      :!hub.feasible?'The entered funding, capacity or timing constraints block this plan: '+hub.reasons.join('; ')+'.'
+      :hub.value<=0?'Hub & Book does not create positive value under these inputs. Stop or redesign the offer before committing.'
+      :!narrowHub?'The product design now differs from the paid hub offer in this example. Reassess its scope and delivery.'
+      :!qualityMet?'The financial case may remain positive, but fulfilment is below the '+pct(serviceGuard,0)+' service requirement. Restore a reliable customer promise before committing.'
+      :!targets.meets?'The edited case no longer meets both capital requirements. Positive value alone does not justify the original recommendation.'
+      :'Another qualifying design now has higher value per NOK of peak cash. Revisit the first-stage priority rather than keeping Hub-first automatically.';
+    let trade;
+    if(best.id==='none')trade='<b>Current model choice: no investment.</b> No feasible candidate has positive value under this plan.';
+    else if(best.designKey===hub.designKey)trade='<b>Hub & Book also has the highest total value under these inputs.</b>';
+    else if(extraValue>0&&extraCash>0)trade='<b>'+(supported?'Why start with Hub & Book?':'Compare the funding trade-off.')+'</b> The highest-value alternative, '+esc(fullName(best.id))+', adds about <strong>'+briefCash(extraValue)+'</strong> of discounted value and requires about <strong>'+briefCash(extraCash)+'</strong> more peak cash. '+(supported?'Hub-first prioritises capital efficiency and a narrower first commitment.':'Compare both the extra value and funding before choosing.')+'<br><span class="note">Highest total value remains '+esc(fullName(best.id))+' ('+money(best.value)+'). '+(X.fundingLimit==null?'Funding is unconfirmed until a total cash ceiling is entered.':'Entered total cash ceiling: '+cash(X.fundingLimit)+'.')+'</span>';
+    else trade='<b>Compare the alternative.</b> '+esc(fullName(best.id))+' has '+money(best.value)+' of value and '+cash(best.peakFunding)+' peak cash. Hub-first is a first-stage priority, not the highest-value model result.';
+    const placement=X.booking.citywide?X.booking.cityMoveShare:X.booking.moveShare,reach=X.booking.citywide?X.booking.cityEligible:X.booking.eligible;
+    const briefPct=v=>pct(v,Number.isInteger(v*100)?0:1);
+    const currentInputs=[['Extra placement',briefPct(placement),'Booking attempts needing a dedicated scooter placement.'],['Eligible reach',briefPct(reach),'Relevant frequent and Pass customers within the service footprint.'],['Fulfilment',briefPct(X.booking.fulfil),'Bookings delivered with the promised scooter, battery, place and time.']];
+    const sensitivityKey=JSON.stringify([X,decisionBasis()]);
+    if(!guideSensitivity||guideSensitivity.key!==sensitivityKey){
+      const y=decisionBasis()==='pilot'?A.pilotPlan(X):A.commercial(X),key=X.booking.citywide?'booking.cityMoveShare':'booking.moveShare';
+      guideSensitivity={key:sensitivityKey,rows:[REPORT.referencePlacementShare,REPORT.stressPlacementShare].map(share=>({share,value:E.compare(A.change(y,{[key]:share}),A.ON.booking).dCPE}))};
+    }
+    const sensitivityText=guideSensitivity.rows.map(q=>pct(q.share,0)+' extra placement: '+money(q.value)).join('; ')+'.';
+    const selectedNote=selected==='booking'?'The current result below is Hub & Book.':'You are currently inspecting '+SHORT[selected]+'. Switching back changes the selected investment only.';
+    el.innerHTML='<p class="decision-kicker">DECISION IN BRIEF · '+esc(planLabel())+'</p><h2 class="decision-heading">'+esc(title)+'</h2><p class="decision-intro">'+esc(intro)+'</p>'
+      +'<div class="decision-metrics">'+[['Discounted value · '+X.horizon+' months',money(hub.value)],['Maximum cash needed · approx.',briefCash(hub.peakFunding)],['Value per NOK of peak cash',targets.capitalEfficiency==null?'N/A':nf(targets.capitalEfficiency,2)+'×']].map(([label,v])=>'<div class="decision-metric"><small>'+esc(label)+'</small><strong>'+esc(v)+'</strong></div>').join('')+'</div>'
+      +'<p class="decision-tradeoff">'+trade+'</p><p class="decision-condition-title"><b>The operating case to test</b> <span class="note">Current assumptions, not measured capabilities.</span></p>'
+      +'<div class="decision-assumptions">'+currentInputs.map(([label,v,note])=>'<div class="decision-assumption"><strong>'+esc(v)+' '+esc(label.toLowerCase())+'</strong><span>'+esc(note)+'</span></div>').join('')+'</div>'
+      +'<details class="decision-detail"><summary>Check the cost sensitivity and decision rules</summary><p>With every other input held at its current value: '+esc(sensitivityText)+' These one-input comparisons do not measure the joint effect of changing the hub footprint and demand.</p><p>Proposed decision criteria: value / peak cash at least '+nf(REPORT.targets.minCapitalEfficiency,1)+'; discounted payback by month '+REPORT.targets.maxDiscountedPayback+'; fulfilment at least '+pct(serviceGuard,0)+'. Current Hub & Book payback: '+esc(payback(hub))+'. '+(targets.meets?'Meets both financial requirements.':'Does not meet both financial requirements.')+' The simulator ranks feasible alternatives by absolute value. Continue after the gate only if future benefits exceed remaining avoidable costs and delivery, operating rights and funding are secured.</p></details>'
+      +'<div class="decision-footer"><p class="note">'+esc(selectedNote)+(decisionBasis()==='pilot'?' The value includes expansion after the gate; stopping is a separate path.':'')+'</p><div class="actions">'+(selected!=='booking'?'<button data-select="booking">Inspect Hub & Book</button>':'')+'<button data-page="stress" data-focus="#thresholds-panel">Test the conditions</button><button data-page="design" data-focus=".command">Explore the inputs</button></div></div>';
+  }
   // Thresholds describe the selected investment; with no investment selected they describe the closest feasible offer.
   function focusId() {return selected!=='none'?selected:A.focusOf(last);}
   function renderRecommendation() {
@@ -5046,7 +5114,7 @@ footer{overflow-wrap:anywhere}#non-affiliation{display:block;color:var(--ink);fo
       html='<h3>No investment under this plan</h3><p>'+(blocked?'Positive candidates fail an entered constraint. Highest: '+esc(fullName(blocked.id))+' ('+money(blocked.value)+'): '+esc(blocked.reasons.join('; '))+'.':'No feasible design has positive incremental value over '+H+' months.')+'</p>';
     } else {
       html='<h3>Highest value under this plan</h3><p><b>'+esc(fullName(best.id))+'</b> · '+money(best.value)+' over '+H+' months, '+planLabel().toLowerCase()+'.</p>';
-      if(best.id!==selected&&o)html+='<p>Your selected investment: '+esc(SHORT[selected])+' · '+money(o.value)+'. The report can prioritise a different feasible option for capital or execution reasons; it must explain that choice.</p>';
+      if(best.id!==selected&&o)html+='<p>Your selected investment: '+esc(SHORT[selected])+' · '+money(o.value)+'. First-stage capital efficiency and total value are separate decision criteria. '+(scenarioId.startsWith(REPORT.id)?'The summary above explains the current priority.':'Compare the value, cash needs and delivery evidence before choosing.')+'</p>';
       html+='<p>'+esc(planLabel())+' cash for this design: launch '+cash(best.launchInvestment)+'; peak '+cash(best.peakFunding)+'; discounted payback '+payback(best).toLowerCase()+'.</p>';
       const flags=flagLong(best);if(flags.length)html+='<p class="flag-line">'+flags.map(f=>esc(f)+'.').join(' ')+'</p>';
       const alt=last.runnerUp?A.find(last,last.runnerUp):null;
@@ -5073,7 +5141,7 @@ footer{overflow-wrap:anywhere}#non-affiliation{display:block;color:var(--ink);fo
   function render() {
     const errors=E.validateCore(X);$('#error').hidden=!errors.length;$('#error').textContent=errors.join(' · ');
     ['#save','#export-json','#export-csv','#export-note'].forEach(id=>$(id).disabled=!!errors.length);
-    if(errors.length){last=null;window.__voiLast=null;$('#headline').textContent='Invalid inputs';$('#mobile-value').textContent='Correct the invalid inputs';$('#funding-results').innerHTML='';$('#change-result').textContent='';$('#recommendation').textContent='Correct the inputs to calculate a current result.';for(const id of ['#options','#cash-chart','#catalogue','#month-explanation','#result-flags','#pilot-plan'])$(id).innerHTML='';return;}
+    if(errors.length){last=null;window.__voiLast=null;$('#report-decision').hidden=true;$('#report-decision').innerHTML='';$('#headline').textContent='Invalid inputs';$('#mobile-value').textContent='Correct the invalid inputs';$('#funding-results').innerHTML='';$('#change-result').textContent='';$('#recommendation').textContent='Correct the inputs to calculate a current result.';for(const id of ['#options','#cash-chart','#catalogue','#month-explanation','#result-flags','#pilot-plan'])$(id).innerHTML='';return;}
     commercialLast=A.evaluate(X);last=A.forBasis(commercialLast,decisionBasis());
     const H=X.horizon,o=last.options.find(o=>o.id===selected),xc=decisionBasis()==='pilot'?A.pilotPlan(X):A.commercial(X),raw=E.compare(xc,A.ON[selected]),cal=last.calibration,basis=E.revenueBasis(X);
     window.__voiLast={inputs:E.clone(X),result:last,commercialResult:commercialLast,cmp:raw,selected,basis:decisionBasis(),scenarioId};
@@ -5081,7 +5149,7 @@ footer{overflow-wrap:anywhere}#non-affiliation{display:block;color:var(--ink);fo
     $('#scope-tag').innerHTML=(X.population.useCalibrated?'OSLO MARKET ESTIMATE':'NAMED COHORT')+'<br><b>'+nf(cal.active)+' active customers</b><br>Revenue: '+esc(basisLabel(basis))+'<br>'+H+' months · run-off shown separately';
     $('#scope-note').textContent=X.population.useCalibrated?'Market estimate in use: '+nf(cal.active)+' active customers from Oslo trips. The named-cohort field applies only when market estimation is off (Calibration, financing & timing) or with the pilot-cohort scope.':'Named cohort in use: '+nf(cal.active)+' active customers, entered. Market trips no longer set the customer count.';
     $('#footer-scope').textContent=X.population.useCalibrated?'Market allocation remains assumed.':'Replacement inflow retained; fixed costs are not scaled away.';
-    $('#case-name').textContent=scenarioId===REPORT.id?REPORT.label:scenarioId.startsWith(REPORT.id)?'Report inputs · edited scenario':'Explore the planning assumptions';
+    $('#case-name').textContent=scenarioId===REPORT.id?'Hub & Book · worked example':scenarioId.startsWith(REPORT.id)?'Current inputs · edited example':'Explore the planning assumptions';
     $('#result-basis').textContent=planLabel().toUpperCase()+' · INCREMENTAL DISCOUNTED CONTRIBUTION';
     $('#options-basis').textContent=planLabel()+' · same customers, market path and horizon';
     $('#headline').textContent=money(o.value);
@@ -5091,10 +5159,10 @@ footer{overflow-wrap:anywhere}#non-affiliation{display:block;color:var(--ink);fo
     $('#result-flags').innerHTML=[...flagLong(o).map(f=>'<p class="flag-line">Flag: '+esc(f)+'. A flag, not a constraint: the investment stays eligible.</p>'),...(o.feasible?[]:['<p class="fail-line">Constraint: '+esc(o.reasons.join('; '))+'.</p>'])].join('');
     $('#pilot-plan').innerHTML=pilotPlanBlock(o);
     const showGoals=scenarioId.startsWith(REPORT.id)&&selected===REPORT.selected;$('#report-goals').hidden=!showGoals;
-    if(showGoals){const targets=A.reportTargets(o,REPORT.targets);$('#report-goals').innerHTML='<h3>Report targets · proposed, not Voi policy</h3><p>Discounted value at least '+nf(REPORT.targets.minCapitalEfficiency,0)+'× peak cash at risk (positive peak cash); discounted payback by month '+REPORT.targets.maxDiscountedPayback+'.</p><p>Capital efficiency: '+(targets.capitalEfficiency==null?'N/A — no positive peak cash':nf(targets.capitalEfficiency,2)+' NOK of value per NOK of peak cash')+'. This ratio is not a return probability.</p><p class="'+(targets.meets?'target-met':'flag-line')+'">'+(targets.meets?'Meets both targets in this scenario.':'Does not meet both targets in this scenario.')+' Capital efficiency informs the report priority; economic ranking is unchanged. Pilot evidence must support the assumptions before expansion.</p>';}
+    if(showGoals){const targets=A.reportTargets(o,REPORT.targets);$('#report-goals').innerHTML='<h3>Decision criteria · proposed, not Voi policy</h3><p>Discounted value at least '+nf(REPORT.targets.minCapitalEfficiency,0)+'× peak cash at risk (positive peak cash); discounted payback by month '+REPORT.targets.maxDiscountedPayback+'.</p><p>Capital efficiency: '+(targets.capitalEfficiency==null?'N/A — no positive peak cash':nf(targets.capitalEfficiency,2)+' NOK of value per NOK of peak cash')+'. This ratio is not a return probability.</p><p class="'+(targets.meets?'target-met':'flag-line')+'">'+(targets.meets?'Meets both targets in this scenario.':'Does not meet both targets in this scenario.')+' Capital efficiency informs the first-stage priority; economic ranking is unchanged. Pilot evidence must support the assumptions before expansion.</p>';}
 
     try{openingResult=openingResult||A.evaluate(opening);const initial=A.forBasis(openingResult,decisionBasis()).options.find(s=>s.id===selected);$('#change-result').textContent='Change from opening inputs: '+money(o.value-initial.value)+'. Same investment and implementation path.';}catch{$('#change-result').textContent='';}
-    renderRecommendation();
+    renderReportDecision();renderRecommendation();
     const comparison=o.id==='none'?null:(decisionBasis()==='pilot'?A.find(commercialLast,o.id).monthly:A.find(commercialLast,o.id).pilotMonthly);
     $('#options').innerHTML=optionsTable();$('#cash-chart').innerHTML=cashChart(o,comparison);
     $('#calibration-note').textContent=(basis==='benchmark'?'Revenue per ride '+nf(cal.revPerRide,2)+' kr on the group benchmark basis: Voi group net revenue per ride. A group-average proxy, not Oslo unit economics.':'Revenue per ride '+nf(cal.revPerRide,2)+' kr on the Oslo market allocation basis: Voi Norway net revenue EUR '+nf(X.norwayRevenueEURm,1)+'m × '+nf(X.nokPerEur,2)+' NOK/EUR × assumed Oslo share '+pct(X.osloShare,0)+' ÷ Voi Oslo trips ('+nf(X.ruterTripsM,1)+'m × '+pct(X.voiTripShare,1)+'). The Oslo share is assumed, not a measured city figure.')+' PAYG residual '+nf(cal.payg,2)+' kr per ride; net Pass '+nf(cal.fee,2)+' kr per month. '+(X.population.useCalibrated?'Active customers '+nf(cal.active)+' = Voi Oslo trips ÷ 12 ÷ '+nf(cal.ridesPerActive,2)+' rides per active customer per month.':'Active customers: the entered named cohort of '+nf(cal.active)+'.');
