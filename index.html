@@ -96,13 +96,36 @@ footer{overflow-wrap:anywhere}#non-affiliation{display:block;color:var(--ink);fo
 .simple-controls .range-heading,.simple-controls .slider-heading{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
 .simple-controls .simple-number-help,.simple-controls small{display:block;font-size:12px;font-weight:400;color:var(--muted);line-height:1.5;margin-top:4px;max-width:none}
 .simple-control-actions button{font-size:12px;padding:7px 12px}
-.simple-conditions{margin:8px 0 22px;padding-top:20px}
+.simple-conditions{margin:8px 0 22px;padding-top:20px;scroll-margin-top:85px}
 .simple-threshold-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px;margin:15px 0}
 .simple-threshold-card{border:1px solid var(--line);background:#fafaf6;padding:15px 17px;min-width:0;overflow-wrap:anywhere}
 .simple-threshold-card h3{font-size:14px;line-height:1.4;margin:0 0 8px}
 .simple-threshold-card strong{display:block;font:22px/1.3 Mono,monospace;margin:8px 0}
 .simple-threshold-card p{font-size:12px;line-height:1.5;margin:7px 0;color:var(--muted)}
 .simple-threshold-card .tag{display:inline-block;white-space:normal}
+.simple-break-even-overview{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;padding:16px 0;margin:15px 0 20px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.simple-break-even-overview small{font-size:12px;color:var(--muted)}
+.simple-break-even-overview strong{display:block;font:23px/1.3 Mono,monospace;margin:5px 0}
+.simple-break-even-overview p{font-size:12px;line-height:1.5;color:var(--muted);margin:5px 0}
+.simple-break-even-overview [data-state="negative"] strong,.simple-safety[data-state="negative"]{color:var(--red)}
+.simple-factor-current{font-weight:600;color:var(--ink)!important}.simple-threshold-card>small,.simple-factor-detail>small{font-size:11px;color:var(--muted)}
+.simple-threshold-card .simple-safety,.simple-factor-detail .simple-safety{color:var(--green);font-weight:600}
+.simple-threshold-card .simple-safety[data-state="negative"],.simple-factor-detail .simple-safety[data-state="negative"]{color:var(--red)}
+.simple-break-even-scale{position:relative;height:12px;background:#e4e3da;border:1px solid #c9cbbf;margin:19px 5px 8px;border-radius:2px}
+.simple-scale-positive{position:absolute;top:0;height:100%;background:#a7c4a9}
+.simple-scale-boundary{position:absolute;height:17px;border-left:1px dashed var(--green);top:-3px;transform:translateX(-50%)}
+.simple-scale-current{position:absolute;height:26px;width:3px;background:var(--ink);top:-8px;transform:translateX(-50%)}
+.simple-scale-current::before{content:"";position:absolute;top:-4px;left:-3px;border-left:4px solid transparent;border-right:4px solid transparent;border-top:5px solid var(--ink)}
+.simple-scale-range{display:flex;justify-content:space-between;gap:12px;font:10px/1.4 Mono,monospace;color:var(--muted)}
+.simple-scale-range span:last-child{text-align:right}.simple-scale-legend{font-size:11px;color:var(--muted);display:flex;gap:8px;align-items:center;margin:8px 0 16px}
+.simple-scale-key{width:14px;height:9px;background:#a7c4a9;flex-shrink:0}
+.simple-factor-explorer{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:10px 0;margin:16px 0}
+.simple-factor-explorer summary{font-size:13px}.simple-factor-explorer label{display:block;margin:12px 0 5px;font-size:12px}
+.simple-factor-explorer select{display:block;width:min(100%,430px);padding:9px;background:#fafaf6;border:1px solid var(--line);color:var(--ink)}
+.simple-factor-detail{max-width:650px;background:#fafaf6;border-left:3px solid var(--green);padding:16px 20px;margin:16px 0 5px;overflow-wrap:anywhere}
+.simple-factor-detail h3{margin:0 0 8px}.simple-factor-detail>strong{font:24px/1.3 Mono,monospace;display:block;margin:6px 0}
+.simple-factor-detail p{font-size:12px;line-height:1.5;color:var(--muted);margin:7px 0}
+@media(max-width:650px){.simple-break-even-overview{grid-template-columns:1fr;gap:15px}.simple-break-even-overview strong{font-size:22px}.simple-scale-legend{align-items:flex-start}.simple-scale-key{margin-top:4px}.simple-factor-detail{padding:15px}.simple-factor-explorer select{width:100%}}
 .simple-reading{border-top:1px solid var(--line);padding-top:8px;margin:22px 0 0;max-width:980px}
 .simple-reading summary{font-size:14px}
 .simple-reading p{font-size:13px;line-height:1.6;color:var(--muted)}
@@ -127,7 +150,7 @@ footer{overflow-wrap:anywhere}#non-affiliation{display:block;color:var(--ink);fo
 <section class="simple-comparison panel" aria-labelledby="simple-comparison-title"><h2 id="simple-comparison-title"><span class="appendix-label">Table B1</span> Compare the five options</h2><p class="simple-section-note">Every option uses the same starting customers, market assumptions and implementation path.</p><div id="simple-options" class="table-wrap"></div></section>
 <section class="simple-adjustments panel" aria-labelledby="simple-controls-title"><h2 id="simple-controls-title">Explore four assumptions</h2><p class="simple-section-note">Move one control to see how the investment case changes. All other assumptions stay fixed.</p><div id="simple-controls" class="simple-controls"></div><div class="actions simple-control-actions"><button id="simple-undo" type="button">Undo</button><button id="simple-reset" type="button">Reset example</button></div></section>
 </div>
-<section class="simple-conditions panel" aria-labelledby="simple-threshold-title"><h2 id="simple-threshold-title"><span class="appendix-label">Table B2</span> What must be true</h2><p id="simple-threshold-status" class="simple-section-note" role="status">Finding the three nearest decision thresholds.</p><div id="simple-thresholds" class="simple-threshold-grid"></div><p class="note">Each threshold changes one input while all others stay fixed. The three values cannot be combined as independent minimum requirements.</p></section>
+<section class="simple-conditions panel" id="simple-break-even" tabindex="-1" aria-labelledby="simple-threshold-title"><h2 id="simple-threshold-title"><span class="appendix-label">Table B2</span> Break-even &amp; safety margin</h2><p class="simple-section-note">How much can change before this investment stops creating value? Break-even means zero additional discounted economic value over the selected period, after investment and operating costs.</p><div id="simple-break-even-overview" class="simple-break-even-overview"></div><p id="simple-threshold-status" class="simple-section-note" role="status">Finding the three nearest decision thresholds.</p><div id="simple-thresholds" class="simple-threshold-grid"></div><p class="simple-scale-legend"><span class="simple-scale-key" aria-hidden="true"></span> Green: positive economic value. Line: current input. Bar: tested range.</p><details class="simple-factor-explorer"><summary>Check another factor — adoption, price response or costs</summary><label for="simple-break-even-factor">Factor to inspect</label><select id="simple-break-even-factor" disabled></select><div id="simple-break-even-detail" aria-live="polite"></div></details><p class="note">Each threshold changes one input while all others stay fixed. The three values cannot be combined as independent minimum requirements. Reaching break-even alone does not meet the stricter capital, payback and service requirements.</p></section>
 <details class="simple-reading"><summary>How to read these results</summary><p>The recommendation weighs customer delivery, discounted value and the cash needed to fund the plan. The comparison keeps the highest-value alternative visible. Results are conditional scenarios based on the entered assumptions.</p><p>A <abbr class="simple-tooltip" title="Start with a limited rollout and comparison group. Expansion follows a review of delivery and economics.">pilot path</abbr> includes expansion only if it is approved. <abbr class="simple-tooltip" title="Introduce the offer at the stated full scope without first running the modelled pilot.">Direct rollout</abbr> has a different investment schedule. <abbr class="simple-tooltip" title="The largest cumulative additional cash deficit during the stated period. It is the maximum funding need within that period.">Peak cash</abbr> is the largest cash shortfall during the period. Calendar dates describe an illustrative implementation schedule.</p><a class="button" href="methods.pdf" id="simple-methods-link">One-page calculation guide ↗</a></details>
 </main>
 <div id="expert-view" hidden>
@@ -4993,17 +5016,57 @@ footer{overflow-wrap:anywhere}#non-affiliation{display:block;color:var(--ink);fo
     }
     function nearest(th){return th.rows.filter(q=>q.roots?.length&&q.nearest!=null&&q.margin!=null).sort((a,b)=>Math.abs(a.margin)-Math.abs(b.margin)).slice(0,3);}
     const unit=(v,u)=>u==='share'?pct(v):u==='kr'?nf(v,1)+' kr':u==='min'?nf(v,1)+' minutes':u==='kr/h'?nf(v)+' kr/hour':u==='customers'?nf(v):nf(v,2)+(u||'');
+    const adoptionLabel='Adoption level (× assumed)';
+    const factorName=q=>({'Placement share per booking':'Extra placement','Field minutes per placement':'Time per placement','Field wage':'Field wage','Fee elasticity':'Price response','Adoption level (× assumed)':'Adoption level'}[q.label]||q.label);
+    const factorValue=(q,v)=>q.label===adoptionLabel?pct(v)+' of current rates':unit(v,q.unit);
+    function distance(q,d){
+      if(q.label===adoptionLabel)return nf(Math.abs(d/q.current)*100,1)+'%';
+      if(q.unit==='share')return nf(Math.abs(d)*100,1)+' percentage points';
+      return q.unit==='kr/h'?nf(Math.abs(d),1)+' kr/hour':unit(Math.abs(d),q.unit);
+    }
+    function safety(q,th){
+      if(!q.roots.length)return q.status==='positive'?'Value stays positive throughout the tested range. No break-even point was found.':q.status==='negative'?'Value stays negative throughout the tested range. No break-even point was found.':'No zero-value crossing was found in the tested range.';
+      if(Math.abs(th.value)<1e-5)return 'At break-even under the current inputs.';
+      const d=q.nearest-q.current;
+      if(th.value>0&&q.status==='window'&&q.roots.length===2)return 'Headroom: '+distance(q,q.roots[0].value-q.current)+' lower or '+distance(q,q.roots[1].value-q.current)+' higher before value reaches zero.';
+      return (th.value>0?'Headroom: ':'Improvement required: ')+distance(q,d)+(d>=0?' higher':' lower')+(q.label===adoptionLabel?' adoption, with both rates changing together':q.unit==='min'?' per placement':'')+(th.value>0?' before value reaches zero.':' to reach break-even.');
+    }
+    function scale(q){
+      if(!(q.hi>q.lo))return '';
+      const pos=v=>Math.max(0,Math.min(100,(v-q.lo)/(q.hi-q.lo)*100)),roots=q.roots.slice().sort((a,b)=>a.value-b.value);
+      let at=q.lo,positive=roots.length?!roots[0].rising:q.status==='positive',bands='';
+      for(const r of [...roots,{value:q.hi}]){if(positive)bands+='<span class="simple-scale-positive" style="left:'+pos(at)+'%;width:'+(pos(r.value)-pos(at))+'%"></span>';at=r.value;positive=r.rising;}
+      return '<div class="simple-break-even-scale" role="img" aria-label="'+esc('Tested range '+factorValue(q,q.lo)+' to '+factorValue(q,q.hi)+'. Current input '+factorValue(q,q.current)+'. Green marks positive economic value only.')+'">'+bands+roots.map(r=>'<span class="simple-scale-boundary" style="left:'+pos(r.value)+'%"></span>').join('')+'<span class="simple-scale-current" style="left:'+pos(q.current)+'%"></span></div><div class="simple-scale-range"><span>'+esc(factorValue(q,q.lo))+'</span><span>'+esc(factorValue(q,q.hi))+'</span></div>';
+    }
+    function thresholdBody(q,th){
+      const window=q.status==='window'&&q.roots.length===2,root=q.roots.find(r=>r.value===q.nearest);
+      const limit=window?factorValue(q,q.roots[0].value)+' – '+factorValue(q,q.roots[1].value):q.nearest!=null?factorValue(q,q.nearest):'No crossing in tested range';
+      const direction=window?'Value is positive inside this range.':!root?'':root.rising?'Value is positive above this boundary.':'Value is positive below this boundary.';
+      return '<p class="simple-factor-current">Current input: '+esc(factorValue(q,q.current))+'</p><small>Break-even '+(window?'range':'point')+'</small><strong>'+esc(limit)+'</strong>'+scale(q)+'<p class="simple-safety" data-state="'+(th.value>0?'positive':th.value<0?'negative':'zero')+'">'+esc(safety(q,th))+'</p><p>'+esc(direction)+' Other inputs stay fixed.</p>'+(q.label===adoptionLabel?'<p>100% means the adoption rates entered now. This test scales both reference rates together; it is not the share of all customers who book.</p>':'');
+    }
+    function clearFactor(message){$('#simple-break-even-factor').disabled=true;$('#simple-break-even-detail').textContent=message;}
+    function showFactor(th){
+      const select=$('#simple-break-even-factor');
+      if(!th.rows.some(q=>q.label===select.value))select.value=th.rows.some(q=>q.label===adoptionLabel)?adoptionLabel:th.rows[0]?.label||'';
+      const q=th.rows.find(q=>q.label===select.value);
+      $('#simple-break-even-detail').innerHTML=q?'<article class="simple-factor-detail"><h3>'+esc(factorName(q))+'</h3>'+thresholdBody(q,th)+'</article>':'No factors are available for this investment.';
+    }
+    function breakEvenOverview(s,o){
+      const el=$('#simple-break-even-overview'),target=ctx.report.targets,required=o.peakFunding*target.minCapitalEfficiency,surplus=o.value-required,gap=o.payback==null?null:target.maxDiscountedPayback-o.payback;
+      el.dataset.value=o.value;el.dataset.capitalSurplus=surplus;if(gap==null)delete el.dataset.paybackGap;else el.dataset.paybackGap=gap;
+      const item=(label,value,note,state)=>'<div data-state="'+state+'"><small>'+esc(label)+'</small><strong>'+esc(value)+'</strong><p>'+esc(note)+'</p></div>';
+      el.innerHTML=item('Value above zero',money(o.value),'For '+name(s.selected)+' over '+s.inputs.horizon+' months. This is economic value, not a cash balance.',o.value>=0?'positive':'negative')+item('Margin above capital requirement',o.peakFunding>0?money(surplus):'N/A',o.peakFunding>0?'Proposed hurdle: value at least '+nf(target.minCapitalEfficiency,1)+'× peak cash ('+cash(required)+'). Positive value alone is not enough.':'No positive peak cash base: the value / peak cash requirement is not assessed.',o.peakFunding>0?(surplus>=0?'positive':'negative'):'neutral')+item('Payback versus target',gap==null?'Not achieved':gap===0?'At target':nf(Math.abs(gap))+' months '+(gap>0?'earlier':'later'),'Target: within '+target.maxDiscountedPayback+' months. This comparison is not an allowable launch delay.',gap!=null&&gap>=0?'positive':'negative');
+    }
     function showThresholds(th,source,key){
       auto={thresholds:th,source,key,pending:false};
       const rows=nearest(th),focus=name(th.id);
       $('#simple-threshold-status').textContent='Three nearest zero-value boundaries for '+focus+'. Calculated on the current '+(th.basis==='pilot'?'pilot path':'direct-rollout path')+'; separate from the capital and 95% service requirements.';
       $('#simple-thresholds').innerHTML=rows.length?rows.map(q=>{
-        const label=q.label==='Placement share per booking'?'Extra placement':q.label==='Field minutes per placement'?'Time per placement':q.label;
-        const window=q.status==='window'&&q.roots.length===2;
-        const root=q.roots.find(r=>r.value===q.nearest),limit=window?unit(q.roots[0].value,q.unit)+' – '+unit(q.roots[1].value,q.unit):unit(q.nearest,q.unit);
-        const direction=window?'Value is positive inside this range.':root?.rising?'Value is positive above this boundary.':'Value is positive below this boundary.';
-        return '<article class="simple-threshold-card" data-label="'+esc(q.label)+'"><h3>'+esc(label)+'</h3><strong>'+esc(limit)+'</strong><p>'+esc(direction)+'</p><p>Current input: '+esc(unit(q.current,q.unit))+'. Other inputs stay fixed.</p></article>';
+        return '<article class="simple-threshold-card" data-label="'+esc(q.label)+'"><h3>'+esc(factorName(q))+'</h3>'+thresholdBody(q,th)+'</article>';
       }).join(''):'<p>No zero-value crossing was found in the tested input ranges. Open Advanced controls & analysis to inspect all ranges and constraints.</p>';
+      const select=$('#simple-break-even-factor'),chosen=select.value;
+      select.innerHTML=th.rows.map(q=>'<option value="'+esc(q.label)+'">'+esc(factorName(q))+'</option>').join('');select.disabled=!th.rows.length;
+      select.value=th.rows.some(q=>q.label===chosen)?chosen:th.rows.some(q=>q.label===adoptionLabel)?adoptionLabel:th.rows[0]?.label||'';showFactor(th);
     }
     function scheduleThresholds(s){
       if(mode!=='simple'||!s.result)return;
@@ -5012,10 +5075,10 @@ footer{overflow-wrap:anywhere}#non-affiliation{display:block;color:var(--ink);fo
       clearTimeout(timer);worker?.terminate();worker=null;serial++;const ticket=serial;
       if(snapshot&&id===snapshot.id&&s.basis===snapshot.basis&&canonical(s.inputs)===canonical(snapshot.inputs)){showThresholds(snapshot.thresholds,'precomputed',key);return;}
       if(cache.has(key)){showThresholds(cache.get(key),'cached',key);return;}
-      auto={key,pending:true,thresholds:null};$('#simple-thresholds').innerHTML='';$('#simple-threshold-status').textContent='Updating the three nearest thresholds for your current inputs…';
+      auto={key,pending:true,thresholds:null};$('#simple-thresholds').innerHTML='';clearFactor('Updating break-even factors for the current inputs…');$('#simple-threshold-status').textContent='Updating the three nearest thresholds for your current inputs…';
       const inputs=E.clone(s.inputs),basis=s.basis;
       const finish=th=>{if(ticket!==serial)return;worker?.terminate();worker=null;cache.set(key,th);if(cache.size>15)cache.delete(cache.keys().next().value);showThresholds(th,'calculated',key);};
-      const fail=msg=>{if(ticket!==serial)return;worker?.terminate();worker=null;auto={key,pending:false,thresholds:null,error:msg};$('#simple-threshold-status').textContent='Threshold calculation could not complete. The current financial results remain available; inspect the inputs under Advanced controls & analysis.';};
+      const fail=msg=>{if(ticket!==serial)return;worker?.terminate();worker=null;auto={key,pending:false,thresholds:null,error:msg};clearFactor('Break-even factors are unavailable. Inspect the inputs under Advanced controls & analysis.');$('#simple-threshold-status').textContent='Threshold calculation could not complete. The current financial results remain available; inspect the inputs under Advanced controls & analysis.';};
       timer=setTimeout(()=>{
         if(ticket!==serial)return;
         if(typeof Worker!=='undefined'&&typeof URL.createObjectURL==='function'){
@@ -5041,7 +5104,7 @@ footer{overflow-wrap:anywhere}#non-affiliation{display:block;color:var(--ink);fo
       $('#simple-undo').disabled=!s.historyLength;
     }
     function render(){
-      const s=ctx.state();if(!s.result){clearTimeout(timer);worker?.terminate();worker=null;serial++;auto=null;$('#simple-summary').dataset.status='unavailable';$('#simple-summary').innerHTML='<p class="simple-status-error">Correct the invalid inputs under Advanced controls & analysis.</p>';$('#simple-thresholds').innerHTML='';$('#simple-threshold-status').textContent='Thresholds are unavailable until the invalid inputs are corrected.';return;}
+      const s=ctx.state();if(!s.result){clearTimeout(timer);worker?.terminate();worker=null;serial++;auto=null;$('#simple-summary').dataset.status='unavailable';$('#simple-summary').innerHTML='<p class="simple-status-error">Correct the invalid inputs under Advanced controls & analysis.</p>';$('#simple-thresholds').innerHTML='';$('#simple-break-even-overview').innerHTML='';for(const k of ['value','capitalSurplus','paybackGap'])delete $('#simple-break-even-overview').dataset[k];clearFactor('Break-even factors are unavailable until the invalid inputs are corrected.');$('#simple-threshold-status').textContent='Thresholds are unavailable until the invalid inputs are corrected.';return;}
       const r=s.result,o=A.find(r,s.selected),hub=A.find(r,'booking'),best=A.find(r,r.best),t=A.reportTargets(hub,ctx.report.targets),quality=s.inputs.booking.fulfil>=ctx.report.patch['booking.fulfil'];
       const qualified=A.candidates(r).filter(q=>q.id!=='none'&&q.feasible&&q.value>0&&A.reportTargets(q,ctx.report.targets).meets),top=qualified.reduce((a,q)=>!a||A.capitalEfficiency(q)>A.capitalEfficiency(a)?q:a,null);
       const supported=hub.feasible&&hub.value>0&&t.meets&&quality&&!s.inputs.booking.citywide&&s.inputs.booking.passIncluded===0&&(!top||A.capitalEfficiency(hub)>=A.capitalEfficiency(top)-1e-9);
@@ -5050,14 +5113,15 @@ footer{overflow-wrap:anywhere}#non-affiliation{display:block;color:var(--ink);fo
       const reason=supported?'A focused first step: the current case combines positive value, lower funding exposure and a specific reliability promise.':!hub.feasible?'The current Hub plan breaks an entered funding, capacity or timing constraint.':!quality?'The current service level is below the 95% fulfilment requirement. A positive financial case does not repair that customer promise.':!t.meets?'The current Hub case does not meet both proposed financial requirements. Test or redesign the assumptions before committing.':'Another option now has stronger capital efficiency. Revisit the first-stage priority.';
       const trade=best.id==='none'?'No investment is the current value-ranked choice.':best.designKey===hub.designKey?'Hub & Book also has the highest total value under these inputs.':'Highest total value: '+name(best.id)+' ('+money(best.value)+'). Compared with Hub, it adds '+cash(best.value-hub.value)+' of value and '+cash(best.peakFunding-hub.peakFunding)+' of peak cash. Hub-first prioritises capital efficiency. '+(s.inputs.fundingLimit==null?'No total funding ceiling is entered.':'Entered funding ceiling: '+cash(s.inputs.fundingLimit)+'.');
       const metric=(label,v,why)=>'<div><small>'+label+'</small><strong>'+esc(v)+'</strong><p class="simple-number-help">'+esc(why)+'</p></div>';
-      $('#simple-summary').innerHTML='<p class="eyebrow">SUGGESTED FIRST STEP · CONDITIONAL SCENARIO</p><h2>'+esc(title)+'</h2><p>'+esc(reason)+'</p><div class="simple-metrics">'+metric('Discounted value',money(o.value),'Additional economic contribution versus no investment over '+s.inputs.horizon+' months.')+metric(tip('Peak cash','peak'),cash(o.peakFunding),'Maximum additional cash needed within the period.')+metric('Discounted payback',o.payback?nf(o.payback)+' months':'Not achieved',o.payback?'First recovery of discounted economic investment: '+calendar(o.payback)+'.':'Investment is not recovered within this horizon.')+metric('Value per NOK of peak cash',A.capitalEfficiency(o)==null?'N/A':nf(A.capitalEfficiency(o),2)+'×','Capital efficiency; a prioritisation measure, not a success probability.')+'</div><p>'+esc(trade)+'</p><p class="note">Inspecting '+esc(name(s.selected))+'. '+(s.basis==='pilot'?tip('Pilot path','pilot')+' includes expansion after the review.':tip('Direct rollout','direct')+' is selected; the pilot-first recommendation is a sequencing judgement.')+' Proposed requirements: value / peak cash at least 1.0, payback within 24 months and at least 95% fulfilment.</p><div class="simple-summary-actions"><button type="button" data-simple-advanced>Open advanced controls & analysis</button></div>';
+      $('#simple-summary').innerHTML='<p class="eyebrow">SUGGESTED FIRST STEP · CONDITIONAL SCENARIO</p><h2>'+esc(title)+'</h2><p>'+esc(reason)+'</p><div class="simple-metrics">'+metric('Discounted value',money(o.value),'Additional economic contribution versus no investment over '+s.inputs.horizon+' months.')+metric(tip('Peak cash','peak'),cash(o.peakFunding),'Maximum additional cash needed within the period.')+metric('Discounted payback',o.payback?nf(o.payback)+' months':'Not achieved',o.payback?'First recovery of discounted economic investment: '+calendar(o.payback)+'.':'Investment is not recovered within this horizon.')+metric('Value per NOK of peak cash',A.capitalEfficiency(o)==null?'N/A':nf(A.capitalEfficiency(o),2)+'×','Capital efficiency; a prioritisation measure, not a success probability.')+'</div><p>'+esc(trade)+'</p><p class="note">Inspecting '+esc(name(s.selected))+'. '+(s.basis==='pilot'?tip('Pilot path','pilot')+' includes expansion after the review.':tip('Direct rollout','direct')+' is selected; the pilot-first recommendation is a sequencing judgement.')+' Proposed requirements: value / peak cash at least 1.0, payback within 24 months and at least 95% fulfilment.</p><div class="simple-summary-actions"><button type="button" data-simple-advanced>Open advanced controls & analysis</button><button type="button" data-simple-break-even>See break-even & safety margin ↓</button></div>';
       const fixed=A.find(r,'B1xG3'),options=[...r.options];if(fixed)options.push(fixed);
       $('#simple-options').innerHTML='<table aria-label="Table B1 Five investment choices"><thead><tr><th>Investment</th><th>Value</th><th>Peak cash</th><th>Payback</th></tr></thead><tbody>'+options.map(q=>'<tr data-id="'+esc(q.id)+'"'+(q.id===s.selected?' class="selected"':'')+'><th scope="row">'+esc(name(q.id))+(q.id==='booking'&&supported?'<small>Suggested first step</small>':'')+(q.id===r.best||q.designKey===best.designKey?'<small>Highest total value</small>':'')+'</th><td>'+esc(money(q.value))+'</td><td>'+esc(cash(q.peakFunding))+'</td><td>'+esc(q.id==='none'?'—':q.payback?q.payback+' months':'Not achieved')+(q.feasible?'':'<small>Constraint failed</small>')+'</td></tr>').join('')+'</tbody></table>';
-      controls(s);scheduleThresholds(s);
+      breakEvenOverview(s,o);controls(s);scheduleThresholds(s);
     }
     $('#mode-simple').onclick=()=>setMode('simple');$('#mode-expert').onclick=()=>setMode('expert');
     $('#simple-undo').onclick=()=>ctx.undo();$('#simple-reset').onclick=()=>{adoptionAnchor=null;lastRates=null;ctx.reset();};
-    $('#simple-view').addEventListener('click',e=>{if(e.target.closest('[data-simple-advanced]'))setMode('expert');});
+    $('#simple-break-even-factor').onchange=()=>{if(auto?.thresholds&&!auto.pending)showFactor(auto.thresholds);};
+    $('#simple-view').addEventListener('click',e=>{if(e.target.closest('[data-simple-advanced]'))setMode('expert');if(e.target.closest('[data-simple-break-even]')){$('#simple-break-even').scrollIntoView({block:'start'});$('#simple-break-even').focus({preventScroll:true});}});
     let editTimer;
     $('#simple-controls').addEventListener('input',e=>{
       const el=e.target,id=el.dataset.simpleControl;if(!id)return;clearTimeout(editTimer);
